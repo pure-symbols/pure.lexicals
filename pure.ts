@@ -128,7 +128,8 @@ namespace pure
     
     export 
     const Divides = 
-    (a: number, b: number): Divides => 
+    (a: number) => 
+    (b: number): Divides => 
         
         [...Array(a)].reduce(
             
@@ -139,13 +140,13 @@ namespace pure
                 { div: c + 1, rem: r - b } , 
             
             { div: 0, rem: a } ) ;
-
+    
 } ;
 
 // 
 
 
-const rangestep = (a: number, t: number, b: number): number[] => Array.from(Array(pure.Divides(b - a, t).div + 1).keys()).map(x => x * t).map(x => x + a);
+const rangestep = (a: number, t: number, b: number): number[] => Array.from(Array(pure.Divides(b - a)(t).div + 1).keys()).map(x => x * t).map(x => x + a);
 const range = (a: number, b: number): number[] => rangestep(a,1,b) ;
 
 pure.pipe (rangestep(2,3,10)) (console.log)
