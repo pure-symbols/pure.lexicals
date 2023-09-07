@@ -61,7 +61,24 @@ namespace pure
     type pipe = <T,> (x: T) => <R,> (f: Fn<T, R>) => R ;
     export 
     const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => f(x) ;
-    const pipeline = {} ;
+    
+    type Pipework <T> = () => Pipeline<T> ;
+    type Pipeline <T> = <R> (f: Fn<T, R>) => Rivulet<R> ;
+    type Rivulet <T> = Pair<T, Pipework<T> > ;
+    type pipeline = <T> (x: T) => Pipeline<T> ;
+    
+    const Rivulet = 
+    <T,> (head: T) => 
+    (tail: Pipework<T>)
+    : Rivulet<T> => 
+        
+        Pair (head) (tail) ;
+    
+    export 
+    const Pipeline: pipeline = 
+    <T,> (x: T): Pipeline<T> => 
+        
+        <R,> (f: Fn<T, R>) => Rivulet (pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
     
     
     export 
@@ -123,6 +140,11 @@ namespace pure
     : T[] => [{} as T] //
     
     
+    
+} ;
+
+namespace calcu 
+{
     export 
     type Divides = { div: number, rem: number } ;
     
@@ -143,35 +165,69 @@ namespace pure
     
 } ;
 
-// 
+namespace arr 
+{
+    export 
+    const rangestep = 
+    (a: number, t: number, b: number): number[] => 
+        
+        Array.from(Array(calcu.Divides(b - a)(t).div + 1).keys())
+            .map(x => x * t).map(x => x + a) ;
+    
+    export 
+    const range = (a: number, b: number): number[] => rangestep(a,1,b) ;
+    
+} ;
 
-
-const rangestep = (a: number, t: number, b: number): number[] => Array.from(Array(pure.Divides(b - a)(t).div + 1).keys()).map(x => x * t).map(x => x + a);
-const range = (a: number, b: number): number[] => rangestep(a,1,b) ;
-
-pure.pipe (rangestep(2,3,10)) (console.log)
-pure.pipe (range(2,10)) (console.log)
 
 namespace Demo
 {
+    
+    console.log("---=== arr.range ===---") ;
+    
+    pure.pipe (arr.rangestep(2,3,10)) (console.log); // [2, 5, 8]
+    pure.pipe (arr.range(2,10)) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    
+    
+    
+    
+    
+    console.log("---=== fibo_pipe ===---")
     
     const fibo_pipe = 
     pure.pipe
     (pure.pipe 
         (pure.pipe 
             (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
-            (pure.Iterador.map (([x, y]) => x)) ) 
-        (pure.Iterador.map (x => 2 * x)) ) 
+            (pure.Iterador.map (([x, y]) => x) ) ) 
+        (pure.Iterador.map (x => 2 * x) ) ) 
     (pure.Iterador.map (x => x / 2) ) ;
     
-    console.log("---=== fibo_pipe ===---")
+    pure.pipe
+    ( [... Array(14)].reduce
+    (
+        ({a:{head, tail}, r},b) => ({ a: tail(), r: [...r, head] }) , 
+        { a: fibo_pipe(), r: [] } ,
+    ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     
-    const {head, tail} = fibo_pipe() ;
-    console.log(head); // 输出 0
     
-    const {head: hh, tail: tt} = tail() ;
-    console.log(hh); // 输出 1
+    
+    console.log("---=== fibo_pipeline ===---") ;
+    
+    const fibo_pipeline = 
+    pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+        (pure.Iterador.map (([x, y]) => x) ) .tail()
+        (pure.Iterador.map (x => 2 * x) ) .tail()
+        (pure.Iterador.map (x => x / 2) ) .head ;
+    
+    pure.Pipeline
+    ( [... Array(14)].reduce
+    (
+        ({a:{head, tail}, r},b) => ({ a: tail(), r: [...r, head] }) , 
+        { a: fibo_pipeline(), r: [] } ,
+    ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    
     
 } ;
