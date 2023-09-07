@@ -1,4 +1,6 @@
 
+## *pure project 🧫 TypeScript*
+
 ### Why
 
 Because there is no pure functional formed `Iterator` implemented, yet.
