@@ -1,6 +1,16 @@
-# pure.ts
+# pure project
 
-learn fp with ts
+~~~
+Study fp at where it is not exist yet. 🧬
+~~~
+
+This is a theoretical verification in *Functional Programming* studies.
+
+Things I will build should just base on the *first classed function* feature. If there should be some static classes annotation, only use type aliases. An annotation of types should just show the structure of a data.
+
+Something specific: 
+
+- In TS/JS, I would use one more thing: object, similar with [records in OCaml](https://cs3110.github.io/textbook/chapters/data/records_tuples.html).
 
 ## Thanks for
 
