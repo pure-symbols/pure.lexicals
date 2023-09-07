@@ -10,7 +10,7 @@ Things I will build should just base on the *first classed function* feature. If
 
 Something specific: 
 
-- In TS/JS, I would use one more thing: object, similar with [records in OCaml](https://cs3110.github.io/textbook/chapters/data/records_tuples.html).
+- In TS/JS, I would use one more thing: object, similar with [records](https://cs3110.github.io/textbook/chapters/data/records_tuples.html) in OCaml.
 
 ## Thanks for
 
