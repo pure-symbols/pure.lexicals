@@ -22,5 +22,10 @@ Something specific:
 - *Rain World* game which give me some idea for the names
 
 
+## Implementations
 
+- [ ] [TypeScript](./pure.ts)
+- [ ] [Rust](./pure.rs)
+- [ ] [Java](./pure.java)
+- [ ] ...
 
