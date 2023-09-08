@@ -6,7 +6,7 @@
 
 This is a theoretical verification in *Functional Programming* studies.
 
-Things I will build should just base on the *first classed function* feature. If there should be some static classes annotation, only use type aliases. An annotation of types should just show the structure of a data.
+Things I will build should just base on the *first classed function (**closure**, also called **lexical closure** or **function closure**)* feature. If there should be some static classes annotation, only use type aliases. An annotation of types should just show the structure of a data.
 
 Something specific: 
 
