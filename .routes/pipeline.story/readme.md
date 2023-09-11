@@ -147,5 +147,5 @@ That's all.
 
 Thanks for the *lexical closure* feature.
 
-感谢语言提供的 *词法闭包* 特性。没有对这一特性的支持就做不了这些事。
+这要感谢语言对 *词法闭包* 特性的支持，没有它就做不了上面的事。
 
