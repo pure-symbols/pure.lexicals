@@ -143,7 +143,7 @@ namespace pure
     
 } ;
 
-namespace calcu 
+namespace nums 
 {
     export 
     type Divides = { div: number, rem: number } ;
@@ -171,12 +171,73 @@ namespace arr
     const rangestep = 
     (a: number, t: number, b: number): number[] => 
         
-        Array.from(Array(calcu.Divides(b - a)(t).div + 1).keys())
+        Array.from(Array(nums.Divides(b - a)(t).div + 1).keys())
             .map(x => x * t).map(x => x + a) ;
     
     export 
     const range = (a: number, b: number): number[] => rangestep(a,1,b) ;
     
+} ;
+
+namespace fun 
+{
+    export 
+    const memoize = 
+    <T extends (...args: any[]) => any> (f: T)
+    : T => 
+    {
+        const mem = {} as Record<string, ReturnType<T>> ;
+        
+        return ( (...args: Parameters<T>)
+        : ReturnType<T> => 
+        {
+            const k = JSON.stringify(args) ;
+            if (!(k in mem)) { mem[k] = f(...args); } ;
+            return mem[k] ;
+        } ) as T ;
+    } ;
+    
+    
+    export 
+    const apply = 
+    <T,> (f: Function) => 
+    (args: any[]) => 
+    (owner: T|undefined = undefined)
+    : any => 
+        
+        f.call(owner, ...args) ;
+    
+    export 
+    const applies = memoize(apply) ;
+    
+    
+    
+    export 
+    namespace Echoes
+    {
+        export 
+        const echoes =
+        <T = {[key: string]: any},> 
+        (waves: {[key: string]: (env: T) => any})
+        : T => 
+            Object.entries(waves).reduce
+            (
+                (envs, [fn, f]) => ({... envs, [fn]: f(envs)}) ,
+                {} as T
+            ) ;
+        
+        export 
+        const calls = 
+        <
+            T extends Record<K, (...args: any) => any> , 
+            K extends keyof T , 
+        > 
+        (record: T, key: K)
+        : { [P in K]: ReturnType<T[P]> ; }[K] => 
+            
+            echoes <{[P in K]: ReturnType<T[P]> }> (record) [key] ;
+        
+    } ;
 } ;
 
 
@@ -206,7 +267,7 @@ namespace Demo
     pure.pipe
     ( [... Array(14)].reduce
     (
-        ({a:{head, tail}, r},b) => ({ a: tail(), r: [...r, head] }) , 
+        ({ a: { head, tail }, r }, b) => ({ a: tail(), r: [...r, head] }) , 
         { a: fibo_pipe(), r: [] } ,
     ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
@@ -225,9 +286,52 @@ namespace Demo
     pure.Pipeline
     ( [... Array(14)].reduce
     (
-        ({a:{head, tail}, r},b) => ({ a: tail(), r: [...r, head] }) , 
+        ({ a: { head, tail }, r}, b) => ({ a: tail(), r: [...r, head] }) , 
         { a: fibo_pipeline(), r: [] } ,
     ) ) (console.log) .head(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
+    
+    
+    
+    console.log("---=== fibo_tree ===---") ;
+    
+    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree) ([n - 1]) () + fun.applies (fibo_tree) ([n - 2]) () : n ) ;
+    // console.log(fun.applies (fibo_tree) ([41]) () ); // 165580141, but very long wait, won't stack overflow.
+    
+    
+    console.log("---=== echoable ===---") ;
+    
+    const echoable =
+    {
+        x0: (env: { [key: string]: any }) => 
+            
+            2 ,
+        
+        f: (env: { [key: string]: any }) => 
+            
+            (s: string)
+            : number => 
+                s.length ,
+        
+        f2: (env: { [key: string]: any }) => 
+            
+            (s: string) => (n: number)
+            : Promise<number> => 
+                Promise.resolve(env.f(s) + n - env.x0) ,
+        
+        f22: (env: { [key: string]: any }) => 
+            
+            (s: string, n: number)
+            : Promise<number> => 
+                env.f2(s)(n) ,
+    } ;
+    
+    fun.Echoes.echoes (echoable).f2 ("huge") (6)
+        .then( (x: number) => `Promising: will 10 - 2 = 8 ~: ${x}` )
+        .then(console.log); // "Promising: will 10 - 2 = 8 ~: 8"
+    
+    fun.Echoes.calls (echoable,'f2') ("huge") (7)
+        .then(x => `Promising: will 11 - 2 = 9 ~: ${x}`)
+        .then(console.log); // "Promising: will 11 - 2 = 9 ~: 9"
     
 } ;
