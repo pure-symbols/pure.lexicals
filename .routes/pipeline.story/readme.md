@@ -111,7 +111,7 @@ I simplified it by these three things:
 ~~~ typescript
 type Pipework <T> = () => Pipeline<T> ;
 type Pipeline <T> = <R> (f: Fn<T, R>) => Rivulet<R> ;
-type Rivulet <T> = Pair<T, Pipework<T> > ;
+type Rivulet <T> = Pair<() => T, Pipework<T> > ;
 ~~~
 
 And, the type of this function can be this: 
@@ -128,7 +128,7 @@ After the formats and some others, we get this result (we've see in our code) fi
 
 ~~~ typescript
 const Rivulet = 
-<T,> (head: T) => 
+<T,> (head: () => T) => 
 (tail: Pipework<T>)
 : Rivulet<T> => 
     
@@ -138,7 +138,7 @@ export
 const Pipeline: pipeline = 
 <T,> (x: T): Pipeline<T> => 
     
-    <R,> (f: Fn<T, R>) => Rivulet (pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
+    <R,> (f: Fn<T, R>) => Rivulet (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
 ~~~
 
 That's all.
