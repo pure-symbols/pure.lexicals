@@ -7,6 +7,8 @@ So, I suggest myself to make every function become a only one parameter function
 
 And, thst is just only one cool thing will be gives I feel.
 
+> > > > ----
+
 我是怎么用上柯里化的呢？只是因为一开始我觉得这样会很酷。。。
 
 举个例子， OCaml 就让我觉得很酷，因为它的 `a b c` 就是简写化的 `(((a) b) c)` ，这意味着它的编译器解释器只需要理解一种函数：单参数函数，就行了，一切仍然能够顺利工作，而实现则变得简单且优雅（并且我还会在不久将来由此被赐予意料外的灵活性）。
