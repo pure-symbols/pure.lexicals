@@ -4,26 +4,26 @@ namespace pure
     export 
     type Fn <T, R> = (x: T) => R ;
     export 
-    type Lazywarp <T> = () => T ;
+    type Lacking <T> = () => T ;
     
     
     export 
-    type Maybe <T> = { head: T } ;
+    type Might <T> = { head: T } ;
     export 
-    type None = Maybe<null> ;
+    type None = Might<null> ;
     
     export 
-    const Maybe = 
+    const Might = 
     <T,> (head: T)
-    : Maybe<T> => 
+    : Might<T> => 
         
-        ({ head: head }) as Maybe<T> ;
+        ({ head: head }) as Might<T> ;
     
     export 
     const None = 
-    (): Maybe<null> => 
+    (): Might<null> => 
         
-        ({ head: null }) as Maybe<null> ;
+        ({ head: null }) as Might<null> ;
     
     
     
@@ -64,11 +64,11 @@ namespace pure
     
     type Pipework <T> = () => Pipeline<T> ;
     type Pipeline <T> = <R> (f: Fn<T, R>) => Rivulet<R> ;
-    type Rivulet <T> = Pair<T, Pipework<T> > ;
+    type Rivulet <T> = Pair<() => T, Pipework<T> > ;
     type pipeline = <T> (x: T) => Pipeline<T> ;
     
     const Rivulet = 
-    <T,> (head: T) => 
+    <T,> (head: () => T) => 
     (tail: Pipework<T>)
     : Rivulet<T> => 
         
@@ -78,11 +78,11 @@ namespace pure
     const Pipeline: pipeline = 
     <T,> (x: T): Pipeline<T> => 
         
-        <R,> (f: Fn<T, R>) => Rivulet (pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
+        <R,> (f: Fn<T, R>) => Rivulet (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
     
     
     export 
-    type Downpour <T> = Lazywarp<Iterador<T> > ;
+    type Downpour <T> = Lacking<Iterador<T> > ;
     export 
     type Iterador <T> = { head: T, tail: Downpour<T> } ;
     
@@ -220,14 +220,14 @@ namespace Demo
     pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
         (pure.Iterador.map (([x, y]) => x) ) .tail()
         (pure.Iterador.map (x => 2 * x) ) .tail()
-        (pure.Iterador.map (x => x / 2) ) .head ;
+        (pure.Iterador.map (x => x / 2) ) .head() ;
     
     pure.Pipeline
     ( [... Array(14)].reduce
     (
         ({a:{head, tail}, r},b) => ({ a: tail(), r: [...r, head] }) , 
         { a: fibo_pipeline(), r: [] } ,
-    ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    ) ) (console.log) .head(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
 } ;
