@@ -3,11 +3,11 @@
 
 ### Why
 
-Because there is no pure functional formed `Iterator` implemented, yet.
+Because there is no pure functional formed `Iterator` implemented in *JS/TS* (or *ES* maybe), yet.
 
 And, not likely with [*moonbit lang*](https://try.moonbitlang.com) or [*Elixir*](https://playground.functional-rewire.com), *TS/JS* cannot make `a.b(c)` same as `b(a,c)` easily, so there is some necessary also.
 
-(And ... Thanks for the [*CS3110*](https://cs3110.github.io/textbook/chapters/hop/currying.html) and [*OCaml lang*](https://ocaml.org/play), the design or feature from them give me faith about currying. Without some small try of currying by myself, I could not do any thing on this [*pure project*](./..) .)
+But, *JS/TS* (or *ES*) support *closure* (also called *lexical closure*, *function closure* or maybe *first-classed function*), so we can play with it.
 
 ### Show
 
