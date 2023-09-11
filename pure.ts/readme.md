@@ -11,6 +11,31 @@ But, *JS/TS* (or *ES*) support *closure* (also called *lexical closure*, *functi
 
 ### Show
 
+#### `pure.Pipeline`
+
+~~~ ts
+const add = (a: number) => (b: number) => a + b ;
+
+pure.Pipeline (5)
+    (add (3) ) .tail()
+    (add (4) ) .tail()
+    (add (5) ) .tail()
+    (console.log) .head(); // 17
+~~~
+
+#### `pure.Iterador`
+
+~~~ ts
+pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+    (pure.Iterador.map (([x, y]) => x) ) .tail()
+    ( x => [... Array(16)].reduce
+    (
+        ({ a: { head, tail }, r }, b) => ({ a: tail(), r: [...r, head] }) , 
+        { a: x(), r: [] } ,
+    ) ) .tail()
+    (console.log) .head(); // { "a": { "head": 987 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610 ] }
+~~~
+
 #### `...`
 
 
