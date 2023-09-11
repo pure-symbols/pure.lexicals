@@ -98,6 +98,8 @@ See them on [*playground*](https://www.typescriptlang.org/play?#code/PTAEBMFMAdI
 
 可在 [Playground](https://tsplay.dev/WKKLyW) 查看完整代码及其验证。
 
+--------
+
 If you want a type comment here, you shall see this: `<T>(x: T) => <R>(f: Fn<T, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<...>) => Pair<...>>>>>` .
 
 这时候，如果看一下类型标记，你会看到一个写不完的类型标记。
