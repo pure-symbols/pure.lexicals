@@ -3,5 +3,5 @@
 
 Here is a thing how can I made it.
 
-这里是我如何搞出了某个玩意儿。
+这里用来记录一下我如何搞出了某个玩意儿。
 
