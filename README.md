@@ -1,7 +1,7 @@
 # *pure project* 🧫
 
 ~~~
-🧫 Study fp at where even it is not exist yet . 🧬
+🧫 study pure fp at where even it is not exist yet . 🧬
 ~~~
 
 This is a theoretical verification in *Functional Programming* studies.
