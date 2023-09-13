@@ -1,3 +1,6 @@
+
+## Borns | 来历
+
 It's called `Iterator` at the first, but this name has already occupied by another thing, so I just translate this word to Spanish, called `Iterador`.  
 \________  
 它一开始是叫 `Iterator` 的，但这名字被占了，所以我搜来搜去，最后给它定了个西班牙语的名字 `Iterador` 。
@@ -9,6 +12,8 @@ Why I make it ? Because I want to know how to implement such structure from almo
 This is also a test, a test for my envision, so I also can't stop to trying a make up for it. And, I successed.  
 \________  
 这也是个验证，因为我有个设想，对于这种数据结构。所以我有这个瘾头去搞它，然后，我也搞出来了，至少，初步地（至少最开始在 TS 上）。
+
+## Givens | 所得
 
 Then I knew, a *lazy-infinited sequence* is just a special *pair*. That's **all**, we just need a structure and a function that can play with it, that's all, no complex or mysterious things !!  
 \________  
@@ -22,13 +27,15 @@ And I can also use such much clear things, to avoid the chaos from the mutable t
 \________  
 —— 也因此，这同时也是对于一种 *人造难度* 的此在性的证明。或许。
 
-I also like the *Pair*. I meet such thing at Erlang first, and it touch me, then I found that both all good design did like such way, but my java teacher who didn't know such things won't told me anyting about them -- at this time we students are forced to accept it without reflection.  
+I also like the *Pair*. I meet such thing at Erlang first (the `[Head | Tail]`), and it touch me, then I found that both all good design did like such way, but my java teacher who didn't know such things won't told me anyting about them -- at this time we students are forced to accept it without reflection.  
 \________  
-而且我也很喜欢 Pair 。一开始认识这种东西来自 Erlang ，那时我就被它的简洁明了感动了，后来才发现一切的聪明设计都这样做，而更早时候教我 Java 的老师却不知为何根本说不出个为何要用对子结构的所以然来 —— 那时候我们学生只能被迫不加反思地接受。
+而且我也很喜欢 Pair 。一开始认识这种东西来自 Erlang （就是那个 `[Head | Tail]` ），那时我就被它的简洁明了感动了，后来才发现一切的聪明设计都这样做，而更早时候教我 Java 的老师却不知为何根本说不出个为何要用对子结构的所以然来 —— 那时候我们学生只能被迫不加反思地接受。
+
+## Names | 关于命名的启示
 
 Later on, I learnt about the theory of ideology, and I was inspired by an amine called *"DURARARA!"* . I was fascinated by the pair of names `head` and `tail`. It fits in with a revelation of the truth about ideology: simply put, an ideology makes itself your *head* by making you feel that it is not an ideology.  
 \________  
-后来，我了解到意识形态相关的理论，又由 《DURARARA !!》 引发了自己的一些体验，就迷上了 `head` `tail` 这样一对名字的设计。它符合对于意识形态真相的一种揭示：简单说，一个意识形态通过让你觉得它不是一个意识形态来让它自己成为你的 *头* 。
+在之后的某一天，我了解到意识形态相关的理论，又由 《DURARARA !!》 引发了自己的一些体验，就迷上了 `head` `tail` 这样一对名字的设计。它符合对于意识形态真相的一种揭示：简单说，一个意识形态通过让你觉得它不是一个意识形态来让它自己成为你的 *头* 。
 
 ... And, according to the dialectical understanding of the “true self”, unlike the self-deceiving interpretation of silly little Bourgeois, “one's true self” is not “the person who removes the mask”, but precisely the mask itself: the mask is still a mask when you take it off, but the one that can't be taken off in any case is the real you.  
 \________  
