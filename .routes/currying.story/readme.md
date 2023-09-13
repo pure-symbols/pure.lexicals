@@ -1,5 +1,5 @@
 
-## Why
+## Why | 为何用它
 
 Why did I use the currying ? Just because of cool ...  
 \________  
@@ -17,7 +17,7 @@ And, thst is just only one cool thing will be gives I feel.
 \________  
 而且，我不知之后还会不会有更多像这样由此被赋予的便利。
 
-## How
+## How | 如何理解
 
 How does the currying works ?  
 \________  
