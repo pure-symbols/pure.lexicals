@@ -184,7 +184,7 @@ Pipeline (5)
 
 The `Logik` is for limiting the scope of the type of elements in `Pair` here. `mehr` means more, `wert` means value.
 
-那个 `Logik` 在此的作用就是限定 `Pair` 中两个元素的类型范畴。 `mehr` 意为多出、余出， `wert` 意为意义、内容。
+其中 `Logik` 在此的作用就是限定 `Pair` 中两个元素的类型范畴。 `mehr` 意为多出、余出， `wert` 意为意义、内容。
 
 Thanks for the *lexical closure* feature. Without it, then here will be nothing.
 
