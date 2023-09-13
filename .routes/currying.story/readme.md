@@ -61,11 +61,11 @@ Means, for a closure function, the information it included is not only the defin
 \________  
 就是说，对于一个闭包函数而言，它里面的信息不仅仅包括函数定义中的，还有函数完成其计算必要依赖的值（当然这个值也可以是另一个闭包）。
 
-This   
+It's kind of like you package your program and all things which might be its dependant into an *OCI* container image ... just, not like such containers, the closure function is only contain all it is REALLY NEEDED, and it is COMPLETED AUTOMATICALLY. (I've always believe that part of the OCI/Docker containers' revelation is actually closures (and the other part is probably some drawing software 🙃). )  
 \________  
 这有点像你手动把你的程序和它的依赖统统封入一个 OCI 容器镜像，只不过闭包函数是被词法闭包机制自动装好了的、且仅仅只包含必要的依赖内容的，不像 OCI 容器（我一直认为有理由相信 OCI/Docker 容器的一部分启示来源其实就是闭包（另一部分可能是画图软件🙃））。
 
-  
+In detail, such as a define `(a) => (b) => a + b`, I can write it much more complicated and tedious, thus might help you to see why there is also a work, that sealed the externally values which be required, with the function definition:   
 \________  
 对于 `(a) => (b) => a + b` 这个定义，我可以刻意地写得繁琐一些，这样或许可以帮你看得更清楚它为什么也有“把外部需要的值与函数定义封在一起”这种事情：
 
@@ -77,20 +77,19 @@ This
 } ;
 ~~~
 
-  
+Here you can see, a closure will be returned, and a `a_` with a `(b) => a_ + b`, both of them shall be included in that closure.  
 \________  
 这个定义中的 `a_` ，就是那个与 `(b) => a_ + b` 这个函数定义一起构成闭包的，在该函数定义**以外**的一个值。
 
-  
+And ... this much more complicated and tedious definition `(a) => { const a_ = a ; return (b) => a_ + b ; }` is totally equal with the `(a) => (b) => a + b` we've made. At this point, you could just realise that the so-called "formal parameter" is actually a "variable" or a "dependent variable" in maths, whereas the "real parameter" occurs at the point of invocation, and is exactly the same as the effect of an "assignment symbol", such as `=` in many languages with C-style syntax. In the Lambda calculate, there is not even an "assignment symbol". If you want to assign a value, you just call a function. This is also reflected in the fact that `let` in OCaml is actually syntactic sugar for a IIFE (Immediately Invoked Function Expressions) writing. To assign a value and use it in two places, all you need is `((a) => (b) => (c) => a(c) + b(c) ) (vala) (valb) (valc)`, which is equivalent to `() => { let (a, b, c) = (vala, valb, valc) ; a(c) + b(c) }`.  
 \________  
-而 …… 很显然，它和 `(a) => (b) => a + b` 完全等价。这时候，你其实应该可以意识到：所谓“形参”其实就是“变量”或者说“因变量”，而“实参”发生在调用，它完全等价于一个“赋值符号”的作用，比如很多 C 系风格语法的语言里的 `=` 。在 Lambda 演算中，甚至没有“赋值符号”。想要赋值，就是调用。这在 OCaml 中的 `let` 其实就是 IIFE 写法的语法糖这一特性上也能体现。想要一个值被赋值然后用在两个地方，只需要 `((a) => (b) => (c) => a(c) + b(c) ) (vala) (valb) (valc)` 即可，它相当于 `() => { let (a, b, c) = (vala, valb, valc) ; a(c) + b(c) }` 的效果。
+而 …… 很显然，它和 `(a) => (b) => a + b` 完全等价。这时候，你其实应该可以意识到：所谓“形参”其实就是“变量”或者说“因变量”，而“实参”发生在调用，它完全等价于一个“赋值符号”的作用，比如很多 C 系风格语法的语言里的 `=` 。在 Lambda 演算中，甚至没有“赋值符号”。想要赋值，就是调用。这在 OCaml 中的 `let` 其实就是 IIFE 写法（即 *立即调用函数表达式*）的语法糖这一特性上也能体现。想要一个值被赋值然后用在两个地方，只需要 `((a) => (b) => (c) => a(c) + b(c) ) (vala) (valb) (valc)` 即可，它相当于 `() => { let (a, b, c) = (vala, valb, valc) ; a(c) + b(c) }` 的效果。
 
-  
+That's why I always say that the *currying* is base on the *lexical closure*. (And for the simplicity of the studies or communications you will have, just think of the so-called "formal parameters" as mathematical "variables", and also let the "passing of a real parameter value" for a calling be regarded as "assigning a value into a local context" .)  
 \________  
 所以说，柯里化，要基于词法闭包。（为了避免不必要的口舌以后可以尽管就把所谓的“形式参数”直接理解为数学上的“变量”、并把调用中的“传实参值”就理解为“在一个局部上下文里赋值”即可。）
 
-
-  
+That's all.  
 \________  
 就这么简单。
 
