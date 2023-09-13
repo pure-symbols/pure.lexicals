@@ -48,8 +48,8 @@ so the define be like:
 我试着搞了搞它的定义：
 
 ~~~ typescript
-const pipeline = <T,> (x: T) => pipework (x)
-const pipework = <T,> (x: T) => <R,> (f: Fn<T, R>) => () => pipeline(f(x))
+const pipeline = <T,> (x: T) => pipework (x) ;
+const pipework = <T,> (x: T) => <R,> (f: Fn<T, R>) => () => pipeline(f(x)) ;
 ~~~
 
 only switch `f(x)` in `pipe` to `() => pipeline(f(x))`.
@@ -64,7 +64,7 @@ But ... how can I got the final value in such calling form ? There need a pair t
 pipeline (5)
     (add (3) ) .tail()
     (add (4) ) .tail()
-    (add (5) ) .head() // get the result: 17
+    (add (5) ) .head() ; // get the result: 17
 ~~~
 
 so the define be like: 
@@ -72,8 +72,8 @@ so the define be like:
 那么定义就得：
 
 ~~~ typescript
-const pipeline = <T,> (x: T) => pipework (x)
-const pipework = <T,> (x: T) => <R,> (f: Fn<T, R>) => Pair (f(x)) (() => pipeline(f(x)))
+const pipeline = <T,> (x: T) => pipework (x) ;
+const pipework = <T,> (x: T) => <R,> (f: Fn<T, R>) => Pair (f(x)) (() => pipeline(f(x))) ;
 ~~~
 
 and here `pipeline` is same as `pipework` ... if you have knowledge about currying you will understand that ... so we just have: 
@@ -81,7 +81,7 @@ and here `pipeline` is same as `pipework` ... if you have knowledge about curryi
 显而易见， `pipeline` 就是 `pipework` …… 如果你能明白柯里化（或者说闭包的效果）是什么，你就能明白我在说什么 …… 那么简化：
 
 ~~~ typescript
-const pipeline = <T,> (x: T) => <R,> (f: Fn<T, R>) => Pair (f(x)) (() => pipeline(f(x)))
+const pipeline = <T,> (x: T) => <R,> (f: Fn<T, R>) => Pair (f(x)) (() => pipeline(f(x))) ;
 ~~~
 
 and, not all the `head` be needed, so change it be lack of evaluation (means lazy): 
@@ -89,7 +89,7 @@ and, not all the `head` be needed, so change it be lack of evaluation (means laz
 并且，并非所有的中间值都是要取得的。我希望当用户需要的时候再计算（评估在这里要匮乏）（这也就是一些人常说的惰性），那么就：
 
 ~~~ typescript
-const pipeline = <T,> (x: T) => <R,> (f: Fn<T, R>) => Pair (() => f(x)) (() => pipeline(f(x)))
+const pipeline = <T,> (x: T) => <R,> (f: Fn<T, R>) => Pair (() => f(x)) (() => pipeline(f(x))) ;
 ~~~
 
 That's OK.
@@ -102,31 +102,31 @@ See all of them on [*playground*](https://www.typescriptlang.org/play?#code/PTAE
 
 ## Types
 
-If you want a type comment here, you shall see this: `<T>(x: T) => <R>(f: Fn<T, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<...>) => Pair<...>>>>>` .
+If you want a type comment here, you shall see this `<T>(x: T) => <R>(f: Fn<T, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<...>) => Pair<...>>>>>` from `pipeline` function by your IDE.
 
-这时候，如果看一下类型标记，你会看到一个写不完的类型标记。
+这时候，如果借助 IDE 看一下类型标记，你会看到 `pipeline` 函数有一个写不完的类型标记。
 
 I simplified it by these three things: 
 
-我用三个东西概括了这个写不完的类型标记：
+我用三个东西概括了它：
 
 ~~~ typescript
-type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr }
+type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr } ;
 type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
 type Pipework <T> = Logik<T, Pipeline<T> > ;
 ~~~
 
 And, the type of this function can be this: 
 
-然后，函数的类型就被简化为了这个：
+然后，函数的类型标记就被简化为了：
 
 ~~~ typescript
 type pipeline = <T> (x: T) => Pipeline<T> ;
 ~~~
 
-Add something necessary: 
+Here is something necessary: 
 
-加上必要的补充：
+这些上必要的补充：
 
 ~~~ typescript
 const pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => f(x) ;
@@ -136,7 +136,7 @@ const Pair =
 <Tail,> (tail: Tail)
 : Pair<Head, Tail> => 
     
-    ({ head: head, tail: tail }) as Pair<Head, Tail> ;
+    ({ head: head, tail: tail }) as Pair <Head, Tail> ;
 ~~~
 
 And after the formats, we got this result (we've see in [our code](./pure.ts)) finally: 
@@ -148,7 +148,7 @@ const Logik =
 <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
 : Logik<Wert, Mehr> => 
     
-    ({ wert: head, mehr: tail }) as Logik<Wert, Mehr> ;
+    ({ wert: head, mehr: tail }) as Logik <Wert, Mehr> ;
 
 const Pipework = 
 <T,> (head: () => T) => 
@@ -166,7 +166,7 @@ const Pipeline: pipeline =
 
 That's all.
 
-就这样了。
+就搞定了。
 
 The using of it be like: 
 
@@ -181,6 +181,10 @@ Pipeline (5)
     (add (7) ) .mehr()
     (console.log) .wert(); // console.log out: 19
 ~~~
+
+The `Logik` is for limiting the scope of the type of elements in `Pair` here. `mehr` means more, `wert` means value.
+
+那个 `Logik` 在此的作用就是限定 `Pair` 中两个元素的类型范畴。 `mehr` 意为多出、余出， `wert` 意为意义、内容。
 
 Thanks for the *lexical closure* feature. Without it, then here will be nothing.
 
