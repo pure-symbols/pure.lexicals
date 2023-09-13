@@ -1,3 +1,5 @@
+## Funcs
+
 At the first, by [*cs3110 here*](https://cs3110.github.io/textbook/chapters/hop/higher_order.html?highlight=pipe), I got a simple define of the `pipe` operator in OCaml: 
 
 我最初从 CS3110 了解到 `pipe` 运算符的定义：
@@ -94,11 +96,11 @@ That's OK.
 
 这就是我想要的定义了。接下来可以像上面那样的调用形式去使用了。
 
-See them on [*playground*](https://www.typescriptlang.org/play?#code/PTAEBMFMAdIO3AZwLACg0BcCetQDE5QAeAFQBpQAlAPlAF5QAKADwC5QSBKe2y0Abkw5IoAAoBDAJYAnYgAlI48BRJSANrQYBvUAAtF4dgqUUM69qslrQAXwFo0AYwD2cRBjFTZDNEWPLaRn0lIwNuOlpfSzUyQLMrC3VONHYJGT8DFXVNSNRQfNA0AqYdYMM9TNB4tXZq225xRE90-yyrWkF0LodUEFBoSVg1STgRKAAzEcgnV3d+wchh0fpickC2DnDaIkpYpnH2AlIKGi3m2UZGM-GWTm5Ls4GhqcYb5jvuTrQ+xwBXaWkWBGAHNQO4sGoRONnNJ2C43B4lOAVoxxOw4L8ALYAI0g0go2PRWNx0jO4lAAGpQNj7Kh4XMkSi0aAMTi8WdGISWcT2TxQOSqTSvt1emBEM4Zm5nJCAHRqZzAtCMIoFJ6LKZMACsyTyxQKqPAyMYAGZuNwZdUriq9UxGYwACxm0AW9RW3U2g1G7Wgc1lN2cfigH6zaWQOUK0DOX4YdgARgA7D0+jC0GqliJGNrrbbDUxTT7nZadcVPUxHQWXVY3SW7QA2J2VtTV-X00Ph4G+gxXQPBqWy+WgqMx0CxgAcaCAA)
+See all of them on [*playground*](https://www.typescriptlang.org/play?#code/PTAEBMFMAdIO3AZwLACg0BcCetQDE5QAeAFQBpQAlAPlAF5QAKADwC5QSBKe2y0Abkw5IoAAoBDAJYAnYgAlI48BRJSANrQYBvUAAtF4dgqUUM69qslrQAXwFo0AYwD2cRBjFTZDNEWPLaRn0lIwNuOlpfSzUyQLMrC3VONHYJGT8DFXVNSNRQfNA0AqYdYMM9TNB4tXZq225xRE90-yyrWkF0LodUEFBoSVg1STgRKAAzEcgnV3d+wchh0fpickC2DnDaIkpYpnH2AlIKGi3m2UZGM-GWTm5Ls4GhqcYb5jvuTrQ+xwBXaWkWBGAHNQO4sGoRONnNJ2C43B4lOAVoxxOw4L8ALYAI0g0go2PRWNx0jO4lAAGpQNj7Kh4XMkSi0aAMTi8WdGISWcT2TxQOSqTSvt1emBEM4Zm5nJCAHRqZzAtCMIoFJ6LKZMACsyTyxQKqPAyMYAGZuNwZdUriq9UxGYwACxm0AW9RW3U2g1G7Wgc1lN2cfigH6zaWQOUK0DOX4YdgARgA7D0+jC0GqliJGNrrbbDUxTT7nZadcVPUxHQWXVY3SW7QA2J2VtTV-X00Ph4G+gxXQPBqWy+WgqMx0CxgAcaCAA).
 
 可在 [Playground](https://tsplay.dev/WKKLyW) 查看完整代码及其验证。
 
---------
+## Types
 
 If you want a type comment here, you shall see this: `<T>(x: T) => <R>(f: Fn<T, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<R, R>) => Pair<() => R, () => <R>(f: Fn<...>) => Pair<...>>>>>` .
 
@@ -166,7 +168,24 @@ That's all.
 
 就这样了。
 
+The using of it be like: 
+
+用起来会是这样：
+
+~~~ typescript
+const add = (a: number) => (b: number) => a + b ;
+
+Pipeline (5)
+    (add (3) ) .mehr()
+    (add (4) ) .mehr()
+    (add (7) ) .mehr()
+    (console.log) .wert(); // console.log out: 19
+~~~
+
 Thanks for the *lexical closure* feature. Without it, then here will be nothing.
 
 这一切多亏了有对 *词法闭包* 特性的支持。没有它，就做不了上面的事。
 
+See also on [*playground*](https://www.typescriptlang.org/play?ssl=20&ssc=50&pln=20&pc=1#code/PTAEBMFMAdIO3AZwLACg0BcCetQDE5QAeAFQBpQAlAPlAF5QAKADwC5QSBKe2y0Abkw5IoAAoBDAJYAnYgAlI48BRJSANrQYBvUAAtF4dgqUUM69qslrQAXwFo0AYwD2cRBjFTZDNEWPLaRn0lIwNuOlpfSzUyQLMrC3VONHYJGT8DFXVNSNRQfNA0AqYdYMM9TNB4tXZq225xRE90-yyrWkF0LodUEFBoSVg1STgRKAAzEcgnV3d+wchh0fpickC2DnDaIkpYpnH2AlIKGi3m2UZGM-GWTm5Ls4GhqcYb5jvuTrQ+xwBXaWkWBGAHNQO4sGoRONnNJ2C43B4lOAVoxxOw4L8ALYAI0g0go2PRWNx0jO4lAAGpQNj7Kh4XMkSi0aAMTi8WdGISWcT2TxQOSqTSvt1emBEM4Zm5nJCAHRqZzAtCMIoFJ6LKZMACsyTyxQKqPAyMYAGZuNwZdUriq9UxGYwACxm0AW9RW3U2g1G7Wgc1lN2cfigH6zaWQOUK0DOX4YdgARgA7D0+jC0GqliJGNrrbbDUxTT7nZadcVPUxHQWXVY3SW7QA2J2VtTV-X00Ph4G+gxXQPBqWy+WgqMx0CxgAcPW+ICn05ns7n85nPWwuDVK2O6wsZx2e1ehzgxyo1DOfE69I8avYq4Y66YGy4fO3gQO+H35EPnHYfAioDenwnqGXEQABkFUkABrYgAHU8QwCgAFlIF0aRNFAHQAHcYPYK4+Wg6RYNATFENhJgzgQpDbFpQCxAWdNVhQnYnz3A9Tj5UQFjQmEwIYyjhGo2AOOkCDSBQkDgXAg82OeUZhNADohBXGiNWvEgN02VjFOklTaR6M9QFE8CVl8XD8LI5CSgqEwqnUWxUi8YhsO-YyKAc2hTKPFI9NArinNANy+WzbNGHQzCLOUAiiNqaybAaJp9O8mD4KIuSul0yTIAEiCfFQG8ggMLCznvb8lWqfL1KkyBhJ1VJ2M4mSivdQoGtXRg0guMp7mqO4mDiv8RVSjTIEvAbDOytZb03aryrq3JimzR99iYt8WO-NKMqYFz5lwW59i6h4yvVZZGGa94dqdYUemagAiedQAAQVzEhePnS77lbfsFQDHo0tozNi31O183NQikObfJSwdBtgekUGcyNeNIaImHGDesMB3NDC8O7IMwBR9tI2jOMAE5-x6IA).
+
+也见 [Playground](https://tsplay.dev/mpQJ6W) 。
