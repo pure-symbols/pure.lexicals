@@ -109,9 +109,9 @@ I simplified it by these three things:
 我用三个东西概括了这个写不完的类型标记：
 
 ~~~ typescript
-type Pipework <T> = () => Pipeline<T> ;
-type Pipeline <T> = <R> (f: Fn<T, R>) => Rivulet<R> ;
-type Rivulet <T> = Pair<() => T, Pipework<T> > ;
+type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr }
+type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
+type Pipework <T> = Logik<T, Pipeline<T> > ;
 ~~~
 
 And, the type of this function can be this: 
@@ -122,30 +122,51 @@ And, the type of this function can be this:
 type pipeline = <T> (x: T) => Pipeline<T> ;
 ~~~
 
-After the formats and some others, we get this result (we've see in our code) finally: 
+Add something necessary: 
 
-再格式化一下（并做了一些补充），这就是最终版本的了：
+加上必要的补充：
 
 ~~~ typescript
-const Rivulet = 
-<T,> (head: () => T) => 
-(tail: Pipework<T>)
-: Rivulet<T> => 
+const pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => f(x) ;
+
+const Pair = 
+<Head,> (head: Head) => 
+<Tail,> (tail: Tail)
+: Pair<Head, Tail> => 
     
-    Pair (head) (tail) ;
+    ({ head: head, tail: tail }) as Pair<Head, Tail> ;
+~~~
+
+And after the formats, we got this result (we've see in [our code](./pure.ts)) finally: 
+
+并格式化一下，这就是最终版本的了（在 [代码](./pure.ts) 里可以看到）：
+
+~~~ typescript
+const Logik = 
+<Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
+: Logik<Wert, Mehr> => 
+    
+    ({ wert: head, mehr: tail }) as Logik<Wert, Mehr> ;
+
+const Pipework = 
+<T,> (head: () => T) => 
+(tail: () => Pipeline<T>)
+: Pipework<T> => 
+    
+    pipe (Pair (head) (tail)) (Logik) ;
 
 export 
 const Pipeline: pipeline = 
 <T,> (x: T): Pipeline<T> => 
     
-    <R,> (f: Fn<T, R>) => Rivulet (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
+    <R,> (f: Fn<T, R>) => Pipework (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
 ~~~
 
 That's all.
 
-就这样。
+就这样了。
 
-Thanks for the *lexical closure* feature.
+Thanks for the *lexical closure* feature. Without it, then here will be nothing.
 
-这要感谢语言对 *词法闭包* 特性的支持，没有它就做不了上面的事。
+这一切多亏了有对 *词法闭包* 特性的支持。没有它，就做不了上面的事。
 
