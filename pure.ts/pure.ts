@@ -8,7 +8,7 @@ namespace pure
     
     
     export 
-    type Might <T> = { head: T } ;
+    type Might <T> = Lacking <T> ;
     export 
     type None = Might<null> ;
     
@@ -17,20 +17,29 @@ namespace pure
     <T,> (head: T)
     : Might<T> => 
         
-        ({ head: head }) as Might<T> ;
+        (() => head) as Might<T> ;
     
     export 
     const None = 
     (): Might<null> => 
         
-        ({ head: null }) as Might<null> ;
+        Might(null) as Might<null> ;
+    
+    Might.heador = 
+    <T,> (mehr: T) => 
+    (self: Might<T>)
+    : T => 
+        
+        self() ?? mehr ;
     
     
     
     export 
     type Pair <Head, Tail> = { head: Head, tail: Tail } ;
     export 
-    type Done = { head: None, tail: None } ;
+    type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr } ;
+    export 
+    type Done = { wert: None, mehr: None } ;
     
     export 
     const Pair = 
@@ -41,8 +50,15 @@ namespace pure
         ({ head: head, tail: tail }) as Pair<Head, Tail> ;
     
     export 
+    const Logik = 
+    <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
+    : Logik<Wert, Mehr> => 
+        
+        ({ wert: head, mehr: tail }) as Logik<Wert, Mehr> ;
+    
+    export 
     const Done = 
-    (): Done => Pair (None()) (None()) ;
+    (): Done => Logik(Pair (None()) (None()) ) ;
     
     
     export 
@@ -62,23 +78,22 @@ namespace pure
     export 
     const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => f(x) ;
     
-    type Pipework <T> = () => Pipeline<T> ;
-    type Pipeline <T> = <R> (f: Fn<T, R>) => Rivulet<R> ;
-    type Rivulet <T> = Pair<() => T, Pipework<T> > ;
+    type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
+    type Pipework <T> = Logik<T, Pipeline<T> > ;
     type pipeline = <T> (x: T) => Pipeline<T> ;
     
-    const Rivulet = 
+    const Pipework = 
     <T,> (head: () => T) => 
-    (tail: Pipework<T>)
-    : Rivulet<T> => 
+    (tail: () => Pipeline<T>)
+    : Pipework<T> => 
         
-        Pair (head) (tail) ;
+        pipe (Pair (head) (tail)) (Logik) ;
     
     export 
     const Pipeline: pipeline = 
     <T,> (x: T): Pipeline<T> => 
         
-        <R,> (f: Fn<T, R>) => Rivulet (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
+        <R,> (f: Fn<T, R>) => Pipework (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
     
     
     export 
@@ -220,6 +235,7 @@ namespace fun
         <T = {[key: string]: any},> 
         (waves: {[key: string]: (env: T) => any})
         : T => 
+            
             Object.entries(waves).reduce
             (
                 (envs, [fn, f]) => ({... envs, [fn]: f(envs)}) ,
@@ -279,16 +295,16 @@ namespace Demo
     
     const fibo_pipeline = 
     pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
-        (pure.Iterador.map (([x, y]) => x) ) .tail()
-        (pure.Iterador.map (x => 2 * x) ) .tail()
-        (pure.Iterador.map (x => x / 2) ) .head() ;
+        (pure.Iterador.map (([x, y]) => x) ) .mehr()
+        (pure.Iterador.map (x => 2 * x) ) .mehr()
+        (pure.Iterador.map (x => x / 2) ) .wert() ;
     
     pure.Pipeline
     ( [... Array(14)].reduce
     (
         ({ a: { head, tail }, r}, b) => ({ a: tail(), r: [...r, head] }) , 
         { a: fibo_pipeline(), r: [] } ,
-    ) ) (console.log) .head(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    ) ) (console.log) .wert(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     
