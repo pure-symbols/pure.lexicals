@@ -240,7 +240,7 @@ And, for our case, we can play a pipe-like code like this:
 // console.log out: "?x12",  0,  ["?x12"]
 ~~~
 
-Overall, it's actually a bit more elegant than my `pipeline` above. After all, even though it doesn't take up much more, my solution still holds some extra information (to save a result) , whereas the array `map` does not.  
+Overall, it's actually a bit more elegant than my `pipeline` above. After all, even though it doesn't take up much more, my solution still holds some extra information (to save a result), whereas the array `map` does not.  
 \________  
 总的来说，它其实比我上面的 `pipeline` 要优雅一些的。虽然并不会多占用什么，但我毕竟也是额外保存了一些信息，而数组的 `map` 则并不会，所以后者其实更优雅。
 
