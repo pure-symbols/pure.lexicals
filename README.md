@@ -1,7 +1,7 @@
 # *pure project* 🧫
 
 ~~~
-🧫 study pure fp at where even it is not exist yet . 🧬
+🧫 implement all by nothing but only lexical closure . 🧬
 ~~~
 
 This is a theoretical verification in *Functional Programming* studies.
