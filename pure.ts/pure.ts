@@ -308,6 +308,14 @@ namespace Demo
     
     
     
+    console.log("---=== fibo_pipeline ===---") ;
+    
+    pure.Pipeline (5)
+        (x => x + 7) .mehr()
+        (x => "x" + x) .mehr()
+        (console.log) .wert(); // "x12"
+    
+    
     
     console.log("---=== fibo_tree ===---") ;
     
