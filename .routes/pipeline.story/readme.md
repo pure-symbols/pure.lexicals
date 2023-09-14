@@ -201,3 +201,41 @@ Thanks for the *lexical closure* feature. Without it, then here will be nothing.
 See also on [*playground*](https://www.typescriptlang.org/play?ssl=20&ssc=50&pln=20&pc=1#code/PTAEBMFMAdIO3AZwLACg0BcCetQDE5QAeAFQBpQAlAPlAF5QAKADwC5QSBKe2y0Abkw5IoAAoBDAJYAnYgAlI48BRJSANrQYBvUAAtF4dgqUUM69qslrQAXwFo0AYwD2cRBjFTZDNEWPLaRn0lIwNuOlpfSzUyQLMrC3VONHYJGT8DFXVNSNRQfNA0AqYdYMM9TNB4tXZq225xRE90-yyrWkF0LodUEFBoSVg1STgRKAAzEcgnV3d+wchh0fpickC2DnDaIkpYpnH2AlIKGi3m2UZGM-GWTm5Ls4GhqcYb5jvuTrQ+xwBXaWkWBGAHNQO4sGoRONnNJ2C43B4lOAVoxxOw4L8ALYAI0g0go2PRWNx0jO4lAAGpQNj7Kh4XMkSi0aAMTi8WdGISWcT2TxQOSqTSvt1emBEM4Zm5nJCAHRqZzAtCMIoFJ6LKZMACsyTyxQKqPAyMYAGZuNwZdUriq9UxGYwACxm0AW9RW3U2g1G7Wgc1lN2cfigH6zaWQOUK0DOX4YdgARgA7D0+jC0GqliJGNrrbbDUxTT7nZadcVPUxHQWXVY3SW7QA2J2VtTV-X00Ph4G+gxXQPBqWy+WgqMx0CxgAcPW+ICn05ns7n85nPWwuDVK2O6wsZx2e1ehzgxyo1DOfE69I8avYq4Y66YGy4fO3gQO+H35EPnHYfAioDenwnqGXEQABkFUkABrYgAHU8QwCgAFlIF0aRNFAHQAHcYPYK4+Wg6RYNATFENhJgzgQpDbFpQCxAWdNVhQnYnz3A9Tj5UQFjQmEwIYyjhGo2AOOkCDSBQkDgXAg82OeUZhNADohBXGiNWvEgN02VjFOklTaR6M9QFE8CVl8XD8LI5CSgqEwqnUWxUi8YhsO-YyKAc2hTKPFI9NArinNANy+WzbNGHQzCLOUAiiNqaybAaJp9O8mD4KIuSul0yTIAEiCfFQG8ggMLCznvb8lWqfL1KkyBhJ1VJ2M4mSivdQoGtXRg0guMp7mqO4mDiv8RVSjTIEvAbDOytZb03aryrq3JimzR99iYt8WO-NKMqYFz5lwW59i6h4yvVZZGGa94dqdYUemagAiedQAAQVzEhePnS77lbfsFQDHo0tozNi31O183NQikObfJSwdBtgekUGcyNeNIaImHGDesMB3NDC8O7IMwBR9tI2jOMAE5-x6IA).  
 \________  
 也见 [Playground](https://tsplay.dev/mpQJ6W) 。
+
+## BTW | 多说一点
+
+Actually, such pipeline form can be done with the `map` function of the language's own sequence type.
+
+其实这种形式用语言自己的序列类型的 `map` 功能就可以做到。
+
+对于 Typescript ，原生的序列就是数组。它的数组的 `map` 在被传入 `console.log` 时会多输出一些信息，像这样：
+
+~~~ ts
+["xxx"].map(console.log); // "xxx",  0,  ["xxx"]
+
+["ccc","aa","b",7].map(console.log); 
+// "ccc",  0,  ["ccc", "aa", "b", 7]
+// "aa",  1,  ["ccc", "aa", "b", 7]
+// "b",  2,  ["ccc", "aa", "b", 7]
+// 7,  3,  ["ccc", "aa", "b", 7]
+~~~
+
+除了多出来的信息，其余和直接 `console.log("xxx")` 没有区别。这应该是它和数组的 `map` 或 `forEach` 一起搭配时的特性。
+
+对于上面的示例，就是这样：
+
+~~~ ts
+[5]
+    .map(x => x + 7)
+    .map(x => "x" + x)
+    .map(x => "?" + x)
+    .map(console.log);
+
+// console.log out: "?x12",  0,  ["?x12"]
+~~~
+
+总的来说，它其实比我上面的 `pipeline` 要优雅一些的。虽然并不会多占用什么，但我毕竟也是额外保存了一些信息，而数组的 `map` 则并不会，所以后者其实更优雅。
+
+但毕竟，我要在这里做的事情就是 *几乎仅仅依靠词法闭包来做到几乎所有事情* 。这就是为什么，我要亲自做一个 `pipeline` 实现，即便我其实只需要做好柯里化，就能够用各种手段来实现管道化编程了。
+
+
