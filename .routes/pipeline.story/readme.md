@@ -5,9 +5,9 @@ At the first, by [*cs3110 here*](https://cs3110.github.io/textbook/chapters/hop/
 我最初从 CS3110 了解到 `pipe` 运算符的定义：
 
 ~~~ ocaml
-let pipeline x f = f x
-let (|>) = pipeline
-let x = 5 |> add 3
+let pipeline x f = f x ;;
+let (|>) = pipeline ;;
+let x = 5 |> fun x -> x + 3 ;;
 
 (* val pipeline : 'a -> ('a -> 'b) -> 'b = <fun> *)
 (* val ( |> ) : 'a -> ('a -> 'b) -> 'b = <fun> *)
@@ -180,6 +180,14 @@ Pipeline (5)
     (add (4) ) .mehr()
     (add (7) ) .mehr()
     (console.log) .wert(); // console.log out: 19
+
+// or
+
+Pipeline (5)
+    (x => x + 7) .mehr()
+    (x => "x" + x) .mehr()
+    (x => "?" + x) .mehr()
+    (console.log) .wert(); // console.log out: "?x12"
 ~~~
 
 The `Logik` is for limiting the scope of the type of elements in `Pair` here. `mehr` means more, `wert` means value.  
