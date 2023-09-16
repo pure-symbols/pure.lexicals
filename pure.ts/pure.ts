@@ -430,7 +430,7 @@ namespace Demo
     console.log("---=== fibo_tree ===---");
     
     const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree, [n - 1]) + fun.applies (fibo_tree, [n - 2]) : n ) ;
-    console.log(fun.applies (fibo_tree, [41])); // 165580141, but very long wait, won't stack overflow.
+    console.log(fun.applies (fibo_tree, [41])); // 165580141, very quick.
     
     console.log("---=== fibo_pipe ===---");
     
