@@ -34,31 +34,79 @@ namespace pure
     
     
     
-    export 
-    type Pair <Head, Tail> = { head: Head, tail: Tail } ;
-    export 
-    type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr } ;
-    export 
-    type Done = { wert: None, mehr: None } ;
+    type Wert = <Head,> (h: Head) => <Tail,> (t: Tail) => Head ;
+    type Mehr = <Head,> (h: Head) => <Tail,> (t: Tail) => Tail ;
+    type echoes = Wert | Mehr ;
     
     export 
-    const Pair = 
-    <Head,> (head: Head) => 
-    <Tail,> (tail: Tail)
+    type Tuple <Head, Tail> = (echoes: echoes) => Head | Tail ;
+    
+    export 
+    const Tuple = 
+    <Head,> (h: Head) => 
+    <Tail,> (t: Tail)
+    : Tuple<Head, Tail> => 
+        
+        ( (echoes: echoes)
+        : Head | Tail => echoes (h) (t) ) as Tuple <Head, Tail> ;
+    
+    Tuple.Head = (<Head,> (h: Head) => <Tail,> (t: Tail): Head => h) as Wert ;
+    Tuple.Tail = (<Head,> (h: Head) => <Tail,> (t: Tail): Tail => t) as Mehr ;
+    
+    Tuple.head = 
+    <Head, Tail> (self: Tuple<Head, Tail>)
+    : Head => 
+        
+        self (Tuple.Head) as Head ;
+    
+    Tuple.tail = 
+    <Head, Tail> (self: Tuple<Head, Tail>)
+    : Tail => 
+        
+        self (Tuple.Tail) as Tail ;
+    
+    Tuple.couple = 
+    <Head, Tail> (self: Tuple<Head, Tail>)
     : Pair<Head, Tail> => 
         
-        ({ head: head, tail: tail }) as Pair<Head, Tail> ;
+        Pair (pipe (self) (Tuple.head)) 
+            (pipe (self) (Tuple.tail)) ;
     
     export 
-    const Logik = 
-    <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
-    : Logik<Wert, Mehr> => 
+    type Yard <Mehr, Wert> = (echoes: echoes) => Lacking<Mehr | Wert> ;
+    
+    export 
+    const Yard = 
+    <Mehr, Wert> (t: Tuple<() => Wert, () => Mehr>)
+    : Yard<Mehr, Wert> => 
         
-        ({ wert: head, mehr: tail }) as Logik<Wert, Mehr> ;
+        ( (echoes: echoes)
+        : Lacking<Mehr | Wert> => 
+            
+            echoes (Tuple.tail (t)) (Tuple.head (t)) ) ;
+    
+    
+    Yard.mehr = 
+    <Mehr, Wert> (self: Yard<Mehr, Wert>)
+    : Lacking<Mehr> => 
+        
+        self (Tuple.Head) as Lacking <Mehr> ;
+    
+    Yard.wert = 
+    <Mehr, Wert> (self: Yard<Mehr, Wert>)
+    : Lacking<Wert> => 
+        
+        self (Tuple.Tail) as Lacking <Wert> ;
+    
+    
+    export 
+    type Done = Yard<None, None> ;
     
     export 
     const Done = 
-    (): Done => Logik(Pair (None()) (None()) ) ;
+    (): Done => 
+        
+        Yard (Tuple (None) (None)) ;
     
     
     export 
@@ -73,33 +121,12 @@ namespace pure
         Pair (head) (tail) ;
     
     
-    export 
-    type pipe = <T,> (x: T) => <R,> (f: Fn<T, R>) => R ;
-    export 
-    const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => f(x) ;
-    
-    type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
-    type Pipework <T> = Logik<T, Pipeline<T> > ;
-    type pipeline = <T> (x: T) => Pipeline<T> ;
-    
-    const Pipework = 
-    <T,> (head: () => T) => 
-    (tail: () => Pipeline<T>)
-    : Pipework<T> => 
-        
-        pipe (Pair (head) (tail)) (Logik) ;
-    
-    export 
-    const Pipeline: pipeline = 
-    <T,> (x: T): Pipeline<T> => 
-        
-        <R,> (f: Fn<T, R>) => Pipework (() => pipe (x) (f)) (() => Pipeline (pipe (x) (f)) ) ;
     
     
     export 
-    type Downpour <T> = Lacking<Iterador<T> > ;
+    type Downpour <T> = () => Iterador<T> ;
     export 
-    type Iterador <T> = { head: T, tail: Downpour<T> } ;
+    type Iterador <T> = Tuple<T, Downpour<T> > ;
     
     export 
     const Iterador = 
@@ -107,7 +134,7 @@ namespace pure
     (tail: Downpour<T>)
     : Iterador<T> => 
         
-        Pair (head) (tail) ;
+        Tuple (head) (tail) ;
     
     Iterador.iterate = 
     <T,> (head: T) => 
@@ -118,11 +145,12 @@ namespace pure
     
     Iterador.head = 
     <T,> (self: Downpour<T>)
-    : T => self().head ;
+    : T => pipe (self() as Tuple<T, Downpour<T> >) (Tuple.head) ;
     
     Iterador.tail = 
     <T,> (self: Downpour<T>)
-    : Downpour<T> => self().tail ;
+    : Downpour<T> => pipe (self() as Tuple<T, Downpour<T> >) (Tuple.tail) ;
+    
     
     
     Iterador.map = 
@@ -130,7 +158,7 @@ namespace pure
     (self: Downpour<T>)
     : Downpour<R> => 
         
-        () => Iterador (f(Iterador.head(self))) (Iterador.map (f) (Iterador.tail(self)) ) ;
+        () => Iterador (pipe (Iterador.head(self)) (f) ) (pipe (Iterador.tail(self)) (Iterador.map (f) ) ) ;
     
     
     
@@ -149,12 +177,105 @@ namespace pure
         heads.reverse().reduce((s, h) => Iterador.follows (h) (s), self) ;
     
     
+    
+    Iterador.couple = 
+    <T,> (self: Downpour<T>)
+    : Pair<T, Downpour<T> > => 
+        
+        pipe (self () as Tuple<T, Downpour<T> >) 
+            (Tuple.couple) ;
+    
+    
     Iterador.take = 
     <T,> (limit: number) => 
     (self: Downpour<T>)
     : T[] => [{} as T] //
     
     
+    
+    
+    
+    
+    
+    
+    export 
+    type pipe = <T,> (x: T) => <R,> (f: Fn<T, R>) => R ;
+    export 
+    const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => apply (f) (x) ;
+    
+    export 
+    type apply = <T, R> (f: Fn<T, R>) => (x: T) => R
+    export 
+    const apply = <T, R> (f: Fn<T, R>) => (x: T): R => f(x) ;
+    
+    
+    export 
+    type Pipeyard <T> = <R,> (continuation: Fn<T, R>) => Pipeyard<R> ;
+    
+    export 
+    const Pipeyard = 
+    <T,> (head: T)
+    : Pipeyard<T> => 
+        
+        ( <R,> (continuation: Fn<T, R>)
+        : Pipeyard<R> => 
+            
+            pipe (continuation(head)) (Pipeyard) 
+        
+        ) as Pipeyard <T> ;
+    
+    Pipeyard.BROADCAST = 
+    <T,> (self: Pipeyard<T>)
+    : T => 
+    {
+        let over: T = {} as T;
+        self (x => over = x);
+        return over ;
+    } ;
+    
+    
+    
+    export 
+    type Pair <Head, Tail> = { head: Head, tail: Tail } ;
+    export 
+    type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr } ;
+    
+    export 
+    const Pair = 
+    <Head,> (head: Head) => 
+    <Tail,> (tail: Tail)
+    : Pair<Head, Tail> => 
+        
+        ({ head: head, tail: tail }) as Pair <Head, Tail> ;
+    
+    export 
+    const Logik = 
+    <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
+    : Logik<Wert, Mehr> => 
+        
+        ({ wert: head, mehr: tail }) as Logik <Wert, Mehr> ;
+    
+    type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
+    type Pipework <T> = Logik<T, Pipeline<T> > ;
+    type pipeline = <T> (x: T) => Pipeline<T> ;
+    
+    const Pipework = 
+    <T,> (head: () => T) => 
+    (tail: () => Pipeline<T>)
+    : Pipework<T> => 
+        
+        pipe (Pair (head) (tail)) (Logik) as Pipework<T>;
+    
+    export 
+    const Pipeline: pipeline = 
+    <T,> (x: T): Pipeline<T> => 
+        
+        ( <R,> (f: Fn<T, R>) => 
+            
+            Pipework (() => pipe (x) (f)) 
+                (() => Pipeline (pipe (x) (f)) ) 
+        
+        ) as Pipeline<T> ;
     
 } ;
 
@@ -184,13 +305,13 @@ namespace arr
 {
     export 
     const rangestep = 
-    (a: number, t: number, b: number): number[] => 
+    (a: number) => (t: number) => (b: number): number[] => 
         
         Array.from(Array(nums.Divides(b - a)(t).div + 1).keys())
             .map(x => x * t).map(x => x + a) ;
     
     export 
-    const range = (a: number, b: number): number[] => rangestep(a,1,b) ;
+    const range = (a: number) => (b: number): number[] => rangestep(a)(1)(b) ;
     
 } ;
 
@@ -260,70 +381,123 @@ namespace fun
 namespace Demo
 {
     
-    console.log("---=== arr.range ===---") ;
+    console.log("---=== arr.range ===---");
     
-    pure.pipe (arr.rangestep(2,3,10)) (console.log); // [2, 5, 8]
-    pure.pipe (arr.range(2,10)) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
-    
-    
+    pure.pipe (arr.rangestep (2) (3) (10) ) (console.log); // [2, 5, 8]
+    pure.pipe (arr.range (2) (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
     
     
+    console.log("---=== Tuple ===---");
     
-    console.log("---=== fibo_pipe ===---")
+    pure.pipe (pure.Tuple.couple(pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
+    
+    
+    
+    
+    
+    
+    console.log("---=== Pipeline ===---");
+    
+    pure.Pipeline (5)
+        (x => x + 7) .mehr()
+        (x => "`x" + x) .mehr()
+        (console.log) .wert(); // "`x12"
+    
+    console.log
+    ( pure.Pipeline (5) 
+        (x => x + 7) .mehr()
+        (x => "x" + x) .mehr()
+        (x => "~~" + x) .wert()
+    ); // "~~x12"
+    
+    
+    
+    console.log("---=== fibo_tree ===---");
+    
+    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree) ([n - 1]) () + fun.applies (fibo_tree) ([n - 2]) () : n ) ;
+    // console.log(fun.applies (fibo_tree) ([41]) () ); // 165580141, but very long wait, won't stack overflow.
+    
+    console.log("---=== fibo_pipe ===---");
     
     const fibo_pipe = 
-    pure.pipe
+    pure.pipe 
     (pure.pipe 
-        (pure.pipe 
-            (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
-            (pure.Iterador.map (([x, y]) => x) ) ) 
-        (pure.Iterador.map (x => 2 * x) ) ) 
-    (pure.Iterador.map (x => x / 2) ) ;
+    (pure.pipe 
+    (pure.pipe 
+    (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+    (pure.Iterador.map (([x, y]) => x) )) 
+    (pure.Iterador.map (x => 2 * x) )) 
+    (pure.Iterador.map (x => x / 2) )) 
+    (pure.apply (pure.Iterador.couple) ) ;
+    
     
     pure.pipe
     ( [... Array(14)].reduce
     (
-        ({ a: { head, tail }, r }, b) => ({ a: tail(), r: [...r, head] }) , 
-        { a: fibo_pipe(), r: [] } ,
+        ({ a: { head, tail }, r }, b) => ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        { a: fibo_pipe, r: [] } ,
     ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     
     
     
-    console.log("---=== fibo_pipeline ===---") ;
+    console.log("---=== fibo_pipeline ===---");
     
     const fibo_pipeline = 
     pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
         (pure.Iterador.map (([x, y]) => x) ) .mehr()
         (pure.Iterador.map (x => 2 * x) ) .mehr()
-        (pure.Iterador.map (x => x / 2) ) .wert() ;
+        (pure.Iterador.map (x => x / 2) ) .mehr()
+        (pure.apply (pure.Iterador.couple) ) .wert() ;
     
     pure.Pipeline
     ( [... Array(14)].reduce
     (
-        ({ a: { head, tail }, r}, b) => ({ a: tail(), r: [...r, head] }) , 
-        { a: fibo_pipeline(), r: [] } ,
+        ({ a: { head, tail }, r}, b) => ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        { a: fibo_pipeline, r: [] } ,
     ) ) (console.log) .wert(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     
-    console.log("---=== fibo_pipeline ===---") ;
-    
-    pure.Pipeline (5)
-        (x => x + 7) .mehr()
-        (x => "x" + x) .mehr()
-        (console.log) .wert(); // "x12"
     
     
     
-    console.log("---=== fibo_tree ===---") ;
+    console.log("---=== Pipeyard ===---");
     
-    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree) ([n - 1]) () + fun.applies (fibo_tree) ([n - 2]) () : n ) ;
-    // console.log(fun.applies (fibo_tree) ([41]) () ); // 165580141, but very long wait, won't stack overflow.
+    console.log
+    ( pure.Pipeyard.BROADCAST 
+    ( pure.Pipeyard (5) 
+        (x => x + 7) 
+        (x => "x" + x) 
+        (x => "??" + x) ) 
+    ); // "??x12"
+    
+    pure.Pipeyard (5)
+        (x => x + 7)
+        (x => "x" + x)
+        (x => "!!" + x) 
+        (console.log); // "!!x12"
+    
+    console.log("---=== fibo_pipeyard ===---");
+    
+    pure.Pipeyard (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+        (pure.Iterador.map (([x, y]) => x) ) 
+        (pure.Iterador.map (x => 2 * x) ) 
+        (pure.Iterador.map (x => x / 2) ) 
+        (pure.apply (pure.Iterador.couple) ) 
+        (fibo_pipeyard => [... Array(7)].reduce
+        (
+            ({ a: { head, tail }, r}, b) => ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+            { a: fibo_pipeyard, r: [] } ,
+        ) ) (console.log); // { "a": { "head": 13 }, "r": [ 0, 1, 1, 2, 3, 5, 8 ] }
     
     
-    console.log("---=== echoable ===---") ;
+    
+    
+    
+    
+    console.log("---=== echoable ===---");
     
     const echoable =
     {
