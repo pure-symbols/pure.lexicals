@@ -252,4 +252,142 @@ See in [*playground*](https://www.typescriptlang.org/play?ssl=95&ssc=1&pln=90&pc
 \________  
 见 [Playground](https://tsplay.dev/w6VyEw) 。
 
+## So, One more thing ...
+
+One more elegant implementation. It's also a implement of the *CPS (Continuation Passing Style)*.  
+\________  
+还有一种更简洁的途径，即对于 CPS (Continuation Passing Style) 的实现。
+
+> [*Continuations to programming are what Da Vinci Code is to human history: an amazing revelation of the greatest cover-up known to man. Well, may be not, but they're certainly revealing of deceit in the same sense as square roots of negative numbers.*](https://www.defmacro.org/2006/06/19/fp.html#Continuations)
+> 
+
+Such thing named *`Pipeyard`* is needed here:   
+\________  
+我们需要这样的效果：
+
+~~~ ts
+Pipeyard (5)
+    (x => x + 7)
+    (x => "x" + x)
+    (x => "!?" + x)
+    (console.log);
+// want: console.log out: "?x12"
+~~~
+
+First, we need to type it:   
+\________  
+首先，归纳它的类型：
+
+~~~ ts
+type Pipeyard <T> = <R> (continuation: Fn<T, R>) => Pipeyard<R> ;
+~~~
+
+Then made it by change the *`pipeline`* codes.  
+\________  
+然后基于前面有的 *`Pipeline`* 更改一下实现。
+
+And you might see, This code is okay:   
+\________  
+你会发现，这样就可以：
+
+~~~ ts
+const Pipeyard = 
+<T,> (x: T)
+: Pipeyard<T> => 
+    
+    (pipe (x)) as Pipeyard <T> ;
+~~~
+
+The `<R> (f: Fn<T, R>): R => pipe (x) (f)` is `pipe (x)`, obviously.  
+\________  
+因为 `<R> (f: Fn<T, R>): R => pipe (x) (f)` 显然就是 `pipe (x)` 。
+
+And if you try the codes be aimed by us now, you will see no error by the *static type system*, but it's actually wrong and will out a runtime-error while you run it.  
+\________  
+这时如果尝试一下那个我们想要的效果，你会发现，静态类型分析根本不会认为有任何错误。但这样其实是有问题的，问题会在运行时体现出来。
+
+Reason is simple. You can read such overly simple definition for the `Pipeyard` carefully, and you will know, all `Pipeyard (x)` in fact is just same as `pipe (x)`. So, that's why it is wrong, we didn't add any thing new here.  
+\________  
+其实理由很简单。根据上面那个过分简洁的 `Pipeyard` 的定义，所有的 `Pipeyard (x)` 都可被化简为 `pipe (x)` 。这个小家伙能确保的只是再多传一个参数，而我们也当然并未引入任何新的东西，所以该出错的地方当然要出错。
+
+An accidental discovery of a cut between a static and a dynamic language system, right? So, let's change that overly simple definition.  
+\________  
+意外发现了一个静态语言系统与动态语言系统之间的割裂，不是吗？让我们继续。
+
+It is simple to make the change. Just change `pipe (x)` to `<R> (continuation: Fn<T, R>): R => pipe (x) (continuation)` at first, then change the `: R` be `: Pipeyard<R>` and add recursion to `continuation(x)` so get a `Pipeyard(continuation(x))` (same as `pipe (continuation(x)) (Pipeyard)`), the static type system have no complain, then you get the result:   
+\________  
+要改掉原来的定义很容易。只需要把 `pipe (x)` 换回 `<R> (continuation: Fn<T, R>): R => pipe (x) (continuation)` ，然后把这部分的返回类型标记 `R` 改为正确的 `Pipeyard<R>` 得到 `<R> (continuation: Fn<T, R>): Pipeyard<R> => continuation(x)` ，然后对 `continuation(x)` 增加递归的要素 `Pipeyard(continuation(x))` ，看到静态类型分析没有问题，最终结果就有了：
+
+~~~ ts
+const Pipeyard = 
+<T,> (head: T)
+: Pipeyard<T> => 
+    
+    ( <R,> (continuation: Fn<T, R>)
+    : Pipeyard<R> => 
+        
+        pipe (continuation(head)) (Pipeyard)
+    
+    ) as Pipeyard <T> ;
+~~~
+
+(The closure in JS/TS is not serious enough. Under the normal, we must write a recursion by Y-combinator or other similar things. While in OCaml, all function are closures (means it's none-named and first-classed function), that's why the recursion function define must be add a `rec` keywork, it shall add the necessary combinator codes while the parser parse your code as no-sugar code which is all only closures that helps you to write a recursion function easily .)  
+\________  
+（JS/TS 的闭包不是那么严格。正常情况下，闭包要做到递归，必须依靠 Y 组合子或其变体。 OCaml 中一切函数都是闭包，这也就是为何定义递归函数时需要加一个 `rec` 关键字，这会让编译器在将代码转换成闭包代码的时候帮你补上必要的组合子代码。）
+
+Then you can run this:   
+\________  
+然后你就能这样干了：
+
+~~~ ts
+Pipeyard (5)
+    (x => x + 7)
+    (x => "x" + x)
+    (x => "!?" + x)
+    (console.log);
+// console.log out: "!?x12"
+~~~
+
+The *Continuation Passing Style* Programming is just indicate a way to go for a value just like that `Pipeyard` use case. But, the `Pipeyard` is just a mork for the *CPS* cause it is not a value gives to a function actually.  
+\________  
+一般而言，续程（ *Continuations* ）风格的编程就是像这样在一个表达式或者值后面直接指定它的去处。上面的实现只是对这一风格的模拟，因为毕竟如果没有最后的 `(console.log)` 的话，也没太多方便的办法来看到在 `Pipeyard` 这个盒子里的值究竟变成啥了。
+
+So, It's not really a pipeline. Even its definition or usage both much more concise than the `Pipeline`, and also elegant enough means won't do anything extra even it's just a little (the `Pipework` returns by `Pipeline` is a pair of value not a single). But, here's JS/TS, which have enough convenience with enough chaos, that ensure you can do some VERY un-elegant **chaos** and **crude** things (which means broke the pure functional principles) to get the value inside a `Pipeyard` box, and here is a sealed case to do that things:   
+\________  
+因而，它也不完全是个合适的管道。虽然用起来和实现起来都比之前的 `Pipeline` 要简洁得很，运行中也不会有什么多余的东西（指 `Pipeline` 返回的 `Pipework` 不是一个值而是一对值）。但，这里毕竟是便捷又混乱的 JS/TS ，你总是仍然可以用一种很**粗俗**的办法，来违背纯函数约定地拿到盒子里面的值。下面就是对这个粗糙方案的封装：
+
+~~~ ts
+Pipeyard.BROADCAST = 
+<T,> (self: Pipeyard<T>)
+: T => 
+{
+    let over: T = {} as T;
+    self (x => over = x);
+    return over ;
+} ;
+~~~
+
+To be honest, this function is still a *pure* function, only not *purely* enough means its implementation also all pure that can only include clearly mathematical expressions.  
+\________  
+其实这个函数本身仍然算是纯的，只不过它在实现时用上了不纯的手法从而使得它的定义也就不再是简洁的数学表达式了。
+
+You can use it like that to get the value inside our `Pipeyard` boxes:   
+\________  
+像这样去用它，就能够取出一个 `Pipeyard` 中的值了：
+
+~~~ ts
+console.log
+( Pipeyard.BROADCAST 
+( Pipeyard (5)
+    (x => x + 7)
+    (x => "x" + x)
+    (x => "??" + x) ) 
+); // console.log out: "??x12"
+~~~
+
+See full code in [*playground*](https://www.typescriptlang.org/play?#code/PTAEBMFMAdIO3AZwLACg0BcCetQDE5QAeAFQBpQAlAPlAF5QAKADwC5QSBKe2y0AbjSYckUNACWuBqTK0W7Lj2KVZTAGbsCMqtW51eAtAGMA9nEQYxkyOwlTi5OWw57aRFXI3442mp3Z8+qBqLNyC6KggUdExsXHxsUIRdqKMAETxoAAK1qAAmgCGAE7goPFp3Iym5iYANpAAdLUmAOac4cK4ObBYxaWktNIeTNUY4nAArgVjZpo+5Dqu2da9Je60HajVFss9ffSgaDJyABaQBeAKnGjs3ZCr4ANKaKCvh6hvTMqqVWZjk9NxLNvL5dC83rcVn11s8Pp83uD4VZcL84P8pjM4IwzhdOJU7g9uNwCohdvd9k9NiBQEUJnA0AT9owAKzXOGvFhKZigADUoAA7GzPpygmlmGleaBmEK3iLaGkAIQAfglfOliJGZkQdUazTa-DKYG2OqarVAJgmGHYaSVzAAjAAmNJJNApJgZOKgABClAA8gBBAAiAGF-QBlEiG2IVTU1eqm-VJRklBo+gMh8ORhhHRxMRCQWpeZOPEhg1AKWEAbw19UsJgAbpAihWGJWAL6gEkccKffOFpjcoINpsHaU9t5FSAYCZFQjDoqGVAdqlgWn0rZak16tCMZGiHdkh5MVkauVSyWC0+D+XiyXq9kDpQ2hWqqVE96MYupv1B0MRombK6uTpJkACyBTQGSUYxDGqLavGertEkADazIALoag0AC2EFntyfKXg+2G4deoBiq+96fMR0BnmkAB+FEyq81FwVurTtIaoDGghZoWlaZG2o6aQUKAAAMInITa9pOhhESScwClpGhLHcbq7EGtSYqKSJ4mvPJimyWgklGCZwlpAUBRmQARsJdqiXayk4TRqkJhxaCaSZRjCa8umgMZpkUOZlmBTZFB2Q57lgEF3mgHaElpJ53nRSF3nhbJmmha8DrxYlgUWUlmVpZFsX2SJADMOUBWR+UpWF9mGagQA).
+\________  
+完整代码见 [Playground](https://tsplay.dev/WGX1vw) 。
+
+
 
