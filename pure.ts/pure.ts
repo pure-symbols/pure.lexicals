@@ -6,6 +6,43 @@ namespace pure
     export 
     type Lacking <T> = () => T ;
     
+    export 
+    type pipe = <T,> (x: T) => <R,> (f: Fn<T, R>) => R ;
+    export 
+    const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => apply (f) (x) ;
+    
+    export 
+    type apply = <T, R> (f: Fn<T, R>) => (x: T) => R
+    export 
+    const apply = <T, R> (f: Fn<T, R>) => (x: T): R => f(x) ;
+    
+    
+    
+    export 
+    type Pipeyard <T> = <R,> (continuation: Fn<T, R>) => Pipeyard<R> ;
+    
+    export 
+    const Pipeyard = 
+    <T,> (head: T)
+    : Pipeyard<T> => 
+        
+        ( <R,> (continuation: Fn<T, R>)
+        : Pipeyard<R> => 
+            
+            pipe (continuation(head)) (Pipeyard) 
+        
+        ) as Pipeyard <T> ;
+    
+    Pipeyard.BROADCAST = 
+    <T,> (self: Pipeyard<T>)
+    : T => 
+    {
+        let over: T = {} as T;
+        self (x => over = x);
+        return over ;
+    } ;
+    
+    
     
     export 
     type Might <T> = Lacking <T> ;
@@ -17,13 +54,13 @@ namespace pure
     <T,> (head: T)
     : Might<T> => 
         
-        (() => head) as Might<T> ;
+        (() => head) as Might <T> ;
     
     export 
     const None = 
     (): Might<null> => 
         
-        Might(null) as Might<null> ;
+        Might(null) as Might <null> ;
     
     Might.heador = 
     <T,> (mehr: T) => 
@@ -34,8 +71,13 @@ namespace pure
     
     
     
+    
+    export 
     type Wert = <Head,> (h: Head) => <Tail,> (t: Tail) => Head ;
+    export 
     type Mehr = <Head,> (h: Head) => <Tail,> (t: Tail) => Tail ;
+    
+    export 
     type echoes = Wert | Mehr ;
     
     export 
@@ -71,6 +113,7 @@ namespace pure
         
         Pair (pipe (self) (Tuple.head)) 
             (pipe (self) (Tuple.tail)) ;
+    
     
     export 
     type Yard <Mehr, Wert> = (echoes: echoes) => Lacking<Mehr | Wert> ;
@@ -145,11 +188,17 @@ namespace pure
     
     Iterador.head = 
     <T,> (self: Downpour<T>)
-    : T => pipe (self() as Tuple<T, Downpour<T> >) (Tuple.head) ;
+    : T => 
+        
+        apply (Tuple.head) 
+            (self() as Tuple <T, Downpour<T> >) ;
     
     Iterador.tail = 
     <T,> (self: Downpour<T>)
-    : Downpour<T> => pipe (self() as Tuple<T, Downpour<T> >) (Tuple.tail) ;
+    : Downpour<T> => 
+        
+        apply (Tuple.tail) 
+            (self() as Tuple <T, Downpour<T> >) ;
     
     
     
@@ -158,7 +207,8 @@ namespace pure
     (self: Downpour<T>)
     : Downpour<R> => 
         
-        () => Iterador (pipe (Iterador.head(self)) (f) ) (pipe (Iterador.tail(self)) (Iterador.map (f) ) ) ;
+        () => Iterador (pipe (Iterador.head (self)) (f) ) 
+            (pipe (Iterador.tail (self)) (Iterador.map (f)) ) ;
     
     
     
@@ -182,8 +232,8 @@ namespace pure
     <T,> (self: Downpour<T>)
     : Pair<T, Downpour<T> > => 
         
-        pipe (self () as Tuple<T, Downpour<T> >) 
-            (Tuple.couple) ;
+        apply (Tuple.couple) 
+            (self () as Tuple <T, Downpour<T> >) ;
     
     
     Iterador.take = 
@@ -198,40 +248,6 @@ namespace pure
     
     
     
-    export 
-    type pipe = <T,> (x: T) => <R,> (f: Fn<T, R>) => R ;
-    export 
-    const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => apply (f) (x) ;
-    
-    export 
-    type apply = <T, R> (f: Fn<T, R>) => (x: T) => R
-    export 
-    const apply = <T, R> (f: Fn<T, R>) => (x: T): R => f(x) ;
-    
-    
-    export 
-    type Pipeyard <T> = <R,> (continuation: Fn<T, R>) => Pipeyard<R> ;
-    
-    export 
-    const Pipeyard = 
-    <T,> (head: T)
-    : Pipeyard<T> => 
-        
-        ( <R,> (continuation: Fn<T, R>)
-        : Pipeyard<R> => 
-            
-            pipe (continuation(head)) (Pipeyard) 
-        
-        ) as Pipeyard <T> ;
-    
-    Pipeyard.BROADCAST = 
-    <T,> (self: Pipeyard<T>)
-    : T => 
-    {
-        let over: T = {} as T;
-        self (x => over = x);
-        return over ;
-    } ;
     
     
     
@@ -264,7 +280,7 @@ namespace pure
     (tail: () => Pipeline<T>)
     : Pipework<T> => 
         
-        pipe (Pair (head) (tail)) (Logik) as Pipework<T>;
+        pipe (Pair (head) (tail)) (Logik) as Pipework <T>;
     
     export 
     const Pipeline: pipeline = 
@@ -275,7 +291,7 @@ namespace pure
             Pipework (() => pipe (x) (f)) 
                 (() => Pipeline (pipe (x) (f)) ) 
         
-        ) as Pipeline<T> ;
+        ) as Pipeline <T> ;
     
 } ;
 
@@ -322,7 +338,7 @@ namespace fun
     <T extends (...args: any[]) => any> (f: T)
     : T => 
     {
-        const mem = {} as Record<string, ReturnType<T>> ;
+        const mem = {} as Record <string, ReturnType<T> > ;
         
         return ( (...args: Parameters<T>)
         : ReturnType<T> => 
@@ -434,8 +450,11 @@ namespace Demo
     pure.pipe
     ( [... Array(14)].reduce
     (
-        ({ a: { head, tail }, r }, b) => ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        ({ a: { head, tail }, r }, b) => 
+            ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        
         { a: fibo_pipe, r: [] } ,
+    
     ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
@@ -454,8 +473,11 @@ namespace Demo
     pure.Pipeline
     ( [... Array(14)].reduce
     (
-        ({ a: { head, tail }, r}, b) => ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        ({ a: { head, tail }, r}, b) => 
+            ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        
         { a: fibo_pipeline, r: [] } ,
+    
     ) ) (console.log) .wert(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
@@ -488,8 +510,11 @@ namespace Demo
         (pure.apply (pure.Iterador.couple) ) 
         (fibo_pipeyard => [... Array(7)].reduce
         (
-            ({ a: { head, tail }, r}, b) => ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+            ({ a: { head, tail }, r}, b) => 
+                ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+            
             { a: fibo_pipeyard, r: [] } ,
+        
         ) ) (console.log); // { "a": { "head": 13 }, "r": [ 0, 1, 1, 2, 3, 5, 8 ] }
     
     
