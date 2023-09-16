@@ -53,3 +53,10 @@ This is, precisely, **isomorphic** to the data structure I need, now. So, what a
 \________  
 这，恰恰与我需要的数据结构，是**同构**的了。精神分析和哲学真有用。
 
+## Types | 类型
+
+目前的 TS 代码，必须要借助 `pipe` 才能完成基本的类型推断功能。即 `Iterador.map (([x, y]) => x) (Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]))` 这样写的话 `([x, y]) => x` 不能够自动完成类型推断，但是 `pipe (Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b])) (Iterador.map (([x, y]) => x))` 的话，相应位置就能够自动完成类型推断。
+
+在像这样测试不用 `pipe` 的代码前我甚至不知道 `pipe` 暗中帮我完成了类型推断的工作 …… 谢谢 `pipe` 。其实是因为 TS 的泛型对于柯里化的支持不怎么样啦（状况发生在 `Iterador.map` 身上）。何况， TS 的实践中也不怎么有多少柯里化的用例，因而应该也不会有什么压力去驱使这个本就并不打算以足够的严谨为目标的语言去支持这种没什么人用到的事情。或许以后会支持吧。
+
+
