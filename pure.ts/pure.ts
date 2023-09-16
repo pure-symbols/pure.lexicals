@@ -352,9 +352,8 @@ namespace fun
     
     export 
     const apply = 
-    <T,> (f: Function) => 
-    (args: any[]) => 
-    (owner: T|undefined = undefined)
+    <T,> (f: Function, args: any[]
+    , owner: T|undefined = undefined)
     : any => 
         
         f.call(owner, ...args) ;
@@ -374,10 +373,10 @@ namespace fun
         : T => 
             
             Object.entries(waves).reduce
-            (
-                (envs, [fn, f]) => ({... envs, [fn]: f(envs)}) ,
-                {} as T
-            ) ;
+            ( (envs, [fn, f]) => 
+                ({... envs, [fn]: f(envs)}) , 
+            
+            {} as T ) ;
         
         export 
         const calls = 
@@ -414,7 +413,7 @@ namespace Demo
     
     console.log("---=== Pipeline ===---");
     
-    pure.Pipeline (5)
+    pure.Pipeline (5) 
         (x => x + 7) .mehr()
         (x => "`x" + x) .mehr()
         (console.log) .wert(); // "`x12"
@@ -430,8 +429,8 @@ namespace Demo
     
     console.log("---=== fibo_tree ===---");
     
-    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree) ([n - 1]) () + fun.applies (fibo_tree) ([n - 2]) () : n ) ;
-    // console.log(fun.applies (fibo_tree) ([41]) () ); // 165580141, but very long wait, won't stack overflow.
+    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree, [n - 1]) + fun.applies (fibo_tree, [n - 2]) : n ) ;
+    console.log(fun.applies (fibo_tree, [41])); // 165580141, but very long wait, won't stack overflow.
     
     console.log("---=== fibo_pipe ===---");
     
@@ -453,7 +452,7 @@ namespace Demo
         ({ a: { head, tail }, r }, b) => 
             ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
         
-        { a: fibo_pipe, r: [] } ,
+        { a: fibo_pipe, r: [] } , 
     
     ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
@@ -476,7 +475,7 @@ namespace Demo
         ({ a: { head, tail }, r}, b) => 
             ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
         
-        { a: fibo_pipeline, r: [] } ,
+        { a: fibo_pipeline, r: [] } , 
     
     ) ) (console.log) .wert(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
@@ -495,9 +494,9 @@ namespace Demo
         (x => "??" + x) ) 
     ); // "??x12"
     
-    pure.Pipeyard (5)
-        (x => x + 7)
-        (x => "x" + x)
+    pure.Pipeyard (5) 
+        (x => x + 7) 
+        (x => "x" + x) 
         (x => "!!" + x) 
         (console.log); // "!!x12"
     
@@ -513,7 +512,7 @@ namespace Demo
             ({ a: { head, tail }, r}, b) => 
                 ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
             
-            { a: fibo_pipeyard, r: [] } ,
+            { a: fibo_pipeyard, r: [] } , 
         
         ) ) (console.log); // { "a": { "head": 13 }, "r": [ 0, 1, 1, 2, 3, 5, 8 ] }
     
