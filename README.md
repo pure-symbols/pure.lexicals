@@ -28,6 +28,7 @@ And there's also something specially that it is necessary when this *pure projec
 - *Dialectic* or *Logic* method from *Georg Wilhelm Friedrich Hegel*, *Karl Marx* and the *Leninists*
 - *Lambda Calculate* from *Alonzo Church* and *Currying* theory
 - *Lexical Closure* feature that provide this project almost
+- The [*Functional Programming For The Rest of Us | defmacro*](https://www.defmacro.org/2006/06/19/fp.html) which told me the *CPS Programming*
 - *Rain World* game which give me some idea for the names
 
 
