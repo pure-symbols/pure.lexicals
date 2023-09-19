@@ -73,15 +73,15 @@ namespace pure
     
     
     export 
-    type Wert = <Head,> (h: Head) => <Tail,> (t: Tail) => Head ;
+    type wert = <H,> (h: H) => <T,> (t: T) => H ;
     export 
-    type Mehr = <Head,> (h: Head) => <Tail,> (t: Tail) => Tail ;
+    type mehr = <H,> (h: H) => <T,> (t: T) => T ;
     
     export 
-    type echoes = Wert | Mehr ;
+    type echo = mehr|wert ;
     
     export 
-    type Tuple <Head, Tail> = (echoes: echoes) => Head | Tail ;
+    type Tuple <Head, Tail> = (echoes: echo) => Head | Tail ;
     
     export 
     const Tuple = 
@@ -89,11 +89,11 @@ namespace pure
     <Tail,> (t: Tail)
     : Tuple<Head, Tail> => 
         
-        ( (echoes: echoes)
+        ( (echoes: echo)
         : Head | Tail => echoes (h) (t) ) as Tuple <Head, Tail> ;
     
-    Tuple.Head = (<Head,> (h: Head) => <Tail,> (t: Tail): Head => h) as Wert ;
-    Tuple.Tail = (<Head,> (h: Head) => <Tail,> (t: Tail): Tail => t) as Mehr ;
+    Tuple.Head = (<Head,> (h: Head) => <Tail,> (t: Tail): Head => h) as wert ;
+    Tuple.Tail = (<Head,> (h: Head) => <Tail,> (t: Tail): Tail => t) as mehr ;
     
     Tuple.head = 
     <Head, Tail> (self: Tuple<Head, Tail>)
@@ -116,14 +116,14 @@ namespace pure
     
     
     export 
-    type Yard <Mehr, Wert> = (echoes: echoes) => Lacking<Mehr | Wert> ;
+    type Yard <Mehr, Wert> = (echoes: echo) => Lacking<Mehr | Wert> ;
     
     export 
     const Yard = 
     <Mehr, Wert> (t: Tuple<() => Wert, () => Mehr>)
     : Yard<Mehr, Wert> => 
         
-        ( (echoes: echoes)
+        ( (echoes: echo)
         : Lacking<Mehr | Wert> => 
             
             echoes (Tuple.tail (t)) (Tuple.head (t)) ) ;
