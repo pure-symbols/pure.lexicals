@@ -253,8 +253,6 @@ namespace pure
     
     export 
     type Pair <Head, Tail> = { head: Head, tail: Tail } ;
-    export 
-    type Logik <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr } ;
     
     export 
     const Pair = 
@@ -265,22 +263,26 @@ namespace pure
         ({ head: head, tail: tail }) as Pair <Head, Tail> ;
     
     export 
-    const Logik = 
-    <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
-    : Logik<Wert, Mehr> => 
-        
-        ({ wert: head, mehr: tail }) as Logik <Wert, Mehr> ;
-    
+    type Drainage <Wert, Mehr> = { wert: () => Wert, mehr: () => Mehr } ;
+    export 
     type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
-    type Pipework <T> = Logik<T, Pipeline<T> > ;
+    export 
+    type Pipework <T> = Drainage<T, Pipeline<T> > ;
+    export 
     type pipeline = <T> (x: T) => Pipeline<T> ;
+    
+    const Drainage = 
+    <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
+    : Drainage<Wert, Mehr> => 
+        
+        ({ wert: head, mehr: tail }) as Drainage <Wert, Mehr> ;
     
     const Pipework = 
     <T,> (head: () => T) => 
     (tail: () => Pipeline<T>)
     : Pipework<T> => 
         
-        pipe (Pair (head) (tail)) (Logik) as Pipework <T>;
+        pipe (Pair (head) (tail)) (Drainage) as Pipework <T>;
     
     export 
     const Pipeline: pipeline = 
@@ -404,7 +406,9 @@ namespace Demo
     
     console.log("---=== Tuple ===---");
     
-    pure.pipe (pure.Tuple.couple(pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
+    pure.pipe (pure.Tuple.couple (pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
+    pure.pipe (pure.Tuple.head (pure.Tuple (1) ("zzz"))) (console.log); // 1
+    pure.pipe (pure.Tuple.tail (pure.Tuple (1) ("zzz"))) (console.log); // "zzz"
     
     
     
