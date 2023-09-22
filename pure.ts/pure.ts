@@ -263,7 +263,7 @@ namespace pure
         ({ head: head, tail: tail }) as Pair <Head, Tail> ;
     
     export 
-    type Drainage <Wert, Mehr> = { over: () => Wert, more: () => Mehr } ;
+    type Drainage <Wert, Mehr> = { take: () => Wert, pipe: () => Mehr } ;
     export 
     type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
     export 
@@ -275,7 +275,7 @@ namespace pure
     <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
     : Drainage<Wert, Mehr> => 
         
-        ({ over: head, more: tail }) as Drainage <Wert, Mehr> ;
+        ({ take: head, pipe: tail }) as Drainage <Wert, Mehr> ;
     
     const Pipework = 
     <T,> (head: () => T) => 
@@ -418,15 +418,15 @@ namespace Demo
     console.log("---=== Pipeline ===---");
     
     pure.Pipeline (5) 
-        (x => x + 7) .more()
-        (x => "`x" + x) .more()
-        (console.log) .over(); // "`x12"
+        (x => x + 7) .pipe()
+        (x => "`x" + x) .pipe()
+        (console.log) .take(); // "`x12"
     
     console.log
     ( pure.Pipeline (5) 
-        (x => x + 7) .more()
-        (x => "x" + x) .more()
-        (x => "~~" + x) .over()
+        (x => x + 7) .pipe()
+        (x => "x" + x) .pipe()
+        (x => "~~" + x) .take()
     ); // "~~x12"
     
     
@@ -468,10 +468,10 @@ namespace Demo
     
     const fibo_pipeline = 
     pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
-        (pure.Iterador.map (([x, y]) => x) ) .more()
-        (pure.Iterador.map (x => 2 * x) ) .more()
-        (pure.Iterador.map (x => x / 2) ) .more()
-        (pure.apply (pure.Iterador.couple) ) .over() ;
+        (pure.Iterador.map (([x, y]) => x) ) .pipe()
+        (pure.Iterador.map (x => 2 * x) ) .pipe()
+        (pure.Iterador.map (x => x / 2) ) .pipe()
+        (pure.apply (pure.Iterador.couple) ) .take() ;
     
     pure.Pipeline
     ( [... Array(14)].reduce
@@ -481,7 +481,7 @@ namespace Demo
         
         { a: fibo_pipeline, r: [] } , 
     
-    ) ) (console.log) .over(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    ) ) (console.log) .take(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     
