@@ -88,8 +88,16 @@ pure.Pipeline
 
 ~~~ ts
 pure.pipe 
-    (pure.Tuple.couple (pure.Tuple (1) ("zzz") ))
+    (pure.Tuple.couple (pure.Tuple (1) ("zzz")) )
     (console.log); // { "head": 1, "tail": "zzz" }
+
+pure.pipe
+    (pure.Tuple.head (pure.Tuple (1) ("zzz")) )
+    (console.log); // 1
+
+pure.pipe
+    (pure.Tuple.tail (pure.Tuple (1) ("zzz")) )
+    (console.log); // "zzz"
 ~~~
 
 #### `pure.List`
