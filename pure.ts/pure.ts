@@ -107,7 +107,7 @@ namespace pure
         
         self (Tuple.Tail) as Tail ;
     
-    Tuple.couple = 
+    Tuple.RECORD = 
     <Head, Tail> (self: Tuple<Head, Tail>)
     : Pair<Head, Tail> => 
         
@@ -228,11 +228,11 @@ namespace pure
     
     
     
-    Iterador.couple = 
+    Iterador.RECORD = 
     <T,> (self: Downpour<T>)
     : Pair<T, Downpour<T> > => 
         
-        apply (Tuple.couple) 
+        apply (Tuple.RECORD) 
             (self () as Tuple <T, Downpour<T> >) ;
     
     
@@ -263,7 +263,7 @@ namespace pure
         ({ head: head, tail: tail }) as Pair <Head, Tail> ;
     
     export 
-    type Drainage <Wert, Mehr> = { take: () => Wert, pipe: () => Mehr } ;
+    type Drainage <Wert, Mehr> = { self: () => Wert, pipe: () => Mehr } ;
     export 
     type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
     export 
@@ -275,7 +275,7 @@ namespace pure
     <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
     : Drainage<Wert, Mehr> => 
         
-        ({ take: head, pipe: tail }) as Drainage <Wert, Mehr> ;
+        ({ self: head, pipe: tail }) as Drainage <Wert, Mehr> ;
     
     const Pipework = 
     <T,> (head: () => T) => 
@@ -406,7 +406,7 @@ namespace Demo
     
     console.log("---=== Tuple ===---");
     
-    pure.pipe (pure.Tuple.couple (pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
+    pure.pipe (pure.Tuple.RECORD (pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
     pure.pipe (pure.Tuple.head (pure.Tuple (1) ("zzz"))) (console.log); // 1
     pure.pipe (pure.Tuple.tail (pure.Tuple (1) ("zzz"))) (console.log); // "zzz"
     
@@ -420,13 +420,13 @@ namespace Demo
     pure.Pipeline (5) 
         (x => x + 7) .pipe()
         (x => "`x" + x) .pipe()
-        (console.log) .take(); // "`x12"
+        (console.log) .self(); // "`x12"
     
     console.log
     ( pure.Pipeline (5) 
         (x => x + 7) .pipe()
         (x => "x" + x) .pipe()
-        (x => "~~" + x) .take()
+        (x => "~~" + x) .self()
     ); // "~~x12"
     
     
@@ -447,14 +447,14 @@ namespace Demo
     (pure.Iterador.map (([x, y]) => x) )) 
     (pure.Iterador.map (x => 2 * x) )) 
     (pure.Iterador.map (x => x / 2) )) 
-    (pure.apply (pure.Iterador.couple) ) ;
+    (pure.apply (pure.Iterador.RECORD) ) ;
     
     
     pure.pipe
     ( [... Array(14)].reduce
     (
         ({ a: { head, tail }, r }, b) => 
-            ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
         
         { a: fibo_pipe, r: [] } , 
     
@@ -471,17 +471,17 @@ namespace Demo
         (pure.Iterador.map (([x, y]) => x) ) .pipe()
         (pure.Iterador.map (x => 2 * x) ) .pipe()
         (pure.Iterador.map (x => x / 2) ) .pipe()
-        (pure.apply (pure.Iterador.couple) ) .take() ;
+        (pure.apply (pure.Iterador.RECORD) ) .self() ;
     
     pure.Pipeline
     ( [... Array(14)].reduce
     (
         ({ a: { head, tail }, r}, b) => 
-            ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
         
         { a: fibo_pipeline, r: [] } , 
     
-    ) ) (console.log) .take(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    ) ) (console.log) .self(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     
@@ -510,11 +510,11 @@ namespace Demo
         (pure.Iterador.map (([x, y]) => x) ) 
         (pure.Iterador.map (x => 2 * x) ) 
         (pure.Iterador.map (x => x / 2) ) 
-        (pure.apply (pure.Iterador.couple) ) 
+        (pure.apply (pure.Iterador.RECORD) ) 
         (fibo_pipeyard => [... Array(7)].reduce
         (
             ({ a: { head, tail }, r}, b) => 
-                ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+                ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
             
             { a: fibo_pipeyard, r: [] } , 
         
