@@ -54,7 +54,7 @@ console.log
 ~~~ ts
 pure.Pipeyard (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
     (pure.Iterador.map (([x, y]) => x) ) 
-    (pure.apply (pure.Iterador.RECORD) ) 
+    (pure.Iterador.RECORD ) 
     (fibo_pipeyard => [... Array(7)].reduce
     (
         ({ a: { head, tail }, r}, b) => 
@@ -71,7 +71,7 @@ pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) )
     (pure.Iterador.map (([x, y]) => x) ) .pipe()
     (pure.Iterador.map (x => 2 * x) ) .pipe()
     (pure.Iterador.map (x => x / 2) ) .pipe()
-    (pure.apply (pure.Iterador.RECORD) ) .self() ;
+    (pure.Iterador.RECORD ) .self() ;
 
 pure.Pipeline
 ( [... Array(14)].reduce
