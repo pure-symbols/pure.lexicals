@@ -447,7 +447,7 @@ namespace Demo
     (pure.Iterador.map (([x, y]) => x) )) 
     (pure.Iterador.map (x => 2 * x) )) 
     (pure.Iterador.map (x => x / 2) )) 
-    (pure.apply (pure.Iterador.RECORD) ) ;
+    (pure.Iterador.RECORD ) ;
     
     
     pure.pipe
@@ -471,7 +471,7 @@ namespace Demo
         (pure.Iterador.map (([x, y]) => x) ) .pipe()
         (pure.Iterador.map (x => 2 * x) ) .pipe()
         (pure.Iterador.map (x => x / 2) ) .pipe()
-        (pure.apply (pure.Iterador.RECORD) ) .self() ;
+        (pure.Iterador.RECORD ) .self() ;
     
     pure.Pipeline
     ( [... Array(14)].reduce
@@ -510,7 +510,7 @@ namespace Demo
         (pure.Iterador.map (([x, y]) => x) ) 
         (pure.Iterador.map (x => 2 * x) ) 
         (pure.Iterador.map (x => x / 2) ) 
-        (pure.apply (pure.Iterador.RECORD) ) 
+        (pure.Iterador.RECORD ) 
         (fibo_pipeyard => [... Array(7)].reduce
         (
             ({ a: { head, tail }, r}, b) => 
