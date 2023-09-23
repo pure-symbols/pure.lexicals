@@ -18,7 +18,7 @@ console.log
 ( pure.Pipeline (5) 
     (x => x + 7) .pipe()
     (x => "x" + x) .pipe()
-    (x => "~~" + x) .take()
+    (x => "~~" + x) .self()
 ); // "~~x12"
 ~~~
 
@@ -26,7 +26,7 @@ console.log
 pure.Pipeline (5) 
     (x => x + 7) .pipe()
     (x => "`x" + x) .pipe()
-    (console.log) .take(); // "`x12"
+    (console.log) .self(); // "`x12"
 ~~~
 
 #### `pure.Pipeyard`
@@ -54,11 +54,11 @@ console.log
 ~~~ ts
 pure.Pipeyard (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
     (pure.Iterador.map (([x, y]) => x) ) 
-    (pure.apply (pure.Iterador.couple) ) 
+    (pure.apply (pure.Iterador.RECORD) ) 
     (fibo_pipeyard => [... Array(7)].reduce
     (
         ({ a: { head, tail }, r}, b) => 
-            ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
         
         { a: fibo_pipeyard, r: [] } , 
     
@@ -71,24 +71,24 @@ pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) )
     (pure.Iterador.map (([x, y]) => x) ) .pipe()
     (pure.Iterador.map (x => 2 * x) ) .pipe()
     (pure.Iterador.map (x => x / 2) ) .pipe()
-    (pure.apply (pure.Iterador.couple) ) .take() ;
+    (pure.apply (pure.Iterador.RECORD) ) .self() ;
 
 pure.Pipeline
 ( [... Array(14)].reduce
 (
     ({ a: { head, tail }, r}, b) => 
-        ({ a: pure.Iterador.couple(tail), r: [...r, head] }) , 
+        ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
     
     { a: fibo_pipeline, r: [] } , 
 
-) ) (console.log) .take(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+) ) (console.log) .self(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
 ~~~
 
 #### `pure.Tuple`
 
 ~~~ ts
 pure.pipe 
-    (pure.Tuple.couple (pure.Tuple (1) ("zzz")) )
+    (pure.Tuple.RECORD (pure.Tuple (1) ("zzz")) )
     (console.log); // { "head": 1, "tail": "zzz" }
 
 pure.pipe
