@@ -1,4 +1,66 @@
 
+namespace funny 
+{
+    export 
+    const memoize = 
+    <T extends (...args: any[]) => any> (f: T)
+    : T => 
+    {
+        const mem = {} as Record <string, ReturnType<T> > ;
+        
+        return ( (...args: Parameters<T>)
+        : ReturnType<T> => 
+        {
+            const k = JSON.stringify(args) ;
+            if (!(k in mem)) { mem[k] = f(...args); } ;
+            return mem[k] ;
+        } ) as T ;
+    } ;
+    
+    
+    export 
+    const apply = 
+    <T,> (f: Function, args: any[]
+    , owner: T|undefined = undefined)
+    : any => 
+        
+        f.call(owner, ...args) ;
+    
+    export 
+    const applies = memoize(apply) ;
+    
+    
+    
+    export 
+    namespace Echoes
+    {
+        export 
+        const echoes =
+        <T = {[key: string]: any},> 
+        (waves: {[key: string]: (env: T) => any})
+        : T => 
+            
+            Object.entries(waves).reduce
+            ( (envs, [fn, f]) => 
+                ({... envs, [fn]: f(envs)}) , 
+            
+            {} as T ) ;
+        
+        export 
+        const calls = 
+        <
+            T extends Record<K, (...args: any) => any> , 
+            K extends keyof T , 
+        > 
+        (record: T, key: K)
+        : { [P in K]: ReturnType<T[P]> ; }[K] => 
+            
+            echoes <{[P in K]: ReturnType<T[P]> }> (record) [key] ;
+        
+    } ;
+} ;
+
+
 namespace pure
 {
     export 
@@ -142,18 +204,13 @@ namespace pure
         self (Tuple.Tail) as Lacking <Wert> ;
     
     
-    export 
-    type Done = Yard<None, None> ;
     
-    export 
-    const Done = 
-    (): Done => 
-        
-        Yard (Tuple (None) (None)) ;
+    
     
     
     export 
-    type List <T> = { head: T, tail: List<T> } ;
+    type List <T> = (e: echo) => T | List<T> ;
+    type Done = <T> () => List<T> ;
     
     export 
     const List = 
@@ -161,9 +218,44 @@ namespace pure
     (tail: List<T>)
     : List<T> => 
         
-        Pair (head) (tail) ;
+        Tuple (head) (tail) ;
     
+    List.Done = (<T,> (): List<T> => List.Done as List <T>) as Done ;
     
+    List.head = <T,> (self: List<T>): T => Tuple.head (self) as T ;
+    List.tail = <T,> (self: List<T>): List<T> => Tuple.tail (self) as List <T> ;
+    
+    List.ranger = 
+    <T,> (untils: (low: T) => (high: T) => boolean) => 
+    (steps: Fn<T, T>) => 
+    (low: T) => 
+    (high: T)
+    : List<T> => 
+        
+        untils (low) (high) ? List.Done : 
+            List (low) (List.ranger (untils) (steps) (pipe (low) (steps)) (high) ) ;
+    
+    List.range = (step: number = 1) => List.ranger <number> (low => high => low > high) (low => low + step) ;
+    
+    List.COLLECT = 
+    <T,> (limit?: number) => 
+    (self: List<T>): T[] => 
+        
+        Pipeline (looper.keys(limit ?? pipe (self) (List.size))) 
+            (looper.reduce ({ acc: [] as T[], list: self }) 
+                (({ acc, list }) => (i) => 
+                    ({ acc: [... acc, pipe (list) (List.head)]
+                    , list: pipe (list) (List.tail) }))) .pipe()
+            (({acc,list}) => acc) .self() as T[] ;
+    
+    List.size = funny.memoize
+    ( <T,> (self: List<T>)
+    : number => 
+        
+        List.Done === self ? 0 : 
+            1 + List.size (pipe (self) (List.tail)) ) ;
+    
+    List.chain = <T,> (x: T) => List.chain <T> ;
     
     
     export 
@@ -263,7 +355,7 @@ namespace pure
         ({ head: head, tail: tail }) as Pair <Head, Tail> ;
     
     export 
-    type Drainage <Wert, Mehr> = { self: () => Wert, pipe: () => Mehr } ;
+    type Drainage <S, P> = { self: () => S, pipe: () => P } ;
     export 
     type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
     export 
@@ -272,10 +364,10 @@ namespace pure
     type pipeline = <T> (x: T) => Pipeline<T> ;
     
     const Drainage = 
-    <Wert, Mehr> ({ head, tail }: Pair <() => Wert, () => Mehr>)
-    : Drainage<Wert, Mehr> => 
+    <S, P> ({ head, tail }: Pair <() => S, () => P>)
+    : Drainage<S, P> => 
         
-        ({ self: head, pipe: tail }) as Drainage <Wert, Mehr> ;
+        ({ self: head, pipe: tail }) as Drainage <S, P> ;
     
     const Pipework = 
     <T,> (head: () => T) => 
@@ -297,6 +389,8 @@ namespace pure
     
 } ;
 
+
+
 namespace nums 
 {
     export 
@@ -307,7 +401,7 @@ namespace nums
     (a: number) => 
     (b: number): Divides => 
         
-        [...Array(a)].reduce(
+        arr.black(a).reduce(
             
             ({ div: c, rem: r }, y) => 
                 
@@ -319,80 +413,98 @@ namespace nums
     
 } ;
 
+
+namespace looper 
+{
+    export 
+    const keys = (limit: number): IterableIterator<number> => Array(limit).keys() ;
+    
+    export 
+    const reduce = 
+    <R,> (init: R) => 
+    <T,> (f: (init: R) => (x: T) => R) => 
+    (xs: IterableIterator<T>): R => 
+    {
+        let result = init;
+        for (let x of xs) { result = (f) (result) (x); }
+        return result;
+    } ;
+    
+    export 
+    const map = 
+    <T, U>(f: (x: T) => U) => 
+    (xs: IterableIterator<T>): IterableIterator<U> => 
+        
+        (function* () { for (let x of xs) { yield f(x); } }) () ;
+    
+    export 
+    const filter = 
+    <T,> (cond: (x: T) => boolean) => 
+    (xs: IterableIterator<T>): IterableIterator<T> => 
+        
+        (function* () { for (let x of xs) { if (cond(x)) { yield x; } } }) () ;
+    
+    export 
+    const iterate = 
+    <T,> (f: (x: T) => T) => 
+    (x: T): IterableIterator<T> => 
+        
+        ( function* () 
+        {
+            let current = x;
+            while (true) 
+            {
+                yield current ;
+                current = f(current);
+            };
+        } ) () ;
+    
+    export 
+    const unfold = 
+    <T, R> (f: (x: T) => [R, T] | null) => 
+    (x: T): IterableIterator<R> => 
+        
+        ( function* () 
+        {
+            let current = x;
+            while (true) 
+            {
+                const result = f(current) ;
+                if (result === null) { break; } 
+                else { yield result[0] ; current = result[1]; };
+            };
+        } ) () ;
+    
+    export 
+    const range = 
+    (low: number) => 
+    (high: number) => 
+    (step: number = 1)
+    : IterableIterator<number> => 
+        
+        pure.Pipeline (keys(nums.Divides(high - low)(step).div + 1)) 
+            (map (x => x * step)) .pipe()
+            (map (x => x + low)) .self() ;
+    
+    export 
+    const collect = 
+    <T,> (xs: IterableIterator<T>)
+    : T[] => [... xs] ;
+} ;
+
+
 namespace arr 
 {
     export 
-    const rangestep = 
-    (a: number) => (t: number) => (b: number): number[] => 
+    const range = 
+    (a: number) => (t?: number) => (b: number): number[] => 
         
-        Array.from(Array(nums.Divides(b - a)(t).div + 1).keys())
-            .map(x => x * t).map(x => x + a) ;
+        pure.pipe (looper.range (a) (b) (t)) (looper.collect) ;
     
     export 
-    const range = (a: number) => (b: number): number[] => rangestep(a)(1)(b) ;
-    
+    const black = (size: number): any[] => [... Array(size)] ;
 } ;
 
-namespace fun 
-{
-    export 
-    const memoize = 
-    <T extends (...args: any[]) => any> (f: T)
-    : T => 
-    {
-        const mem = {} as Record <string, ReturnType<T> > ;
-        
-        return ( (...args: Parameters<T>)
-        : ReturnType<T> => 
-        {
-            const k = JSON.stringify(args) ;
-            if (!(k in mem)) { mem[k] = f(...args); } ;
-            return mem[k] ;
-        } ) as T ;
-    } ;
-    
-    
-    export 
-    const apply = 
-    <T,> (f: Function, args: any[]
-    , owner: T|undefined = undefined)
-    : any => 
-        
-        f.call(owner, ...args) ;
-    
-    export 
-    const applies = memoize(apply) ;
-    
-    
-    
-    export 
-    namespace Echoes
-    {
-        export 
-        const echoes =
-        <T = {[key: string]: any},> 
-        (waves: {[key: string]: (env: T) => any})
-        : T => 
-            
-            Object.entries(waves).reduce
-            ( (envs, [fn, f]) => 
-                ({... envs, [fn]: f(envs)}) , 
-            
-            {} as T ) ;
-        
-        export 
-        const calls = 
-        <
-            T extends Record<K, (...args: any) => any> , 
-            K extends keyof T , 
-        > 
-        (record: T, key: K)
-        : { [P in K]: ReturnType<T[P]> ; }[K] => 
-            
-            echoes <{[P in K]: ReturnType<T[P]> }> (record) [key] ;
-        
-    } ;
-} ;
 
 
 namespace Demo
@@ -400,8 +512,30 @@ namespace Demo
     
     console.log("---=== arr.range ===---");
     
-    pure.pipe (arr.rangestep (2) (3) (10) ) (console.log); // [2, 5, 8]
-    pure.pipe (arr.range (2) (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    pure.pipe (arr.range (2) (3) (10) ) (console.log); // [2, 5, 8]
+    pure.pipe (arr.range (2) () (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    
+    
+    console.log("---=== looper ===---");
+
+    pure.Pipeyard (looper.keys(10))
+        (looper.map (x => x * x))
+        (looper.collect)
+        (console.log); // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+    
+    pure.Pipeyard (looper.range (4) (10) ())
+        (looper.collect)
+        (console.log); // [4, 5, 6, 7, 8, 9, 10]
+    
+    pure.Pipeyard (looper.range (2) (10) (3))
+        (looper.collect)
+        (console.log); // [2, 5, 8]
+    
+    pure.Pipeyard (looper.keys(10))
+        (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y :y + z })))
+        (console.log); // { "x": "0123456789", "y": 46 }
+
+    
     
     
     console.log("---=== Tuple ===---");
@@ -409,10 +543,6 @@ namespace Demo
     pure.pipe (pure.Tuple.RECORD (pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
     pure.pipe (pure.Tuple.head (pure.Tuple (1) ("zzz"))) (console.log); // 1
     pure.pipe (pure.Tuple.tail (pure.Tuple (1) ("zzz"))) (console.log); // "zzz"
-    
-    
-    
-    
     
     
     console.log("---=== Pipeline ===---");
@@ -428,63 +558,6 @@ namespace Demo
         (x => "x" + x) .pipe()
         (x => "~~" + x) .self()
     ); // "~~x12"
-    
-    
-    
-    console.log("---=== fibo_tree ===---");
-    
-    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree, [n - 1]) + fun.applies (fibo_tree, [n - 2]) : n ) ;
-    console.log(fun.applies (fibo_tree, [41])); // 165580141, very quick.
-    
-    console.log("---=== fibo_pipe ===---");
-    
-    const fibo_pipe = 
-    pure.pipe 
-    (pure.pipe 
-    (pure.pipe 
-    (pure.pipe 
-    (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
-    (pure.Iterador.map (([x, y]) => x) )) 
-    (pure.Iterador.map (x => 2 * x) )) 
-    (pure.Iterador.map (x => x / 2) )) 
-    (pure.Iterador.RECORD ) ;
-    
-    
-    pure.pipe
-    ( [... Array(14)].reduce
-    (
-        ({ a: { head, tail }, r }, b) => 
-            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
-        
-        { a: fibo_pipe, r: [] } , 
-    
-    ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
-    
-    
-    
-    
-    
-    console.log("---=== fibo_pipeline ===---");
-    
-    const fibo_pipeline = 
-    pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
-        (pure.Iterador.map (([x, y]) => x) ) .pipe()
-        (pure.Iterador.map (x => 2 * x) ) .pipe()
-        (pure.Iterador.map (x => x / 2) ) .pipe()
-        (pure.Iterador.RECORD ) .self() ;
-    
-    pure.Pipeline
-    ( [... Array(14)].reduce
-    (
-        ({ a: { head, tail }, r}, b) => 
-            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
-        
-        { a: fibo_pipeline, r: [] } , 
-    
-    ) ) (console.log) .self(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
-    
-    
-    
     
     
     
@@ -504,6 +577,77 @@ namespace Demo
         (x => "!!" + x) 
         (console.log); // "!!x12"
     
+    
+    
+    console.log("---=== List ===---");
+    
+    pure.Pipeyard (pure.List.range () (1) (5)) 
+        (pure.List.COLLECT (10)) 
+        (console.log); // [1, 2, 3, 4, 5, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done] 
+    
+    pure.Pipeyard (pure.List.range () (1) (5)) 
+        (pure.List.size) 
+        (console.log); // 5
+    
+    pure.Pipeyard (pure.List.range () (1) (5)) 
+        (pure.List.COLLECT ()) 
+        (console.log); // [1, 2, 3, 4, 5] 
+    
+    
+    
+    
+    
+    console.log("---=== fibo_tree ===---");
+    
+    const fibo_tree = (n: number): number => (n > 1 ? funny.applies (fibo_tree, [n - 1]) + funny.applies (fibo_tree, [n - 2]) : n ) ;
+    console.log(funny.applies (fibo_tree, [41])); // 165580141, very quick.
+    
+    console.log("---=== fibo_pipe ===---");
+    
+    const fibo_pipe = 
+    pure.pipe 
+    (pure.pipe 
+    (pure.pipe 
+    (pure.pipe 
+    (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+    (pure.Iterador.map (([x, y]) => x) )) 
+    (pure.Iterador.map (x => 2 * x) )) 
+    (pure.Iterador.map (x => x / 2) )) 
+    (pure.Iterador.RECORD ) ;
+    
+    
+    pure.pipe
+    ( arr.black(14).reduce
+    (
+        ({ a: { head, tail }, r }, b) => 
+            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
+        
+        { a: fibo_pipe, r: [] } , 
+    
+    ) ) (console.log); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    
+    
+    
+    console.log("---=== fibo_pipeline ===---");
+    
+    const fibo_pipeline = 
+    pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+        (pure.Iterador.map (([x, y]) => x) ) .pipe()
+        (pure.Iterador.map (x => 2 * x) ) .pipe()
+        (pure.Iterador.map (x => x / 2) ) .pipe()
+        (pure.Iterador.RECORD ) .self() ;
+    
+    pure.Pipeline
+    ( arr.black(14).reduce
+    (
+        ({ a: { head, tail }, r}, b) => 
+            ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
+        
+        { a: fibo_pipeline, r: [] } , 
+    
+    ) ) (console.log) .self(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    
+    
     console.log("---=== fibo_pipeyard ===---");
     
     pure.Pipeyard (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
@@ -511,7 +655,7 @@ namespace Demo
         (pure.Iterador.map (x => 2 * x) ) 
         (pure.Iterador.map (x => x / 2) ) 
         (pure.Iterador.RECORD ) 
-        (fibo_pipeyard => [... Array(7)].reduce
+        (fibo_pipeyard => arr.black(7).reduce
         (
             ({ a: { head, tail }, r}, b) => 
                 ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
@@ -552,11 +696,11 @@ namespace Demo
                 env.f2(s)(n) ,
     } ;
     
-    fun.Echoes.echoes (echoable).f2 ("huge") (6)
+    funny.Echoes.echoes (echoable).f2 ("huge") (6)
         .then( (x: number) => `Promising: will 10 - 2 = 8 ~: ${x}` )
         .then(console.log); // "Promising: will 10 - 2 = 8 ~: 8"
     
-    fun.Echoes.calls (echoable,'f2') ("huge") (7)
+    funny.Echoes.calls (echoable,'f2') ("huge") (7)
         .then(x => `Promising: will 11 - 2 = 9 ~: ${x}`)
         .then(console.log); // "Promising: will 11 - 2 = 9 ~: 9"
     
