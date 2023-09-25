@@ -543,7 +543,7 @@ namespace Demo
     pure.Pipeyard (looper.keys(10))
         (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y :y + z })))
         (console.log); // { "x": "0123456789", "y": 46 }
-
+    
     
     
     
