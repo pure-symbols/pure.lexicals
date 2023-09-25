@@ -303,7 +303,7 @@ namespace pure
         ({ head: head, tail: tail }) as Pair <Head, Tail> ;
     
     export 
-    type Drainage <S, P> = { self: () => S, pipe: () => P } ;
+    type Drainage <S, P> = { rest: () => S, pipe: () => P } ;
     export 
     type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
     export 
@@ -315,7 +315,7 @@ namespace pure
     <S, P> ({ head, tail }: Pair <() => S, () => P>)
     : Drainage<S, P> => 
         
-        ({ self: head, pipe: tail }) as Drainage <S, P> ;
+        ({ rest: head, pipe: tail }) as Drainage <S, P> ;
     
     const Pipework = 
     <T,> (head: () => T) => 
@@ -493,7 +493,7 @@ namespace looper
         
         pure.Pipeline (keys(nums.Divides(high - low)(step).div + 1)) 
             (map (x => x * step)) .pipe()
-            (map (x => x + low)) .self() ;
+            (map (x => x + low)) .rest() ;
     
     export 
     const collect = 
@@ -559,13 +559,13 @@ namespace Demo
     pure.Pipeline (5) 
         (x => x + 7) .pipe()
         (x => "`x" + x) .pipe()
-        (console.log) .self(); // "`x12"
+        (console.log) .rest(); // "`x12"
     
     console.log
     ( pure.Pipeline (5) 
         (x => x + 7) .pipe()
         (x => "x" + x) .pipe()
-        (x => "~~" + x) .self()
+        (x => "~~" + x) .rest()
     ); // "~~x12"
     
     
@@ -647,7 +647,7 @@ namespace Demo
         (pure.Iterador.map (([x, y]) => x) ) .pipe()
         (pure.Iterador.map (x => 2 * x) ) .pipe()
         (pure.Iterador.map (x => x / 2) ) .pipe()
-        (pure.Iterador.RECORD ) .self() ;
+        (pure.Iterador.RECORD ) .rest() ;
     
     pure.Pipeline
     ( arr.black(14).reduce
@@ -657,7 +657,7 @@ namespace Demo
         
         { a: fibo_pipeline, r: [] } , 
     
-    ) ) (console.log) .self(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+    ) ) (console.log) .rest(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
     console.log("---=== fibo_pipeyard ===---");
