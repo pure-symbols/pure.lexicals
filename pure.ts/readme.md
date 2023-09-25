@@ -18,7 +18,7 @@ console.log
 ( pure.Pipeline (5) 
     (x => x + 7) .pipe()
     (x => "x" + x) .pipe()
-    (x => "~~" + x) .self()
+    (x => "~~" + x) .rest()
 ); // "~~x12"
 ~~~
 
@@ -26,7 +26,7 @@ console.log
 pure.Pipeline (5) 
     (x => x + 7) .pipe()
     (x => "`x" + x) .pipe()
-    (console.log) .self(); // "`x12"
+    (console.log) .rest(); // "`x12"
 ~~~
 
 #### `pure.Pipeyard`
@@ -71,7 +71,7 @@ pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) )
     (pure.Iterador.map (([x, y]) => x) ) .pipe()
     (pure.Iterador.map (x => 2 * x) ) .pipe()
     (pure.Iterador.map (x => x / 2) ) .pipe()
-    (pure.Iterador.RECORD ) .self() ;
+    (pure.Iterador.RECORD ) .rest() ;
 
 pure.Pipeline
 ( [... Array(14)].reduce
@@ -81,7 +81,7 @@ pure.Pipeline
     
     { a: fibo_pipeline, r: [] } , 
 
-) ) (console.log) .self(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
+) ) (console.log) .rest(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
 ~~~
 
 #### `pure.Tuple`
@@ -102,13 +102,51 @@ pure.pipe
 
 #### `pure.List`
 
-...
+~~~ ts
+pure.Pipeyard (pure.List.range () (1) (5)) 
+    (pure.List.COLLECT (10)) 
+    (console.log); // [1, 2, 3, 4, 5, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done]
+
+pure.Pipeyard (pure.List.range () (1) (5)) 
+    (pure.List.size) 
+    (console.log); // 5
+
+pure.Pipeyard (pure.List.range (3) (2) (10)) 
+    (pure.List.COLLECT ()) 
+    (console.log); // [2, 5, 8]
+
+pure.Pipeyard ([1,2,3,7,8,7,6]) 
+    (pure.List.ARRAY) 
+    (pure.List.COLLECT ()) 
+    (console.log); // [1, 2, 3, 7, 8, 7, 6]
+~~~
 
 #### `arr.range`
 
 ~~~ ts
-pure.pipe (arr.rangestep (2) (3) (10) ) (console.log); // [2, 5, 8]
-pure.pipe (arr.range (2) (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+pure.pipe (arr.range (2) (3) (10) ) (console.log); // [2, 5, 8]
+pure.pipe (arr.range (2) () (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+~~~
+
+#### `looper`
+
+~~~ ts
+pure.Pipeyard (looper.keys(10))
+    (looper.map (x => x * x))
+    (looper.collect)
+    (console.log); // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+pure.Pipeyard (looper.range (4) (10) ())
+    (looper.collect)
+    (console.log); // [4, 5, 6, 7, 8, 9, 10]
+
+pure.Pipeyard (looper.range (2) (10) (3))
+    (looper.collect)
+    (console.log); // [2, 5, 8]
+
+pure.Pipeyard (looper.keys(10))
+    (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y :y + z })))
+    (console.log); // { "x": "0123456789", "y": 46 }
 ~~~
 
 #### `...`
