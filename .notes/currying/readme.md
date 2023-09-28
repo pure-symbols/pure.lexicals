@@ -55,7 +55,80 @@ add_three = y -> 3 + y
 
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
-## Official
+## More
+
+There is a *lexical closure* feature.
+
+In: 
+
+~~~ julia
+add = x -> y -> x + y
+~~~
+
+1. For the closure `y -> x + y`, the `y` which at right hand of `+` is a kind of *bound variables* , because there is a `y` at left hand of this closure's `->`.
+2. For the closure `y -> x + y`, the `x` which at left hand of `+` is a kind of *free variables* , because there is not a `x` at left hand of this closure's `->`.
+3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place where this `y -> x + y` being.
+4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be.
+
+**... Means, for `add = x -> y -> x + y`:** 
+
+~~~ julia
+add_one = add(1)
+~~~
+
+**is same as:** 
+
+~~~ julia
+add_one = y -> 1 + y
+~~~
+
+Something likely that: for 
+
+~~~ julia
+pipe = x -> f -> f(x)
+~~~
+
+a 
+
+~~~ julia
+pipe_four = pipe(4)
+~~~
+
+is equal with a 
+
+~~~ julia
+pipe_four = f -> f(4)
+~~~
+
+that's why 
+
+~~~ julia
+pipe(4)(add(1))
+~~~
+
+is same as 
+
+~~~ julia
+( f -> f(4) )( x -> 1 + x )
+~~~
+
+means 
+
+~~~ julia
+pipe_four(add_one)
+~~~
+
+result should be: 
+
+~~~ julia
+( f -> f(4) )( x -> 1 + x )
+( x -> 1 + x )(4)
+1 + 4
+~~~
+
+means `5`.
+
+--------
 
 Here are something about the relationship of syntaxes between *lambda calculate*, *Julia*, *ES6*, *Python*, and *OCaml*.
 
