@@ -70,19 +70,21 @@ add = x -> y -> x + y
 3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place where this `y -> x + y` being.
 4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be.
 
-**... Means, for `add = x -> y -> x + y`:** 
+**... Means, for `add = x -> y -> x + y`, a** 
 
 ~~~ julia
 add_one = add(1)
 ~~~
 
-**is same as:** 
+**is same as a** 
 
 ~~~ julia
 add_one = y -> 1 + y
 ~~~
 
-Something likely that: for 
+That's it.
+
+Also, for 
 
 ~~~ julia
 pipe = x -> f -> f(x)
