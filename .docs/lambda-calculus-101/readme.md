@@ -66,7 +66,8 @@ add_three = y -> 3 + y
 
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
-OK, that all. You've already touch all the points of *Lambda Calculus*. Funny? *Let me tell you them. 🌜*
+OK, that's all. You've already touch all the points of *Lambda Calculus*. Funny? *Let me tell you what you just touched. 🌜*
+
 
 ### 🏹 Lambda Calculus
 
