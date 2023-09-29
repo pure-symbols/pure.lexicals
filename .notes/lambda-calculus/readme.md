@@ -1,5 +1,5 @@
 
-# What
+# Currying
 
 What is currying ?
 
@@ -210,7 +210,7 @@ Examples:
 - `a -> b -> c -> c (x -> a)` **is** a *Combinator*
 - `a -> b -> c -> c (x -> y)` is **not** a *Combinator*
 
-# Refs
+# Syntaxes Ref
 
 Here are something about the relationship of syntaxes between *lambda calculate*, *Julia*, *ES6*, *Python*, and *OCaml*.
 
