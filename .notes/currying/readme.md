@@ -232,14 +232,14 @@ This is a book by *Raymond Merrill Smullyan*. He and the *Haskell Brooks Curry* 
 
 ## Birds
 
-| Bird Name | Bird Symbol | Lambda |
-| --------- | ----------- | ------ |
-| *Identity Bird (aka Idiot)* | `I` | `λa.a` |
-| *Mockingbird* | `M` | `λa.aa` |
-| *Kestrel (True)* | `K` | `λab.a` |
-| *Kite (False)* | `KI` | `λab.b` |
-| *Thrush* | `T` | `λab.ba` |
-| *Starling* | `S` | `λabc.(ac)(bc)` |
+| Bird Name | Bird Symbol | Lambda Syntax | OCaml Syntax | ES6 Syntax |
+| --------- | ----------- | ------------- | ------------ | ---------- |
+| *Identity Bird (aka Idiot)* | `I` | `λa.a` | `fun x -> x` | `x => x` |
+| *Mockingbird* | `M` | `λa.aa` | `fun x -> x x` | `x => x (x)` |
+| *Kestrel (True)* | `K` | `λab.a` | `fun x y -> x` | `x => y => x` |
+| *Kite (False)* | `KI` | `λab.b` | `fun x y -> y` | `x => y => y` |
+| *Thrush* | `T` | `λab.ba` | `fun x f -> f x` | `x => f => f (x)` |
+| *Starling* | `S` | `λabc.(ac)(bc)` | `fun a b c -> a c (b c)` | `a => b => c => a (c) (b (c))` |
 
 The `K` can used as `true` in *Lambda Calculus*, and the `false` is `KI` which can just got by `K I`: 
 
