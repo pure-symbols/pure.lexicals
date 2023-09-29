@@ -65,7 +65,7 @@ add_three = y -> 3 + y
 
 ### 🏹 Lambda Calculus
 
-*There is three point of the convert or equivalence in lambda calculus I will tell you. I'll just introduce some **lexical closure** examples to do that (and maybe more than that) . 🧪*
+*I'll tell you three point of the convert or equivalence in lambda calculus (or maybe more) by just introduce some **lexical closure** examples also. 🧪*
 
 [Reduction | Lambda Calculus | Wiki]: https://en.wikipedia.org/wiki/Lambda_calculus#Reduction "Reduction | Lambda Calculus | Wikipedia"
 
