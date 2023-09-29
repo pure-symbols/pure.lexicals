@@ -210,6 +210,9 @@ Examples:
 - `a -> b -> c -> c (x -> a)` **is** a *Combinator*
 - `a -> b -> c -> c (x -> y)` is **not** a *Combinator*
 
+
+
+
 # Syntaxes Ref
 
 Here are something about the relationship of syntaxes between *lambda calculate*, *Julia*, *ES6*, *Python*, and *OCaml*.
@@ -222,7 +225,9 @@ Here are something about the relationship of syntaxes between *lambda calculate*
 |  4  | `λfgx.f(gx)` or `λf.λg.λx.f(gx)` same as `λf.(λg.(λx.( (f) ((g) (x)) )))` | `f -> g -> x -> (f)((g)(x))` same as `f -> (g -> (x -> ( (f)((g)(x)) )))` | `f => g => x => (f) ((g) (x))` same as `f => (g => (x => ( (f) ((g) (x)) )))` | `lambda f: lambda g: lambda x: (f) ((g) (x))` same as `lambda f: (lambda g: (lambda x: ( (f) ((g) (x)) )))` | `fun f g x -> f (g x)` or `fun f -> fun g -> fun x -> f (g x)` same as `fun f -> (fun g -> (fun x -> ( (f) ((g) (x)) )))` |
 |  5  | `λabf.fab` or `λa.λb.λf.(fa)b` same as `λa.(λb.(λf.( ((f) (a)) (b) )))` | `a -> b -> f -> (f)(a)(b)` same as `a -> (b -> (f -> ( ((f)(a))(b) )))` | `a => b => f => (f) (a) (b)` same as `a => (b => (f => ( ((f) (a)) (b) )))` | `lambda a: lambda b: lambda f: (f) (a) (b)` same as `lambda a: (lambda b: (lambda f: ( ((f) (a)) (b) )))` | `fun a b f -> f a b` or `fun a -> fun b -> fun f -> (f a) b` same as `fun a -> (fun b -> (fun f -> ( ((f) (a)) (b) )))` |
 
-# Combinatory
+
+
+# Combinatory Logic
 
 This is something kind of *Lambda Calculus* called [*Combinatory Logic*](https://en.wikipedia.org/wiki/Combinatory_logic).
 
