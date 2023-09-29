@@ -3,7 +3,7 @@
 
 What is currying ?
 
-### 101
+### 🎨 101
 
 *At the beginning, you can take the currying just a specific style. 🙃*
 
@@ -63,13 +63,13 @@ add_three = y -> 3 + y
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
 
-### Lambda Calculus
+### 🏹 Lambda Calculus
+
+*There is a **lexical closure** feature, and I will introduce it to you. 🧪*
 
 [Reduction | Lambda Calculus | Wiki]: https://en.wikipedia.org/wiki/Lambda_calculus#Reduction "Reduction | Lambda Calculus | Wikipedia"
 
 #### *0*
-
-*There is a **lexical closure** feature, and I will introduce it to you. 🧪*
 
 In: 
 
@@ -84,7 +84,7 @@ add = x -> y -> x + y
 
 #### *1*
 
-**... Means, for `add = x -> y -> x + y`, a** 
+**That means, for `add = x -> y -> x + y`, a** 
 
 ~~~ julia
 add_one = add(1)
@@ -232,11 +232,11 @@ Here are something about the relationship of syntaxes between *lambda calculate*
 
 This is something kind of *Lambda Calculus* called [*Combinatory Logic*](https://en.wikipedia.org/wiki/Combinatory_logic).
 
-### *To Mock a Mockingbird*
+### 🛶 *To Mock a Mockingbird*
 
 This is a book by *Raymond Merrill Smullyan*. He and the *Haskell Brooks Curry* both hobby on birds-watching, and in this book, all *Combinators* are analogies as *Birds*.
 
-### Birds
+### 🕊️ Birds
 
 | Bird Name | Bird Symbol | Lambda Syntax | OCaml Syntax | ES6 Syntax |
 | --------- | ----------- | ------------- | ------------ | ---------- |
