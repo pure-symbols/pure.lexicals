@@ -3,7 +3,7 @@
 
 What is currying ?
 
-### 🎨 101
+### 🎨 Simple
 
 *At the beginning, you can take the currying just a specific style. 🙃*
 
