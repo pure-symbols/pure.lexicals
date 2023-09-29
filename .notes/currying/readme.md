@@ -13,7 +13,7 @@ If we need an `add` function, you might:
 add = (x, y) -> x + y
 ~~~
 
-That maskes you can 
+That maskes you can call like 
 
 ~~~ julia
 add(1,2)
@@ -29,7 +29,14 @@ This is your `add` in our new type:
 add = x -> y -> x + y
 ~~~
 
-And the calling for it be like: 
+It's equal as: 
+
+~~~ julia
+add = x -> ( y -> x + y )
+add = x -> ( y -> (x + y) )
+~~~
+
+And the calling for it should like: 
 
 ~~~ julia
 add(1)(2)
@@ -55,7 +62,11 @@ add_three = y -> 3 + y
 
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
-## More
+## More Things
+
+[Reduction | Lambda Calculus | Wiki]: https://en.wikipedia.org/wiki/Lambda_calculus#Reduction "Reduction | Lambda Calculus | Wikipedia"
+
+### *0*
 
 There is a *lexical closure* feature.
 
@@ -68,7 +79,9 @@ add = x -> y -> x + y
 1. For the closure `y -> x + y`, the `y` which at right hand of `+` is a kind of *bound variables* , because there is a `y` at left hand of this closure's `->`.
 2. For the closure `y -> x + y`, the `x` which at left hand of `+` is a kind of *free variables* , because there is not a `x` at left hand of this closure's `->`.
 3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place where this `y -> x + y` being.
-4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be.
+4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be. *That's what a closure's definition does more than only a function's*, and that is what the ***η-reduction***  in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki] is.
+
+### *1*
 
 **... Means, for `add = x -> y -> x + y`, a** 
 
@@ -83,6 +96,10 @@ add_one = y -> 1 + y
 ~~~
 
 That's it.
+
+> ***η-reduction**: which captures a notion of extensionality*
+
+### *2*
 
 Also, for 
 
@@ -102,7 +119,9 @@ is equal with a
 pipe_four = f -> f(4)
 ~~~
 
-that's why 
+### *3*
+
+That's why 
 
 ~~~ julia
 pipe(4)(add(1))
@@ -129,6 +148,53 @@ result should be:
 ~~~
 
 means `5`.
+
+### *4*
+
+And that steps 
+
+~~~ julia
+( f -> f(4) )( x -> 1 + x )
+( x -> 1 + x )(4)
+1 + 4
+~~~
+
+That's the steps called ***β-reduction*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
+
+> ***β-reduction**: applying functions to their arguments*
+
+### *5*
+
+And, clearly, they are both equal things: 
+
+~~~ julia
+( f -> f(4) )( x -> 1 + x )
+( x -> x(4) )( y -> 1 + y )
+( j -> j(4) )( a -> 1 + a )
+( k -> k(4) )( i -> 1 + i )
+~~~
+
+That's the steps called ***α-conversion*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
+
+> ***α-conversion**: changing bound variables*
+
+### *6*
+
+And, if there is a type system in language, for this 
+
+~~~ julia
+( f -> f(4) )( x -> 1 + x )
+~~~
+
+The type of `x -> 1 + x` should be evaluate automatically.
+
+Because of the `f` is already applies on `f(4)` in the `f -> f(4)`.
+
+The type of `f` left hand of `->` in `f -> f(4)` can be ensure by that `f` at `f(4)` which is right hand of `->`, cause `4` is just a number, it makes that `f`'s argument's type must be a number.
+
+
+
+
 
 --------
 
