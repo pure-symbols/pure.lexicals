@@ -296,7 +296,7 @@ This is a full (maybe) table about that from [a website](https://www.angelfire.c
 | *Vireo (aka Pairing)* | `V` | `λabc.cab` | `BCT` | `((S(K((S((S(K((S(KS))K)))S))(KK))))((S(K(S((SK)K))))K))` |
 | *Warbler* | `W` | `λab.abb` | `C(BMR)` | `((S(K(S((S(K((S((SK)K))((SK)K))))((S(K((S(KS))K)))((S(K(S((SK)K))))K))))))K)` |
 | *Converse Warbler* | `W1` | `λab.baa` | `CW` | `((S(K(S((S(K(S((S(K((S((SK)K))((SK)K))))((S(K((S(KS))K)))((S(K(S((SK)K))))K))))))K))))K)` |
-| *Why Bird (aka Sage Bird)* | `Y` | `λa.a(la)` | `SLL` | `(((SS)K)((S(K((SS)(S((SS)K)))))K))` |
+| *Why Bird (aka Sage Bird)* | `Y` | `λa.a(λa)` | `SLL` | `(((SS)K)((S(K((SS)(S((SS)K)))))K))` |
 | *Identity Bird Once Removed* | `I*` | `λab.ab` | `S(SK)` | `(S(SK))` |
 | *Warbler Once Removed* | `W*` | `λabc.abcc` | `BW` | `(S(K((S(K(S((S(K((S((SK)K))((SK)K))))((S(K((S(KS))K)))((S(K(S((SK)K))))K))))))K)))` |
 | *Cardinal Once Removed* | `C*` | `λabcd.abdc` | `BC` | `(S(K((S((S(K((S(KS))K)))S))(KK))))` |
