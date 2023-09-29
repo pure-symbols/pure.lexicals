@@ -65,7 +65,7 @@ add_three = y -> 3 + y
 
 ### 🏹 Lambda Calculus
 
-*There is a **lexical closure** feature, and I will introduce it to you. 🧪*
+*There is three point of the convert or equivalence in lambda calculus I will tell you. I'll just introduce some **lexical closure** examples to do that, and maybe more than that. 🧪*
 
 [Reduction | Lambda Calculus | Wiki]: https://en.wikipedia.org/wiki/Lambda_calculus#Reduction "Reduction | Lambda Calculus | Wikipedia"
 
@@ -77,10 +77,11 @@ In:
 add = x -> y -> x + y
 ~~~
 
-1. For the closure `y -> x + y`, the `y` which at right hand of `+` is a kind of *bound variables* , because there is a `y` at left hand of this closure's `->`.
-2. For the closure `y -> x + y`, the `x` which at left hand of `+` is a kind of *free variables* , because there is not a `x` at left hand of this closure's `->`.
+1. For closure `y -> x + y`, the `y` which at right hand of `+` is a kind of *bound variables* , because there is a `y` at left hand of this closure's `->`.
+2. For closure `y -> x + y`, the `x` which at left hand of `+` is a kind of *free variables* , because there is not a `x` at left hand of this closure's `->`.
 3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place where this `y -> x + y` being.
-4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be. *That's what a closure's definition does more than only a function's*, and that is what the ***η-reduction***  in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki] is.
+4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be.
+
 
 #### *1*
 
@@ -96,7 +97,7 @@ add_one = add(1)
 add_one = y -> 1 + y
 ~~~
 
-That's it.
+*That's what a closure's definition does which more than only a function's*, and, that is what the ***η-reduction*** (or *η-equivalence*) in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki] is: 
 
 > ***η-reduction**: which captures a notion of extensionality*
 
@@ -160,7 +161,7 @@ And this steps
 1 + 4
 ~~~
 
-It's the steps called ***β-reduction*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
+It's the steps which called ***β-reduction*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
 
 > ***β-reduction**: applying functions to their arguments*
 
@@ -175,7 +176,7 @@ And, clearly, they are both equal things:
 ( k -> k(4) )( i -> 1 + i )
 ~~~
 
-That's the steps called ***α-conversion*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
+And that's the steps called ***α-conversion*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
 
 > ***α-conversion**: changing bound variables*
 
@@ -317,7 +318,9 @@ This is a full (maybe) table about that from [a website](https://www.angelfire.c
 
 And here is a [*SK Compiler*](https://crypto.stanford.edu/~blynn/lambda/sk.html) and [*Some Other Compiler*](https://crypto.stanford.edu/~blynn/lambda/logski.html).
 
+### 🥜 Something More
 
+(some links for some notes about combinators in future ...)
 
 
 
