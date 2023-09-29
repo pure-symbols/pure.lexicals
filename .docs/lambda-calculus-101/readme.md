@@ -1,11 +1,15 @@
 
+# Let's See what the Lambda Calculus is
+
+It's really not a complex thing. Let's just start it with a specific code style. 🌝
+
 ## Currying
 
-What is currying ?
+So, what is currying ?
 
 ### 🎨 Simple
 
-*At the beginning, you can take the currying just a specific style. 🙃*
+*You can take the currying just a specific style at the beginning. 🙃*
 
 If we need an `add` function, you might: 
 
