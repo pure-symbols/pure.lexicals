@@ -1,9 +1,9 @@
 
-# Currying
+## Currying
 
 What is currying ?
 
-## 101
+### 101
 
 *At the beginning, you can take the currying just a specific style. 🙃*
 
@@ -63,11 +63,11 @@ add_three = y -> 3 + y
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
 
-## Lambda Calculus
+### Lambda Calculus
 
 [Reduction | Lambda Calculus | Wiki]: https://en.wikipedia.org/wiki/Lambda_calculus#Reduction "Reduction | Lambda Calculus | Wikipedia"
 
-### *0*
+#### *0*
 
 *There is a **lexical closure** feature, and I will introduce it to you. 🧪*
 
@@ -82,7 +82,7 @@ add = x -> y -> x + y
 3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place where this `y -> x + y` being.
 4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be. *That's what a closure's definition does more than only a function's*, and that is what the ***η-reduction***  in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki] is.
 
-### *1*
+#### *1*
 
 **... Means, for `add = x -> y -> x + y`, a** 
 
@@ -100,7 +100,7 @@ That's it.
 
 > ***η-reduction**: which captures a notion of extensionality*
 
-### *2*
+#### *2*
 
 Also, for 
 
@@ -120,7 +120,7 @@ is equal with a
 pipe_four = f -> f(4)
 ~~~
 
-### *3*
+#### *3*
 
 That's why 
 
@@ -150,7 +150,7 @@ result should be:
 
 means `5`.
 
-### *4*
+#### *4*
 
 And this steps 
 
@@ -164,7 +164,7 @@ It's the steps called ***β-reduction*** in [*Lambda Calculus*][Reduction | Lamb
 
 > ***β-reduction**: applying functions to their arguments*
 
-### *5*
+#### *5*
 
 And, clearly, they are both equal things: 
 
@@ -179,7 +179,7 @@ That's the steps called ***α-conversion*** in [*Lambda Calculus*][Reduction | L
 
 > ***α-conversion**: changing bound variables*
 
-### *6*
+#### *6*
 
 And, if there is a *type system* in that language, for this 
 
@@ -193,7 +193,7 @@ Because of the `f` is already applies on `f(4)` in the `f -> f(4)`.
 
 The type of `f` left hand of `->` in `f -> f(4)` can be ensure by that `f` at `f(4)` which is right hand of `->`, cause `4` is just a number, it makes that `f`'s argument's type must be a number.
 
-### *7*
+#### *7*
 
 All we've writed is not like something kind of a `a -> a b`, they all just like the `a -> b -> a b`.
 
@@ -214,7 +214,7 @@ Examples:
 
 
 
-# Syntaxes Ref
+## Syntaxes Ref
 
 Here are something about the relationship of syntaxes between *lambda calculate*, *Julia*, *ES6*, *Python*, and *OCaml*.
 
@@ -228,15 +228,15 @@ Here are something about the relationship of syntaxes between *lambda calculate*
 
 
 
-# Combinatory Logic
+## Combinatory Logic
 
 This is something kind of *Lambda Calculus* called [*Combinatory Logic*](https://en.wikipedia.org/wiki/Combinatory_logic).
 
-## *To Mock a Mockingbird*
+### *To Mock a Mockingbird*
 
 This is a book by *Raymond Merrill Smullyan*. He and the *Haskell Brooks Curry* both hobby on birds-watching, and in this book, all *Combinators* are analogies as *Birds*.
 
-## Birds
+### Birds
 
 | Bird Name | Bird Symbol | Lambda Syntax | OCaml Syntax | ES6 Syntax |
 | --------- | ----------- | ------------- | ------------ | ---------- |
