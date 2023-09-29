@@ -21,7 +21,7 @@ add(1,2)
 
 to get a `3` .
 
-**Now, you need to change.**
+**Now, we need to start our changing.**
 
 This is your `add` in our new type: 
 
