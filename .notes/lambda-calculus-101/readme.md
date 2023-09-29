@@ -259,7 +259,7 @@ K I = (λxy.x) (λa.a)
 
 And, all things can be described by just using `S` `K` `I` those three combinators ... or just use `S` and `K` cause `I` is just `SKK` means `(((S)(K))(K))`.
 
-This is a full (maybe) table about that from [a website](https://www.angelfire.com/tx4/cus/combinator/birds.html).
+This is a full (maybe) table about that from [a website](https://www.angelfire.com/tx4/cus/combinator/birds.html): 
 
 | Bird | Symbol | Function Abstraction | Combinator | SK Combinator |
 | ---- | ------ | -------------------- | ---------- | ------------- |
@@ -314,6 +314,7 @@ This is a full (maybe) table about that from [a website](https://www.angelfire.c
 | *Crossed Konstant Mocker* | `C(KM)` | `λab.aa` | `C(KM)` | `((S(K(S(K((S((SK)K))((SK)K))))))K)` |
 | *Theta* | `Θ` | `λ` | `YO` | `(((SS)K)((S(K((SS)(S((SS)K)))))K)(S((SK)K)))` |
 
+And here is a [*SK Compiler*](https://crypto.stanford.edu/~blynn/lambda/sk.html) and [*Some Other Compiler*](https://crypto.stanford.edu/~blynn/lambda/logski.html).
 
 
 
