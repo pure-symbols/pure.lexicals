@@ -66,6 +66,7 @@ add_three = y -> 3 + y
 
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
+OK, that all. You've already touch all the points of *Lambda Calculus*. Funny? *Let me tell you them. 🌜*
 
 ### 🏹 Lambda Calculus
 
@@ -216,7 +217,7 @@ Examples:
 - `a -> b -> c -> c (x -> a)` **is** a *Combinator*
 - `a -> b -> c -> c (x -> y)` is **not** a *Combinator*
 
-
+*Done. 🌚*
 
 
 ## Syntaxes Ref
@@ -234,6 +235,8 @@ Here are something about the relationship of syntaxes between *lambda calculate*
 
 
 ## Combinatory Logic
+
+*Oh did me just mention about **Combinators** ? There is something more funny ! 🌛*
 
 This is something kind of *Lambda Calculus* called [*Combinatory Logic*](https://en.wikipedia.org/wiki/Combinatory_logic).
 
