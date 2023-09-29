@@ -3,9 +3,9 @@
 
 What is currying ?
 
-## Simple
+## 101
 
-*You can take the currying just a specific style.*
+*At the beginning, you can take the currying just a specific style. 🙃*
 
 If we need an `add` function, you might: 
 
@@ -62,13 +62,14 @@ add_three = y -> 3 + y
 
 **or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
 
-## More Things
+
+## Lambda Calculus
 
 [Reduction | Lambda Calculus | Wiki]: https://en.wikipedia.org/wiki/Lambda_calculus#Reduction "Reduction | Lambda Calculus | Wikipedia"
 
 ### *0*
 
-There is a *lexical closure* feature.
+*There is a **lexical closure** feature, and I will introduce it to you. 🧪*
 
 In: 
 
