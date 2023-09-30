@@ -1,5 +1,5 @@
 
-# Let's See what the Lambda Calculus is
+# Let's See what the Lambda Calculus is ☄️
 
 It's really not a complex thing. *Let's just start it with a specific code style. 🌝*
 
