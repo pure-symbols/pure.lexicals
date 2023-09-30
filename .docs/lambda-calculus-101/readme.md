@@ -326,7 +326,21 @@ This is a full (maybe) table about that from [a website](https://www.angelfire.c
 
 And here is a [*SK Compiler*](https://crypto.stanford.edu/~blynn/lambda/sk.html) and [*Some Other Compiler*](https://crypto.stanford.edu/~blynn/lambda/logski.html).
 
-### 🥜 Something More
+And ...
+
+> If we can replace all code by functions, Replace all functions by combinators, And replace all combinators by S and K ;
+> 
+> Then we can replace all code by S and K.
+> 
+
+> 如果我们能用函数替换所有代码、用组合器取代所有函数、再用 S 和 K 替换所有组合器 ——
+> 
+> 那么我们就可以用 S 和 K 替换所有代码
+> 
+
+*Cool hugh ? 🌞*
+
+### 🥜 More
 
 (some links for some notes about combinators in future ...)
 
