@@ -340,7 +340,7 @@ And ...
 
 *Cool hugh ? 🌞*
 
-### 🥜 More
+### 🪐 More
 
 (some links for some notes about combinators in future ...)
 
