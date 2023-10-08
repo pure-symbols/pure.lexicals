@@ -21,6 +21,9 @@ namespace pure
     
     export 
     type Pipeyard <T> = <R,> (continuation: Fn<T, R>) => Pipeyard<R> ;
+    export 
+    type pipeline = <T,> (head: T) => Pipeyard<T> ;
+    
     
     export 
     const Pipeyard = 
@@ -34,13 +37,16 @@ namespace pure
         
         ) as Pipeyard <T> ;
     
+    export 
+    const pipeline: pipeline = Pipeyard as pipeline ;
+    
     Pipeyard.BROADCAST = 
     <T,> (self: Pipeyard<T>)
     : T => 
     {
-        let over: T = {} as T;
-        self (x => over = x);
-        return over ;
+        let message: T = {} as T;
+        self (x => message = x);
+        return message ;
     } ;
     
     
@@ -110,9 +116,9 @@ namespace pure
     
     Tuple.RECORD = 
     <Head, Tail> (self: Tuple<Head, Tail>)
-    : Pair<Head, Tail> => 
+    : couple.Pair<Head, Tail> => 
         
-        Pair (pipe (self) (Tuple.head)) 
+        couple.Pair (pipe (self) (Tuple.head)) 
             (pipe (self) (Tuple.tail)) ;
     
     
@@ -270,7 +276,7 @@ namespace pure
     
     Iterador.RECORD = 
     <T,> (self: Downpour<T>)
-    : Pair<T, Downpour<T> > => 
+    : couple.Pair<T, Downpour<T> > => 
         
         apply (Tuple.RECORD) 
             (self () as Tuple <T, Downpour<T> >) ;
@@ -289,7 +295,11 @@ namespace pure
     
     
     
-    
+} ;
+
+
+namespace couple
+{
     
     export 
     type Pair <Head, Tail> = { head: Head, tail: Tail } ;
@@ -305,7 +315,7 @@ namespace pure
     export 
     type Drainage <S, P> = { rest: () => S, pipe: () => P } ;
     export 
-    type Pipeline <T> = <R> (f: Fn<T, R>) => Pipework<R> ;
+    type Pipeline <T> = <R> (f: pure.Fn<T, R>) => Pipework<R> ;
     export 
     type Pipework <T> = Drainage<T, Pipeline<T> > ;
     export 
@@ -322,16 +332,16 @@ namespace pure
     (tail: () => Pipeline<T>)
     : Pipework<T> => 
         
-        pipe (Pair (head) (tail)) (Drainage) as Pipework <T>;
+        pure.pipe (Pair (head) (tail)) (Drainage) as Pipework <T>;
     
     export 
     const Pipeline: pipeline = 
     <T,> (x: T): Pipeline<T> => 
         
-        ( <R,> (f: Fn<T, R>) => 
+        ( <R,> (f: pure.Fn<T, R>) => 
             
-            Pipework (() => pipe (x) (f)) 
-                (() => Pipeline (pipe (x) (f)) ) 
+            Pipework (() => pure.pipe (x) (f)) 
+                (() => Pipeline (pure.pipe (x) (f)) ) 
         
         ) as Pipeline <T> ;
     
@@ -491,7 +501,7 @@ namespace looper
     (step: number = 1)
     : IterableIterator<number> => 
         
-        pure.Pipeline (keys(nums.Divides(high - low)(step).div + 1)) 
+        couple.Pipeline (keys(nums.Divides(high - low)(step).div + 1)) 
             (map (x => x * step)) .pipe()
             (map (x => x + low)) .rest() ;
     
@@ -525,7 +535,7 @@ namespace arr
 
 
 
-namespace Demo
+namespace Tastes
 {
     
     console.log("---=== arr.range ===---");
@@ -565,13 +575,13 @@ namespace Demo
     
     console.log("---=== Pipeline ===---");
     
-    pure.Pipeline (5) 
+    couple.Pipeline (5) 
         (x => x + 7) .pipe()
         (x => "`x" + x) .pipe()
         (console.log) .rest(); // "`x12"
     
     console.log
-    ( pure.Pipeline (5) 
+    ( couple.Pipeline (5) 
         (x => x + 7) .pipe()
         (x => "x" + x) .pipe()
         (x => "~~" + x) .rest()
@@ -579,11 +589,19 @@ namespace Demo
     
     
     
-    console.log("---=== Pipeyard ===---");
+    console.log("---=== Pipeyard/pipeline ===---");
     
     console.log
     ( pure.Pipeyard.BROADCAST 
     ( pure.Pipeyard (5) 
+        (x => x + 7) 
+        (x => "x" + x) 
+        (x => "??" + x) ) 
+    ); // "??x12"
+    
+    console.log
+    ( pure.Pipeyard.BROADCAST 
+    ( pure.pipeline (5) 
         (x => x + 7) 
         (x => "x" + x) 
         (x => "??" + x) ) 
@@ -595,23 +613,29 @@ namespace Demo
         (x => "!!" + x) 
         (console.log); // "!!x12"
     
+    pure.pipeline (5) 
+        (x => x + 7) 
+        (x => "x" + x) 
+        (x => "!!" + x) 
+        (console.log); // "!!x12"
+    
     
     
     console.log("---=== List ===---");
     
-    pure.Pipeyard (pure.List.range () (1) (5)) 
+    pure.pipeline (pure.List.range () (1) (5)) 
         (pure.List.COLLECT (10)) 
         (console.log); // [1, 2, 3, 4, 5, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done, () => pure.List.Done]
     
-    pure.Pipeyard (pure.List.range () (1) (5)) 
+    pure.pipeline (pure.List.range () (1) (5)) 
         (pure.List.size) 
         (console.log); // 5
     
-    pure.Pipeyard (pure.List.range (3) (2) (10)) 
+    pure.pipeline (pure.List.range (3) (2) (10)) 
         (pure.List.COLLECT ()) 
         (console.log); // [2, 5, 8]
     
-    pure.Pipeyard ([1,2,3,7,8,7,6]) 
+    pure.pipeline ([1,2,3,7,8,7,6]) 
         (pure.List.ARRAY) 
         (pure.List.COLLECT ()) 
         (console.log); // [1, 2, 3, 7, 8, 7, 6]
@@ -649,29 +673,29 @@ namespace Demo
     
     
     
-    console.log("---=== fibo_pipeline ===---");
+    console.log("---=== fibo_couple_pipeline ===---");
     
-    const fibo_pipeline = 
-    pure.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+    const fibo_couple_pipeline = 
+    couple.Pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
         (pure.Iterador.map (([x, y]) => x) ) .pipe()
         (pure.Iterador.map (x => 2 * x) ) .pipe()
         (pure.Iterador.map (x => x / 2) ) .pipe()
         (pure.Iterador.RECORD ) .rest() ;
     
-    pure.Pipeline
+    couple.Pipeline
     ( arr.black(14).reduce
     (
         ({ a: { head, tail }, r}, b) => 
             ({ a: pure.Iterador.RECORD(tail), r: [...r, head] }) , 
         
-        { a: fibo_pipeline, r: [] } , 
+        { a: fibo_couple_pipeline, r: [] } , 
     
     ) ) (console.log) .rest(); // { "a": { "head": 377 }, "r": [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ] }
     
     
-    console.log("---=== fibo_pipeyard ===---");
+    console.log("---=== fibo_pipeline ===---");
     
-    pure.Pipeyard (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
+    pure.pipeline (pure.Iterador.iterate ([0, 1]) (([a, b]) => [b, a + b]) ) 
         (pure.Iterador.map (([x, y]) => x) ) 
         (pure.Iterador.map (x => 2 * x) ) 
         (pure.Iterador.map (x => x / 2) ) 
