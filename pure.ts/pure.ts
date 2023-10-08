@@ -512,6 +512,15 @@ namespace arr
     
     export 
     const black = (size: number): any[] => [... Array(size)] ;
+    
+    export 
+    const fills = 
+    <T,> (thing: T) => 
+    (limit: number)
+    : T[] => 
+        
+        new Array(limit).fill(thing) ;
+    
 } ;
 
 
