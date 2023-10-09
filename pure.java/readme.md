@@ -42,7 +42,7 @@ So, we can just let the method be a value !!
 
 Like these: 
 
-##### For normal way
+##### *For normal way*
 
 we define: 
 
@@ -71,7 +71,7 @@ But we can do things like that now: *all method just use to return a value*.
 
 Like that: 
 
-##### Our new way here
+##### *Our new way here*
 
 ~~~ java
 final var things = 
@@ -96,7 +96,7 @@ things.idi().apply(things.b()) ; // "bzzzz"
 
 And that's all given by [*anonymous (sub)classes*](https://stackoverflow.com/questions/36799485/what-does-anonymous-subclass-mean-in-java)' supports in *Java*.
 
-##### Or we can also just
+##### *(Or we can also just ...)*
 
 ~~~ java
 final var things = 
