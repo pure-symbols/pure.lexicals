@@ -326,7 +326,7 @@ This is a full (maybe) table about that from [a website](https://www.angelfire.c
 
 And here is a [*SK Compiler*](https://crypto.stanford.edu/~blynn/lambda/sk.html) and [*Some Other Compiler*](https://crypto.stanford.edu/~blynn/lambda/logski.html).
 
-And some details about [*combinatory logic*](https://ncatlab.org/nlab/show/combinatory+logic) and [*partial combinatory algebra*](https://ncatlab.org/nlab/show/partial+combinatory+algebra), and something about [*fixed-point combinator*](https://ncatlab.org/nlab/show/fixed-point+combinator#combinatory_logic) you might interested in which with its combinatory logic. 
+And some details about [*combinatory logic*](https://ncatlab.org/nlab/show/combinatory+logic) and [*partial combinatory algebra*](https://ncatlab.org/nlab/show/partial+combinatory+algebra), and something about [*fixed-point combinator*](https://ncatlab.org/nlab/show/fixed-point+combinator#combinatory_logic) you might interested in which with its combinatory logic. *(Well I just found those links by [this question and its answer](https://math.stackexchange.com/questions/4330664/is-sk-s-i-iss-k-ssk-kik-s-i-i-really-a-fixed-point-combinato) 🙃)*
 
 And ...
 
