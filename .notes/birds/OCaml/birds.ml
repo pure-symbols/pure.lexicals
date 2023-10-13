@@ -4,7 +4,6 @@ struct
 	type 'a bird = Bird of ('a bird -> 'a bird);;
 	
 	let calls (Bird a) b = a b ;;
- 	(* let rec calling = fun (Bird a) -> fun b -> calling (a b) ;; *)
 	
 	let idiot = Bird (fun a -> a ) ;;
 	let identitybird = idiot ;;
@@ -37,13 +36,25 @@ module Woods = Birds ;;
 module Combinators = Birds ;;
 module Combs = Birds ;;
 
-let (|:>) = Woods.piper ;;
-let (>:>) = Combs.calls ;;
+let (|:>) = Combs.calls Woods.piper ;;
+let (<:<) = Combs.calls ;;
 
 let a = Combs.calls (Combs.calls (Combs.calls Combs.s Combs.i) Combs.i) Combs.ki ;;
-let b = Combs.s >:> Combs.i >:> Combs.i >:> Combs.ki ;;
-(* let c = Combs.calling Combs.s Combs.i Combs.i Combs.ki ;; *)
+let b = Combs.s <:< Combs.i <:< Combs.i <:< Combs.ki ;;
 
+assert ((a <:< Combs.i) == (b <:< Combs.i)) ;; (* succ *)
+assert ((a <:< Combs.i) == (Combs.i <:< Combs.i)) ;; (* succ *)
 
-(* assert (a = b) ;; *)
-(* assert (c = Combs.calling b) ;; *)
+assert (Combs.i == Combs.i) ;; (* succ *)
+assert ((Combs.i) == (Combs.i <:< Combs.i)) ;; (* succ *)
+
+let isIdiot x = ((x <:< Combinators.m) == (Combinators.i <:< Combinators.m)) ;;
+
+assert (isIdiot Combs.i) ;; (* succ *)
+assert (isIdiot (Combs.ki <:< Combs.ki)) ;; (* succ *)
+assert (isIdiot (Combs.m <:< Combs.ki)) ;; (* succ *)
+assert (not (isIdiot (Combs.m <:< Combs.k))) ;; (* succ, should fail *)
+assert (isIdiot (Combs.k <:< Combs.i <:< Combs.m)) ;; (* succ *)
+assert (isIdiot (Combs.ki <:< Combs.m)) ;; (* succ *)
+assert (isIdiot (Combs.s <:< Combs.i <:< Combs.i <:< Combs.ki)) ;; (* succ *)
+assert (not (isIdiot (Combs.s <:< Combs.i <:< Combs.i <:< Combs.k))) ;; (* succ, should fail *)
