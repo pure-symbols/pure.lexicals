@@ -4,6 +4,8 @@
 🧫 implement all by nothing but only lexical closure . 🧬
 ~~~
 
+## Intro
+
 This is a theoretical verification in *Functional Programming* studies.
 
 The only one necessary thing of a language for this pure project is a ***lexical closure*** feature, also called ***closure*** or ***function closure***, means there is a *first-classed function means all function is valve* and *it will pick all the symbol where it be defined which is needed by it-self*. With out such thing, all of them shall not works: 
@@ -13,11 +15,10 @@ The only one necessary thing of a language for this pure project is a ***lexical
 - *...* -- ...
 
 
-And there's also something specially that it is necessary when this *pure project* walks in some special language: 
+## Learnings
 
-- *Object*. In Java or TS/JS and other more similar language which don't have *tuple*, I have to use the *object* to mork a specific *tuple* (such as a *pair*). This object is means like such as [records](https://cs3110.github.io/textbook/chapters/data/records_tuples.html) in OCaml (but will, OCaml just have a tuple type ...).
-- *Type Comment*. If we can make a *type comment*, just use a *type aliases* (like a `type` in OCaml/Haskell/TS). Don't use a *class* (like a `class` in JS/Java/Python) at the first. If there is not a aliases feature in such language, write a structure comment; or if the language don't support a *type comment*, just skip it.
-- *...*. ...
+- [*Lambda Calculus 101*](./.docs/lambda-calculus-101)
+
 
 
 ## Thanks for
