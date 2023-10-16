@@ -17,7 +17,7 @@ The only one necessary thing of a language for this pure project is a ***lexical
 
 ## Learnings
 
-- [*Lambda Calculus 101*](./.docs/lambda-calculus-101)
+- [*Let's See what the Lambda Calculus is ☄️*](./.docs/lambda-calculus-101)
 
 
 
