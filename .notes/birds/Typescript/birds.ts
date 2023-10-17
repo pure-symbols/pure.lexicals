@@ -101,6 +101,56 @@ namespace woods
         
         , ] = aliases(2)(starling) ;
     
+    
+    
+    export 
+    const konstantmocker = 
+    (
+        <A extends Birds> (a: A) => 
+        <B extends Birds> (b: B)
+        
+        : ReturnType<B> => (b) (b) 
+    
+    ) as Birds ; export const 
+    [
+        KonstantMocker, KM, 
+        
+        , ] = aliases(2)(konstantmocker) ;
+    
+    
+    
+    export 
+    const bluebird = 
+    (
+        <A extends Birds> (a: A) => 
+        <B extends Birds> (b: B) => 
+        <C extends Birds> (c: C)
+        
+        : ReturnType<A> => (a) ((b) (c)) 
+    
+    ) as Birds ; export const 
+    [
+        Bluebird, B, 
+        
+        , ] = aliases(2)(bluebird) ;
+    
+    
+    
+    export 
+    const lark = 
+    (
+        <A extends Birds> (a: A) => 
+        <B extends Birds> (b: B)
+        
+        : ReturnType<A> => (a) ((b) (b)) 
+    
+    ) as Birds ; export const 
+    [
+        Lark, L, 
+        
+        , ] = aliases(2)(lark) ;
+    
+    
 } ; const 
 [
     birds, combs, comb, 
@@ -123,5 +173,4 @@ console.log ( combs.I ); // (a) => a
 console.log ( birds.I ); // (a) => a
 console.log ( birds.K (birds.I) ({} as woods.Birds) ); // (a) => a
 console.log ( birds.KI ({} as woods.Birds) ); // (b) => b
-
 
