@@ -340,7 +340,7 @@ And ...
 
 *Cool hugh ? 🌞*
 
-Here's more details about [*combinatory logic*](https://ncatlab.org/nlab/show/combinatory+logic) and [*partial combinatory algebra*](https://ncatlab.org/nlab/show/partial+combinatory+algebra), and something about [*fixed-point combinator*](https://ncatlab.org/nlab/show/fixed-point+combinator#combinatory_logic) you might interested in which with its combinatory logic. *(Well, I just found those links by [this question and its answer](https://math.stackexchange.com/questions/4330664/is-sk-s-i-iss-k-ssk-kik-s-i-i-really-a-fixed-point-combinato). 🙃)*
+Here's more details about [*combinatory logic*](https://ncatlab.org/nlab/show/combinatory+logic) and [*partial combinatory algebra*](https://ncatlab.org/nlab/show/partial+combinatory+algebra), and something about [*fixed-point combinator*](https://ncatlab.org/nlab/show/fixed-point+combinator#combinatory_logic) you might interested in which with its combinatory logic. *(Well, I just found those links by [this question and its answer](https://math.stackexchange.com/questions/4330664/is-sk-s-i-iss-k-ssk-kik-s-i-i-really-a-fixed-point-combinato). You can also see my [doc](../fixed-point-things) about those 🙃)*
 
 
 ### 🪐 More
