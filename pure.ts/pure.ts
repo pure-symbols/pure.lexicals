@@ -122,6 +122,41 @@ namespace pure
             (pipe (self) (Tuple.tail)) ;
     
     
+    
+    
+    export 
+    type True = <A> (a: A) => <B> (b: B) => A ;
+    export 
+    type False = <A> (a: A) => <B> (b: B) => B ;
+    
+    export 
+    type Bool = True | False ;
+    
+    export 
+    const Bool = 
+    (bool: Bool)
+    : Bool => bool ;
+    
+    Bool.true = (Bool) (Tuple.Head) as True ;
+    Bool.false = (Bool) (Tuple.Tail) as False ;
+    
+    Bool.cond = 
+    (self: Bool) => 
+    <A,> (a: A) => 
+    <B,> (b: B)
+    : A | B => 
+        
+        (self) (a) (b) as A|B ;
+    
+    Bool.BOOLEAN = 
+    (self: Bool)
+    : boolean => 
+        
+        Bool.cond (self) (true) (false) as boolean ;
+    
+    
+    
+    
     export 
     type Yard <Mehr, Wert> = (echoes: echo) => Lacking<Mehr | Wert> ;
     
@@ -610,6 +645,22 @@ namespace Tastes
     
     
     
+    console.log("---=== Bool ===---");
+    
+    pure.pipeline (pure.Bool.true) 
+        (pure.Bool.BOOLEAN) 
+        (console.log); // true
+    
+    pure.pipeline (pure.Bool.false) 
+        (pure.Bool.BOOLEAN) 
+        (console.log); // false
+    
+    pure.pipe (pure.Bool.cond (pure.Bool.true) (1) ("one")) (console.log); // 1
+    pure.pipe (pure.Bool.cond (pure.Bool.false) (2) ("two")) (console.log); // "two"
+    
+    
+    
+    
     console.log("---=== arr.range ===---");
     
     pure.pipe (arr.range (2) (3) (10) ) (console.log); // [2, 5, 8]
@@ -617,7 +668,7 @@ namespace Tastes
     
     
     console.log("---=== looper ===---");
-
+    
     pure.Pipeyard (looper.keys(10))
         (looper.map (x => x * x))
         (looper.collect)
