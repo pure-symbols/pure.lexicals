@@ -327,7 +327,48 @@ namespace pure
     
     
     
+    export 
+    type Tailcall <T> = Tuple <T, () => Tailcall<T> > ;
+    export 
+    type Over = <T> () => Tailcall<T> ;
     
+    export 
+    const Tailcall = 
+    <T,> (head: T) => 
+    (tail: () => Tailcall<T>)
+    : Tailcall<T> => 
+        
+        (Tuple (head) (tail)) as Tailcall <T> ;
+    
+    Tailcall.Over = (<T,> (): Tailcall<T> => Tailcall.Over () as Tailcall <T>) as Over ;
+    
+    Tailcall.done = 
+    <T,> (head: T)
+    : Tailcall<T> => 
+        
+        Tailcall (head) (Tailcall.Over) ;
+    
+    Tailcall.call = 
+    <T,> (tail: () => Tailcall<T>)
+    : Tailcall<T> => 
+        
+        Tailcall (null as any) (tail) ;
+    
+    Tailcall.OVER = 
+    <T,> (self: Tailcall<T>)
+    : boolean => 
+        
+        Tuple.tail (self) == Tailcall.Over ;
+    
+    Tailcall.RUN = 
+    <T,> (self: Tailcall<T>)
+    : T => 
+    {
+        let RUNNING = self as Tuple <T, () => Tailcall<T>> ;
+        while (! (Tailcall.OVER) (RUNNING)) 
+        { RUNNING = Tuple.tail (RUNNING) (); }
+        return Tuple.head (RUNNING) ;
+    } ;
     
     
 } ;
@@ -539,8 +580,9 @@ namespace looper
     
     export 
     const iterate = 
-    <T,> (f: (x: T) => T) => 
-    (x: T): IterableIterator<T> => 
+    <T,> (x: T) => 
+    (f: (x: T) => T)
+    : IterableIterator<T> => 
         
         ( function* () 
         {
@@ -578,6 +620,56 @@ namespace looper
         couple.Pipeline (keys(nums.Divides(high - low)(step).div + 1)) 
             (map (x => x * step)) .pipe()
             (map (x => x + low)) .rest() ;
+    
+    export 
+    const until = 
+    <T,> (stopper: pure.Fn<T, boolean>) => 
+    (xs: Iterable<T>)
+    : T[] => 
+    {
+        let res = [] as T[];
+        for (let x of xs) 
+        {
+            if ((stopper) (x)) { break; }
+            else { res = [... res, x]; } 
+        };
+        return res ;
+    } ;
+    
+    export 
+    const take = 
+    (limit: number) => 
+    <T,> (xs: Iterable<T>)
+    : T[] => 
+    {
+        let start = 1;
+        return pure.pipe (xs) 
+            ((until) (() => start++ > limit));
+    } ;
+    
+    
+    export 
+    const rests = 
+    <T,> (beginner: pure.Fn<T, boolean>) => 
+    (xs: Iterable<T>)
+    : Iterable<T> => 
+    {
+        for (let x of xs) 
+        { if ((beginner) (x)) { break; } };
+        return xs ;
+    } ;
+    
+    export 
+    const drop = 
+    (limit: number) => 
+    <T,> (xs: Iterable<T>)
+    : Iterable<T> => 
+    {
+        let start = 1;
+        return pure.pipe (xs) 
+            ((rests) (() => start++ > limit));
+    } ;
+    
     
     export 
     const collect = 
@@ -669,39 +761,91 @@ namespace Tastes
     
     console.log("---=== looper ===---");
     
-    pure.Pipeyard (looper.keys(10))
+    pure.pipeline (looper.keys(10))
         (looper.map (x => x * x))
         (looper.collect)
         (console.log); // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
     
-    pure.Pipeyard (looper.range (4) (10) ())
+    pure.pipeline (looper.range (4) (10) ())
         (looper.collect)
         (console.log); // [4, 5, 6, 7, 8, 9, 10]
     
-    pure.Pipeyard (looper.range (2) (10) (3))
+    pure.pipeline (looper.range (2) (10) (3))
         (looper.collect)
         (console.log); // [2, 5, 8]
     
-    pure.Pipeyard (looper.keys(10))
-        (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y :y + z })))
+    pure.pipeline (looper.keys(10))
+        (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y: y + z })))
         (console.log); // { "x": "0123456789", "y": 46 }
     
     
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.until (n => n > 28)) 
+        (console.log); // [2, 5, 8, 11, 14, 17, 20, 23, 26]
+    
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.map (n => n * 2)) 
+        (looper.until (n => n > 28)) 
+        (console.log); // [4, 10, 16, 22, 28]
+    
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.map (n => n * 2)) 
+        (looper.until (n => n >= 28)) 
+        (console.log); // [4, 10, 16, 22]
+    
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.until (n => n > 28)) 
+        (looper.map (n => n * 2)) 
+        (looper.collect) 
+        (console.log); // [4, 10, 16, 22, 28, 34, 40, 46, 52]
+    
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.take (5)) 
+        (console.log); // [2, 5, 8, 11, 14]
+    
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.take (0)) 
+        (console.log); // []
     
     
-    console.log("---=== Tailcall ===---");
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.rests (n => n > 8)) 
+        (looper.take (5)) 
+        (console.log); // [11, 14, 17, 20, 23] // !!!! fail
     
-    const rem_tail = 
+    
+    
+    
+    console.log("---=== fun.Tailcall ===---");
+    
+    const rem_tail_fun = 
     (n: number, r: number)
     : fun.Tailcall<number> =>
         
         (n < r) ? fun.Tailcall.done(n) 
-        : fun.Tailcall.call(() => rem_tail(n-r, r)) ;
+        : fun.Tailcall.call(() => rem_tail_fun(n-r, r)) ;
     
-    pure.pipeline (rem_tail(10000001,2)) 
+    pure.pipeline (rem_tail_fun(10000001,2)) 
         (fun.Tailcall.RUN) 
-        (res => `rem_tail res: ${res}`) 
-        (console.log); // rem_tail res: 1, won't stack overflow
+        (res => `rem_tail_fun res: ${res}`) 
+        (console.log); // rem_tail_fun res: 1, won't stack overflow
+    
+    
+    
+    console.log("---=== pure.Tailcall ===---");
+    
+    const rem_tail_pure = 
+    (n: number, r: number)
+    : pure.Tailcall<number> =>
+        
+        (n < r) ? pure.Tailcall.done(n) 
+        : pure.Tailcall.call(() => rem_tail_pure(n-r, r)) ;
+    
+    pure.pipeline (rem_tail_pure(10000001,2)) 
+        (pure.Tailcall.RUN) 
+        (res => `rem_tail_pure res: ${res}`) 
+        (console.log); // rem_tail_pure res: 1, won't stack overflow
+    
     
     
     
