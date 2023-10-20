@@ -407,6 +407,45 @@ namespace fun
             echoes <{[P in K]: ReturnType<T[P]> }> (record) [key] ;
         
     } ;
+    
+    
+    export 
+    type Tailcall <T> = { head: T, tail: () => Tailcall<T>, done: boolean } ;
+    
+    export 
+    const Tailcall = 
+    (done: boolean) => 
+    <T,> (head: T) => 
+    (tail: () => Tailcall<T>)
+    : Tailcall<T> => 
+        
+        ({ head: head, tail: tail, done: done }) as Tailcall <T> ;
+    
+    Tailcall.done = 
+    <T,> (head: T)
+    : Tailcall<T> => 
+        
+        Tailcall (true) (head) 
+            (() => { throw new Error("not implemented"); }) ;
+    
+    Tailcall.call = 
+    <T,> (tail: () => Tailcall<T>)
+    : Tailcall<T> => 
+        
+        Tailcall (false) (null as any) (tail) ;
+    
+    Tailcall.RUN = 
+    <T,> (self: Tailcall<T>)
+    : T => 
+    {
+        let RUNNING = self;
+        while (!RUNNING.done) 
+        { RUNNING = RUNNING.tail (); }
+        return RUNNING.head ;
+    } ;
+    
+    
+    
 } ;
 
 
@@ -538,57 +577,6 @@ namespace arr
 namespace Tastes
 {
     
-    console.log("---=== arr.range ===---");
-    
-    pure.pipe (arr.range (2) (3) (10) ) (console.log); // [2, 5, 8]
-    pure.pipe (arr.range (2) () (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
-    
-    
-    console.log("---=== looper ===---");
-
-    pure.Pipeyard (looper.keys(10))
-        (looper.map (x => x * x))
-        (looper.collect)
-        (console.log); // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
-    
-    pure.Pipeyard (looper.range (4) (10) ())
-        (looper.collect)
-        (console.log); // [4, 5, 6, 7, 8, 9, 10]
-    
-    pure.Pipeyard (looper.range (2) (10) (3))
-        (looper.collect)
-        (console.log); // [2, 5, 8]
-    
-    pure.Pipeyard (looper.keys(10))
-        (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y :y + z })))
-        (console.log); // { "x": "0123456789", "y": 46 }
-    
-    
-    
-    
-    console.log("---=== Tuple ===---");
-    
-    pure.pipe (pure.Tuple.RECORD (pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
-    pure.pipe (pure.Tuple.head (pure.Tuple (1) ("zzz"))) (console.log); // 1
-    pure.pipe (pure.Tuple.tail (pure.Tuple (1) ("zzz"))) (console.log); // "zzz"
-    
-    
-    console.log("---=== Pipeline ===---");
-    
-    couple.Pipeline (5) 
-        (x => x + 7) .pipe()
-        (x => "`x" + x) .pipe()
-        (console.log) .rest(); // "`x12"
-    
-    console.log
-    ( couple.Pipeline (5) 
-        (x => x + 7) .pipe()
-        (x => "x" + x) .pipe()
-        (x => "~~" + x) .rest()
-    ); // "~~x12"
-    
-    
-    
     console.log("---=== Pipeyard/pipeline ===---");
     
     console.log
@@ -618,6 +606,74 @@ namespace Tastes
         (x => "x" + x) 
         (x => "!!" + x) 
         (console.log); // "!!x12"
+    
+    
+    
+    
+    console.log("---=== arr.range ===---");
+    
+    pure.pipe (arr.range (2) (3) (10) ) (console.log); // [2, 5, 8]
+    pure.pipe (arr.range (2) () (10) ) (console.log); // [2, 3, 4, 5, 6, 7, 8, 9, 10]
+    
+    
+    console.log("---=== looper ===---");
+
+    pure.Pipeyard (looper.keys(10))
+        (looper.map (x => x * x))
+        (looper.collect)
+        (console.log); // [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+    
+    pure.Pipeyard (looper.range (4) (10) ())
+        (looper.collect)
+        (console.log); // [4, 5, 6, 7, 8, 9, 10]
+    
+    pure.Pipeyard (looper.range (2) (10) (3))
+        (looper.collect)
+        (console.log); // [2, 5, 8]
+    
+    pure.Pipeyard (looper.keys(10))
+        (looper.reduce ({ x: "", y: 1 }) (({x, y}) => z => ({ x: x + z, y :y + z })))
+        (console.log); // { "x": "0123456789", "y": 46 }
+    
+    
+    
+    
+    console.log("---=== Tailcall ===---");
+    
+    const rem_tail = 
+    (n: number, r: number)
+    : fun.Tailcall<number> =>
+        
+        (n < r) ? fun.Tailcall.done(n) 
+        : fun.Tailcall.call(() => rem_tail(n-r, r)) ;
+    
+    pure.pipeline (rem_tail(10000001,2)) 
+        (fun.Tailcall.RUN) 
+        (res => `rem_tail res: ${res}`) 
+        (console.log); // rem_tail res: 1, won't stack overflow
+    
+    
+    
+    console.log("---=== Tuple ===---");
+    
+    pure.pipe (pure.Tuple.RECORD (pure.Tuple (1) ("zzz"))) (console.log); // { "head": 1, "tail": "zzz" }
+    pure.pipe (pure.Tuple.head (pure.Tuple (1) ("zzz"))) (console.log); // 1
+    pure.pipe (pure.Tuple.tail (pure.Tuple (1) ("zzz"))) (console.log); // "zzz"
+    
+    
+    console.log("---=== Pipeline ===---");
+    
+    couple.Pipeline (5) 
+        (x => x + 7) .pipe()
+        (x => "`x" + x) .pipe()
+        (console.log) .rest(); // "`x12"
+    
+    console.log
+    ( couple.Pipeline (5) 
+        (x => x + 7) .pipe()
+        (x => "x" + x) .pipe()
+        (x => "~~" + x) .rest()
+    ); // "~~x12"
     
     
     
