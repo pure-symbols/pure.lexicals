@@ -1,7 +1,7 @@
 
 # Some thing about the *Fixed-point Combinators* 🦠
 
-## SKI
+## 🧪 SKI
 
 ### Knows
 
@@ -86,7 +86,7 @@ Y = S(KM)L
 ~~~
 
 
-## Y & Z
+## 💉 Y & Z
 
 We know: 
 
