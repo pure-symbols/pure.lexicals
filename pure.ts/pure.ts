@@ -559,9 +559,9 @@ namespace looper
     <T,> (f: (init: R) => (x: T) => R) => 
     (xs: Iterable<T>): R => 
     {
-        let result = init;
-        for (let x of xs) { result = (f) (result) (x); }
-        return result;
+        let reducing = init;
+        for (let x of xs) { reducing = (f) (reducing) (x); }
+        return reducing;
     } ;
     
     export 
@@ -586,28 +586,29 @@ namespace looper
         
         ( function* () 
         {
-            let current = x;
+            let iterating = x;
             while (true) 
             {
-                yield current ;
-                current = f(current);
-            };
+                yield iterating ;
+                iterating = (f) (iterating); }
+            
         } ) () ;
     
     export 
     const unfold = 
-    <T, R> (f: (x: T) => [R, T] | null) => 
-    (x: T): IterableIterator<R> => 
+    <T, R> (x: T) => 
+    (f: (x: T) => couple.Pair<R, T>)
+    : IterableIterator<R> => 
         
         ( function* () 
         {
-            let current = x;
+            let unfolding = x;
             while (true) 
             {
-                const result = f(current) ;
-                if (result === null) { break; } 
-                else { yield result[0] ; current = result[1]; };
-            };
+                const { head, tail } = (f) (unfolding) ;
+                yield head ;
+                unfolding = tail; }
+            
         } ) () ;
     
     export 
@@ -622,18 +623,18 @@ namespace looper
             (map (x => x + low)) .rest() ;
     
     export 
-    const until = 
-    <T,> (stopper: pure.Fn<T, boolean>) => 
+    const till = 
+    <T,> (tillby: (x: T) => boolean) => 
     (xs: Iterable<T>)
     : T[] => 
     {
-        let res = [] as T[];
+        let taking = [] as T[];
         for (let x of xs) 
         {
-            if ((stopper) (x)) { break; }
-            else { res = [... res, x]; } 
+            if ((tillby) (x)) { break; }
+            else { taking = [... taking, x]; } 
         };
-        return res ;
+        return taking ;
     } ;
     
     export 
@@ -642,22 +643,11 @@ namespace looper
     <T,> (xs: Iterable<T>)
     : T[] => 
     {
-        let start = 1;
+        let taking = 1;
         return pure.pipe (xs) 
-            ((until) (() => start++ > limit));
+            ((till) (() => taking++ > limit));
     } ;
     
-    
-    export 
-    const rests = 
-    <T,> (beginner: pure.Fn<T, boolean>) => 
-    (xs: Iterable<T>)
-    : Iterable<T> => 
-    {
-        for (let x of xs) 
-        { if ((beginner) (x)) { break; } };
-        return xs ;
-    } ;
     
     export 
     const drop = 
@@ -665,10 +655,21 @@ namespace looper
     <T,> (xs: Iterable<T>)
     : Iterable<T> => 
     {
-        let start = 1;
+        let dropping = 1;
         return pure.pipe (xs) 
-            ((rests) (() => start++ > limit));
+            ((filter) (() => dropping++ > limit));
     } ;
+    
+    export 
+    const head = 
+    <T,> (xs: Iterable<T>)
+    : T => (take (1) (xs)) [0] ;
+    
+    export 
+    const tail = 
+    <T,> (xs: Iterable<T>)
+    : Iterable<T> => drop (1) (xs) ;
+    
     
     
     export 
@@ -780,21 +781,21 @@ namespace Tastes
     
     
     pure.pipeline (looper.iterate (2) (x => x + 3)) 
-        (looper.until (n => n > 28)) 
+        (looper.till (n => n > 28)) 
         (console.log); // [2, 5, 8, 11, 14, 17, 20, 23, 26]
     
     pure.pipeline (looper.iterate (2) (x => x + 3)) 
         (looper.map (n => n * 2)) 
-        (looper.until (n => n > 28)) 
+        (looper.till (n => n > 28)) 
         (console.log); // [4, 10, 16, 22, 28]
     
     pure.pipeline (looper.iterate (2) (x => x + 3)) 
         (looper.map (n => n * 2)) 
-        (looper.until (n => n >= 28)) 
+        (looper.till (n => n >= 28)) 
         (console.log); // [4, 10, 16, 22]
     
     pure.pipeline (looper.iterate (2) (x => x + 3)) 
-        (looper.until (n => n > 28)) 
+        (looper.till (n => n > 28)) 
         (looper.map (n => n * 2)) 
         (looper.collect) 
         (console.log); // [4, 10, 16, 22, 28, 34, 40, 46, 52]
@@ -809,10 +810,23 @@ namespace Tastes
     
     
     pure.pipeline (looper.iterate (2) (x => x + 3)) 
-        (looper.rests (n => n > 8)) 
+        (looper.filter (n => n > 8)) 
         (looper.take (5)) 
-        (console.log); // [11, 14, 17, 20, 23] // !!!! fail
+        (console.log); // [11, 14, 17, 20, 23]
     
+    pure.pipeline (looper.iterate (2) (x => x + 3)) 
+        (looper.drop (6)) 
+        (looper.take (5)) 
+        (console.log); // [20, 23, 26, 29, 32]
+    
+    
+    const primes = 
+    looper.unfold (looper.iterate (2) (x => x + 1)) 
+        ( naturals => 
+        ({ head: looper.head (naturals), tail: pure.pipe (looper.tail (naturals)) 
+            (looper.filter ( x => (x < (looper.head (naturals)) * (looper.head (naturals))) || (x % (looper.head (naturals)) != 0) )) }) ) ;
+    
+    pure.pipeline (primes) (looper.take (13)) (console.log); // // !!!! fail
     
     
     
@@ -895,7 +909,10 @@ namespace Tastes
     
     console.log("---=== fibo_tree ===---");
     
-    const fibo_tree = (n: number): number => (n > 1 ? fun.applies (fibo_tree, [n - 1]) + fun.applies (fibo_tree, [n - 2]) : n ) ;
+    const fibo_tree = 
+    (n: number): number => 
+        (n > 1 ? fun.applies (fibo_tree, [n - 1]) + fun.applies (fibo_tree, [n - 2]) : n ) ;
+    
     console.log(fun.applies (fibo_tree, [41])); // 165580141, very quick.
     
     console.log("---=== fibo_pipe ===---");
