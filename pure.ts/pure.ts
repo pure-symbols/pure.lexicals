@@ -596,8 +596,8 @@ namespace looper
     
     export 
     const unfold = 
-    <T, R> (x: T) => 
-    (f: (x: T) => couple.Pair<R, T>)
+    <T,> (x: T) => 
+    <R,> (f: (x: T) => couple.Pair<R, T>)
     : IterableIterator<R> => 
         
         ( function* () 
@@ -819,12 +819,24 @@ namespace Tastes
         (looper.take (5)) 
         (console.log); // [20, 23, 26, 29, 32]
     
+    pure.pipeline (looper.unfold (1) (x => ({ head: x * x, tail: x + 1 }))) 
+        (looper.drop (6)) 
+        (looper.take (5)) 
+        (console.log); // [49, 64, 81, 100, 121]
+    
+    pure.pipeline (looper.iterate (1) (x => x + 1)) 
+        (looper.drop (3)) 
+        (x => ({ a: looper.take (1) (x) [0], b: looper.drop (1) (x) }) ) 
+        ( ({a,b}) => [a, 101, ... looper.take (3) (b)] ) 
+        (console.log); // [4, 101, 5, 6, 7] // !!!! fail: [4, 101]
     
     const primes = 
     looper.unfold (looper.iterate (2) (x => x + 1)) 
         ( naturals => 
-        ({ head: looper.head (naturals), tail: pure.pipe (looper.tail (naturals)) 
-            (looper.filter ( x => (x < (looper.head (naturals)) * (looper.head (naturals))) || (x % (looper.head (naturals)) != 0) )) }) ) ;
+        {
+            const [h, t] = [looper.head (naturals), looper.tail (naturals)] ;
+            return ({ head: h, tail: pure.pipe (t) (looper.filter ( x => (x < h * h) || (x % h != 0 ) )) })
+        } ) ;
     
     pure.pipeline (primes) (looper.take (13)) (console.log); // // !!!! fail
     
