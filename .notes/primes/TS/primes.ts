@@ -92,6 +92,13 @@ pipeline (Iterador.iterate (2) (x => x + 1))
     (Iterador.TAKE (10)) 
     (console.log); // [9, 25, 49, 81, 121, 169, 225, 289, 361, 441]
 
-pipeline (Iterador.unfold (Iterador.iterate (2) (x => x + 1)) (natus => (({head,tail}) => Tuple (head) (pipe (tail) (Iterador.filter (x => x < head * head || x % head != 0)))) (Iterador.RECORD (natus)))) 
+const primes = 
+Iterador.unfold (Iterador.iterate (2) (x => x + 1)) 
+    ( natus => 
+    ( ({head,tail}) => Tuple (head) (pipe (tail) 
+        (Iterador.filter (x => x < head * head || x % head != 0))) 
+    ) (Iterador.RECORD (natus)) ) ;
+
+pipeline (primes) 
     (Iterador.TAKE (11)) 
     (console.log); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
