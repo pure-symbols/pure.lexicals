@@ -1,3 +1,9 @@
+
+[play]: https://www.python.org/shell/
+[play/rustpython]: https://rustpython.github.io/demo/
+[play/pythonanywhere]: https://www.pythonanywhere.com/ "(need account now)"
+
+
 [play/live.sympy]: https://live.sympy.org/ "(jupyter:pyodide) SymPy Live shell is powered by JupyterLite. It can take up to 30 seconds before the shell code and libraries load completely and become available for using interactively. // The module 'turtle' is removed from the Python standard library in the Pyodide distribution due to browser limitations. See https://pyodide.org/en/stable/usage/loading-packages.html for more details."
 [play/try-jupyter]: https://jupyter.org/try-jupyter "(jupyter:pyodide)"
 
