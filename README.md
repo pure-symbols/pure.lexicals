@@ -15,8 +15,10 @@ And with such feature, we can make these things:
 - *Laziness* -- without *lexical closure* feature, then we'll must get the *laziness* just from a language design and implementation.
 - *Currying* -- if we don't have the *closure* feature, then we cannot do any *currying* things that means no *(elegant) pipe* then I shall give up this *pure project* at its begin.
 - *Tuple* -- we can get numbers of values and let them applies one by one onto a picker, and then we just give a specific picker to get the specific value we've just given in.
-- *...* -- ...
+- *Iterator* -- we have the *tuple* now and an *iterator* (or *List* or *Sequence*) is just a special 2 length tuple whith a value as the *head* and a closure as the *tail* which can just get the next such tuple.
+- *Pipeline* -- a simple pipe is just a `λxf.fx` while we're all in currying style and a `Y(λgxf.g(fx))` could be a yard that always can give a closure to its next parameter, and with such thing we can just play pure functional programming with out any *OO Method* grammar to make the nesting callings be listing callings.
 
+And, with these things, we can do almost (maybe full) things about the compute works, and just with clear, clean, and declarative code expressions.
 
 ## Documents
 
