@@ -19,13 +19,13 @@ and
 Y = λf.(λs.ss)(λx.f(xx))
 ~~~
 
-And that's what I will prove: 
+And that's what I want to prove: 
 
 ~~~ lambda
 Y = S(K(SII))(S(S(KS)K)(K(SII)))
 ~~~
 
-### Prove
+### Provings
 
 ~~~ lambda
 SII = λc.c(c) = λs.ss = M
