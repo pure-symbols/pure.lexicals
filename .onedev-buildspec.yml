@@ -3,15 +3,15 @@ jobs:
 - name: pusher all-branch commit
   steps:
   - !PushRepository
-    name: force to gh pure-symbols/pure.closures
-    remoteUrl: https://github.com/pure-symbols/pure.closures.git
+    name: force to gh pure-symbols/pure.closures (lexicals)
+    remoteUrl: https://github.com/pure-symbols/pure.lexicals.git
     userName: yhm-amber
     passwordSecret: github.yhm-amber
     force: true
     condition: ALWAYS
   - !PushRepository
-    name: force to cb pure-symbols/pure.closures
-    remoteUrl: https://codeberg.org/pure-symbols/pure.closures.git
+    name: force to cb pure-symbols/pure.closures (lexicals)
+    remoteUrl: https://codeberg.org/pure-symbols/pure.lexicals.git
     userName: yhm
     passwordSecret: codeberg.yhm
     force: true
@@ -26,16 +26,16 @@ jobs:
 - name: puller all-branch cron.03:20:10
   steps:
   - !PullRepository
-    name: force from gh pure-symbols/pure.closures
-    remoteUrl: https://github.com/pure-symbols/pure.closures.git
+    name: force from gh pure-symbols/pure.closures (lexicals)
+    remoteUrl: https://github.com/pure-symbols/pure.lexicals.git
     syncToChildProject: false
     refs: refs/heads/* refs/tags/*
     withLfs: true
     force: true
     condition: ALWAYS
   - !PullRepository
-    name: force from cb pure-symbols/pure.closures
-    remoteUrl: https://codeberg.org/pure-symbols/pure.closures.git
+    name: force from cb pure-symbols/pure.closures (lexicals)
+    remoteUrl: https://codeberg.org/pure-symbols/pure.lexicals.git
     syncToChildProject: false
     refs: refs/heads/* refs/tags/*
     withLfs: true
