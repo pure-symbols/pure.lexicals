@@ -8,7 +8,7 @@
 
 This is a theoretical verification in *Functional Programming* studies.
 
-The only one necessary thing of a language for this pure project is a *[**lexical closure**](https://en.wikipedia.org/wiki/Closure_(computer_programming)#Lexical_environment)* feature, means it [bind](https://en.wikipedia.org/wiki/Name_binding) its *free variables* by the **[*lexical scoping*](https://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scope)**, not the *dynamic scoping*, and this also called ***closure*** or ***function closure***. That means there is a *[first-classed function](https://en.wikipedia.org/wiki/First-class_function) means all function is valve* and *it will pick all the symbol **where it be defined** which is needed by it-self*. With out such thing, all of this projec shall not works.
+The only one necessary thing of a language for this pure project is a *[**lexical closure**](https://en.wikipedia.org/wiki/Closure_(computer_programming)#Lexical_environment)* feature, means it [bind](https://en.wikipedia.org/wiki/Name_binding) its *[free variables](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables)* by the **[*lexical scoping*](https://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scope)**, not the *dynamic scoping*, and this also called ***closure*** or ***function closure***. That means there is a *[first-classed function](https://en.wikipedia.org/wiki/First-class_function) means all function is valve* and *it will pick all the symbol **where it be defined** which is needed by it-self*. With out such thing, all of this projec shall not works.
 
 And with such feature, we can make these things: 
 
