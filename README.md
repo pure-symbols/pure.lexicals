@@ -4,6 +4,13 @@
 🧫 implement all by nothing but only lexical closure . 🧬
 ~~~
 
+## Docs
+
+- [*☄️ Lambda Calculus 101*](./.docs/lambda-calculus.101 "Let's See what the Lambda Calculus is ☄️")
+- [*🦠 Fixed Point Things*](./.docs/fixed-point.things "Some thing about the Fixed-point Combinators 🦠")
+
+
+
 ## Intro
 
 This is a theoretical verification in *Functional Programming* studies.
@@ -19,11 +26,6 @@ And with such feature, we can make these things:
 - *Pipeline* -- a simple pipe is just a `λxf.fx` while we're all in currying style and a `Y(λgxf.g(fx))` could be a yard that always can give a closure to its next parameter, and with such thing we can just play pure functional programming with out any *OO Method* grammar to make the nesting callings be listing callings (like `pipeline (x) (f) (f) (f) ... (sys.out)`).
 
 And, with these things, we can do almost (maybe full) things about the compute works, and just with clear, clean, and declarative code expressions.
-
-## Documents
-
-- [*☄️ Lambda Calculus 101*](./.docs/lambda-calculus.101 "Let's See what the Lambda Calculus is ☄️")
-- [*🦠 Fixed Point Things*](./.docs/fixed-point.things "Some thing about the Fixed-point Combinators 🦠")
 
 
 ## Thanks for
