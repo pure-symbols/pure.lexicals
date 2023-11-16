@@ -22,8 +22,8 @@ And, with these things, we can do almost (maybe full) things about the compute w
 
 ## Documents
 
-- [*Let's See what the Lambda Calculus is ☄️*](./.docs/lambda-calculus-101)
-- [Some thing about the Fixed-point Combinators 🦠](./.docs/fixed-point-things)
+- [*☄️ Lambda Calculus 101*](./.docs/lambda-calculus.101 "Let's See what the Lambda Calculus is ☄️")
+- [*🦠 Fixed Point Things*](./.docs/fixed-point.things "Some thing about the Fixed-point Combinators 🦠")
 
 
 ## Thanks for
