@@ -1,6 +1,9 @@
 
 [play]: https://www.python.org/shell/
-[play/rustpython]: https://rustpython.github.io/demo/
+[play/rustpython]: https://rustpython.github.io/demo/ "Online RustPython demo running on WebAssembly // 在 WebAssembly 上运行的在线演示 /// RustPython is a Python interpreter written in Rust. RustPython can be embedded into Rust programs to use Python as a scripting language for your application, or it can be compiled to WebAssembly in order to run Python in the browser. // RustPython 是一个用 Rust 编写的 Python 解释器。 RustPython 可以嵌入到 Rust 程序中，以使用 Python 作为应用程序的脚本语言，也可以将其编译为 WebAssembly，以便在浏览器中运行 Python 。"
+
+
+
 [play/pythonanywhere]: https://www.pythonanywhere.com/ "(need account now)"
 
 
