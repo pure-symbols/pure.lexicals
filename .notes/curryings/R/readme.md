@@ -1,3 +1,3 @@
 [play](https://shinylive.io/r/editor/#code=NobwRAdghgtgpmAXGAxgVwE4YJ4DoNgA0qA9hAC5wVJgBmAlgB5wAmADifRQAQC83AHQHcAFLQCUooaMaSRsmeIEQB5OdJHY5EqcJG4DcraOP7D4yQG5ly9Fmx9Be2mggpJDZu048RGuxj0rJI25BoGuJL0tKIANlQA5uQAFnH0AM7kohEW3ACE-PEQSaliJBgwULHpoi5uFiEqYeR+egoBQSzcAD4AfNwsJLgoVbFpmdmGPf0o8g3ccNVwgk2qYq7uk5FWNhAAxADk3AACcIywbPHpyocrtyxwDBDLAAZQUABGUI4BDq0yhG42EBAC9JIxuABaIFQ7hgl43I4pKjcDCubhvT7fEQARjkACY5ABmcQvbgAd3osTGCTgWRewBxAF0oQAWBH7I67d5fH6YHC6AFA0Hg2EOaFg5Q87F40SE0Qk7h7biMlmQ1nKMAAXyZQA)
 
-<sup><sub>Translate from *[stackoverflow](https://stackoverflow.com/questions/9458271/currying-decorator-in-python/78025654#78025654)*: <sub/><sup/>
+<sup><sub>Translate from *[the python code](../Python)*: <sub/><sup/>
