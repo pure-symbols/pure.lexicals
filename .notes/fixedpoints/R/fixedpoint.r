@@ -1,3 +1,7 @@
+#' Y = λf.(λs.ss)(λx.f(xx))
+#' Z = λf.(λs.ss)(λx.f(λz.(xx)z))
+#' 
+
 fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) ((\ (a) (y)(y)) (a))) # I dont know why this can works ...
 
 fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) (\ (a) (y) (y) (a))) # z-combinator.
