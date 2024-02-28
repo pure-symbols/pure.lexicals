@@ -1,4 +1,4 @@
-An answer from *[stackoverflow](https://stackoverflow.com/questions/9458271/currying-decorator-in-python/78025654#78025654)*: 
+<sup><sub>An answer from *[stackoverflow](https://stackoverflow.com/questions/9458271/currying-decorator-in-python/78025654#78025654)*: <sub/><sup/>
 
 This is my *lambda styled* code (and its refs): 
 
