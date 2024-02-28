@@ -30,6 +30,8 @@ prod_3 = curry (lambda x,y,z: x + y + z)
 print (prod_3 (6) (7) (8)) # 21
 ~~~
 
+The function while call `curry (f)` returns, will pick args one-by-one until the coumt of them equal with the function `f` which be given to the calling `curry (f)`, then that `f` can be call by those rgs we've just picked.
+
 You can try them on *[shinylive](https://shinylive.io/py/editor/#code=NobwRAdghgtgpmAXGKAHVA6VBPMAaMAYwHsIAXOcpMAYgAIAnOAM0ToAsyzUBnRAen4NiPOFygkAJnAzEGAc34B3AJYBrFfwCaAfRIwARiuhk5NAArYy7UgB0IzFQA84k1MWNk6AXjoAbWANJKDpWOgAKAMNguic2J3CnAEokiKigkOw2ZkjAmIAqKAU+OmwI7FTwwuKU1IBue3t6JjDObj5BHGtSAFoSAFcGUQw4fv4oSQA3KAhCVx6umwh+QkGGbGN5HuMFqyWsdlQaABE4EgYoUwYe5jk+tY2IeXtVhnWffzyQ5n7Z7OdXO5PGkvnRXgwVK42I0yOkCkV5CVctEQnEwWtIZIIvkIgieHQANQRJx4WqpFTMOgwyKUXE1OgAQl8P1mGB0emI0nZGBIOgRA3IqTgflEVIgtjILMI2LxKToDXFEHofhUcwgojY8lQfh6ACYMAAGDB0CmlYj9DhQSZwOgGMQUBgm6RQfE8GxKOjWOAwOjagBedAwQcaSroMnkxukzHsAAFwdh7FHfcJJABmYl4UqZv1JRAwphkQYQWKE0qlv0h1AQ8gRKuc9PhVOVAAslQArHL6ABGXUh+jh41wqD2OuSHTp3zxkEo2J4bB4P3xUtlIk5kfVrzhUfjiIANkqAHZKgAOTt0XVdkNgAC+AF0gA)* or *[RustPython Demo](https://rustpython.github.io/demo/)*. Enjoy it 🫡.
 
 ----
