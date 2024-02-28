@@ -1,7 +1,7 @@
-fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) ((\ (a) (y)(y)) (a)))
+fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) ((\ (a) (y)(y)) (a))) # I dont know why this can works ...
 
-fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) (\ (a) (y) (y) (a)))
-fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) (\ (...) (y) (y) (...)))
+fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) (\ (a) (y) (y) (a))) # z-combinator.
+fixedpoint <- \ (f) (\ (x) (x) (x))(\ (y) (f) (\ (...) (y) (y) (...))) # z-combinator also.
 
 fac <- fixedpoint (\ (f) \ (n) if (n<2) 1 else n*f(n-1))
 
