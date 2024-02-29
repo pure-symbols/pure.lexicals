@@ -68,8 +68,12 @@ add_three = y -> 3 + y
 
 OK, that's all. You've already touch all the points of *Lambda Calculus*. Funny? *Let me tell you what you just touched. 🌜*
 
-> [!notice]
-> *The `add(3)` here will returns a closure: this just like to create (means *new*) a special object in *OOP* style but it just can be called like a function. In some language, closure is implemented as a special object. Also in some language, both all function is just a closure with special syntax.*
+> [!TIP]
+> 
+> The `add(3)` here will returns a closure: this just like to create (means *new*) a special object in *OOP* style but it just can be called like a function.
+> 
+> In some language, closure is implemented as a special object. Also in some language, both all function is just a closure with special syntax.
+> 
 
 
 
