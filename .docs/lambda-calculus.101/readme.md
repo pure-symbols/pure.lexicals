@@ -56,9 +56,9 @@ add_three(4) # ~> 7
 add_three(5) # ~> 8
 ~~~
 
-**Here, the `add(3)` will returns a closure. It's just like to create (means *new*) a special object in *OOP* style but just can be called like a function.** *(In some language, closure is implemented as a special object. Also in some language, all function is just a special closure.)*
+**Here, the `add(3)` will returns a closure. It's just like to create (means *new*) a special object in *OOP* style but just can be called like a function.** *(In some language, closure is implemented as a special object. Also in some language, both all function is just a closure with special syntax.)*
 
-**And, that `add_three = add(3)` is just same like this:** 
+**And this `add_three = add(3)` is just same like this:** 
 
 ~~~ julia
 add_three = y -> 3 + y
