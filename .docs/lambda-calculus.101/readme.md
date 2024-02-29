@@ -62,7 +62,13 @@ add_three(5) # ~> 8
 add_three = y -> 3 + y
 ~~~
 
-**or `add_three = x -> 3 + x` or `add_three = z -> 3 + z` or `add_three = foozzfii -> 3 + foozzfii`, etc ... they all same thing.**
+**or any of these:** 
+- `add_three = x -> 3 + x`
+- `add_three = z -> 3 + z`
+- `add_three = foozzfii -> 3 + foozzfii`
+- etc ...
+
+**what ever ... both of them are same thing.**
 
 *(They're all Julia codes, you can just test them on [this Julia web repl](https://keno.github.io/julia-wasm/website/repl.htm). ✨)*
 
