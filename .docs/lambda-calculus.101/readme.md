@@ -56,9 +56,7 @@ add_three(4) # ~> 7
 add_three(5) # ~> 8
 ~~~
 
-**Here, the `add(3)` will returns a closure. It's just like to create (means *new*) a special object in *OOP* style but just can be called like a function.** *(In some language, closure is implemented as a special object. Also in some language, both all function is just a closure with special syntax.)*
-
-**And this `add_three = add(3)` is just same like this:** 
+**Here, the `add_three = add(3)` is just same like this:** 
 
 ~~~ julia
 add_three = y -> 3 + y
@@ -69,6 +67,10 @@ add_three = y -> 3 + y
 *(They're all Julia codes, you can just test them on [this Julia web repl](https://keno.github.io/julia-wasm/website/repl.htm). ✨)*
 
 OK, that's all. You've already touch all the points of *Lambda Calculus*. Funny? *Let me tell you what you just touched. 🌜*
+
+> [!notice]
+> *The `add(3)` here will returns a closure: this just like to create (means *new*) a special object in *OOP* style but it just can be called like a function. In some language, closure is implemented as a special object. Also in some language, both all function is just a closure with special syntax.*
+
 
 
 ### 🏹 Lambda Calculus
