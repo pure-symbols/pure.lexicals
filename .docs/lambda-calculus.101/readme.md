@@ -62,7 +62,7 @@ add_three(5) # ~> 8
 add_three = y -> 3 + y
 ~~~
 
-**or any of these:** 
+**or any one of these:** 
 - `add_three = x -> 3 + x`
 - `add_three = z -> 3 + z`
 - `add_three = foozzfii -> 3 + foozzfii`
