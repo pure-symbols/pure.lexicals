@@ -56,7 +56,7 @@ add_three(4) # ~> 7
 add_three(5) # ~> 8
 ~~~
 
-**Here, the `add(3)` just like to create a object, and it can be called like a function.**
+**Here, the `add(3)` just like to create a object (names *closure*), and it can be called, same as a function.** *(In some language, all function is just a closure.)*
 
 **And, that `add_three = add(3)` is just same like this:** 
 
