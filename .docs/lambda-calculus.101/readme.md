@@ -68,7 +68,7 @@ add_three = y -> 3 + y
 - `add_three = foozzfii -> 3 + foozzfii`
 - etc ...
 
-**what ever ... both of them are same thing.**
+**what ever ... both of them are wholely same thing.**
 
 *(Those code lines are all Julia syntax. You can just test them on [this Julia web repl](https://keno.github.io/julia-wasm/website/repl.htm). ✨)*
 
