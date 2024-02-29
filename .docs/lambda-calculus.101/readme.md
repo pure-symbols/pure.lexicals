@@ -70,7 +70,7 @@ add_three = y -> 3 + y
 
 **what ever ... both of them are same thing.**
 
-*(They're all Julia codes, you can just test them on [this Julia web repl](https://keno.github.io/julia-wasm/website/repl.htm). ✨)*
+*(Those code lines are all Julia syntax. You can just test them on [this Julia web repl](https://keno.github.io/julia-wasm/website/repl.htm). ✨)*
 
 OK, that's all. You've already touch all the points of *Lambda Calculus*. Funny? *Let me tell you what you just touched. 🌜*
 
