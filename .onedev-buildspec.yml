@@ -7,6 +7,7 @@ jobs:
     remoteUrl: https://github.com/pure-symbols/pure.lexicals.git
     userName: yhm-amber
     passwordSecret: github.yhm-amber
+    withLfs: true
     force: true
     condition: ALWAYS
   - !PushRepository
@@ -14,11 +15,12 @@ jobs:
     remoteUrl: https://codeberg.org/pure-symbols/pure.lexicals.git
     userName: yhm
     passwordSecret: codeberg.yhm
+    withLfs: true
     force: true
     condition: ALWAYS
   triggers:
   - !BranchUpdateTrigger
-    projects: pure.symbols/pure.closures
+    projects: pure.symbols/pure.lexicals
   retryCondition: never
   maxRetries: 4
   retryDelay: 30
@@ -44,7 +46,7 @@ jobs:
   triggers:
   - !ScheduleTrigger
     cronExpression: 10 20 3 * * ?
-    projects: pure.symbols/pure.closures
+    projects: pure.symbols/pure.lexicals
   retryCondition: never
   maxRetries: 4
   retryDelay: 30
