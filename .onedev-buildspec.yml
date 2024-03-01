@@ -1,4 +1,4 @@
-version: 25
+version: 19
 jobs:
 - name: pusher all-branch commit
   steps:
@@ -20,7 +20,7 @@ jobs:
   - !BranchUpdateTrigger
     projects: pure.symbols/pure.closures
   retryCondition: never
-  maxRetries: 3
+  maxRetries: 4
   retryDelay: 30
   timeout: 3600
 - name: puller all-branch cron.03:20:10
@@ -46,6 +46,6 @@ jobs:
     cronExpression: 10 20 3 * * ?
     projects: pure.symbols/pure.closures
   retryCondition: never
-  maxRetries: 3
+  maxRetries: 4
   retryDelay: 30
   timeout: 3600
