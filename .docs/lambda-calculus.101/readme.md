@@ -196,7 +196,7 @@ And, clearly, they are both equal things:
 ( k -> k(4) )( i -> 1 + i )
 ~~~
 
-And that's the steps called ***α-conversion*** in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
+And that's the steps called ***α-conversion*** (or called *α-equivalence*) in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki]: 
 
 > ***α-conversion**: changing bound variables*
 
