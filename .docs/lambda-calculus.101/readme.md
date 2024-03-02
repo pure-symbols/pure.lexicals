@@ -99,7 +99,7 @@ add = x -> y -> x + y
 
 1. For closure `y -> x + y`, the `y` which at right hand of `+` is a kind of *bound variables* , because there is a `y` at left hand of this closure's `->`.
 2. For closure `y -> x + y`, the `x` which at left hand of `+` is a kind of *free variables* , because there is not a `x` at left hand of this closure's `->`.
-3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place where this `y -> x + y` being.
+3. So, how can the interpreter knows what is the `x` ? That depends on what `x` is at the place (I mean *scope*) where this `y -> x + y` being, and that's the rule named *[lexical scoping](https://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scope)*.
 4. So ... Here, `y -> x + y` is the return value of `x -> y -> x + y`, so, what the `x` right side of `->` in `x -> x` will be, that the `x` right side of the first `->` in `x -> y -> x + y` will be.
 
 
