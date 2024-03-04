@@ -227,12 +227,12 @@ pipe_four(add_one)
 例如：
 
 - `a -> a` **是** 个 *组合子*
-- `a -> a b` is **不是** 个 *组合子*
+- `a -> a b` **不**是 个 *组合子*
 - `a -> b -> a b` **是** 个 *组合子*
 - `a -> b -> a` **是** 个 *组合子*
-- `b -> a` is **不是** 个 *组合子*
+- `b -> a` **不**是 个 *组合子*
 - `a -> b -> c -> c (x -> a)` **是** 个 *组合子*
-- `a -> b -> c -> c (x -> y)` is **不是** 个 *组合子*
+- `a -> b -> c -> c (x -> y)` **不**是 个 *组合子*
 
 *完啦。🌚*
 
@@ -245,9 +245,9 @@ pipe_four(add_one)
 | --- | ---------------- | ----- | --- | ------ | ----- |
 |  1  | `λa.a` 或 `λx.x` | `a -> a` 或 `x -> x` | `a => a` 或 `x => x` | `lambda a: a` 或 `lambda x: x` | `fun a -> a` 或 `fun x -> x` |
 |  2  | `λxy.x` 或 `λx.λy.x` 或 `λx.(λy.x)` | `x -> y -> x` 或 `x -> (y -> x)` | `x => y => x` 或 `x => (y => x)` | `lambda x: lambda y: x` 或 `lambda x: (lambda y: x)` | `fun x y -> x` 或 `fun x -> fun y -> x` 或 `fun x -> (fun y -> x)` |
-|  3  | `λxf.fx` 或 `λxf.f x` 或 `λxf.(f x)` 或 `λx.λf.fx` means `λx.(λf.fx)` | `x -> f -> f(x)` 或 `x -> f -> (f)(x)` means `x -> (f -> f(x))` | `x => f => f(x)` 或 `x => f => (f) (x)` means `x => (f => f(x))` | `lambda x: lambda f: f(x)` 或 `lambda x: lambda f: (f) (x)` means `lambda x: (lambda f: f(x))` | `fun x f -> f x` 或 `fun x -> fun f -> f x` 或 `fun x -> fun f -> (f) (x)` means `fun x -> (fun f -> (f) (x))` |
-|  4  | `λfgx.f(gx)` 或 `λf.λg.λx.f(gx)` same as `λf.(λg.(λx.( (f) ((g) (x)) )))` | `f -> g -> x -> (f)((g)(x))` same as `f -> (g -> (x -> ( (f)((g)(x)) )))` | `f => g => x => (f) ((g) (x))` same as `f => (g => (x => ( (f) ((g) (x)) )))` | `lambda f: lambda g: lambda x: (f) ((g) (x))` same as `lambda f: (lambda g: (lambda x: ( (f) ((g) (x)) )))` | `fun f g x -> f (g x)` 或 `fun f -> fun g -> fun x -> f (g x)` same as `fun f -> (fun g -> (fun x -> ( (f) ((g) (x)) )))` |
-|  5  | `λabf.fab` 或 `λa.λb.λf.(fa)b` same as `λa.(λb.(λf.( ((f) (a)) (b) )))` | `a -> b -> f -> (f)(a)(b)` same as `a -> (b -> (f -> ( ((f)(a))(b) )))` | `a => b => f => (f) (a) (b)` same as `a => (b => (f => ( ((f) (a)) (b) )))` | `lambda a: lambda b: lambda f: (f) (a) (b)` same as `lambda a: (lambda b: (lambda f: ( ((f) (a)) (b) )))` | `fun a b f -> f a b` 或 `fun a -> fun b -> fun f -> (f a) b` same as `fun a -> (fun b -> (fun f -> ( ((f) (a)) (b) )))` |
+|  3  | `λxf.fx` 或 `λxf.f x` 或 `λxf.(f x)` 或 `λx.λf.fx` 亦即 `λx.(λf.fx)` | `x -> f -> f(x)` 或 `x -> f -> (f)(x)` 亦即 `x -> (f -> f(x))` | `x => f => f(x)` 或 `x => f => (f) (x)` 亦即 `x => (f => f(x))` | `lambda x: lambda f: f(x)` 或 `lambda x: lambda f: (f) (x)` 亦即 `lambda x: (lambda f: f(x))` | `fun x f -> f x` 或 `fun x -> fun f -> f x` 或 `fun x -> fun f -> (f) (x)` 亦即 `fun x -> (fun f -> (f) (x))` |
+|  4  | `λfgx.f(gx)` 或 `λf.λg.λx.f(gx)` 相当于 `λf.(λg.(λx.( (f) ((g) (x)) )))` | `f -> g -> x -> (f)((g)(x))` 相当于 `f -> (g -> (x -> ( (f)((g)(x)) )))` | `f => g => x => (f) ((g) (x))` 相当于 `f => (g => (x => ( (f) ((g) (x)) )))` | `lambda f: lambda g: lambda x: (f) ((g) (x))` 相当于 `lambda f: (lambda g: (lambda x: ( (f) ((g) (x)) )))` | `fun f g x -> f (g x)` 或 `fun f -> fun g -> fun x -> f (g x)` 相当于 `fun f -> (fun g -> (fun x -> ( (f) ((g) (x)) )))` |
+|  5  | `λabf.fab` 或 `λa.λb.λf.(fa)b` 相当于 `λa.(λb.(λf.( ((f) (a)) (b) )))` | `a -> b -> f -> (f)(a)(b)` 相当于 `a -> (b -> (f -> ( ((f)(a))(b) )))` | `a => b => f => (f) (a) (b)` 相当于 `a => (b => (f => ( ((f) (a)) (b) )))` | `lambda a: lambda b: lambda f: (f) (a) (b)` 相当于 `lambda a: (lambda b: (lambda f: ( ((f) (a)) (b) )))` | `fun a b f -> f a b` 或 `fun a -> fun b -> fun f -> (f a) b` 相当于 `fun a -> (fun b -> (fun f -> ( ((f) (a)) (b) )))` |
 
 
 
