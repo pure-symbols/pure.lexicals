@@ -10,8 +10,8 @@
 trait Apply <T, R> 
 {
 	fn apply 
-	(&self, f: &dyn Apply<T, R>, t: T) 
-		-> R;
+	(&self, f: &dyn Apply <T, R>, t: T) 
+		-> R ;
 }
 
 /// If we were to pass in self as f, we get:
@@ -19,15 +19,14 @@ trait Apply <T, R>
 /// => λs.λt.sst [s/f]
 /// => λs.ss
 /// 
-impl <T, R, F> Apply 
-	<T, R> for F 
-	where F: Fn (&dyn Apply<T, R>, T) 
-	-> R 
+impl <T, R, F> Apply <T, R> for F 
+where F: 
+	Fn (&dyn Apply <T, R>, T) -> R 
 {
 	fn apply 
-	(&self, f: &dyn Apply<T, R>, t: T) 
+	(&self, f: &dyn Apply <T, R>, t: T) 
 		-> R 
-	{ self(f, t) }
+	{ self (f, t) }
 }
 
 /// (λt(λn.(λy.nny))(λn.(λy.f(λz.nnz)y)))t
@@ -42,22 +41,22 @@ fn fixedpoint
 	move |t| 
 		
 		( &|n: &dyn Apply<T, R>, fixedpoint| 
-			n.apply(n, fixedpoint) ) 
+		  	n.apply (n, fixedpoint) ) 
 		
 		( &|n: &dyn Apply<T, R>, fixedpoint| 
-			f (&|z| n.apply(n, z), fixedpoint)
+		  	f (&|z| n.apply (n, z), fixedpoint)
 		, t)
 }
 
 
 /// Use
 /// 
-fn main() 
+fn main () 
 {
 	/* Factorial of n. */ 
 	let factorial = fixedpoint 
 	(
-		| fac: &dyn Fn(usize) -> usize
+		| fac: &dyn Fn (usize) -> usize
 		, n
 		| 
 			if n == 0 { 1 } 
@@ -67,7 +66,7 @@ fn main()
 	/* nth Fibonacci number. */ 
 	let fibonacci = fixedpoint 
 	(
-		| fib: &dyn Fn((usize, usize, usize, )) -> usize
+		| fib: &dyn Fn ((usize, usize, usize, )) -> usize
 		, (x, y, n, )
 		| 
 			match n 
@@ -80,6 +79,6 @@ fn main()
 	
 	/* Drive function. */
 	let n = 10 ;
-	println!("factorial ({}) = {}", n, factorial (n)); /* factorial (10) = 3628800 */
-	println!("fibonacci (1, 1, {}) = {}", n, fibonacci ((1, 1, n, ))); /* fibonacci (1, 1, 10) = 89 */
+	println! ("factorial ({}) = {}", n, factorial (n)); /* factorial (10) = 3628800 */
+	println! ("fibonacci (1, 1, {}) = {}", n, fibonacci ((1, 1, n, ))); /* fibonacci (1, 1, 10) = 89 */
 }
