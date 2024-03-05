@@ -33,10 +33,9 @@ where F:
 /// => (λn.nn)(λn.f(nn))
 /// => Yf
 /// 
-fn fixedpoint 
-<T, R> 
-(f: impl Fn(&dyn Fn(T) -> R, T) -> R) 
-	-> impl Fn(T) -> R 
+fn fixedpoint <T, R> 
+(f: impl Fn (&dyn Fn (T) -> R, T) -> R) 
+	-> impl Fn (T) -> R 
 {
 	move |t| 
 		
