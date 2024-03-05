@@ -50,7 +50,8 @@ fn fixedpoint
 }
 
 
-
+/// Use
+/// 
 fn main() 
 {
 	/* Factorial of n. */ 
