@@ -39,10 +39,10 @@ fn fixedpoint <T, R>
 {
 	move |t| 
 		
-		( &|n: &dyn Apply<T, R>, fixedpoint| 
+		( &|n: &dyn Apply <T, R>, fixedpoint| 
 		  	n.apply (n, fixedpoint) ) 
 		
-		( &|n: &dyn Apply<T, R>, fixedpoint| 
+		( &|n: &dyn Apply <T, R>, fixedpoint| 
 		  	f (&|z| n.apply (n, z), fixedpoint)
 		, t)
 }
