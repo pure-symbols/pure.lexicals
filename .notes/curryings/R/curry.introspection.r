@@ -2,8 +2,8 @@ fixedpoint = \ (f) (\ (x) (x) (x)
 	) (\ (y) (f) (\ (...) (y) (y) (...))) ;
 
 curry = \ (func) fixedpoint (\ (curried) 
-	\ (...) if (length (list (...)) != length (formals (func))) 
-		(\ (x) curried |> do.call (list (...) |> c(x))) else 
+	\ (...) if (base::length (base::list (...)) != base::length (base::formals (func))) 
+		(\ (x) curried |> base::do.call (base::list (...) |> base::c (x))) else 
 		(func) (...)) ;
 
 #' @examples
