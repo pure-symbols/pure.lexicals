@@ -1,6 +1,6 @@
 <sup><sub>Ref by an answer from *[stackoverflow](https://stackoverflow.com/questions/29344795/generating-a-random-sequence-of-multiple-characters-in-r/77966395#77966395)*: <sub/><sup/>
 
-To see a code number in UTF-8 means witch character: 
+To see a code number in UTF-8 means which character: 
 
 ~~~ r
 #' @license mit
