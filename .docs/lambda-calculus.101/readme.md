@@ -239,17 +239,35 @@ Examples:
 
 ### 🌪 Name
 
-At the beginning, we just want to bind some name with their structure, which is just describe a change (or mapping, or relationship). So, the *functions* are all anonymous at the beginning in this logic, it must anonymous at the first, then it can be bind with its name we want to give for it. In math, a function can be bind with any name (such as `a` `b` `c` ...), a name (such as `f` `g` ...) also can be bind with any functions.
+<sup>At the beginning, we just want to bind some name with their structure, which is just describe a change (or mapping, or relationship). So, the *functions* are all anonymous at the beginning in this logic, it must anonymous at the first, then it can be bind with its name we want to give for it. In math, a function can be bind with any name (such as `a` `b` `c` ...), a name (such as `f` `g` ...) also can be bind with any functions.</sup>
 
-The *function* means a structure that shows a *transition*. And in *Lambda Calculus (λ Calculus)*, all value is such *functions*.
+<sup>The *function* means a structure that shows a *transition*. And in *Lambda Calculus (λ Calculus)*, all value is such *functions*.</sup>
 
-So, from that, things is just an anonymous function that can be treated like a value, people call them ***lambda (λ)***. But ... why *Lambda Calculus (λ Calculus)* use the symbol ***lambda (λ)*** ?
+<sup>So, from that, things is just an anonymous function that can be treated like a value, people call them ***lambda (λ)***. But ... why *Lambda Calculus (λ Calculus)* use the symbol ***lambda (λ)*** ?</sup>
 
-As far as I know, it is `ˆx.xx` at the first, a `^` hat on the `x` left of the `.`, then it becomes `Ʌx.xx`, then `λx.xx`. You can see [here](https://en.wikipedia.org/wiki/Lambda_calculus#Origin_of_the_%CE%BB_symbol) to get some details. Anyway, it's just a symbol, who knows why this symbol ... every one just call this name to mean an anonymous function that can be treated like a value.
+<sup>As far as I know, it is `ˆx.xx` at the first, a `^` hat on the `x` left of the `.`, then it becomes `Ʌx.xx`, then `λx.xx`. You can see [here](https://en.wikipedia.org/wiki/Lambda_calculus#Origin_of_the_%CE%BB_symbol) to get some details: </sup>
 
-Then, functions might have *[free variables](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables)* in its body. So, if such function can be treated like a value, then it must have abilities or rules for those variables' binding. We need things like that, we give them a name: *closure*.
+> <sup>There is some uncertainty over the reason for Church's use of the Greek letter lambda (λ) as the notation for function-abstraction in the lambda calculus, perhaps in part due to conflicting explanations by Church himself. According to Cardone and Hindley (2006):</sup>
+> 
+> > <sup>By the way, why did Church choose the notation `λ` ? In \[an unpublished 1964 letter to Harald Dickson\] he stated clearly that it came from the notation `ˆx` used for class-abstraction by [Whitehead and Russell](https://en.wikipedia.org/wiki/Principia_Mathematica), by first modifying `ˆx` to `∧x` to distinguish function-abstraction from class-abstraction, and then changing `∧` to `λ` for ease of printing.</sup>
+> > 
+> > <sup>This origin was also reported in \[Rosser, 1984, p.338\]. On the other hand, in his later years Church told two enquirers that the choice was more accidental: a symbol was needed and `λ` just happened to be chosen.</sup>
+> > 
+> 
+> <sup>Dana Scott has also addressed this question in various public lectures. Scott recounts that he once posed a question about the origin of the lambda symbol to Church's former student and son-in-law John W. Addison Jr., who then wrote his father-in-law a postcard:</sup>
+> 
+> > <sup>Dear Professor Church,</sup>  
+> > <sup>Russell had the [iota operator](https://en.wikipedia.org/wiki/Iota_operator), Hilbert had the [epsilon operator](https://en.wikipedia.org/wiki/Epsilon_operator). Why did you choose lambda for your operator?</sup>
+> > 
+> 
+> <sup>According to Scott, Church's entire response consisted of returning the postcard with the following annotation: "[eeny, meeny, miny, moe](https://en.wikipedia.org/wiki/Eeny,_meeny,_miny,_moe)".</sup>
+> 
 
-Some binding rule is bind those *free variables* at its **[*lexical scope*](https://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scope)** (means *static scope*, another type called *[dynamic scope](https://en.wikipedia.org/wiki/Scope_(computer_science)#Dynamic_scope)*), so such closures called *Lexical Closure*, and almose all of the closures' implementations in languages is *lexical closure*.
+<sup>Anyway, it's just a symbol, who knows why this symbol ... every one just call this name to mean an anonymous function that can be treated like a value.</sup>
+
+<sup>Then, functions might have *[free variables](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables)* in its body. So, if such function can be treated like a value, then it must have abilities or rules for those variables' binding. We need things like that, we give them a name: *closure*.</sup>
+
+<sup>Some binding rule is bind those *free variables* at its **[*lexical scope*](https://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scope)** (means *static scope*, another type called *[dynamic scope](https://en.wikipedia.org/wiki/Scope_(computer_science)#Dynamic_scope)*), so such closures called *Lexical Closure*, and almose all of the closures' implementations in languages is *lexical closure*.</sup>
 
 
 ## Syntaxes Ref
