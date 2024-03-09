@@ -237,6 +237,21 @@ Examples:
 *Done. 🌚*
 
 
+### 🌪 Name
+
+At the beginning, we just want to bind some name with their structure, which is just describe a change (or mapping, or relationship). So, the *functions* are all anonymous at the beginning in this logic, it must anonymous at the first, then it can be bind with its name we want to give for it. In math, a function can be bind with any name (such as `a` `b` `c` ...), a name (such as `f` `g` ...) also can be bind with any functions.
+
+And in *Lambda Calculus (λ Calculus)*, all value is such *functions*.
+
+So, from that, things is just an anonymous function that can be treated like a value, people call them ***lambda (λ)***. But ... why *Lambda Calculus (λ Calculus)* use the symbol ***lambda (λ)*** ?
+
+As far as I know, it is `ˆx.xx` at the first, a `^` hat on the `x` left of the `.`, then it becomes `Ʌx.xx`, then `λx.xx`. You can see [here](https://en.wikipedia.org/wiki/Lambda_calculus#Origin_of_the_%CE%BB_symbol) to get some details. Anyway, it's just a symbol, who knows why this symbol ... every one just call this name to mean an anonymous function that can be treated like a value.
+
+Then, functions might have *[free variables](https://en.wikipedia.org/wiki/Free_variables_and_bound_variables)* in its body. So, if such function can be treated like a value, then it must have abilities or rules for those variables' binding. We need things like that, we give them a name: *closure*.
+
+Some binding rule is bind those *free variables* at its **[*lexical scope*](https://en.wikipedia.org/wiki/Scope_(computer_science)#Lexical_scope)** (means *static scope*, another type called *[dynamic scope](https://en.wikipedia.org/wiki/Scope_(computer_science)#Dynamic_scope)*), so such closures called *Lexical Closure*, and almose all of the closures' implementations in languages is *lexical closure*.
+
+
 ## Syntaxes Ref
 
 Here are something about the relationship of syntaxes between *lambda calculate*, *Julia*, *ES6*, *Python*, and *OCaml*.
@@ -357,6 +372,7 @@ And ...
 *Cool hugh ? 🌞*
 
 Here's more details about [*combinatory logic*](https://ncatlab.org/nlab/show/combinatory+logic) and [*partial combinatory algebra*](https://ncatlab.org/nlab/show/partial+combinatory+algebra), and something about [*fixed-point combinator*](https://ncatlab.org/nlab/show/fixed-point+combinator#combinatory_logic) you might interested in which with its combinatory logic. *(Well, I just found those links by [this question and its answer](https://math.stackexchange.com/questions/4330664/is-sk-s-i-iss-k-ssk-kik-s-i-i-really-a-fixed-point-combinato). You can also see my [doc](../fixed-point-things) about those 🙃)*
+
 
 
 ### 🪐 More
