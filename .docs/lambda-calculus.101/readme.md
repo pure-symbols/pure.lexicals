@@ -241,7 +241,7 @@ Examples:
 
 At the beginning, we just want to bind some name with their structure, which is just describe a change (or mapping, or relationship). So, the *functions* are all anonymous at the beginning in this logic, it must anonymous at the first, then it can be bind with its name we want to give for it. In math, a function can be bind with any name (such as `a` `b` `c` ...), a name (such as `f` `g` ...) also can be bind with any functions.
 
-And in *Lambda Calculus (λ Calculus)*, all value is such *functions*.
+The *function* means a structure that shows a *transition*. And in *Lambda Calculus (λ Calculus)*, all value is such *functions*.
 
 So, from that, things is just an anonymous function that can be treated like a value, people call them ***lambda (λ)***. But ... why *Lambda Calculus (λ Calculus)* use the symbol ***lambda (λ)*** ?
 
