@@ -1,3 +1,11 @@
+/** 
+  * @license agpl-3.0
+  * @license gfdl-1.3
+  * 
+  */
+
+
+
 /* Fn */
 
 type Fn <T, R> = (x: T) => R ;
@@ -33,7 +41,7 @@ Tuple.head = <H, T> (self: Tuple<H, T>): H => self (Head) as H ;
 Tuple.tail = <H, T> (self: Tuple<H, T>): T => self (Tail) as T ;
 
 Tuple.RECORD = <H, T> (self: Tuple<H, T>): Pair<H, T> => 
-    Pair (pipe (self) (Tuple.head)) (pipe (self) (Tuple.tail)) ;
+	Pair (pipe (self) (Tuple.head)) (pipe (self) (Tuple.tail)) ;
 
 /* Iterator */
 
@@ -43,62 +51,62 @@ type Iterador <T> = Tuple<T, Downpour<T>> ;
 const Iterador = <T,> (h: T) => (t: Downpour<T>): Iterador<T> => Tuple (h) (t) ;
 
 Iterador.iterate = <T,> (h: T) => (f: Fn<T, T>): Downpour<T> => 
-    () => Iterador (h) (Iterador.iterate (f(h)) (f) ) ;
+	() => Iterador (h) (Iterador.iterate (f(h)) (f) ) ;
 
 Iterador.unfold = <T,> (h: T) => <R,> (f: Fn<T, Tuple<R,T>>): Downpour<R> => 
-    (({head,tail}) => () => Iterador (head) (Iterador.unfold (tail) (f))) (Tuple.RECORD (f (h))) ;
+	(({head,tail}) => () => Iterador (head) (Iterador.unfold (tail) (f))) (Tuple.RECORD (f (h))) ;
 
 Iterador.head = <T,> (self: Downpour<T>): T => (Tuple.head) (self() as Tuple <T, Downpour<T> >) ;
 Iterador.tail = <T,> (self: Downpour<T>): Downpour<T> => (Tuple.tail) (self() as Tuple <T, Downpour<T> >) ;
 
 Iterador.map = <T, R> (f: Fn<T, R>) => (self: Downpour<T>): Downpour<R> => 
-    () => Iterador (pipe (Iterador.head (self)) (f) ) (pipe (Iterador.tail (self)) (Iterador.map (f)) ) ;
+	() => Iterador (pipe (Iterador.head (self)) (f) ) (pipe (Iterador.tail (self)) (Iterador.map (f)) ) ;
 
 Iterador.filter = <T,> (f: Fn<T, boolean>) => (self: Downpour<T>): Downpour<T> => 
-    ( ({head,tail}) => 
-        f(head) ? () => Iterador (head) (Iterador.filter (f) (tail)) : Iterador.filter (f) (tail) 
-    ) ({ head: Iterador.head (self), tail: Iterador.tail (self) }) ;
+	( ({head,tail}) => 
+		f(head) ? () => Iterador (head) (Iterador.filter (f) (tail)) : Iterador.filter (f) (tail) 
+	) ({ head: Iterador.head (self), tail: Iterador.tail (self) }) ;
 
 Iterador.RECORD = <T,> (self: Downpour<T>): Pair<T, Downpour<T> > => 
-    (Tuple.RECORD) (self () as Tuple <T, Downpour<T> >) ;
+	(Tuple.RECORD) (self () as Tuple <T, Downpour<T> >) ;
 
 Iterador.TAKE = (limit: number) => <T,> (self: Downpour<T>): T[] => 
-    
-    [... Array(limit).keys()].reduce
-    (
-        ({ left, right: { head, tail } }, k) => 
-            ({ left: [... left, head], right: Iterador.RECORD (tail) }) , 
-        
-        ({ left: [] as T[], right: Iterador.RECORD (self) }) , 
-
-    ).left ;
+	
+	[... Array(limit).keys()].reduce
+	(
+		({ left, right: { head, tail } }, k) => 
+			({ left: [... left, head], right: Iterador.RECORD (tail) }) , 
+		
+		({ left: [] as T[], right: Iterador.RECORD (self) }) , 
+	
+	).left ;
 
 
 
 /*//////////////////////////*/
 
 pipeline (Iterador.iterate (2) (x => x + 1)) 
-    (Iterador.map (x => x*x))
-    (Iterador.TAKE (10)) 
-    (console.log); // [4, 9, 16, 25, 36, 49, 64, 81, 100, 121] 
+	(Iterador.map (x => x*x)) 
+	(Iterador.TAKE (10)) 
+	(console.log); // [4, 9, 16, 25, 36, 49, 64, 81, 100, 121] 
 
-pipeline (Iterador.unfold (2) (x => Tuple (x*x) (x+1)))
-    (Iterador.TAKE (10)) 
-    (console.log); // [4, 9, 16, 25, 36, 49, 64, 81, 100, 121]
+pipeline (Iterador.unfold (2) (x => Tuple (x*x) (x+1))) 
+	(Iterador.TAKE (10)) 
+	(console.log); // [4, 9, 16, 25, 36, 49, 64, 81, 100, 121]
 
 pipeline (Iterador.iterate (2) (x => x + 1)) 
-    (Iterador.map (x => x*x))
-    (Iterador.filter (x => x%2 != 0))
-    (Iterador.TAKE (10)) 
-    (console.log); // [9, 25, 49, 81, 121, 169, 225, 289, 361, 441]
+	(Iterador.map (x => x*x)) 
+	(Iterador.filter (x => x%2 != 0)) 
+	(Iterador.TAKE (10)) 
+	(console.log); // [9, 25, 49, 81, 121, 169, 225, 289, 361, 441]
 
-const primes = 
+const primenums = 
 Iterador.unfold (Iterador.iterate (2) (x => x + 1)) 
-    ( natus => 
-    ( ({head,tail}) => Tuple (head) (pipe (tail) 
-        (Iterador.filter (x => x < head * head || x % head != 0))) 
-    ) (Iterador.RECORD (natus)) ) ;
+	( natus => 
+	( ({head,tail}) => Tuple (head) (pipe (tail) 
+		(Iterador.filter (x => x < head * head || x % head != 0))) 
+	) (Iterador.RECORD (natus)) ) ;
 
-pipeline (primes) 
-    (Iterador.TAKE (11)) 
-    (console.log); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
+pipeline (primenums) 
+	(Iterador.TAKE (11)) 
+	(console.log); // [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31]
