@@ -1,6 +1,6 @@
 /** 
-  * @license agpl-3.0
-  * @license gfdl-1.3
+  * @license AGPL-3.0
+  * @license GFDL-1.3
   * 
   */
 
@@ -11,79 +11,111 @@
 type Fn <T, R> = (x: T) => R ;
 type Lacking <T> = () => T ;
 
+
+
 /* Pipe */
 
-type pipe = <T,> (x: T) => <R,> (f: Fn<T, R>) => R ;
-const pipe: pipe = <T,> (x: T) => <R,> (f: Fn<T, R>): R => (f) (x) ;
+type pipe = <T,> (x: T) => <R,> (f: Fn <T, R>) => R ;
 
-type Pipeyard <T> = <R,> (continuation: Fn<T, R>) => Pipeyard<R> ;
-type pipeline = <T,> (head: T) => Pipeyard<T> ;
+const pipe: pipe = 
+<T,> (x: T) => 
+<R,> (f: Fn <T, R>): R => 
+	
+	(f) (x) ;
 
-const pipeline: pipeline = <T,> (x: T): Pipeyard<T> => <R,> (c: Fn<T, R>): Pipeyard<R> => pipeline ((c) (x)) ;
 
-/* Pair */
+type Pipeyard <T> = <R,> (continuation: Fn <T, R>) => Pipeyard <R> ;
+type pipeline = <T,> (head: T) => Pipeyard <T> ;
 
-type Pair <Head, Tail> = { head: Head, tail: Tail } ;
-const Pair = <H,> (h: H) => <T,> (t: T): Pair<H, T> => ({ head: h, tail: t }) as Pair <H, T> ;
+const pipeline: pipeline = 
+<T,> (s: T): Pipeyard <T> => 
+<R,> (continuation: Fn <T, R>): Pipeyard <R> => 
+	
+	pipeline ((continuation) (s)) ;
+
+
 
 /* Tuple */
 
-type True = <A> (a: A) => <B> (b: B) => A ;
-type False = <A> (a: A) => <B> (b: B) => B ;
+type Wert = <A> (a: A) => <B> (b: B) => A ;
+type Mehr = <A> (a: A) => <B> (b: B) => B ;
 
-const Head: True = <A,> (a: A) => <B,> (b: B): A => a ;
-const Tail: False = <A,> (a: A) => <B,> (b: B): B => b ;
+const wert: Wert = <A,> (a: A) => <B,> (b: B): A => a ;
+const mehr: Mehr = <A,> (a: A) => <B,> (b: B): B => b ;
 
-type Tuple <Head, Tail> = (chooser: True|False) => Head | Tail ;
+type Tuple <Head, Tail> = <R,> (chooser: Fn <Head, Fn <Tail, R>>) => R ;
 
-const Tuple = <H,> (h: H) => <T,> (t: T): Tuple<H, T> => ( (ch: True|False): H|T => ch (h) (t) ) as Tuple <H, T> ;
-Tuple.head = <H, T> (self: Tuple<H, T>): H => self (Head) as H ;
-Tuple.tail = <H, T> (self: Tuple<H, T>): T => self (Tail) as T ;
+const Tuple = 
+<H,> (h: H) => 
+<T,> (t: T)
+: Tuple <H, T> => 
+	
+	(
+		<R,> (recorder: Fn <H, Fn <T, R>>)
+		: R => recorder (h) (t) 
+	
+	) as Tuple <H, T> ;
 
-Tuple.RECORD = <H, T> (self: Tuple<H, T>): Pair<H, T> => 
-	Pair (pipe (self) (Tuple.head)) (pipe (self) (Tuple.tail)) ;
+
+Tuple.head = <H, T> (self: Tuple <H, T>): H => self (wert) as H ;
+Tuple.tail = <H, T> (self: Tuple <H, T>): T => self (mehr) as T ;
+
+Tuple.record = 
+<H, T> (tuple: Tuple <H, T>) => 
+<R,> (f: Fn <H, Fn <T, R>>)
+: R => 
+
+	((tuple) (f)) ;
+
+
 
 /* Iterator */
 
-type Downpour <T> = () => Iterador<T> ;
-type Iterador <T> = Tuple<T, Downpour<T>> ;
+type Downpour <T> = () => Iterador <T> ;
+type Iterador <T> = Tuple <T, Downpour <T>> ;
 
-const Iterador = <T,> (h: T) => (t: Downpour<T>): Iterador<T> => Tuple (h) (t) ;
+const Iterador = <T,> (h: T) => (t: Downpour <T>): Iterador <T> => Tuple (h) (t) ;
 
-Iterador.iterate = <T,> (h: T) => (f: Fn<T, T>): Downpour<T> => 
+Iterador.iterate = <T,> (h: T) => (f: Fn<T, T>): Downpour <T> => 
 	() => Iterador (h) (Iterador.iterate (f(h)) (f) ) ;
 
-Iterador.unfold = <T,> (h: T) => <R,> (f: Fn<T, Tuple<R,T>>): Downpour<R> => 
-	(({head,tail}) => () => Iterador (head) (Iterador.unfold (tail) (f))) (Tuple.RECORD (f (h))) ;
+Iterador.unfold = <T,> (h: T) => <R,> (f: Fn <T, Tuple <R, T>>): Downpour <R> => 
+	(Tuple.record (f (h))) ((head) => (tail) => () => Iterador (head) (Iterador.unfold (tail) (f))) ;
 
-Iterador.head = <T,> (self: Downpour<T>): T => (Tuple.head) (self() as Tuple <T, Downpour<T> >) ;
-Iterador.tail = <T,> (self: Downpour<T>): Downpour<T> => (Tuple.tail) (self() as Tuple <T, Downpour<T> >) ;
+Iterador.head = <T,> (self: Downpour <T>): T => (Tuple.head) (self() as Tuple <T, Downpour <T> >) ;
+Iterador.tail = <T,> (self: Downpour <T>): Downpour <T> => (Tuple.tail) (self() as Tuple <T, Downpour <T> >) ;
 
-Iterador.map = <T, R> (f: Fn<T, R>) => (self: Downpour<T>): Downpour<R> => 
+Iterador.map = <T, R> (f: Fn<T, R>) => (self: Downpour <T>): Downpour <R> => 
 	() => Iterador (pipe (Iterador.head (self)) (f) ) (pipe (Iterador.tail (self)) (Iterador.map (f)) ) ;
 
-Iterador.filter = <T,> (f: Fn<T, boolean>) => (self: Downpour<T>): Downpour<T> => 
+Iterador.filter = <T,> (f: Fn<T, boolean>) => (self: Downpour <T>): Downpour <T> => 
 	( ({head,tail}) => 
 		f(head) ? () => Iterador (head) (Iterador.filter (f) (tail)) : Iterador.filter (f) (tail) 
 	) ({ head: Iterador.head (self), tail: Iterador.tail (self) }) ;
 
-Iterador.RECORD = <T,> (self: Downpour<T>): Pair<T, Downpour<T> > => 
-	(Tuple.RECORD) (self () as Tuple <T, Downpour<T> >) ;
+Iterador.record = <T,> (self: Downpour <T>): Tuple <T, Downpour <T> > => 
+	(Tuple.record) (self () as Tuple <T, Downpour <T> >) ;
 
-Iterador.TAKE = (limit: number) => <T,> (self: Downpour<T>): T[] => 
+Iterador.TAKE = (limit: number) => <T,> (self: Downpour <T>): T[] => 
 	
 	[... Array(limit).keys()].reduce
 	(
-		({ left, right: { head, tail } }, k) => 
-			({ left: [... left, head], right: Iterador.RECORD (tail) }) , 
+		(state, k) => 
+			(Tuple.record (state)) ( (left) => (right) => 
+			(Tuple.record (right)) ( (head) => (tail) => 
+				Tuple ([... left, head]) (Iterador.record (tail)) 
+			) ) , 
 		
-		({ left: [] as T[], right: Iterador.RECORD (self) }) , 
+		(Tuple ([] as T[]) (Iterador.record (self))) , 
 	
-	).left ;
+	) (wert) ;
 
 
 
-/*//////////////////////////*/
+
+/* Sequences Demo */
+
+pipe ("~~~~~~~~~~~~~~~~~~~~~") (console.log);
 
 pipeline (Iterador.iterate (2) (x => x + 1)) 
 	(Iterador.map (x => x*x)) 
@@ -102,10 +134,10 @@ pipeline (Iterador.iterate (2) (x => x + 1))
 
 const primenums = 
 Iterador.unfold (Iterador.iterate (2) (x => x + 1)) 
-	( natus => 
-	( ({head,tail}) => Tuple (head) (pipe (tail) 
-		(Iterador.filter (x => x < head * head || x % head != 0))) 
-	) (Iterador.RECORD (natus)) ) ;
+	( naturalnums => (Iterador.record (naturalnums)) ( (head) => (tail) => 
+		Tuple (head) (pipe (tail) 
+			(Iterador.filter (x => x < head * head || x % head != 0))) 
+	) ) ;
 
 pipeline (primenums) 
 	(Iterador.TAKE (11)) 
