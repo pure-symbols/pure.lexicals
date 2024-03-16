@@ -247,6 +247,65 @@ A' a
  = (λx.xx) (λab.b(λz.aabz))
 ~~~
 
+### *Another type of 'Z'*
+
+~~~ ml
+Z  = λf.(λs.ss)(λx.f(λz.(xx)z))
+Z' = λf.(λs.ss)(λx.λz.f((xx)z))
+~~~
+
+`Z` is simply equal to `Y`: 
+
+~~~ ml
+A' = λz.Az
+A' a 
+ = (λz.Az) a
+ = A a
+
+λz.Az 
+ = A'
+ = A
+
+Z 
+ = λf.(λs.ss)(λx.f(λz.(xx)z))
+ = λf.(λs.ss)(λx.f(xx))
+ = Y
+~~~
+
+`Z'`: 
+
+~~~ ml
+Z' 
+ = λf.(λs.ss)(λx.λz.f((xx)z))
+ = λf.(λxz.f((xx)z))(λxz.f((xx)z))
+
+Z' f 
+ = (λf.(λxz.f((xx)z))(λxz.f((xx)z))) f
+ = (λxz.f((xx)z)) (λxz.f((xx)z))
+
+Z' 
+ = λf.(λxz.f((xx)z))(λxz.f((xx)z))
+ = λf.(λz'.f(((λxz.f((xx)z))(λxz.f((xx)z)))z'))
+ = λfg.f(((λxz.f((xx)z)) (λxz.f((xx)z)))g)
+ = λfg.f((Z' f)g)
+ = λfg.f(Z'fg)
+ = λfg.f((λf'g'.f'(Z'f'g'))fg)
+ = λfg.f(f(Z'fg))
+ = λfg.f(f(f(Z'fg)))
+ = λfg.f(f(f(f(Z'fg))))
+ = ...
+
+Z' a b 
+ = (λfg.f(Z'fg)) a b
+ = (a (Z' a b))
+ = (a (a (Z' a b)))
+ = (a (a (a (Z' a b))))
+ = ...
+
+Z' a b = (a (Z' a b))
+~~~
+
+
 
 ## 🌠 Also
 
