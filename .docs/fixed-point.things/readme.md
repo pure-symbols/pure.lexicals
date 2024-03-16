@@ -76,15 +76,15 @@ Y = S(KM)L
  = λb. (λz.b(zz)) (λz'.b(z'z'))
  = λb. (b( (λz'.b(z'z')) (λz'.b(z'z')) ))
  = λb. (b( (λz'.b(z'z')) (λz''.b(z''z'')) ))
- = λb. b b ( (λz''.b(z''z'')) (λz''.b(z''z'')) )
- = λb. b b ( (λz''.b(z''z'')) (λz'.b(z'z')) )
- = λb. b b b ( (λz'.b(z'z')) (λz''.b(z''z'')) )
- = λb. b b b b ( (λz''.b(z''z'')) (λz'.b(z'z')) )
- = λb. b b b b b ( (λz'.b(z'z')) (λz''.b(z''z'')) )
- = λb. b b b b b b ( (λz''.b(z''z'')) (λz'.b(z'z')) )
+ = λb. b ( b ((λz''.b(z''z'')) (λz''.b(z''z''))) )
+ = λb. b ( b ((λz''.b(z''z'')) (λz'.b(z'z'))) )
+ = λb. b ( b ( b ((λz'.b(z'z')) (λz'.b(z'z'))) ) )
+ = λb. b ( b ( b ((λz''.b(z''z'')) (λz'.b(z'z'))) ) )
+ = λf. f (f (f ((λx.f(xx)) (λy.f(yy)))))
+ = λf. f (f (f (f ((λx.f(xx)) (λy.f(yy))))))
+ = λf. f (f (f (f (f ((λx.f(xx)) (λy.f(yy)))))))
  ...
 ~~~
-
 
 ## 💉 Y & Z
 
@@ -203,6 +203,63 @@ SSK(S(K(SS(S(SSK))))K)
 Y' = SSK(S(K(SS(S(SSK))))K) = (λab.aba) (λab.a(bab))
 ~~~
 
+And: 
+
+~~~ ml
+🤔 = S(K(SS(S(SSK))))K = λab.a(bab)
+
+Y' 
+ = (λb'.(λab.a(bab))b'(λab.a(bab)))
+ = λx.(λab.a(bab))x(λab.a(bab))
+ = λx.🤔x🤔
+
+Y' 
+ = SSK(S(K(SS(S(SSK))))K)
+ = (λb'.(λab.a(bab))b'(λab.a(bab)))
+ = (λb'.(b'((λab.a(bab))b'(λab.a(bab)))))
+ = (λb'.(b'(b'((λab.a(bab))b'(λab.a(bab))))))
+ = (λb'.(b'(b'(b'((λab.a(bab))b'(λab.a(bab)))))))
+ = (λb'.(b'(b'(b'(b'((λab.a(bab))b'(λab.a(bab))))))))
+ = ...
+
+Y' 
+ = λx.🤔x🤔
+ = λx.x(🤔x🤔)
+ = λx.x(x(🤔x🤔))
+ = ...
+
+Y' f 
+ = 🤔f🤔
+ = f(🤔f🤔)
+ = f(f(🤔f🤔))
+ = ...
+
+Y' f = f (Y' f)
+~~~
+
+So: 
+
+~~~ ml
+Y 
+ = S(K(SII))(S(S(KS)K)(K(SII)))
+ = λa.(λb.a(bb))(λc.a(cc))
+
+Y f 
+ = (λb.f(bb)) (λc.f(cc))
+ = f ((λb.f(bb)) (λc.f(cc)))
+ = f (Y f)
+ = f (f (Y f))
+ = f (f (f (Y f)))
+ = ...
+
+Y f = f (Y f)
+Y' f = f (Y' f)
+
+Y = Y'
+
+S(K(SII))(S(S(KS)K)(K(SII))) = SSK(S(K(SS(S(SSK))))K)
+~~~
+
 ### *Turing fixed-point combinator*
 
 ~~~ ml
@@ -231,6 +288,8 @@ Y' = SSK(S(K(SS(S(SSK))))K) = (λab.aba) (λab.a(bab))
 
 Θt = t(Θt)
 ~~~
+
+And: 
 
 ~~~ ml
 A' = λz.Az
@@ -304,7 +363,6 @@ Z' a b
 
 Z' a b = (a (Z' a b))
 ~~~
-
 
 
 ## 🌠 Also
