@@ -89,7 +89,7 @@ ____
 
 Λ a. A a ≡ A ?
 
-X ≡ Λ a. A a
+X ＝ Λ a. A a
 X x ≡ (Λ a. A a) x
 X x ≡ A x
 X ≡ A
