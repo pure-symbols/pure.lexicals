@@ -367,12 +367,12 @@ Z' a b = (a (Z' a b))
 
 ## 🌠 Also
 
-- <sup>([BCL](https://en.wikipedia.org/wiki/Binary_combinatory_logic "Binary combinatory logic"))</sup> Binary combinatory logic
-- <sup>([IAJ](https://en.wikipedia.org/wiki/Iota_and_Jot "Iota and Jot"))</sup> Iota and Jot
-- <sup>([SKI](https://en.wikipedia.org/wiki/SKI_combinator_calculus "SKI combinator calculus"))</sup> SKI combinator calculus
-- <sup>([UNL](https://en.wikipedia.org/wiki/Unlambda "Unlambda"))</sup> Unlambda
-- <sup>([LZK](https://tromp.github.io/cl/lazy-k.html "Lazy-K"))</sup> Lazy-K
-- <sup>([TCP](https://esolangs.org/wiki/S_and_K_Turing-completeness_proof "S and K Turing-completeness proof"))</sup> S and K Turing-completeness proof
-- <sup>([FPC](https://www.cs.cornell.edu/courses/cs4110/2021fa/lectures/lecture16.pdf))</sup> CS 4110 – Programming Languages and Logics - Lecture #16: Fixed-Point Combinators
+- <sup>([BCL](https://en.wikipedia.org/wiki/Binary_combinatory_logic "Binary combinatory logic"))</sup> *Binary combinatory logic*
+- <sup>([IAJ](https://en.wikipedia.org/wiki/Iota_and_Jot "Iota and Jot"))</sup> *Iota and Jot*
+- <sup>([SKI](https://en.wikipedia.org/wiki/SKI_combinator_calculus "SKI combinator calculus"))</sup> *SKI combinator calculus*
+- <sup>([UNL](https://en.wikipedia.org/wiki/Unlambda "Unlambda"))</sup> *Unlambda*
+- <sup>([LZK](https://tromp.github.io/cl/lazy-k.html "Lazy-K"))</sup> *Lazy-K*
+- <sup>([TCP](https://esolangs.org/wiki/S_and_K_Turing-completeness_proof "S and K Turing-completeness proof"))</sup> *S and K Turing-completeness proof*
+- <sup>([FPC](https://www.cs.cornell.edu/courses/cs4110/2021fa/lectures/lecture16.pdf))</sup> *CS 4110 – Programming Languages and Logics - Lecture #16: Fixed-Point Combinators*
 
 
