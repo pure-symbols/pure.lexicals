@@ -77,3 +77,61 @@
 而支持了这解放的，就是永远更加主动（或者说狂野）的物的运动，因在「它」的面前，没有任何「规律」能够「长存」。因一切的「铁律」「真理」皆为符号所拟制而非长存之物，因而物之世界「生生不息」。
 
 —— 简单说来就是，真理的消亡使得想象的主体意识到其想象无法长存、其想象是为想象，真理不断地消亡使得主体不断失去其想象。真理的长存会造成想象的永远无法抵达，因而只有真理的不断一次次重复的消亡能带领想象抵达其未曾抵达的空间。从而，主体获得了自由，从而，主体能够被解放，因为新生是能够生出下一个新生的力量，主体在成为其其臣民的忠诚中取得（抵达）唯一真实的自由（对岸）。
+
+
+~~~~
+S = λabc.ac(bc)
+K = λab.a
+
+SK 
+= (λabc.ac(bc)) (λab.a)
+= (λa'bc.a'c(bc)) (λab'.a)
+= (λbc.(λab'.a)c(bc))
+= (λbc.(λb'.c)(bc))
+= (λbc.c)
+= λab.b
+= Ki
+
+SKK 
+= (λab.b) (λab.a)
+= (λa'b.b) (λab'.a)
+= (λb.b)
+= λa.a
+= I
+
+K(SKK) 
+= KI
+= (λab.a) (λa.a)
+= (λa'b.a') (λa.a)
+= (λb.(λa.a))
+= (λba.a)
+= λab.b
+= Ki
+
+SK = K(SKK) = KI
+SK = K((SK)K)
+SK = K((K((SK)K))K)
+SK = K((K((K((SK)K))K))K)
+SK = K((K((K((K((SK)K))K))K))K)
+... ... 
+SK = K((K((K((K(KIK))K))K))K)
+SK = K((K((K(KIK))K))K)
+SK = K((K(KIK))K)
+SK = K(KIK)
+
+K(SKK)K 
+= KIK
+= SKK
+= I
+
+SK = KI
+SK = K(KIK)
+SK = K(K(KIK)K)
+SK = K(K(K(KIK)K)K)
+SK = K(K(K(K(KIK)K)K)K)
+SK = K(K(K(K(K(KIK)K)K)K)K)
+SK = K(K(K(K(K(K(KIK)K)K)K)K)K)
+SK = K(K(K(K(K(K(K(KIK)K)K)K)K)K)K)
+SK = K(K(K(K(K(K(K(K(KIK)K)K)K)K)K)K)K)
+... ... 
+~~~~
