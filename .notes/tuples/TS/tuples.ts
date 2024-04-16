@@ -9,10 +9,6 @@ type Fn <T, R> = (x: T) => R ;
 
 type Wert = <A> (a: A) => <B> (b: B) => A ;
 type Mehr = <A> (a: A) => <B> (b: B) => B ;
-
-const wert: Wert = <A,> (a: A) => <B,> (b: B): A => a ;
-const mehr: Mehr = <A,> (a: A) => <B,> (b: B): B => b ;
-
 type Tuple <Head, Tail> = <R,> (chooser: Fn <Head, Fn <Tail, R>>) => R ;
 
 const Tuple = 
@@ -26,9 +22,8 @@ const Tuple =
 	
 	) as Tuple <H, T> ;
 
-
-Tuple.head = <H, T> (self: Tuple <H, T>): H => self (wert) as H ;
-Tuple.tail = <H, T> (self: Tuple <H, T>): T => self (mehr) as T ;
+Tuple.head = (<A,> (a: A) => <B,> (b: B): A => a) as Wert ;
+Tuple.tail = (<A,> (a: A) => <B,> (b: B): B => b) as Mehr ;
 
 Tuple.record = 
 <H, T> (tuple: Tuple <H, T>) => 
@@ -47,17 +42,21 @@ console.log ('~~~~~~~~~~~~~~~~~~~~~');
 
 /* native tuple */ (({ a, b }) => a.length + b) ({a: "abc", b: 1}) ;
 /* pure tuple */ Tuple.record (Tuple ("abc") (1)) ((a) => (b) => a.length + b) ;
+/* pure tuple */ (Tuple ("abc") (1)) ((a) => (b) => a.length + b) ;
+/* pure tuple */ (pair => pair ((a) => (b) => a.length + b)) (Tuple ("abc") (1)) ;
 
 console.log ((({ a, b }) => a.length + b) ({a: "abc", b: 1})); // 4
 console.log (Tuple.record (Tuple ("abc") (1)) ((a) => (b) => a.length + b)); // 4
+console.log ((Tuple ("abc") (1)) ((a) => (b) => a.length + b)); // 4
+console.log ((pair => pair ((a) => (b) => a.length + b)) (Tuple ("abc") (1))); // 4
 
 /* getval */
 
-/* native tuple */ ({a: "abc", b: 1}).a ;
-/* pure tuple */ (Tuple ("abc") (1)) (wert) ;
+/* native tuple */ ({head: "abc", tail: 1}).head ;
+/* pure tuple */ (Tuple ("abc") (1)) (Tuple.head) ;
 
-console.log (({a: "abc", b: 1}).a); // "abc"
-console.log ((Tuple ("abc") (1)) (wert)); // "abc"
+console.log (({head: "abc", tail: 1}).head); // "abc"
+console.log ((Tuple ("abc") (1)) (Tuple.head)); // "abc"
 
 
 
@@ -90,9 +89,12 @@ Tuple3.two = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): B => b ;
 Tuple3.three = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): C => c ;
 
 /* unpack */ (Tuple3 ("aa") (2) ("()")) ((str) => (n) => (x) => str.length + n + x) ;
+/* unpack */ ((tuple3) => tuple3 ((str) => (n) => (x) => str.length + n + x)) (Tuple3 ("aa") (2) ("()")) ;
 /* getval */ (Tuple3 ("aa") (2) ("()")) (Tuple3.three) ;
+/* getval */ ((tuple3) => tuple3 (Tuple3.three)) (Tuple3 ("aa") (2) ("()")) ;
 
 console.log ((Tuple3 ("aa") (2) ("()")) ((str) => (n) => (x) => str.length + n + x)); // "4()"
+console.log (((tuple3) => tuple3 ((str) => (n) => (x) => str.length + n + x)) (Tuple3 ("aa") (2) ("()"))); // "4()"
 console.log ((Tuple3 ("aa") (2) ("()")) (Tuple3.three)); // "()"
 console.log ((Tuple3 ("aa") (2) ("()")) (Tuple3.one)); // "aa"
 console.log ((Tuple3 ("aa") (2) ("()")) (Tuple3.two)); // 2
