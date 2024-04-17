@@ -35,55 +35,54 @@ const pipeline: pipeline =
 
 
 
-/* Tuple */
+/* Pair */
 
 type Wert = <A> (a: A) => <B> (b: B) => A ;
 type Mehr = <A> (a: A) => <B> (b: B) => B ;
+type Pair <Head, Tail> = <R,> (chooser: Fn <Head, Fn <Tail, R>>) => R ;
 
-const wert: Wert = <A,> (a: A) => <B,> (b: B): A => a ;
-const mehr: Mehr = <A,> (a: A) => <B,> (b: B): B => b ;
-
-type Tuple <Head, Tail> = <R,> (chooser: Fn <Head, Fn <Tail, R>>) => R ;
-
-const Tuple = 
+const Pair = 
 <H,> (h: H) => 
 <T,> (t: T)
-: Tuple <H, T> => 
+: Pair <H, T> => 
 	
 	(
 		<R,> (recorder: Fn <H, Fn <T, R>>)
 		: R => recorder (h) (t) 
 	
-	) as Tuple <H, T> ;
+	) as Pair <H, T> ;
 
 
-Tuple.head = <H, T> (self: Tuple <H, T>): H => self (wert) as H ;
-Tuple.tail = <H, T> (self: Tuple <H, T>): T => self (mehr) as T ;
+Pair.wert = (<W,> (w: W) => <M,> (m: M): W => w as W) as Wert ;
+Pair.mehr = (<W,> (w: W) => <M,> (m: M): M => m as M) as Mehr ;
 
-Tuple.record = 
-<H, T> (tuple: Tuple <H, T>) => 
+Pair.head = <H, T> (self: Pair <H, T>): H => (self) (Pair.wert) as H ;
+Pair.tail = <H, T> (self: Pair <H, T>): T => (self) (Pair.mehr) as T ;
+
+Pair.record = 
+<H, T> (p: Pair <H, T>) => 
 <R,> (f: Fn <H, Fn <T, R>>)
 : R => 
 
-	((tuple) (f)) ;
+	((p) (f)) ;
 
 
 
 /* Iterator */
 
 type Downpour <T> = () => Iterador <T> ;
-type Iterador <T> = Tuple <T, Downpour <T>> ;
+type Iterador <T> = Pair <T, Downpour <T>> ;
 
-const Iterador = <T,> (h: T) => (t: Downpour <T>): Iterador <T> => Tuple (h) (t) ;
+const Iterador = <T,> (h: T) => (t: Downpour <T>): Iterador <T> => Pair (h) (t) ;
 
 Iterador.iterate = <T,> (h: T) => (f: Fn<T, T>): Downpour <T> => 
 	() => Iterador (h) (Iterador.iterate (f(h)) (f) ) ;
 
-Iterador.unfold = <T,> (h: T) => <R,> (f: Fn <T, Tuple <R, T>>): Downpour <R> => 
-	(Tuple.record (f (h))) ((head) => (tail) => () => Iterador (head) (Iterador.unfold (tail) (f))) ;
+Iterador.unfold = <T,> (h: T) => <R,> (f: Fn <T, Pair <R, T>>): Downpour <R> => 
+	(Pair.record (f (h))) ((head) => (tail) => () => Iterador (head) (Iterador.unfold (tail) (f))) ;
 
-Iterador.head = <T,> (self: Downpour <T>): T => (Tuple.head) (self() as Tuple <T, Downpour <T> >) ;
-Iterador.tail = <T,> (self: Downpour <T>): Downpour <T> => (Tuple.tail) (self() as Tuple <T, Downpour <T> >) ;
+Iterador.head = <T,> (self: Downpour <T>): T => self () (Pair.wert) as T ;
+Iterador.tail = <T,> (self: Downpour <T>): Downpour <T> => self () (Pair.mehr) as Downpour <T> ;
 
 Iterador.map = <T, R> (f: Fn<T, R>) => (self: Downpour <T>): Downpour <R> => 
 	() => Iterador (pipe (Iterador.head (self)) (f) ) (pipe (Iterador.tail (self)) (Iterador.map (f)) ) ;
@@ -93,22 +92,22 @@ Iterador.filter = <T,> (f: Fn<T, boolean>) => (self: Downpour <T>): Downpour <T>
 		f(head) ? () => Iterador (head) (Iterador.filter (f) (tail)) : Iterador.filter (f) (tail) 
 	) ({ head: Iterador.head (self), tail: Iterador.tail (self) }) ;
 
-Iterador.record = <T,> (self: Downpour <T>): Tuple <T, Downpour <T> > => 
-	(Tuple.record) (self () as Tuple <T, Downpour <T> >) ;
+Iterador.record = <T,> (self: Downpour <T>): Pair <T, Downpour <T> > => 
+	(Pair.record) (self () as Pair <T, Downpour <T> >) ;
 
 Iterador.TAKE = (limit: number) => <T,> (self: Downpour <T>): T[] => 
 	
 	[... Array(limit).keys()].reduce
 	(
 		(state, k) => 
-			(Tuple.record (state)) ( (left) => (right) => 
-			(Tuple.record (right)) ( (head) => (tail) => 
-				Tuple ([... left, head]) (Iterador.record (tail)) 
+			(Pair.record (state)) ( (left) => (right) => 
+			(Pair.record (right)) ( (head) => (tail) => 
+				Pair ([... left, head]) (Iterador.record (tail)) 
 			) ) , 
 		
-		(Tuple ([] as T[]) (Iterador.record (self))) , 
+		(Pair ([] as T[]) (Iterador.record (self))) , 
 	
-	) (wert) ;
+	) (Pair.wert) ;
 
 
 
@@ -122,7 +121,7 @@ pipeline (Iterador.iterate (2) (x => x + 1))
 	(Iterador.TAKE (10)) 
 	(console.log); // [4, 9, 16, 25, 36, 49, 64, 81, 100, 121] 
 
-pipeline (Iterador.unfold (2) (x => Tuple (x*x) (x+1))) 
+pipeline (Iterador.unfold (2) (x => Pair (x*x) (x+1))) 
 	(Iterador.TAKE (10)) 
 	(console.log); // [4, 9, 16, 25, 36, 49, 64, 81, 100, 121]
 
@@ -135,7 +134,7 @@ pipeline (Iterador.iterate (2) (x => x + 1))
 const primenums = 
 Iterador.unfold (Iterador.iterate (2) (x => x + 1)) 
 	( naturalnums => (Iterador.record (naturalnums)) ( (head) => (tail) => 
-		Tuple (head) (pipe (tail) 
+		Pair (head) (pipe (tail) 
 			(Iterador.filter (x => x < head * head || x % head != 0))) 
 	) ) ;
 
