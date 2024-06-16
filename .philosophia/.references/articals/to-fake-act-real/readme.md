@@ -2,7 +2,7 @@
 
 <sup>*[原创 三叔 倒场 2022-05-16 20:32 湖南](https://mp.weixin.qq.com/s/TGrVIoaYQL-JZ02rOUfilQ)*</sup>
 
-!{}(m640.webp)
+![](m640.webp)
 
 **在尚未言说之前，不论真假，皆不存在。** —— 拉康
 
