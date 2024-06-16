@@ -1,7 +1,7 @@
 
 # 为什么艺术一定不能是“必须”的东西？
 
-<sup>*[原创 三叔 倒场 2022-05-16 20:32 湖南](https://mp.weixin.qq.com/s/hLZvHbKwoW-DU95CHL6DQA)*</sup>
+<sup>*[原创 三叔 倒场 2023-04-30 16:35 湖南](https://mp.weixin.qq.com/s/hLZvHbKwoW-DU95CHL6DQA)*</sup>
 
 ![  ](./dsco_640.webp)
 
