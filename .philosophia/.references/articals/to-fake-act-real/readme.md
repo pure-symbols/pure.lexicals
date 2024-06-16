@@ -1,6 +1,6 @@
 # 为什么精神分析是一场“真实的骗局”？
 
-<sup>*[原创 三叔 倒场 2022-05-16 20:32 湖南](https://mp.weixin.qq.com/s/TGrVIoaYQL-JZ02rOUfilQ)*</sup>
+<sup>*[原创 三叔 倒场 2023-05-19 07:23 湖南](https://mp.weixin.qq.com/s/TGrVIoaYQL-JZ02rOUfilQ)*</sup>
 
 ![](m640.webp)
 
