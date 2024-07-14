@@ -1,6 +1,6 @@
 # 为什么是拉康？
 
-<sup>*三叔 倒场 2023-12-28 14:13 湖南*</sup>
+<sup>[*三叔 倒场 2023-12-28 14:13 湖南*](https://mp.weixin.qq.com/s/9Tlkyvo5catDKBaefGBUvg)</sup>
 
 ![](x.640.webp)
 
