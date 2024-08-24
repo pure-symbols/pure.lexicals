@@ -2,10 +2,9 @@
 
 等价性 (Equivalents)。
 
-<sup>  </sup>  
-<sub>  </sub>  
+<sup>即</sup>  
 
-<sup>即对应形式的词法闭包表示 🪒</sup>  
+<sup>对应形式的词法闭包表示 🪒</sup>  
 <sub>The Correspond Forms Indicates in Lexical Closures 🪒</sub>  
 
 <sup>你可以简单地把这当作一个简单的对应关系手册 🙃</sup>  
