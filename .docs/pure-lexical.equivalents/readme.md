@@ -72,7 +72,7 @@ Pipeyard.BROADCAST =
 } ;
 ~~~
 
-Function `Pipeyard` and `pipeline` are same here.
+*Function `Pipeyard` and `pipeline` are same here.*
 
 ### 🥩 Equal Case
 
