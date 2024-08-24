@@ -92,13 +92,13 @@ pipeline (6)
 
 ~~~ ts
 const add = (a, b) => a + b;
-console.log(add(4, add(7, 3)));
+console.log(add(4, add(7, 3))); //> 14
 
 {
 	const a = 6;
 	const b = a + 1;
 	const c = b * 2;
-	console.log(c - 3);
+	console.log(c - 3); //> 11
 }
 ~~~
 
