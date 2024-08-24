@@ -74,6 +74,8 @@ Function `Pipeyard` and `pipeline` are same here.
 
 ### 🥩 Equal Case
 
+[*see playground*](https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA7454ADwAVADTgASgD5wAXnAAKAB4AucDoCU504fABuSTJIp1CqdAqfqq++Ba6eqY29k4u2oaRVgBm9poRRsbOZq4ekmgA9riK4CHq9qVhIhFRdg5ZpjBaCVEpsvLpJo72btkiAJAwfZZJzjbOngFB+D7qygCGAE4AJto6puHNVgVYiihYAK5zu4Wp7foZ9eAzGPPL8aYTUyWhqFiV1VYAFhhzSzGX11uK10DzyhRwxQqrww5Ree0qjX0URw-3sgMWwLWcUam0s212ByOKBObVWBk6aNCQPu2OgAzpUPhVjxhQJh2OWFGOEc4zBRSuVIx5iqSK+Pz+dRglNmQpBtPpQ3iiRZOz27OJWFOZIug2lN1lJnlCr6FS2rLVRMKYt+PKs6OWzkGg2ccxwApldzlExg9qWNAAQoYAPIELgAYQIAGUdMLEcq8EhWr6QY4pQ5aQBvQZIDDFAC2GBwODmAHMYemLBmAL7gV0OCZ9BNJKzWOIFoulyrWRwNha5-YLeTt4tl3LQGvegLAacz6fgWfzmeSSyWS4wLMM0JWABEAD99wfdyUB-gIcoc+BDwft6Ntjh8jmaEh8iWe066Xfir8VhZLHNLpYABGlxzOAADU4CAQ2jJvFYADsjp0kM35WFQPKDMhSwrJYAAs6FISq96Ps+r7uIupi8Dh74mnCsGWAAbKmBGgb0oEQbwTF9EMgFxDxEAAEycUMaBxCJFDgGhGGEQ+GBPi+PbkeAvC8DAVajG+AQrmu0AbjRfiWHuV5HhgACOhxIOAADuKCKJ8l5GTeZq4DJcmkdRn61lhwp-gYwFxGxkENneLkkZYGHfrhBjhVhlhUFFSF9AhPJkdOFFUXSgy6X0HkseA9ENtl4LFDxFgBbwBUeSJFh8eA-EVeCIUvni4DiWhKXABRKl0lWqnqe4QA)
+
 #### Function apply
 
 ~~~ ts
@@ -82,7 +84,19 @@ pipeline (7)
 	(add (3))
 	(add (4))
 	(console.log); //> 14
+~~~
 
+~~~ ts
+const add = (a, b) => a + b;
+console.log(
+	add(4,
+	add(3,
+		7))); //> 14
+~~~
+
+#### Sub Scope
+
+~~~ ts
 pipeline (6)
 	(a => a + 1)
 	(b => b * 2)
@@ -91,9 +105,6 @@ pipeline (6)
 ~~~
 
 ~~~ ts
-const add = (a, b) => a + b;
-console.log(add(4, add(7, 3))); //> 14
-
 {
 	const a = 6;
 	const b = a + 1;
@@ -101,8 +112,6 @@ console.log(add(4, add(7, 3))); //> 14
 	console.log(c - 3); //> 11
 }
 ~~~
-
-[*see playground*](https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA7454ADwAVADTgASgD5wAXnAAKAB4AucDoCU504fABuSTJIp1CqdAqfqq++Ba6eqY29k4u2oaRVgBm9poRRsbOZq4ekmgA9riK4CHq9qVhIhFRdg5ZpjBaCVEpsvLpJo72btkiAJAwfZZJzjbOngFB+D7qygCGAE4AJto6puHNVgVYiihYAK5zu4Wp7foZ9eAzGPPL8aYTUyWhqFiV1VYAFhhzSzGX11uK10DzyhRwxQqrww5Ree0qjX0URw-3sgMWwLWcUam0s212ByOKBObVWBk6aNCQPu2OgAzpUPhVjxhQJh2OWFGOEc4zBRSuVIx5iqSK+Pz+dRglNmQpBtLgcCEcEs8USLJ2e3ZxKwpzJFyV4GlN1lJnlCvNBvNFS2rM1RMKYt+PKs6OWzgNBuccxwApldzlExgrqWNAAQoYAPIELgAYQIAGUdMLEWq8EhWsGQY4pQ5aQBvA1IDDFAC2GBwODmAHMYbmLHmAL7gb0OCbmtNJKzWOJlivVyrWRxthULYv7BbyXuVmu5aBNwMBYBL5dL8ArtfLySWSyXGAFhmhKwAIgAfmfzyeSuP8BDlEXwBfz0fRtscPkizQkPkq0PBoNX8UvwrBYlhzJclgAEaXHM4AANTgBBEx9IybxWAA7O6dJDEBVhUDygzYUsKyWAALPhWHqm+H5fj+7gbqYvAkX+B7qNCVgAGzZhRMG9DB8G8FxfRDBBcQiRAABMglDGgcQyRQ4B4QRlHvhgn7fkO9HgLwvAwA2oy-gE267tA+7IYelino+l4YAAjocSDgAA7igiifA+VnPjauAqWptHMX0AHNkRwqgQYUFxHxCFIa+Pk0aBRGkQYQGWGhBh4TydFLgxTF0oMpkBeCgHCuxSEFfyIkWJFvClYFMkWGJ4DiTV4Kxd+eLgPJeGZcADE6XSDa6fp7hAA)
 
 ## *Tuple*
 
