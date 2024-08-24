@@ -158,7 +158,9 @@ Pair.applies =
 
 ### 🥩 Equal Case
 
-#### Apply with Unpack
+[*see playground*](https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxCt7QYAOx0O8BOl2OiSgcAAVywJAIaAA1qJ8kUcAUkBhqEgCkRjAAiAB+SeTSfAKbTybjVlenpIXq8+BwMgjomMH3jBCzxlo1uMRgIYKMrMRhVw4cj0djRgA2nH-mYzHHwABqQiaOPggdD0dQgC61pzEDzBfARekJZAwAenzFEqldYbiKbYNbYYjUZjxl7-cHI7H4AnU7vc9rRnLRjjlfONezME9GAARy9AgkHAAB3FBJFqUtzQAbwITQoQAXxPUN2wvLtryfUcEIfSdbxnedzngixPzjRCLFoFDbSAA)
+
+#### Unpack on Apply
 
 ~~~ ts
 (Pair ("a") (0)) ((a) => (b) => console.log (["A::" + a, "B::" + b])); //> ["A::a", "B::0"]
@@ -168,8 +170,6 @@ Pair.applies ((a) => (b) => console.log (["A::" + a, "B::" + b])) (Pair ("a") (0
 ~~~ ts
 (({a, b}) => console.log (["A::" + a, "B::" + b])) ({a: "a", b: 0}); //> ["A::a", "B::0"]
 ~~~
-
-[*see playground*](https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxCt7QYAOx0O8BOl2OiSgcAAVywJAIaAA1qJ8kUcAUkBhqEgCkRjAAiAB+SeTSfAKbTybjVlenpIXq8+BwMgjomMH3jBCzxlo1uMRgIYKMrMRhVw4cj0djRgA2nH-mYzHHwABqQiaOPggdD0dQgC61pzEDzBfARekJZAwAenzFEqldYbiKbYNbYYjUZjxl7-cHI7H4AnU7vc9rRnLRjjlfONezME9GAARy9AgkHAAB3FBJFqUtzQAbwITQoQAXxPUN2wvLtryfUcEIfSdbxnedzngixPzjRCLFoFDbSAA)
 
 ## *Circuit*
 
