@@ -78,6 +78,8 @@ And, with these things, we can do almost (maybe full) things about the compute w
 - **John Tromp Things** <sup>[*homepage.ghio*](https://tromp.github.io/ "John Tromp")</sup> <sup>[*orimaze*](https://tromp.github.io/orimaze.html "OriMaze: a block moving puzzle and maze in one! | John Tromp")</sup> <sup>[*pearls*](https://tromp.github.io/pearls.html "Programming Pearls | John Tromp")</sup> <sup>[*legalgo*](https://tromp.github.io/go/legal.html "Number of legal Go positions | John Tromp")</sup> 
 - **Unlambda Lang** <sup>[*unl.site*](http://madore.org/~david/programs/unlambda/ "The Unlambda Programming Language")</sup> <sup>[*esoteric.oerjan*](https://home.nvg.org/~oerjan/esoteric/ "Esoteric programming languages | Ørjan")</sup> 
 - **Combinatorics (Math)** <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Combinatorics "Combinatorics")</sup> <sup>[*wiki.zh*](https://zh.wikipedia.org/wiki/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6 "组合数学")</sup> 
+- **Typed lambda calculus** <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Typed_lambda_calculus)</sup> <sup>[*wiki.zh*](https://zh.wikipedia.org/wiki/%E6%9C%89%E7%B1%BB%E5%9E%8B%CE%BB%E6%BC%94%E7%AE%97)</sup> 
+- **Kappa calculus** <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Kappa_calculus)</sup> 
 
 
 
