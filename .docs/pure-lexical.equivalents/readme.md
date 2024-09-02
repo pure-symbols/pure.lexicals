@@ -119,8 +119,6 @@ pipeline (6)
 
 元组
 
-[tuple playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxCt7QYAOx0O8BOl2OiSgcAAVywJAIaAA1qJ8kUcAUkBhqEgCkRjAAiAB+SeTSfAKbTybjVlenpIXq8+BwMgjomMH3jBCzxlo1uMRgIYKMrMRhVw4cj0djRgA2nH-mYzHHwABqQiaOPggdD0dQgC61pzEDzBfARekJZAwAenzFEqldYbiKbYNbYYjUZjxl7-cHI7H4AnU7vc9rRnLRjjlfONezME9GAARy9AgkHAAB3FBJFqUtzQAbwITQoQAXxPUN2wvLtryfUcEIfSdbxnedzngixPzjRCLFoFDbSAA
-
 ### 🌋 Definitions
 
 #### Depends
@@ -129,11 +127,50 @@ pipeline (6)
 type Fn <T, R> = (x: T) => R ;
 ~~~
 
-#### One Field Tuple
+#### One length Tuple (Case Box)
 
-...
+[tuple 1 playground]: https://www.typescriptlang.org/play/?ssl=36&ssc=1&pln=8&pc=1#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AGECeFQEF1ew8pafsZoFoo+mro2+naOEmgA9riS7p74hjBqwaYW1jAWHl5q-nowAJDlRuVlgdloABYJCXgATmFKWdo6VtUW9jHgDU2txiY25eU2nqlFqnpO0DCFGNQE9RgEnAbGyr56RgQW3lZHtoRTODve+4fgx2f3C0tpqyRkKBiXGdCdusbs7RUGi60VK0CMJAKaSB3Xy2jOE2gZSMEJsRnYVhsT2gy2oLQwiRanC+wiy+0hM3wxVBpKC+wB4HCv1h0D6CKRlVR-0xcUWfMSyXAJBQrgCGn25ksNNq9MBzJO8IG6LRY15MGAGs1GvAWp1mviSRwCSQKyQCSIxgARAA-W1223ge2Ou2WqzY0DgJL4E1KSQAVzI+BAwGMy2MAHYeSiCDSBUaTdQzRajABtS3eMxmS3gADUhAAupiHHq9GmM2Zw5b8+qIJJ1uAcCgALaBoUioMhiHtiNRg6xw3G03m4xlzPZvMEQtukvgUcVqsSD0EN5IaTgJsJFoAa1ENaFfvxDZkJtElNe70+xj7Zzjg8Tw9T6bHuYLUbDRkj041paf8+r0A9DAAEc-QIJBwAAdxQOtT2jftcDvJMR1-cdXzRSNi2-Wdf0rf89z9LASAINAdw3bddwAiASAPfAcGPDsz3xQliVDaEP17GMbwHBMkMfctUMnIsZznXC92A0DwKgmDgyvABvAgAF94PjIdkznASp2MeSLHDJTMOAH9y1E6AgA
 
-#### Pair Tuple
+~~~ ts
+type Case <A,> = <R,> (c: Fn <A, R>) => R ;
+
+const Case = 
+<T,> (x: T)
+: Case <T> => 
+	
+	(
+		<R,> (chooser: Fn <T, R>)
+		: R => chooser (x) 
+	
+	) as Case <T> ;
+
+Case.ahead = (<A,> (a: A): A => a) as (<A> (a: A) => A) ;
+
+Case.applies = 
+<T, R> (f: Fn <T, R>) => 
+(p: Case <T>)
+: R => 
+	
+	((p) (f)) ;
+
+Case.records = 
+<T,> (p: Case <T>) => 
+<R,> (f: Fn <T, R>)
+: R => 
+	
+	((p) (f)) ;
+~~~
+
+It's same with the `pipe`: 
+
+~~~ ts
+/* one len tuple */ (Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+/* the simple pipe */ (pipe (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+~~~
+
+#### Two length Tuple (Pair Tuple)
+
+[tuple 2 playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxC6CkrwYQpeTjS4RymI6h4+d2a2VRGJK1UqtYZDVdbQm4ajc0kS3WvJvaDAZMp5PgVPplP5Io4ApIDDUJAFIjGABEAD9K1XK+Bq7Wq6WrLbQOASABXB3gHAyfOiYwfMsERvGWjx80EMFGVmIwq4PMFoslowAbVL-zMZlL4AA1IRNKXwRut7uoQBda0OTN6VfrsxD-eHsy0UuniQtsVkaTgAC2BS8AGtRBgFt207btpF7EBgC9UVxVQKVjCMCdESnMFZ1zfNC2LYwbyPHc93AA88JPc9zgHIxSyHc5RybK9wFwu9SwfDdn1fJMIAwABHNsCCQcAAHcUEkWo+3HTRpz2dD5ywpcGOPAiiM3fCzzHSimPAUdL2Ta81w3e9CMfVi3wgNssBIAg0EA38AKA9jWw7fBwMg6D7UdP8XX7PUKKokcxyQycJL0KTMMXHDdKU3cCGYiLwBU2jtPo8L9MUoy7K4ni+ME4TRKMABvKLYoAXzQnNpNCldwvkgrFPkuLjHyiw1PEixaGKrTgB029ksMl8YCAA
 
 ~~~ ts
 type Pair <Head, Tail> = <R,> (c: Fn <Head, Fn <Tail, R>>) => R ;
@@ -158,11 +195,20 @@ Pair.applies =
 : R => 
 	
 	((p) (f)) ;
+
+Pair.records = 
+<H, T> (p: Pair <H, T>) => 
+<R,> (f: Fn <H, Fn <T, R>>)
+: R => 
+	
+	((p) (f)) ;
 ~~~
 
 ### 🥩 Equal Case
 
-#### Unpack on Apply
+#### Apply Mork
+
+pair: 
 
 ~~~ ts
 (Pair ("a") (0)) ((a) => (b) => console.log (["A::" + a, "B::" + b])); //> ["A::a", "B::0"]
@@ -170,8 +216,48 @@ Pair.applies ((a) => (b) => console.log (["A::" + a, "B::" + b])) (Pair ("a") (0
 ~~~
 
 ~~~ ts
+((a, b) => console.log (["A::" + a, "B::" + b])) ("a", 0); //> ["A::a", "B::0"]
+~~~
+
+case: 
+
+~~~ ts
+(Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+Case.applies ((a) => console.log (["A::" + a])) (Case (7)); //> ["A::7"]
+~~~
+
+~~~ ts
+((a) => console.log (["A::" + a])) (7); //> ["A::7"]
+~~~
+
+
+
+#### Unpack Mork
+
+pair: 
+
+~~~ ts
+(Pair ("a") (0)) ((a) => (b) => console.log (["A::" + a, "B::" + b])); //> ["A::a", "B::0"]
+Pair.records (Pair ("a") (0)) ((a) => (b) => console.log (["A::" + a, "B::" + b])); //> ["A::a", "B::0"]
+~~~
+
+~~~ ts
 (({a, b}) => console.log (["A::" + a, "B::" + b])) ({a: "a", b: 0}); //> ["A::a", "B::0"]
 ~~~
+
+case: 
+
+~~~ ts
+(Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+Case.records (Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+~~~
+
+~~~ ts
+(({a}) => console.log (["A::" + a])) ({a: 7}); //> ["A::7"]
+~~~
+
+
+
 
 ### 📽 <sup>[*see playground*][tuple playground]</sup>
 
