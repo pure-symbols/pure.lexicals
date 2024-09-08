@@ -97,11 +97,13 @@ Z = λf.(λs.ss)(λx.f(λz.(xx)z))
 
 ### Same
 
-And for all combinator `F` and `X`, the `(λz. F z) X` is just equal with `F X`, this is just by the ***β-reduction*** ... Or, you can also see this formal by ***η-reduction***: the `λz. F z` can just be `F`.
+And for all combinator `F` and `X`, the `(λz. F z) X` is just equal with `F X`, this is just by the ***β-reduction***.
 
 So: for all combinator `F`, the `(λz. F z)` is just equal with `F`. Means, `λx.f(λz.(xx)z)` just same as `λx.f(xx)`.
 
 So we can know that, a `Z` is just a `Y`.
+
+... Or you can also see that equivalence by just ***η-reduction***: `F` is `λz. F z`.
 
 ### Diff
 
