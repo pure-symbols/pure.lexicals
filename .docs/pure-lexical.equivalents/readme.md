@@ -126,7 +126,7 @@ pipeline (6)
 type Fn <T, R> = (x: T) => R ;
 ~~~
 
-#### One length Tuple (Case Box)
+#### One length Tuple (Case)
 
 [case playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AGECeFQEF1ew8pafsZoFoo+mro2+naOEmgA9riS7p74hjBqwaYW1jAWHl5q-nowAJDlRuVlgdloABYJCXgATmFKWdo6VtUW9jHgDU2txiY25eU2nqlFqnpO0DCFGNQE9RgEnAbGyr56RgQW3lZHtoRTODve+4fgx2f3C0tpqyRkKBiXGdCdusbs7RUGi60VK0CMJAKaSB3Xy2jOE2gZSMEJsRnYVhsT2gy2oLQwiRanC+wiy+0hM3wxVBpKC+wB4HCv1h0D6CKRlVR-0xcUWfMSyXAJBQrgCGn25ksNNq9MBzJO8IG6LRY15MGAGs1GvAWp1mviSRwCSQKyQCSIxgARAA-W1223ge2Ou2WqzY0DgJL4E1KSQAVzI+BAwGMy2MAHYeSiCDSBUaTdQzRajABtS3eMxmS3gADUhAAupiHHq9GmM2Zw5b8+qIJJ1uAcCgALaBoUioMhiHtiNRg6xw3G03m4xlzPZvMEQtukvgUcVqsSD0EN5IaTgJsJFoAa1ENaFfvxDZkJtElNe70+xj7Zzjg8Tw9T6bHuYLUbDRkj041paf8+r0A9DAAEc-QIJBwAAdxQOtT2jftcDvJMR1-cdXzRSNi2-Wdf0rf89z9LASAINAdw3bddwAiASAPfAcGPDsz3xQliVDaEP17GMbwHBMkMfctUMnIsZznXC92A0DwKgmDgyvABvAgAF94PjIdkznASp2MeSLHDJTMOAH9y1E6AgA "Field One"
 
@@ -167,7 +167,7 @@ It's same with the `pipe`:
 /* the simple pipe */ (pipe (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
 ~~~
 
-#### Two length Tuple (Pair Tuple)
+#### Two length Tuple (Pair)
 
 [pair playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxC6CkrwYQpeTjS4RymI6h4+d2a2VRGJK1UqtYZDVdbQm4ajc0kS3WvJvaDAZMp5PgVPplP5Io4ApIDDUJAFIjGABEAD9K1XK+Bq7Wq6WrLbQOASABXB3gHAyfOiYwfMsERvGWjx80EMFGVmIwq4PMFoslowAbVL-zMZlL4AA1IRNKXwRut7uoQBda0OTN6VfrsxD-eHsy0UuniQtsVkaTgAC2BS8AGtRBgFt207btpF7EBgC9UVxVQKVjCMCdESnMFZ1zfNC2LYwbyPHc93AA88JPc9zgHIxSyHc5RybK9wFwu9SwfDdn1fJMIAwABHNsCCQcAAHcUEkWo+3HTRpz2dD5ywpcGOPAiiM3fCzzHSimPAUdL2Ta81w3e9CMfVi3wgNssBIAg0EA38AKA9jWw7fBwMg6D7UdP8XX7PUKKokcxyQycJL0KTMMXHDdKU3cCGYiLwBU2jtPo8L9MUoy7K4ni+ME4TRKMABvKLYoAXzQnNpNCldwvkgrFPkuLjHyiw1PEixaGKrTgB029ksMl8YCAA "Field Two"
 
@@ -203,6 +203,44 @@ Pair.records =
 	((p) (f)) ;
 ~~~
 
+#### Three length Tuple (Three)
+
+[three playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZcywAsAThnzKA8lgxNVQB3AHtNABEvFD1DZS11PSM0NwtFFX9A8HS1MM0cqIwUTV0dHRt9O0cJNFDcSXcvfEMYZQBBROMCCzaKvVaAIU6jACMLAb7hZQBhYbQLaasYC1VPbxUO8CHwadj+6ABIGAOjY4P4ubdQ0LwPNKV2-IftnNntMvKzi3tK8BTr25dGyjYFoGzHY42Ag4RrrR5bTS7arQGCrJrUAgkMgoDAwlrQeHbN66Yzse4bJ4qF4PYkfSYwIySNYYFbMikInafaDfWzCY5GRnM4HsKw2Jwo6Bo7zULy1DycPFTTZEpJMpqsprslX0gkJJJk7IPTY5akqWllJbc7S8iQnQVNYWi5Go5nUOrNClJbrgXq85RDJJjLaTGZzBZWHq8gjIqUYaiSMIGT1dHohgPGIMTP2zJLzHYRra8kYx11q9ZxDpe1N+9OjcYhnPGPOLBa8tDOiXALvdrvgHt97s1Oo4UJIONIUJEYwAIgAfvOF-PwIvlwvp1ZxTBQOASABXLzgHAyMeiYyxmcEdfGWjAgDatHUPHUACYALpOgUESYg3nJSa1XBR3HSdjFvac2jMMxp3AABqQhNGnAZIOguCRgQ6ZkNgv53w3Ac9DAiCzEvBCkLMWhp3QyCHyfZ9p1fCRt0xMhpHAABbUIPAAa1ELcID3A8j2kE8QGAWE4yY1BcWMIwv1-EZvzBNthyA6gJynIwCMwuCCBIrTwDQ8BpwwqCsLQHCzzZIxp0vYEb1A6iXxwhw8PATSiIowzSPIyiyMfF86N48AMAAR13AgkHAYIUCZU9P00AzFN+ACRzHVSQI08C9J0zy9IMoy9LMj9rI8h9XIct9cK7fDMvc3SyI8-LfJogLOwgXcsBIAg0G49iuJ46Bt34-BBOE0TYxlDA5QVCzNSsmzrzvcrzM-b95N-RK9GSlS1NAmqUPgnKTNQnz9sKyrgGqwjiMO7zDOM8qWu3EKwoiqKYpE6SAG9soSgBff9lNSnaMsI-bssQ3KTtM5bvosYr4osUq83vPy33+5yqtcmrroh+qfIe+joCAA "Field Three"
+
+~~~ ts
+type Three <One, Two, Drei> = <R,> (ch: Fn <One, Fn <Two, Fn <Drei, R>>>) => R ;
+
+const Three = 
+<A,> (a: A) => 
+<B,> (b: B) => 
+<C,> (c: C)
+: Three <A, B, C> => 
+	
+	(
+		<R,> (chooser: Fn <A, Fn <B, Fn <C, R>>>)
+		: R => chooser (a) (b) (c) 
+	
+	) as Three <A, B, C> ;
+
+Three.applies = 
+<A, B, C, R> (f: Fn <A, Fn <B, Fn <C, R>>>) => 
+(three: Three <A, B, C>)
+: R => 
+
+	((three) (f)) ;
+
+Three.records = 
+<A, B, C> (three: Three <A, B, C>) => 
+<R,> (f: Fn <A, Fn <B, Fn <C, R>>>)
+: R => 
+
+	((three) (f)) ;
+
+Three.one = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): A => a ;
+Three.two = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): B => b ;
+Three.three = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): C => c ;
+~~~
+
 ### 🥩 Equal Case
 
 #### Apply Mork
@@ -229,7 +267,16 @@ Case.applies ((a) => console.log (["A::" + a])) (Case (7)); //> ["A::7"]
 ((a) => console.log (["A::" + a])) (7); //> ["A::7"]
 ~~~
 
+three: 
 
+~~~ ts
+(Three ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])); //> ["A::a", "B::0", "C::0,1,2"]
+Three.applies ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])) (Three ("a") (0) ([0,1,2])); //> ["A::a", "B::0", "C::0,1,2"]
+~~~
+
+~~~ ts
+((a, b, c) => console.log (["A::" + a, "B::" + b, "C::" + c])) ("a", 0, [0,1,2]); //> ["A::a", "B::0", "C::0,1,2"]
+~~~
 
 #### Unpack Mork
 
@@ -255,10 +302,18 @@ Case.records (Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
 (({a}) => console.log (["A::" + a])) ({a: 7}); //> ["A::7"]
 ~~~
 
+three: 
 
+~~~ ts
+(Three ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])); //> ["A::a", "B::0", "C::0,1,2"]
+Three.records (Three ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])); //> ["A::a", "B::0", "C::0,1,2"]
+~~~
 
+~~~ ts
+(({a, b, c}) => console.log (["A::" + a, "B::" + b, "C::" + c])) ({a: "a", b: 0, c: [0,1,2]}); //> ["A::a", "B::0", "C::0,1,2"]
+~~~
 
-### 📽 <sup>[*one*][case playground]</sup> <sup>[*two*][pair playground]</sup> <sup>...</sup> 
+### 📽 <sup>[*one*][case playground]</sup> <sup>[*two*][pair playground]</sup> <sup>[*three*][three playground]</sup> <sup>...</sup> 
 
 ## *Circuit*
 
