@@ -101,9 +101,9 @@ And for all combinator `F` and `X`, the `(λz. F z) X` is just equal with `F X`,
 
 So: for all combinator `F`, the `(λz. F z)` is just equal with `F`. Means, `λx.f(λz.(xx)z)` just same as `λx.f(xx)`.
 
-So we can know that, a `Z` is just a `Y`.
-
 ... Or you can also see that equivalence by just ***η-reduction***: `F` is `λz. F z`.
+
+So we can know that, a `Z` is just a `Y`.
 
 ### Diff
 
