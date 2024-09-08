@@ -1,6 +1,6 @@
 # Pure-Lexical Equivalents
 
-等价性 (Equivalents)。
+纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents)。
 
 <sup>即</sup>  
 
