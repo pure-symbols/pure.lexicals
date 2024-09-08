@@ -3,12 +3,11 @@
 纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents)。
 
 <sup>即</sup>  
+<sub>*对应形式的词法闭包表示 🪒 ...*</sub>  
+<sup>*The Correspond Forms Indicates in Lexical Closures 🪒 ...*</sup>  
 
-<sup>对应形式的词法闭包表示 🪒</sup>  
-<sub>The Correspond Forms Indicates in Lexical Closures 🪒</sub>  
-
-<sup>你可以简单地把这当作一个简单的对应关系手册 🙃</sup>  
-<sub>You can just treat this as a simple show about the corresponds 🙃</sub>  
+<sub>*... You can just treat this as a simple show about the corresponds 🙃*</sub>  
+<sup>*... 你可以简单地把这当作一个简单的对应关系手册 🙃*</sup>  
 
 
 ## *Pipe*
