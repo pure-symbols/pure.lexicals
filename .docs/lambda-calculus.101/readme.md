@@ -117,6 +117,12 @@ add_one = add(1)
 add_one = y -> 1 + y
 ~~~
 
+or ...
+
+~~~ julia
+add_one = y -> add(1)(y)
+~~~
+
 *That's what a closure's definition does which more than only a function's*, and, that is what the ***η-reduction*** (or *η-equivalence*) in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki] is: 
 
 > ***η-reduction**: which captures a notion of extensionality*
