@@ -313,7 +313,7 @@ Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log ([
 (({a, b, c}) => console.log (["A::" + a, "B::" + b, "C::" + c])) ({a: "a", b: 0, c: [0,1,2]}); //> ["A::a", "B::0", "C::0,1,2"]
 ~~~
 
-### 📽 <sup>[*one*][case playground]</sup> <sup>[*two*][pair playground]</sup> <sup>[*three*][three playground]</sup> <sup>...</sup> 
+### 📽 <sup>[*one*][case playground],</sup> <sup>[*two*][pair playground],</sup> <sup>[*three*][three playground],</sup> <sup>...</sup> 
 
 ## *Circuit*
 
