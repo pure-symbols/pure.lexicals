@@ -78,7 +78,7 @@ OK, that's all. You've already touch all the points of *Lambda Calculus*. Funny?
 > 
 > The `add(3)` here will returns a closure: it's a function bind with a environment which just contain informations this function needed. This just like to create a special object in *OOP* style but that *'object'* can *be called like a function*.
 > 
-> In some language, closure is implemented as a special object. Also in some language, both all function is just a closure just with more than one syntax to define.
+> In some language, closure is implemented as a special object. Also in some language, both all function is just a closure just with more than one syntax to create/define.
 > 
 
 
