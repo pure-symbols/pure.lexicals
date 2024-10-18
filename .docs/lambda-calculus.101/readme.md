@@ -117,7 +117,7 @@ add_one = add(1)
 add_one = y -> 1 + y
 ~~~
 
-or ...
+also means ...
 
 ~~~ julia
 add_one = y -> add(1)(y)
