@@ -99,7 +99,7 @@ Z = λf.(λs.ss)(λx.f(λz.(xx)z))
 
 And for all combinator `F` and `X`, the `(λz. F z) X` is just equal with `F X`, this is just by the ***β-reduction***.
 
-So: for all combinator `F`, the `(λz. F z)` is just equal with `F`. Means, `λx.f(λz.(xx)z)` just same as `λx.f(xx)`.
+So: for all combinator `F`, the `(λz. F z)` is just equal with `F` (just [a *point-free style* trans to a *pointful style*](https://wiki.haskell.org/Pointfree "Pointfree Style") at here). Means, `λx.f(λz.(xx)z)` just same as `λx.f(xx)`.
 
 ... Or, you can also see that equivalence just by ***η-reduction***: `F` is `λz. F z`.
 
