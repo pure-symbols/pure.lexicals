@@ -123,7 +123,7 @@ also means ...
 add_one = y -> add(1)(y)
 ~~~
 
-*(See! It transed to a [pointful style](https://wiki.haskell.org/Pointfree#But_pointfree_has_more_points.21 "But pointfree has more points!") from a [point-free style](https://en.wikipedia.org/wiki/point-free_style "point-free style")!!)*
+*(See! It transed to a [pointful style](https://wiki.haskell.org/Pointfree#But_pointfree_has_more_points.21 "But pointfree has more points!") from a [point-free style](https://en.wikipedia.org/wiki/point-free_style "point-free style") !!)*
 
 *That's what a closure's definition does which more than only a function's*, and, that is what the ***η-reduction*** (or *η-equivalence*) in [*Lambda Calculus*][Reduction | Lambda Calculus | Wiki] is: 
 
