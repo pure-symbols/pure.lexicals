@@ -82,7 +82,7 @@ And, with these things, we can do almost (maybe full) things about the compute w
 - **Kappa calculus** <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Kappa_calculus)</sup> 
 - **Fixed-Point Combinator** <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Fixed-point_combinator)</sup> <sup>[*wiki.zh*](https://zh.wikipedia.org/wiki/%E4%B8%8D%E5%8A%A8%E7%82%B9%E7%BB%84%E5%90%88%E5%AD%90)</sup> 
 - **Fixed-Point Iteration** <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Fixed-point_iteration)</sup> 
-- **Point-free style** <sup>[*wiki.haskell*](https://wiki.haskell.org/Pointfree "Pointfree | HaskellWiki")</sup> <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Point-free_style "Point-free style (Tacit programming) | Wiki")</sup> <sup>[*wiki.apl*](https://aplwiki.com/wiki/Point-free_style "Point-free style (Tacit programming) | APL Wiki")</sup> 
+- **Point-free style** <sup>[*wiki.haskell*](https://wiki.haskell.org/Pointfree "Pointfree | HaskellWiki")</sup> <sup>[*wiki.en*](https://en.wikipedia.org/wiki/Point-free_style "Point-free style (Tacit programming) | Wiki")</sup> <sup>[*wiki.apl*](https://aplwiki.com/wiki/Point-free_style "Point-free style (Tacit programming) | APL Wiki")</sup> <sup>[*qa*](https://stackoverflow.com/questions/944446/what-is-point-free-style-in-functional-programming)</sup> <sup>[*qa*](https://stackoverflow.com/questions/35796584/point-free-function-gives-different-result-to-non-point-free)</sup> 
 
 
 
