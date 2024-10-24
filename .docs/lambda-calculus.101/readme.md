@@ -5,7 +5,7 @@ It's really not a complex thing. *Let's just start it with a specific code style
 
 ## Currying
 
-So, what is currying ?
+So, what is [currying](https://javierchavarri.com/data-first-and-data-last-a-comparison/#currying-and-partial-application "a pipe data style intro") ?
 
 ### 🎨 Simple
 
