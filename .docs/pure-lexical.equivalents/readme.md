@@ -6,8 +6,8 @@
 <sub>*对应形式的词法闭包表示 🪒 ...*</sub>  
 <sup>*The Correspond Forms Indicates in Lexical Closures 🪒 ...*</sup>  
 
-<sub>*... You can just treat this as a simple show about the corresponds 🙃*</sub>  
-<sup>*... 你可以简单地把这当作一个简单的对应关系手册 🙃*</sup>  
+<sub>*... You can just treat this as a simple show about the corresponds 🔨*</sub>  
+<sup>*... 你可以简单地把这当作一个简单的对应关系手册 🔨*</sup>  
 
 
 ## *Pipe*
@@ -203,9 +203,9 @@ Pair.records =
 	((p) (f)) ;
 ~~~
 
-#### Three length Tuple (Three)
+#### Three length Tuple (Triple)
 
-[three playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZcywCcUZfMoDyWDJqqAO4A9oEAFm4YGHqGylrqekZo4RaKKn4B4OlqoZo5qpHRmro6Ojb6do4SaCG4ku6eSPiGMMoAgonGBBbtFXptAEJdRgBGFoP9wsoAwiNoFjNWMBaqHl4qneDD4DOxA9AAkDCHRieH8fPhISF4bmlKHfmPOzlz2mXl5xb2leApNzu3RsYxBaBsJxONgIOEaGye200e2q0BgayaGGoBBIZBQGFhrWgCJ2710xnYD02zxUr0epM+UxgRkkRQwq3WzSpiN2X2gP1swhORmZrJB7CsNicqOg6K81CitTcnAJ0y2JKSLKibLhnOJSPKAraCSSFOyjy2OVpKnpZWWfO0hulpxFWrFEpRaI5mLqLSpSR64D6AuUwyS422U1m80WVl6AoIKNlzWoklCBj93V6kdDxnDk2DcySC12se2AtGia9KdZ6ae-qzwZzYwmkcLxmLS0WArQHulwH7A-74EHw4HNTqOBCyaQISIxgARAA-Zcr5fgVfrlfzqxSmCgcAkACuUXAOBknJAwGMSfwRnnBG3xloIIA2rR1Dx1AAmAC67uFBBTKCArJFMtS4FOmIznORgvvO7RmGY87gAA1IQmjzoMiHIWhowYTM2Gof8f47qOehwQhZgPhhWFmLQ874Yh76fl+84-hI+7YmQ0jgAAtiEbgANaiHuEBHieZ7SBeV43liOKoPixhGIBIGjEB4LdhOkHUNBxgUYRaEEDRBngHh4DzgRSFEWgJHXl6C4PiCz56cx34kQ4ZHgPpVEMeZtH0YxdEft+bGieAGAAI6HgQSDgEEKAsqISlGaZmgaX84GTtOs56fBJkpZhJlmRZJk2f+96+e+Xmub+pH9uReU+cZdG+SVQUsaFfYQIeWAkAQaDCfxQkidA+7ifgknSTqmIKgJyp2RiDmPkYzmwTVtkAUBakgeleiZdpumwY1OHoX5RWBSdZV1cADWUdRZ0tYFNWdfukXRbF8WJZeSkAN4pWZaAAL5gVp2Uwd5J0FbRJ3FZZl0bX9FgVZo4ZVcWb7Bb+wMefVXmNfdhWPeZlnPex0BAA "Field Three"
+[triple playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZcywCcUZfMoDyWDJqqAO4A9oEAFm4YGHqGylrqekZo4RaKKn4B4OlqoZo5qpHRmro6Ojb6do4SaCG4ku6eSPiGMMoAgonGBBbtFXptAEJdRgBGFoP9wsoAwiNoFjNWMBaqHl4qneDD4DOxA9AAkDCHRieH8fPhISF4bmlKHfmPOzlz2mXl5xb2leApNzu3RsYxBaBsJxONgIOEaGye200e2q0BgayaGGoBBIZBQGFhrWgCJ2710xnYD02zxUr0epM+UxgRkkRQwq3WzSpiN2X2gP1swhORmZrJB7CsNicqOg6K81CitTcnAJ0y2JKSLKibLhnOJSPKAraCSSFOyjy2OVpKnpZWWfO0hulpxFWrFEpRaI5mLqLSpSR64D6AuUwyS422U1m80WVl6AoIKNlzWoklCBj93V6kdDxnDk2DcySC12se2AtGia9KdZ6ae-qzwZzYwmkcLxmLS0WArQHulwH7A-74EHw4HNTqOBCyaQISIxgARAA-Zcr5fgVfrlfzqxSmCgcAkACuUXAOBknJAwGMSfwRnnBG3xloIIA2rR1Dx1AAmAC67uFBBTKCArJFMtS4FOmIznORgvvO7RmGY87gAA1IQmjzoMiHIWhowYTM2Gof8f47qOehwQhZgPhhWFmLQ874Yh76fl+84-hI+7YmQ0jgAAtiEbgANaiHuEBHieZ7SBeV43liOKoPixhGIBIGjEB4LdhOkHUNBxgUYRaEEDRBngHh4DzgRSFEWgJHXl6C4PiCz56cx34kQ4ZHgPpVEMeZtH0YxdEft+bGieAGAAI6HgQSDgEEKAsqISlGaZmgaX84GTtOs56fBJkpZhJlmRZJk2f+96+e+Xmub+pH9uReU+cZdG+SVQUsaFfYQIeWAkAQaDCfxQkidA+7ifgknSTqmIKgJyp2RiDmPkYzmwTVtkAUBakgeleiZdpumwY1OHoX5RWBSdZV1cADWUdRZ0tYFNWdfukXRbF8WJZeSkAN4pWZaAAL5gVp2Uwd5J0FbRJ3FZZl0bX9FgVZo4ZVcWb7Bb+wMefVXmNfdhWPeZlnPex0BAA "Field Three"
 
 ~~~ ts
 type Triple <One, Two, Three> = <R,> (ch: Fn <One, Fn <Two, Fn <Three, R>>>) => R ;
@@ -315,13 +315,17 @@ Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log ([
 
 ### 📽 <sup>[*one*][case playground],</sup> <sup>[*two*][pair playground],</sup> <sup>[*three*][three playground],</sup> <sup>...</sup> 
 
-## *Circuit*
+## *Wire*
 
 线路（分支）
 
-[circuit playground]: ...
+[Wire playground]: ... "circuit"
 
 ### 🌋 Definitions
+
+~~~ ts
+
+~~~
 
 ### 🥩 Equal Case
 
