@@ -317,7 +317,7 @@ Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log ([
 
 ## *Circuit*
 
-电路（其实是分支逻辑啦）
+线路（分支）
 
 [circuit playground]: ...
 
