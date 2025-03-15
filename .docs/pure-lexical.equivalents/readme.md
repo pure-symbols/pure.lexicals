@@ -313,22 +313,95 @@ Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log ([
 (({a, b, c}) => console.log (["A::" + a, "B::" + b, "C::" + c])) ({a: "a", b: 0, c: [0,1,2]}); //> ["A::a", "B::0", "C::0,1,2"]
 ~~~
 
-### 📽 <sup>[*one*][case playground],</sup> <sup>[*two*][pair playground],</sup> <sup>[*three*][three playground],</sup> <sup>...</sup> 
+### 📽 <sup>[*one*][case playground],</sup> <sup>[*two*][pair playground],</sup> <sup>[*three*][triple playground],</sup> <sup>...</sup> 
 
 ## *Wire*
 
 线路（分支）
 
-[Wire playground]: ... "circuit"
+[wire playground]: https://typescriptlang.org/play/?ts=next#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA74yAQzQBrcAB4AKgD5wAXnAAKAJTnTh8AG5JMgEIB7d0gVToK9eAeXuYGAEqmlpoAXOBaumHGtmYRAEYxcXr64UmmoU4waO64iuCGAE4ArhgxQd4WWQA0EdGx2pnZdlZprfFZiTF5yeCaVrbO0IXFsppIeDWedWFNVi0ZCTld6W3rA50po-m+MgDqKGX4IOK+-vgA7mf49eFWylu9HUOWWG-tiZ2WOAqKQAVhg0Ip5l4NnlxgUijgSvdzjEkY8RI0Iq8er8NjAvj91p08SkFpCkNZdkMYABIGkk4KWZS2L5jFzAdkc4DgTncjmSSw2InQADeNMmOC8GBoSHcAHMrAAiAB+KtVSvAqgq53ACOUSHwatVCus41p0Gp4pKmncZX29UMy0s9KQZIawxiDvA3UMuPN1NRVkFQ1Ffot8Ml0rlioIxtN1Op50UWqwkWsNOpAF9mUHTCH42HcBGZfLLArXLH0wmMEmyimUmm-VmugtWebxUWo5EbftLOUqm7eG6AEzWE288BK0wKmPjyfgXhi8P6yMl622qwcGZ4AfD0eOWdT8sH8BDmmLqaaNcpO0GB2pUmBBZuy8xHOlN3X18bH0ezoByKaMy15AS2hwFhKy7FisV49umfYYG66ZvsK7aQZ204xmOibJpYvC8NYGaIX6yGoVKUGlq45ZYdWOFDiOWZjuyE5TgQM5MXOeHnhBZGdpe3awX6m6zAhIjxiRS48SWGGxuA2G1rh+GEaJ1LiYWaFSZRMlySmdEEXux5lke7GmHRMBNjYsLQAKvp5qRK6KoaKrgBgACOFQzOA9yKAAFhOjkVuaXFWt2IRGI6zpkhgmhYM+Hofh6Gx5tSKAAGbNlC4BJeBHZSZhcZVjWKaAemGbOcJmWVnZ5FlgF+baU6DbxhmNKlaaVW8SFliKJUImDie+nGeA04KseC5thJ9lduulgpVuvW7oxXJzjVx6noF40XjBoV3ulLqPpK0XPi0b6ep+BxDD+pT-M64AAPzDCMMTAQcbUTeRfG2gJ8bdf2ymqdxk3SdRhUKQRRFiYl7UaVR+71bpDH7oN0mjWN2XqdB-FWOms3CeDKmQ296GsVpNHyXhYN-QTamSYqmnA7R9EDUth5GczJ5reZJpAA "circuit"
 
 ### 🌋 Definitions
 
+#### Depends
+
 ~~~ ts
+type Lack <T> = () => T ;
+~~~
+
+#### Bool
+
+~~~ ts
+type Bool = <R> (a: Lack <R>) => (b: Lack <R>) => R ;
+const True: Bool = <R,> (a: Lack <R>) => (b: Lack <R>): R => a () ;
+const False: Bool = <R,> (a: Lack <R>) => (b: Lack <R>): R => b () ;
+~~~
+
+#### Wire
+
+~~~ ts
+type wire = <R> (subject: Bool) => (y: Lack <R>) => (n: Lack <R>) => R ;
+
+const wire: wire = 
+<R,> (bool: Bool) => 
+(y: Lack <R>) => 
+(n: Lack <R>): R => 
+	
+	bool (y) (n) ;
 
 ~~~
 
 ### 🥩 Equal Case
 
-### 📽 <sup>[*see playground*][circuit playground]</sup>
+#### Short-circuit evaluation <sup>[*wiki.zh*](https://zh.wikipedia.org/wiki/%E7%9F%AD%E8%B7%AF%E6%B1%82%E5%80%BC "短路求值") [*wiki.en*](https://en.wikipedia.org/wiki/Short-circuit_evaluation "Short-circuit evaluation")</sup>
+
+~~~ ts
+const aorb = <T,> (bool: Bool, a: T, b: T) => 
+	wire (() => {
+		console.log ("A");
+		return(a)
+	}) (() => {
+		console.log ("B");
+		return(b)
+	}) (bool) ;
+console.log (aorb (True, 1, 2)); // ~> "A" // ~> 1
+console.log (aorb (False, 1, 2)); // ~> "B" // ~> 2
+
+const aaorbb = <T,> (bool: Bool, aa: () => T, bb: () => T): T => wire (aa) (bb) (bool) ;
+console.log (aaorbb (
+	True, 
+	() => {console.log ("AA"); return(11)}, 
+	() => {console.log ("BB"); return(22)})); // ~> "AA" // ~> 11
+console.log (aaorbb (
+	False, 
+	() => {console.log ("AA"); return(11)}, 
+	() => {console.log ("BB"); return(22)})); // ~> "BB" // ~> 22
+~~~
+
+~~~ ts
+const aorb = <T,> (bool: Boolean, a: T, b: T) => {
+	if (bool) {
+		console.log ("A");
+		return(a)
+	} else {
+		console.log ("B");
+		return(b)
+	}
+} ;
+console.log (aorb (true, 1, 2)); // ~> "A" // ~> 1
+console.log (aorb (false, 1, 2)); // ~> "B" // ~> 2
+
+const aaorbb = <T,> (bool: Boolean, aa: () => T, bb: () => T): T => (bool ? aa : bb) () ;
+console.log (aaorbb (
+	true, 
+	() => {console.log ("AA"); return(11)}, 
+	() => {console.log ("BB"); return(22)})); // ~> "AA" // ~> 11
+console.log (aaorbb (
+	false, 
+	() => {console.log ("AA"); return(11)}, 
+	() => {console.log ("BB"); return(22)})); // ~> "BB" // ~> 22
+~~~
+
+### 📽 <sup>[*see playground*][wire playground]</sup>
 
 
