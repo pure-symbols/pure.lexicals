@@ -343,12 +343,11 @@ const False: Bool = <R,> (a: Lack <R>) => (b: Lack <R>): R => b () ;
 type wire = <R> (subject: Bool) => (y: Lack <R>) => (n: Lack <R>) => R ;
 
 const wire: wire = 
-<R,> (bool: Bool) => 
-(y: Lack <R>) => 
-(n: Lack <R>): R => 
+<R,> (y: Lack <R>) => 
+(n: Lack <R>) => 
+(bool: Bool): R => 
 	
 	bool (y) (n) ;
-
 ~~~
 
 ### 🥩 Equal Case
