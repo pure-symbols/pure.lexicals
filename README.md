@@ -9,7 +9,7 @@
 
 - [*☄️ Lambda Calculus 101*](./.docs/lambda-calculus.101 "Let's See what the Lambda Calculus is ☄️")
 - [*🦠 Fixed Point Things*](./.docs/fixed-point.things "Some thing about the Fixed-point Combinators 🦠")
-
+- [*🧊 Pure Lexical Equivalents*](./.docs/pure-lexical.equivalents "The Correspond Forms Indicates in Pure-Lexical Styles 🧊")
 
 
 ## Intro
