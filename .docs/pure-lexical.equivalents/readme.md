@@ -14,7 +14,7 @@
 
 管道
 
-[pipe playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA7454ADwAVADTgASgD5wAXnAAKAB4AucDoCU504fABuSTJIp1CqdAqfqq++Ba6eqY29k4u2oaRVgBm9poRRsbOZq4ekmgA9riK4CHq9qVhIhFRdg5ZpjBaCVEpsvLpJo72btkiAJAwfZZJzjbOngFB+D7qygCGAE4AJto6puHNVgVYiihYAK5zu4Wp7foZ9eAzGPPL8aYTUyWhqFiV1VYAFhhzSzGX11uK10DzyhRwxQqrww5Ree0qjX0URw-3sgMWwLWcUam0s212ByOKBObVWBk6aNCQPu2OgAzpUPhVjxhQJh2OWFGOEc4zBRSuVIx5iqSK+Pz+dRglNmQpBtPpQ3iiRZOz27OJWFOZIug2lN1lJnlCr6FS2rLVRMKYt+PKs6OWzkGg2ccxwApldzlExg9qWNAAQoYAPIELgAYQIAGUdMLEcq8EhWr6QY4pQ5aQBvQZIDDFAC2GBwODmAHMYemLBmAL7gV0OCZ9BNJKzWOIFoulyrWRwNha5-YLeTt4tl3LQGvegLAacz6fgWfzmeSSyWS4wLMM0JWABEAD99wfdyUB-gIcoc+BDwft6Ntjh8jmaEh8iWe066Xfir8VhZLHNLpYABGlxzOAADU4CAQ2jJvFYADsjp0kM35WFQPKDMhSwrJYAAs6FISq96Ps+r7uIupi8Dh74mnCsGWAAbKmBGgb0oEQbwTF9EMgFxDxEAAEycUMaBxCJFDgGhGGEQ+GBPi+PbkeAvC8DAVajG+AQrmu0AbjRfiWHuV5HhgACOhxIOAADuKCKJ8l5GTeZq4DJcmkdRn61lhwp-gYwFxGxkENneLkkZYGHfrhBjhVhlhUFFSF9AhPJkdOFFUXSgy6X0HkseA9ENtl4LFDxFgBbwBUeSJFh8eA-EVeCIUvni4DiWhKXABRKl0lWqnqe4QA
+[pipe playground]: https://www.typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA7454ADwAVADTgASgD5wAXnAAKAB4AucDoCU504fABuSTJIp1CqdAqfqq++Ba6eqY29k4u2oaRVgBm9poRRsbOZq4ekmgA9riK4CHq9qVhIhFRdg5ZpjBaCVEpsvLpJo72btkiAJAwfZZJzjbOngFB+D7qygCGAE4AJto6puHNVgVYiihYAK5zu4Wp7foZ9eAzGPPL8aYTUyWhqFiV1VYAFhhzSzGX11uK10DzyhRwxQqrww5Ree0qjX0URw-3sgMWwLWcUam0s212ByOKBObVWBk6aNCQPu2OgAzpUPhVjxhQJh2OWFGOEc4zBRSuVIx5iqSK+Pz+dRglNmQpBtPpQ3iiRZOz27OJWFOZIug2lN1lJnlCr6FS2rLVRMKYt+PKs6OWzkGg2ccxwApldzlExg9qWNAAQoYAPIELgAYQIAGUdAB9GPCxHKvBIVq+kGOKUOWkAb0GSAwxQAthgcDg5gBzGFZizZgC+4FdDgmfWTSSs1jixdLFcq1kczYWBf2C3kXbLldy0Hr3oCwDn87n4AXS-nkkslkuMFzDNCVgARAA-I-Hg8lYf4CHKfPgE-HvejbY4fL5mhIfLl-tOumP4q-FYWSwACNLksOZLjmcAAGpwEA5tGTeKwABYACZHTpIY-ysKgeUGDClhWSxEJw9CVSfF83w-dwV1MXhEK-E04QQywADYMxIiDegg6DeDYvohkAuIBIgVDcLxOI0HAChwGw0TH2fDBX3fftqPAXheBgWtRk-AJ103aBtwYvxLEPW9TwwABHQ4kHAAB3FBFE+G9TPvM1cHkxTKPon8G3w4VQIMYC4i4mDmzk8j31A-DIqWQjkIMbCDCI5S51MRCAE56IMvpvI48BmObbLwWKASLGC3gCu8iSLCE8BkIq8F3IosSpOwqiUtU9S6VrDStPcIA "pipeyard"
 
 ### 🌋 Definitions
 
@@ -61,7 +61,7 @@ const Pipeyard =
 	
 	) as Pipeyard <T> ;
 
-Pipeyard.BROADCAST = 
+Pipeyard.BROADCAST__ = 
 <T,> (self: Pipeyard<T>)
 : T => 
 {
@@ -78,19 +78,16 @@ Pipeyard.BROADCAST =
 #### Function apply
 
 ~~~ ts
-const add = (a) => (b) => a + b;
-pipeline (7) 
+const add = (b) => (a) => a + b;
+pipeline (42) 
 	(add (3))
 	(add (4))
-	(console.log); //> 14
+	(console.log); //> 49
 ~~~
 
 ~~~ ts
 const add = (a, b) => a + b;
-console.log(
-	add(4,
-	add(3,
-		7))); //> 14
+console.log(add(add(42, 3), 4)); //> 49
 ~~~
 
 #### Sub Scope
@@ -128,7 +125,7 @@ type Fn <T, R> = (x: T) => R ;
 
 #### One length Tuple (Case)
 
-[case playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AGECeFQEF1ew8pafsZoFoo+mro2+naOEmgA9riS7p74hjBqwaYW1jAWHl5q-nowAJDlRuVlgdloABYJCXgATmFKWdo6VtUW9jHgDU2txiY25eU2nqlFqnpO0DCFGNQE9RgEnAbGyr56RgQW3lZHtoRTODve+4fgx2f3C0tpqyRkKBiXGdCdusbs7RUGi60VK0CMJAKaSB3Xy2jOE2gZSMEJsRnYVhsT2gy2oLQwiRanC+wiy+0hM3wxVBpKC+wB4HCv1h0D6CKRlVR-0xcUWfMSyXAJBQrgCGn25ksNNq9MBzJO8IG6LRY15MGAGs1GvAWp1mviSRwCSQKyQCSIxgARAA-W1223ge2Ou2WqzY0DgJL4E1KSQAVzI+BAwGMy2MAHYeSiCDSBUaTdQzRajABtS3eMxmS3gADUhAAupiHHq9GmM2Zw5b8+qIJJ1uAcCgALaBoUioMhiHtiNRg6xw3G03m4xlzPZvMEQtukvgUcVqsSD0EN5IaTgJsJFoAa1ENaFfvxDZkJtElNe70+xj7Zzjg8Tw9T6bHuYLUbDRkj041paf8+r0A9DAAEc-QIJBwAAdxQOtT2jftcDvJMR1-cdXzRSNi2-Wdf0rf89z9LASAINAdw3bddwAiASAPfAcGPDsz3xQliVDaEP17GMbwHBMkMfctUMnIsZznXC92A0DwKgmDgyvABvAgAF94PjIdkznASp2MeSLHDJTMOAH9y1E6AgA "Field One"
+[case playground]: https://www.typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AGECeFQEF1ew8pafsZoFoo+mro2+naOEmgA9riS7p74hjBqwaYW1jAWHl5q-nowAJDlRuVlgdloABYJCXgATmFKWdo6VtUW9jHgDU2txiY25eU2nqlFqnpO0DCFGNQE9RgEnAbGyr56RgQW3lZHtoRTODve+4fgx2f3C0tpqyRkKBiXGdCdusbs7RUGi60VK0CMJAKaSB3Xy2jOE2gZSMEJsRnYVhsT2gy2oLQwiRanC+wiy+0hM3wxVBpKC+wB4HCv1h0D6CKRlVR-0xcUWfMSyXAJBQrgCGn25ksNNq9MBzJO8IG6LRY15MGAGs1GvAWp1mviSRwCSQKyQCSIxgARAA-W1223ge2Ou2WqzY0DgJL4E1KSQAVzI+BAwGMy2MAHYeSiCDSBUaTdQzRajABtS3eMxmS3gADUhAAupiHHq9GmM2Zw5b8+qIJJ1uAcCgALaBoUioMhiHtiNRg6xw3G03m4xlzPZvMEQtukvgUcVqsSD0EN5IaTgJsJFoAa1ENaFfvxDZkJtElNe70+xj7Zzjg8Tw9T6bHuYLUbDRkj041paf8+r0A9DAAEc-QIJBwAAdxQOtT2jftcDvJMR1-cdXzRSNi2-Wdf0rf89z9LASAINAdw3bddwAiASAPfAcGPDsz3xQliVDaEP17GMbwHBMkMfctUMnIsZznXC92A0DwKgmDgyvABvAgAF94PjIdkznASp2MeSLHDJTMOAH9y1E6AgA "Field One"
 
 ~~~ ts
 type Case <A,> = <R,> (c: Fn <A, R>) => R ;
@@ -169,7 +166,7 @@ It's same with the `pipe`:
 
 #### Two length Tuple (Pair)
 
-[pair playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxC6CkrwYQpeTjS4RymI6h4+d2a2VRGJK1UqtYZDVdbQm4ajc0kS3WvJvaDAZMp5PgVPplP5Io4ApIDDUJAFIjGABEAD9K1XK+Bq7Wq6WrLbQOASABXB3gHAyfOiYwfMsERvGWjx80EMFGVmIwq4PMFoslowAbVL-zMZlL4AA1IRNKXwRut7uoQBda0OTN6VfrsxD-eHsy0UuniQtsVkaTgAC2BS8AGtRBgFt207btpF7EBgC9UVxVQKVjCMCdESnMFZ1zfNC2LYwbyPHc93AA88JPc9zgHIxSyHc5RybK9wFwu9SwfDdn1fJMIAwABHNsCCQcAAHcUEkWo+3HTRpz2dD5ywpcGOPAiiM3fCzzHSimPAUdL2Ta81w3e9CMfVi3wgNssBIAg0EA38AKA9jWw7fBwMg6D7UdP8XX7PUKKokcxyQycJL0KTMMXHDdKU3cCGYiLwBU2jtPo8L9MUoy7K4ni+ME4TRKMABvKLYoAXzQnNpNCldwvkgrFPkuLjHyiw1PEixaGKrTgB029ksMl8YCAA "Field Two"
+[pair playground]: https://www.typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZc8AAUCKAE4qAEhgJOTVVPJD1DZS11PSM0C0U-AKDwBLVQzV0dG307Rwk0AHtcSXdPH0MYZV9o4wALC19svUqNGMkLaxgLD28-YPDm6ABIGCGjUaHImtjagoK8L3ilKs1UjW0dLImLexzwNFn5jB8jWpsjSRtR0ZsCHFLelcs9J2gYHq9qWqSDY2UAQWmBAs-yaKgAQtMAEYWcFWEG2Qi3e5GAExYHgUGI5TgmIw8BwxFY14faiSUK-VGA9EgsE46Gw+EExFQ5F-f40zF03HGfGEvaE17vMrUAgkMgoDD3CrQJ7rXTGdhLPopZbyzZgmBGEjdMoq1RbaA7RHXYZGbXndhWGxC6CkrwYQpeTjS4RymI6h4+d2a2VRGJK1UqtYZDVdbQm4ajc0kS3WvJvaDAZMp5PgVPplP5Io4ApIDDUJAFIjGABEAD9K1XK+Bq7Wq6WrLbQOASABXB3gHAyfOiYwfMsERvGWjx80EMFGVmIwq4PMFoslowAbVL-zMZlL4AA1IRNKXwRut7uoQBda0OTN6VfrsxD-eHsy0UuniQtsVkaTgAC2BS8AGtRBgFt207btpF7EBgC9UVxVQKVjCMCdESnMFZ1zfNC2LYwbyPHc93AA88JPc9zgHIxSyHc5RybK9wFwu9SwfDdn1fJMIAwABHNsCCQcAAHcUEkWo+3HTRpz2dD5ywpcGOPAiiM3fCzzHSimPAUdL2Ta81w3e9CMfVi3wgNssBIAg0EA38AKA9jWw7fBwMg6D7UdP8XX7PUKKokcxyQycJL0KTMMXHDdKU3cCGYiLwBU2jtPo8L9MUoy7K4ni+ME4TRKMABvKLYoAXzQnNpNCldwvkgrFPkuLjHyiw1PEixaGKrTgB029ksMl8YCAA "Field Two"
 
 ~~~ ts
 type Pair <Head, Tail> = <R,> (c: Fn <Head, Fn <Tail, R>>) => R ;
@@ -205,7 +202,7 @@ Pair.records =
 
 #### Three length Tuple (Triple)
 
-[triple playground]: https://www.typescriptlang.org/play/?#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZcywCcUZfMoDyWDJqqAO4A9oEAFm4YGHqGylrqekZo4RaKKn4B4OlqoZo5qpHRmro6Ojb6do4SaCG4ku6eSPiGMMoAgonGBBbtFXptAEJdRgBGFoP9wsoAwiNoFjNWMBaqHl4qneDD4DOxA9AAkDCHRieH8fPhISF4bmlKHfmPOzlz2mXl5xb2leApNzu3RsYxBaBsJxONgIOEaGye200e2q0BgayaGGoBBIZBQGFhrWgCJ2710xnYD02zxUr0epM+UxgRkkRQwq3WzSpiN2X2gP1swhORmZrJB7CsNicqOg6K81CitTcnAJ0y2JKSLKibLhnOJSPKAraCSSFOyjy2OVpKnpZWWfO0hulpxFWrFEpRaI5mLqLSpSR64D6AuUwyS422U1m80WVl6AoIKNlzWoklCBj93V6kdDxnDk2DcySC12se2AtGia9KdZ6ae-qzwZzYwmkcLxmLS0WArQHulwH7A-74EHw4HNTqOBCyaQISIxgARAA-Zcr5fgVfrlfzqxSmCgcAkACuUXAOBknJAwGMSfwRnnBG3xloIIA2rR1Dx1AAmAC67uFBBTKCArJFMtS4FOmIznORgvvO7RmGY87gAA1IQmjzoMiHIWhowYTM2Gof8f47qOehwQhZgPhhWFmLQ874Yh76fl+84-hI+7YmQ0jgAAtiEbgANaiHuEBHieZ7SBeV43liOKoPixhGIBIGjEB4LdhOkHUNBxgUYRaEEDRBngHh4DzgRSFEWgJHXl6C4PiCz56cx34kQ4ZHgPpVEMeZtH0YxdEft+bGieAGAAI6HgQSDgEEKAsqISlGaZmgaX84GTtOs56fBJkpZhJlmRZJk2f+96+e+Xmub+pH9uReU+cZdG+SVQUsaFfYQIeWAkAQaDCfxQkidA+7ifgknSTqmIKgJyp2RiDmPkYzmwTVtkAUBakgeleiZdpumwY1OHoX5RWBSdZV1cADWUdRZ0tYFNWdfukXRbF8WJZeSkAN4pWZaAAL5gVp2Uwd5J0FbRJ3FZZl0bX9FgVZo4ZVcWb7Bb+wMefVXmNfdhWPeZlnPex0BAA "Field Three"
+[triple playground]: https://www.typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCGA5gA5IC0AzAHQAMMciqmu+RAZgCYUCM1lDeFFjxgMcdAAuATxL4AYlnAAeACoAacACUAfOAC84ABQAPAFzhVASgN6t4ANwwZcywCcUZfMoDyWDJqqAO4A9oEAFm4YGHqGylrqekZo4RaKKn4B4OlqoZo5qpHRmro6Ojb6do4SaCG4ku6eSPiGMMoAgonGBBbtFXptAEJdRgBGFoP9wsoAwiNoFjNWMBaqHl4qneDD4DOxA9AAkDCHRieH8fPhISF4bmlKHfmPOzlz2mXl5xb2leApNzu3RsYxBaBsJxONgIOEaGye200e2q0BgayaGGoBBIZBQGFhrWgCJ2710xnYD02zxUr0epM+UxgRkkRQwq3WzSpiN2X2gP1swhORmZrJB7CsNicqOg6K81CitTcnAJ0y2JKSLKibLhnOJSPKAraCSSFOyjy2OVpKnpZWWfO0hulpxFWrFEpRaI5mLqLSpSR64D6AuUwyS422U1m80WVl6AoIKNlzWoklCBj93V6kdDxnDk2DcySC12se2AtGia9KdZ6ae-qzwZzYwmkcLxmLS0WArQHulwH7A-74EHw4HNTqOBCyaQISIxgARAA-Zcr5fgVfrlfzqxSmCgcAkACuUXAOBknJAwGMSfwRnnBG3xloIIA2rR1Dx1AAmAC67uFBBTKCArJFMtS4FOmIznORgvvO7RmGY87gAA1IQmjzoMiHIWhowYTM2Gof8f47qOehwQhZgPhhWFmLQ874Yh76fl+84-hI+7YmQ0jgAAtiEbgANaiHuEBHieZ7SBeV43liOKoPixhGIBIGjEB4LdhOkHUNBxgUYRaEEDRBngHh4DzgRSFEWgJHXl6C4PiCz56cx34kQ4ZHgPpVEMeZtH0YxdEft+bGieAGAAI6HgQSDgEEKAsqISlGaZmgaX84GTtOs56fBJkpZhJlmRZJk2f+96+e+Xmub+pH9uReU+cZdG+SVQUsaFfYQIeWAkAQaDCfxQkidA+7ifgknSTqmIKgJyp2RiDmPkYzmwTVtkAUBakgeleiZdpumwY1OHoX5RWBSdZV1cADWUdRZ0tYFNWdfukXRbF8WJZeSkAN4pWZaAAL5gVp2Uwd5J0FbRJ3FZZl0bX9FgVZo4ZVcWb7Bb+wMefVXmNfdhWPeZlnPex0BAA "Field Three"
 
 ~~~ ts
 type Triple <One, Two, Three> = <R,> (ch: Fn <One, Fn <Two, Fn <Three, R>>>) => R ;
@@ -319,7 +316,7 @@ Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log ([
 
 线路（分支）
 
-[wire playground]: https://typescriptlang.org/play/?ts=next#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA74yAQzQBrcAB4AKgD5wAXnAAKAJTnTh8AG5JMgEIB7d0gVToK9eAeXuYGAEqmlpoAXOBaumHGtmYRAEYxcXr64UmmoU4waO64iuCGAE4ArhgxQd4WWQA0EdGx2pnZdlZprfFZiTF5yeCaVrbO0IXFsppIeDWedWFNVi0ZCTld6W3rA50po-m+MgDqKGX4IOK+-vgA7mf49eFWylu9HUOWWG-tiZ2WOAqKQAVhg0Ip5l4NnlxgUijgSvdzjEkY8RI0Iq8er8NjAvj91p08SkFpCkNZdkMYABIGkk4KWZS2L5jFzAdkc4DgTncjmSSw2InQADeNMmOC8GBoSHcAHMrAAiAB+KtVSvAqgq53ACOUSHwatVCus41p0Gp4pKmncZX29UMy0s9KQZIawxiDvA3UMuPN1NRVkFQ1Ffot8Ml0rlioIxtN1Op50UWqwkWsNOpAF9mUHTCH42HcBGZfLLArXLH0wmMEmyimUmm-VmugtWebxUWo5EbftLOUqm7eG6AEzWE288BK0wKmPjyfgXhi8P6yMl622qwcGZ4AfD0eOWdT8sH8BDmmLqaaNcpO0GB2pUmBBZuy8xHOlN3X18bH0ezoByKaMy15AS2hwFhKy7FisV49umfYYG66ZvsK7aQZ204xmOibJpYvC8NYGaIX6yGoVKUGlq45ZYdWOFDiOWZjuyE5TgQM5MXOeHnhBZGdpe3awX6m6zAhIjxiRS48SWGGxuA2G1rh+GEaJ1LiYWaFSZRMlySmdEEXux5lke7GmHRMBNjYsLQAKvp5qRK6KoaKrgBgACOFQzOA9yKAAFhOjkVuaXFWt2IRGI6zpkhgmhYM+Hofh6Gx5tSKAAGbNlC4BJeBHZSZhcZVjWKaAemGbOcJmWVnZ5FlgF+baU6DbxhmNKlaaVW8SFliKJUImDie+nGeA04KseC5thJ9lduulgpVuvW7oxXJzjVx6noF40XjBoV3ulLqPpK0XPi0b6ep+BxDD+pT-M64AAPzDCMMTAQcbUTeRfG2gJ8bdf2ymqdxk3SdRhUKQRRFiYl7UaVR+71bpDH7oN0mjWN2XqdB-FWOms3CeDKmQ296GsVpNHyXhYN-QTamSYqmnA7R9EDUth5GczJ5reZJpAA "circuit"
+[wire playground]: https://www.typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA74yAQzQBrcAB4AKgD5wAXnAAKAJTnTh8AG5JMgEIB7d0gVToK9eCuAPJBZOYGAEqmlpoAXOBaupHGtmbRAEbxiXr6UammEU4waO64iuCGEQCqAKLxwaHhuQA00XEJ2jl5dlaZHUm5KfGFaeCaVrbO0CVlsgRkAMp1gSFhFi1tWZ3J+b1bA3nDPekTRb4yAOooAE74IOK+-vgA7jf461FWyvtdKT2WWB+O3+OAArgArDCKeqrXaFKbFUo4cqvW7xVHvEQbL5Awa7GAA3HdUYEsGQ6ErULWI4k6AASBgdLJUK+tgBkxcwC53OA4B5fO5kksNh6MAA3oyZjgvBgaEh3ABzKwAIgAfuqNarwKpQbdwMjlEh8JqNcrrFMGfSpeVNO5rid1oZWr1PEgYaFmmN4k7wH1DPj6XSMVYRaMJYG6VKZXLFSqCGaLXS6bdFLqsDFrIy6QBfNmh0zhpORpHR+VKyzK1wJrPJqFpyzpTOB3Murwcq0lo0x8u2+1WSq1T28T0AJms5oF4FVpmV8cn0-AvElndlZasvZOlg48yWQ9H48c85nVaP4BHjOXs00G4dBidGVd7rInuv8XzFU96T67-93p6wZiTQ2S-YDXXbYtcFLWNALtL8rCzAcak9LN3zFKMuzXCsCHjCcU3rXheGsbNkMDVD0NXaDKyrXC62udMRzHXMJy5KcZ2w5VTwIy9pQw6Dr1gzcs23RYkJEJMyJXbs4xww88LoywCKIkjxN2NDJMwqiE3AOT6MYg9T0008GJgFsbARaBhQDQtyKkisTXVcAMAAR1BTRvFeRQAAsp3s6t6W4m1YKae9WzdQJXQwTQsBfb1P29VSsxQAAzULbELJMbI0mSax0jMs2zRykDwcB0ogniKPLSs-KLXLG3yxkCotTK+KCyxFGuUEMD3M99JYhdZw4vrTCXDtIN4ntWqSty8G6sdmN5fqTyGs8L1G5ExhvYLnQbR9wplKKX3aH9P2-XZfwqf50ldcAAH4NvAeIQNOJr1L4zbLCzdrOuUukJLGirpK03LFOIsTftU5rKtcajZNo3SiN6ha2LnZauLWqCe3erMpqKrqwb+8rbNnGTtLhhTCNBlCIdeqGYdJ1N5IYhH5tY8BDOW4zoFM80gA "circuit"
 
 ### 🌋 Definitions
 
@@ -332,22 +329,22 @@ type Lack <T> = () => T ;
 #### Bool
 
 ~~~ ts
-type Bool = <R> (a: Lack <R>) => (b: Lack <R>) => R ;
-const True: Bool = <R,> (a: Lack <R>) => (b: Lack <R>): R => a () ;
-const False: Bool = <R,> (a: Lack <R>) => (b: Lack <R>): R => b () ;
+type BOOL = <R> (a: Lack <R>) => (b: Lack <R>) => R ;
+const TRUE: BOOL = <R,> (a: Lack <R>) => (b: Lack <R>): R => a () ;
+const FALSE: BOOL = <R,> (a: Lack <R>) => (b: Lack <R>): R => b () ;
 ~~~
 
 #### Wire
 
 ~~~ ts
-type wire = <R> (subject: Bool) => (y: Lack <R>) => (n: Lack <R>) => R ;
+type wire = <R> (sujet: BOOL) => (y: Lack <R>) => (n: Lack <R>) => R ;
 
 const wire: wire = 
 <R,> (y: Lack <R>) => 
 (n: Lack <R>) => 
-(bool: Bool): R => 
+(sujet: BOOL): R => 
 	
-	bool (y) (n) ;
+	sujet (y) (n) ;
 ~~~
 
 ### 🥩 Equal Case
@@ -355,7 +352,7 @@ const wire: wire =
 #### Short-circuit evaluation <sup>[*wiki.zh*](https://zh.wikipedia.org/wiki/%E7%9F%AD%E8%B7%AF%E6%B1%82%E5%80%BC "短路求值") [*wiki.en*](https://en.wikipedia.org/wiki/Short-circuit_evaluation "Short-circuit evaluation")</sup>
 
 ~~~ ts
-const aorb = <T,> (bool: Bool, a: T, b: T) => 
+const aorb = <T,> (bool: BOOL, a: T, b: T) => 
 	wire (() => {
 		console.log ("A");
 		return(a)
@@ -363,18 +360,18 @@ const aorb = <T,> (bool: Bool, a: T, b: T) =>
 		console.log ("B");
 		return(b)
 	}) (bool) ;
-console.log (aorb (True, 1, 2)); // ~> "A" // ~> 1
-console.log (aorb (False, 1, 2)); // ~> "B" // ~> 2
+console.log (aorb (TRUE, 1, 2)); //> "A" //> 1
+console.log (aorb (FALSE, 1, 2)); //> "B" //> 2
 
-const aaorbb = <T,> (bool: Bool, aa: () => T, bb: () => T): T => wire (aa) (bb) (bool) ;
+const aaorbb = <T,> (bool: BOOL, aa: () => T, bb: () => T): T => wire (aa) (bb) (bool) ;
 console.log (aaorbb (
-	True, 
+	TRUE, 
 	() => {console.log ("AA"); return(11)}, 
-	() => {console.log ("BB"); return(22)})); // ~> "AA" // ~> 11
+	() => {console.log ("BB"); return(22)})); //> "AA" //> 11
 console.log (aaorbb (
-	False, 
+	FALSE, 
 	() => {console.log ("AA"); return(11)}, 
-	() => {console.log ("BB"); return(22)})); // ~> "BB" // ~> 22
+	() => {console.log ("BB"); return(22)})); //> "BB" //> 22
 ~~~
 
 ~~~ ts
@@ -387,18 +384,18 @@ const aorb = <T,> (bool: Boolean, a: T, b: T) => {
 		return(b)
 	}
 } ;
-console.log (aorb (true, 1, 2)); // ~> "A" // ~> 1
-console.log (aorb (false, 1, 2)); // ~> "B" // ~> 2
+console.log (aorb (true, 1, 2)); //> "A" //> 1
+console.log (aorb (false, 1, 2)); //> "B" //> 2
 
 const aaorbb = <T,> (bool: Boolean, aa: () => T, bb: () => T): T => (bool ? aa : bb) () ;
 console.log (aaorbb (
 	true, 
 	() => {console.log ("AA"); return(11)}, 
-	() => {console.log ("BB"); return(22)})); // ~> "AA" // ~> 11
+	() => {console.log ("BB"); return(22)})); //> "AA" //> 11
 console.log (aaorbb (
 	false, 
 	() => {console.log ("AA"); return(11)}, 
-	() => {console.log ("BB"); return(22)})); // ~> "BB" // ~> 22
+	() => {console.log ("BB"); return(22)})); //> "BB" //> 22
 ~~~
 
 ### 📽 <sup>[*see playground*][wire playground]</sup>
