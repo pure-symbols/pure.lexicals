@@ -1,4 +1,4 @@
-# Pure-Lexical Equivalents
+# Pure-Lexical Equivalents 🧊
 
 纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents)。
 
