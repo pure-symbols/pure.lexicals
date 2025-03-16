@@ -36,7 +36,7 @@ const pipe: pipe =
 	(f) (x) ;
 ~~~
 
-#### Pipeline
+#### Pipeline <sup>[*wiki-processor.zh*](https://zh.wikipedia.org/wiki/%E7%AE%A1%E7%BA%BF "管线") [*wiki-processor.en*](https://en.wikipedia.org/wiki/Pipeline_(computing) "Pipeline (computing)")</sup>
 
 ~~~ ts
 type Pipeyard <T> = <R,> (continuation: Fn <T, R>) => Pipeyard <R> ;
@@ -90,7 +90,7 @@ const add = (a, b) => a + b;
 console.log(add(add(42, 3), 4)); //> 49
 ~~~
 
-#### Sub Scope
+#### Sub Scope <sup>[*wiki-scope.zh*](https://zh.wikipedia.org/wiki/%E4%BD%9C%E7%94%A8%E5%9F%9F "作用域") [*wiki-scope.en*](https://en.wikipedia.org/wiki/Scope_(computer_science) "Scope (computer science)")</sup>
 
 ~~~ ts
 pipeline (6)
@@ -326,7 +326,7 @@ Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log ([
 type Lack <T> = () => T ;
 ~~~
 
-#### Bool
+#### Bool <sup>[*wiki-datatype.zh*](https://zh.wikipedia.org/wiki/%E5%B8%83%E5%B0%94_(%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B) "布尔 (数据类型)") [*wiki-datatype.en*](https://en.wikipedia.org/wiki/Boolean_data_type "Boolean data type")</sup> <sup>[*wiki-domain.zh*](https://zh.wikipedia.org/wiki/%E5%B8%83%E5%B0%94%E5%9F%9F "布尔域") [*wiki-function.en*](https://en.wikipedia.org/wiki/Boolean_domain "Boolean domain")</sup> <sup>[*wiki-function.zh*](https://zh.wikipedia.org/wiki/%E5%B8%83%E5%B0%94%E5%87%BD%E6%95%B0 "布尔函数") [*wiki-function.en*](https://en.wikipedia.org/wiki/Boolean_function "Boolean function")</sup> <sup>[*wiki-circuit.zh*](https://zh.wikipedia.org/wiki/%E5%B8%83%E5%B0%94%E7%94%B5%E8%B7%AF "布尔电路") [*wiki-circuit.en*](https://en.wikipedia.org/wiki/Boolean_circuit "Boolean circuit")</sup>
 
 ~~~ ts
 type BOOL = <R> (a: Lack <R>) => (b: Lack <R>) => R ;
