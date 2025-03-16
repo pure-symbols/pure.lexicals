@@ -13,10 +13,6 @@
 <sup>*You should do unfold do scheme for everything like a manager of the world, not think yourself clever to be managed to be setted up just like a slave and thing that is enough just face to everything in this world like that.* </sup>  
 <sub>*That's the only point of this, this project or you can say this work, a work of mine.* </sub>  
 
-<sub><sup><sub>...</sub></sup></sub>  
-<sub><sup>*父性位虚 故虚唯之* </sup></sub>  
-<sup><sub>*Vater (The place of the Law) is Real Nothing, Then it shows like WHOLE THING JUST AS A NATURED LIER and THEN IT'S REALLY NOTHING AGAIN ... SO Only The (La) Pure Thing (Nothing) shall be there (la vater) AND IS BETTER THAN ANY & EVERY FXXKING THING !!!* </sub></sup>  
-
 ## Docs
 
 - [*☄️ Lambda Calculus 101*](./.docs/lambda-calculus.101 "Let's See what the Lambda Calculus is ☄️")
