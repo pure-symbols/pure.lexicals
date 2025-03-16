@@ -1,10 +1,6 @@
-# Pure-Lexical Equivalents 🧊
+# The Correspond Forms Indicates in Pure-Lexical Styles 🧊
 
-纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents)。
-
-<sup>即</sup>  
-<sub>*对应形式的词法闭包表示 🪒 ...*</sub>  
-<sup>*The Correspond Forms Indicates in Lexical Closures 🪒 ...*</sup>  
+纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents)。即，对应形式的词法闭包表示。
 
 <sub>*... You can just treat this as a simple show about the corresponds 🔨*</sub>  
 <sup>*... 你可以简单地把这当作一个简单的对应关系手册 🔨*</sup>  
