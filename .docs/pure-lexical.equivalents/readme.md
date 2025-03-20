@@ -1,8 +1,8 @@
 # The Correspond Forms Indicates in Pure-Lexical Styles 🧊
 
-纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents) 对应。
+纯词法闭包风格 (Pure-Lexical Style) 下的等价性 (Equivalents) 对应。
 
-<sub>即对应形式的 Pure-Lexical 表示。</sub>  
+<sub>即对应形式的 Pure-Lexical Style 表示。</sub>  
 
 <sub>*... You can just treat this as a simple show about the corresponds 🔨*</sub>  
 <sup>*... 你可以简单地把这当作一个简单的对应关系手册 🔨*</sup>  
