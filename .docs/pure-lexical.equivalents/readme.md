@@ -1,8 +1,8 @@
 # The Correspond Forms Indicates in Pure-Lexical Styles 🧊
 
-纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents)。
+纯词法闭包风格下 (Pure-Lexical) 的等价性 (Equivalents) 对应。
 
-<sub>... 即，对应形式的词法闭包表示。</sub>  
+<sub>即对应形式的 Pure-Lexical 表示。</sub>  
 
 <sub>*... You can just treat this as a simple show about the corresponds 🔨*</sub>  
 <sup>*... 你可以简单地把这当作一个简单的对应关系手册 🔨*</sup>  
@@ -12,7 +12,7 @@
 
 管道
 
-[pipe playground]: https://typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA7454ADwAVADTgASgD5wAXnAAKAB4AucDoCU504fABuSTJIp1CqdAqfqq++Ba6eqY29k4u2oaRVgBm9poRRsbOZq4ekmgA9riK4CHq9qVhIhFRdg5ZpjBaCVEpsvLpJo72btkiAJAwfZZJzjbOngFB+D7qygCGAE4AJto6puHNVgVYiihYAK5zu4Wp7foZ9eAzGPPL8aYTUyWhqFiV1VYAFhhzSzGX11uK10DzyhRwxQqrww5Ree0qjX0URw-3sgMWwLWcUam0s212ByOKBObVWBk6aNCQPu2OgAzpUPhVjxhQJh2OWFGOEc4zBRSuVIx5iqSK+Pz+dRglNmQpBtPpQ3iiRZOz27OJWFOZIug2lN1lJnlCr6FS2rLVRMKYt+PKs6OWzkGg2ccxwApldzlExg9qWNAAQoYAPIELgAYQIAGUdAB9GPCxHKvBIVq+kGOKUOWkAb0GSAwxQAthgcDg5gBzGFZizZgC+4FdDgmfWTSSs1jixdLFcq1kczYWBf2C3kXbLldy0Hr3oCwDn87n4AXS-nkkslkuMFzDNCVgARAA-I-Hg8lYf4CHKfPgE-HvejbY4fL5mhIfLl-tOumP4q-FYWSwACNLksOZLjmcAAGpwEA5tGTeKwABYACZHTpIY-ysKgeUGDClhWSxEJw9CVSfF83w-dwV1MXhEK-E04QQywADYMxIiDegg6DeDYvohkAuIBIgVDcLxOI0HAChwGw0TH2fDBX3fftqPAXheBgWtRk-AJ103aBtwYvxLEPW9TwwABHQ4kHAAB3FBFE+G9TPvM1cHkxTKPon8G3w4VQIMYC4i4mDmzk8j31A-DIqWQjkIMbCDCI5S51MRCAE56IMvpvI48BmObbLwWKASLGC3gCu8iSLCE8BkIq8F3IosSpOwqiUtU9S6VrDStPcIA "pipeyard"
+[pipe playground]: https://typescriptlang.org/play#code/PQKhAIFgCh3CACAbAlgYwKYDsDOHwCCA4gAoAyAtAMwB0ADDHIqprvkQGIAilAjDVUbwoseMBgToMUOA5YxkgC4BPAA7454ADwAVADTgASgD5wAXnAAKAB4AucDoCU504fABuSTJIp1CqdAqfqq++Ba6eqY29k4u2oaRVgBm9poRRsbOZq4ekmgA9riK4CHq9qVhIhFRdg5ZpjBaCVEpsvLpJo72btkiAJAwfZZJzjbOngFB+D7qygCGAE4AJto6puHNVgVYiihYAK5zu4Wp7foZ9eAzGPPL8aYTUyWhqFiV1VYAFhhzSzGX11uK10DzyhRwxQqrww5Ree0qjX0URw-3sgMWwLWcUam0s212ByOKBObVWBk6aNCQPu2OgAzpUPhVjxhQJh2OWFGOEc4zBRSuVIx5iqSK+Pz+dRglNmQpBtPpQ3iiRZOz27OJWFOZIug2lN1lJnlCr6FS2rLVRMKYt+PKs6OWzkGg2ccxwApldzlExg9qWNAA+v6AEYLfK-NCu4oWRHKvBIVq+kGOKUOWkAb0GSAwxQAthgcDg5gBzGGpixpgC+4FdDgmfTjSSs1jieYLxcq1kcdYW2f2C3krcLJdy0Cr3oCwEnU8n4Gns6nkkslkuMAzDNCVgARAA-Xd77clPv4CHKLPgfd7zejbY4fJZmhIfJFrtOuk34q-FYWSxBy6WOaXHM4AANTgEGdaMm8VgACwAEyOnSQyflYVA8oMSFLCsljQWhiEqre96Ps+7jzqYvDQa+JpwlBlgAGzJnhQG9EBoG8AxfRDEGcRcRA8HoXicRoOAFDgKh-E3neGAPk+XakeAvC8DAFajC+ARLiu0BrlRfiWDuF4HhgACOhxIOAADuKCKJ8576VeZq4JJ0nEZR77Vphwr-gYv5xCxYF1hJhFPv+mHBUs2GwQYqEGDhsmTqY0EAJyUVpfSuUx4C0XWqXgsUXEWL5vBZa5QkWDx4CwUV4KOURAkiahJFxfJil0hWSkqe4QA "pipeyard"
 
 ### 🌋 Definitions
 
@@ -59,7 +59,7 @@ const Pipeyard =
 	
 	) as Pipeyard <T> ;
 
-Pipeyard.BROADCAST__ = 
+Pipeyard.__broadcast = 
 <T,> (self: Pipeyard<T>)
 : T => 
 {
