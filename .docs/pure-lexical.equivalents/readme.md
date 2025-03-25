@@ -335,14 +335,14 @@ const FALSE: BOOL = <R,> (a: Lack <R>) => (b: Lack <R>): R => b () ;
 #### Wire
 
 ~~~ ts
-type wire = <R> (sujet: BOOL) => (y: Lack <R>) => (n: Lack <R>) => R ;
+type wire = <R> (a: Lack <R>) => (b: Lack <R>) => (sujet: BOOL) => R ;
 
 const wire: wire = 
-<R,> (y: Lack <R>) => 
-(n: Lack <R>) => 
+<R,> (a: Lack <R>) => 
+(b: Lack <R>) => 
 (sujet: BOOL): R => 
 	
-	sujet (y) (n) ;
+	sujet (a) (b) ;
 ~~~
 
 ### 🥩 Equal Case
