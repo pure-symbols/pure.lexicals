@@ -5,98 +5,127 @@
   */
 
 
+/* Depends */
+
 type Fn <T, R> = (x: T) => R ;
 
-type Wert = <A> (a: A) => <B> (b: B) => A ;
-type Mehr = <A> (a: A) => <B> (b: B) => B ;
-type Tuple <Head, Tail> = <R,> (chooser: Fn <Head, Fn <Tail, R>>) => R ;
 
-const Tuple = 
-<H,> (h: H) => 
-<T,> (t: T)
-: Tuple <H, T> => 
+
+/* One length Tuple (Case) */
+
+type Case <A,> = <R,> (c: Fn <A, R>) => R ;
+
+const Case = 
+<T,> (x: T)
+: Case <T> => 
 	
 	(
-		<R,> (recorder: Fn <H, Fn <T, R>>)
-		: R => recorder (h) (t) 
+		<R,> (chooser: Fn <T, R>)
+		: R => chooser (x) 
 	
-	) as Tuple <H, T> ;
+	) as Case <T> ;
 
-Tuple.head = (<A,> (a: A) => <B,> (b: B): A => a) as Wert ;
-Tuple.tail = (<A,> (a: A) => <B,> (b: B): B => b) as Mehr ;
+Case.ahead = (<A,> (a: A): A => a) as (<A> (a: A) => A) ;
 
-Tuple.record = 
-<H, T> (tuple: Tuple <H, T>) => 
+Case.applies = 
+<T, R> (f: Fn <T, R>) => 
+(p: Case <T>)
+: R => 
+	
+	((p) (f)) ;
+
+Case.records = 
+<T,> (p: Case <T>) => 
+<R,> (f: Fn <T, R>)
+: R => 
+	
+	((p) (f)) ;
+
+
+
+/* Two length Tuple (Pair) */
+
+type Pair <Head, Tail> = <R,> (c: Fn <Head, Fn <Tail, R>>) => R ;
+
+const Pair = 
+<H,> (h: H) => 
+<T,> (t: T)
+: Pair <H, T> => 
+	
+	(
+		<R,> (chooser: Fn <H, Fn <T, R>>)
+		: R => chooser (h) (t) 
+	
+	) as Pair <H, T> ;
+
+Pair.head = (<A,> (a: A) => <B,> (b: B): A => a) as (<A> (a: A) => <B> (b: B) => A) ;
+Pair.tail = (<A,> (a: A) => <B,> (b: B): B => b) as (<A> (a: A) => <B> (b: B) => B) ;
+
+Pair.applies = 
+<H, T, R> (f: Fn <H, Fn <T, R>>) => 
+(p: Pair <H, T>)
+: R => 
+	
+	((p) (f)) ;
+
+Pair.records = 
+<H, T> (p: Pair <H, T>) => 
 <R,> (f: Fn <H, Fn <T, R>>)
 : R => 
-
-	((tuple) (f)) ;
-
-
-
-/* Showings */
-
-console.log ('~~~~~~~~~~~~~~~~~~~~~');
-
-/* unpack */
-
-/* native tuple */ (({ a, b }) => a.length + b) ({a: "abc", b: 1}) ;
-/* pure tuple */ Tuple.record (Tuple ("abc") (1)) ((a) => (b) => a.length + b) ;
-/* pure tuple */ (Tuple ("abc") (1)) ((a) => (b) => a.length + b) ;
-/* pure tuple */ (pair => pair ((a) => (b) => a.length + b)) (Tuple ("abc") (1)) ;
-
-console.log ((({ a, b }) => a.length + b) ({a: "abc", b: 1})); // 4
-console.log (Tuple.record (Tuple ("abc") (1)) ((a) => (b) => a.length + b)); // 4
-console.log ((Tuple ("abc") (1)) ((a) => (b) => a.length + b)); // 4
-console.log ((pair => pair ((a) => (b) => a.length + b)) (Tuple ("abc") (1))); // 4
-
-/* getval */
-
-/* native tuple */ ({head: "abc", tail: 1}).head ;
-/* pure tuple */ (Tuple ("abc") (1)) (Tuple.head) ;
-
-console.log (({head: "abc", tail: 1}).head); // "abc"
-console.log ((Tuple ("abc") (1)) (Tuple.head)); // "abc"
+	
+	((p) (f)) ;
 
 
 
+/* Three length Tuple (Triple) */
 
-/* More Tuple */
+type Triple <One, Two, Three> = <R,> (ch: Fn <One, Fn <Two, Fn <Three, R>>>) => R ;
 
-type Tuple3 <One, Two, Three> = <R,> (chooser: Fn <One, Fn <Two, Fn <Three, R>>>) => R ;
-
-const Tuple3 = 
+const Triple = 
 <A,> (a: A) => 
 <B,> (b: B) => 
 <C,> (c: C)
-: Tuple3 <A, B, C> => 
+: Triple <A, B, C> => 
 	
 	(
-		<R,> (recorder: Fn <A, Fn <B, Fn <C, R>>>)
-		: R => recorder (a) (b) (c) 
+		<R,> (chooser: Fn <A, Fn <B, Fn <C, R>>>)
+		: R => chooser (a) (b) (c) 
 	
-	) as Tuple3 <A, B, C> ;
+	) as Triple <A, B, C> ;
 
-Tuple3.record = 
-<A, B, C> (tuple3: Tuple3 <A, B, C>) => 
+Triple.applies = 
+<A, B, C, R> (f: Fn <A, Fn <B, Fn <C, R>>>) => 
+(three: Triple <A, B, C>)
+: R => 
+
+	((three) (f)) ;
+
+Triple.records = 
+<A, B, C> (three: Triple <A, B, C>) => 
 <R,> (f: Fn <A, Fn <B, Fn <C, R>>>)
 : R => 
 
-	((tuple3) (f)) ;
+	((three) (f)) ;
 
-Tuple3.one = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): A => a ;
-Tuple3.two = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): B => b ;
-Tuple3.three = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): C => c ;
+Triple.one = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): A => a ;
+Triple.two = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): B => b ;
+Triple.three = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): C => c ;
 
-/* unpack */ (Tuple3 ("aa") (2) ("()")) ((str) => (n) => (x) => str.length + n + x) ;
-/* unpack */ ((tuple3) => tuple3 ((str) => (n) => (x) => str.length + n + x)) (Tuple3 ("aa") (2) ("()")) ;
-/* getval */ (Tuple3 ("aa") (2) ("()")) (Tuple3.three) ;
-/* getval */ ((tuple3) => tuple3 (Tuple3.three)) (Tuple3 ("aa") (2) ("()")) ;
 
-console.log ((Tuple3 ("aa") (2) ("()")) ((str) => (n) => (x) => str.length + n + x)); // "4()"
-console.log (((tuple3) => tuple3 ((str) => (n) => (x) => str.length + n + x)) (Tuple3 ("aa") (2) ("()"))); // "4()"
-console.log ((Tuple3 ("aa") (2) ("()")) (Tuple3.three)); // "()"
-console.log ((Tuple3 ("aa") (2) ("()")) (Tuple3.one)); // "aa"
-console.log ((Tuple3 ("aa") (2) ("()")) (Tuple3.two)); // 2
+
+/* try */
+
+(Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+Case.applies ((a) => console.log (["A::" + a])) (Case (7)); //> ["A::7"]
+Case.records (Case (7)) ((a) => console.log (["A::" + a])); //> ["A::7"]
+
+(Pair ("a") (0)) ((a) => (b) => console.log (["A::" + a, "B::" + b])); //> ["A::a", "B::0"]
+Pair.applies ((a) => (b) => console.log (["A::" + a, "B::" + b])) (Pair ("a") (0)); //> ["A::a", "B::0"]
+Pair.records (Pair ("a") (0)) ((a) => (b) => console.log (["A::" + a, "B::" + b])); //> ["A::a", "B::0"]
+
+(Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])); //> ["A::a", "B::0", "C::0,1,2"]
+Triple.applies ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])) (Triple ("a") (0) ([0,1,2])); //> ["A::a", "B::0", "C::0,1,2"]
+Triple.records (Triple ("a") (0) ([0,1,2])) ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" + c])); //> ["A::a", "B::0", "C::0,1,2"]
+
 
 
