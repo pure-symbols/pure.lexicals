@@ -1,3 +1,6 @@
+
+#' introspection ver.
+
 fixedpoint = \ (f) (\ (x) (x) (x)
 	) (\ (y) (f) (\ (...) (y) (y) (...))) ;
 
