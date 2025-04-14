@@ -4,22 +4,22 @@ mod iter
 {
 	pub mod iterador 
 	{
-		fn iter_pair<I>(iter: &I) -> std::option::Option<(I::Item, I)> 
-		where 
-			I: std::iter::Iterator + std::clone::Clone, 
-		{
-			let mut iter_clone = iter.clone();
-			iter_clone.next().map(|head| (head, iter_clone))
-		}
-		
 		pub trait Iterador: std::iter::Iterator + std::clone::Clone 
 		{
 			fn pair(&self) -> std::option::Option<(Self::Item, Self)> 
 			{
-				iter_pair(self)
+				let mut tail = self.clone();
+				tail.next().map(|head| (head, tail))
 			}
 		}
 		impl<T: std::iter::Iterator + std::clone::Clone> Iterador for T {}
+		
+		pub fn pair<I>(iter: &I) -> std::option::Option<(I::Item, I)> 
+		where 
+			I: Iterador, 
+		{
+			iter.pair()
+		}
 		
 		pub fn iterate<T, F>(init: T, mut f: F) -> impl Iterador<Item = T> 
 		where 
@@ -46,15 +46,13 @@ mod iter
 
 fn main () 
 {
-	// use iter::iterador::Iterador;
-	
 	{
 		let fib = iter::iterador::iterate(
 				(0, 1), 
 				|(a, b)| (b, a + b))
 			.map(|(a, _)| a);
-		// iter::iterador::Iterador::pair(&fib) // fib.pair()
-		if let Some((head, tail)) = iter::iterador::Iterador::pair(&fib)
+		
+		if let Some((head, tail)) = iter::iterador::pair(&fib)
 		{
 			println!("2: head: {}", head); //> 2: head: 0
 			println!("2: tail 13: {:?}", tail.take(13).collect::<Vec<_>>());
@@ -66,8 +64,9 @@ fn main ()
 	
 	{
 		let fib = iter::iterador::unfold((0, 1), |(a, b)| (a, (b, a + b)));
-		// iter::iterador::Iterador::pair(&fib) // fib.pair()
-		if let Some((head, tail)) = iter::iterador::Iterador::pair(&fib)
+		
+		use iter::iterador::Iterador;
+		if let Some((head, tail)) = fib.pair() // <_ as iter::iterador::Iterador>::pair(&fib)
 		{
 			println!("3: head: {}", head); //> 3: head: 0
 			println!("3: tail 13: {:?}", tail.take(13).collect::<Vec<_>>());
