@@ -101,6 +101,17 @@ fn main ()
 		println!("pi: pi_gale: {:?}", pi_gale.take(5).collect::<Vec<_>>());
 		//> pi: pi_gale: [2.914213562373095, 3.1405792505221686, 3.141592646213543, 3.141592653589794, 3.141592653589794]
 		
+		let pi_gale_next = iter::iterador::unfold(
+			(1_f64, 1_f64 / 2_f64.sqrt(), 0.25_f64, 1_f64), 
+			|(a, b, t, p)| ( |aa| ( |(bb, tt, pp)| (
+				((aa + bb) as f64).powi(2) / (4.0 * tt), 
+				(aa, bb, tt, pp)))((
+					(a * b).sqrt(), 
+					t - p * ((a - aa) as f64).powi(2), 
+					p * 2.0)))((a + b) / 2.0));
+		println!("pi: pi_gale_next: {:?}", pi_gale_next.take(5).collect::<Vec<_>>());
+		//> pi: pi_gale_next: [3.1405792505221686, 3.141592646213543, 3.141592653589794, 3.141592653589794, 3.141592653589794]
+		
 		let pi_liuhui = iter::iterador::unfold(
 			(6_u64, 1_f64, 1_f64), 
 			|(n, l, r)| ( |hp| (
