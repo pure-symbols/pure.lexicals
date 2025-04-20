@@ -124,14 +124,34 @@ fn main ()
 		println!("pi: pi_liuhui: {:?}", pi_liuhui.take(5).collect::<Vec<_>>());
 		//> pi: pi_liuhui: [3.0, 3.105828541230249, 3.1326286132812378, 3.1393502030468667, 3.14103195089051]
 		
-		// let pi_zuchongzhi = iter::iterador::unfold(
-		//     ((6.0 * 1.0) as f64, 6.0 * 3.0_f64.sqrt(), 0_u32), 
-		//     |(a, b, i)| (
-		//         (4.0 * (a + b)) / 5.0, 
-		//         (
-		//             2.0 * a * b / (a + b), 
-		//             (a * b).sqrt(), 
-		//             i + 1)));
-		// println!("pi: pi_zuchongzhi: {:?}", pi_zuchongzhi.take(5).collect::<Vec<_>>());
+		let pi_zuchongzhi = iter::iterador::unfold(
+			(6_u64, 1_f64, 2.0 / 3_f64.sqrt(), 1_f64), 
+			|(n, l_in, l_out, r)| 
+				(|(hp_in, h_out)| 
+				(|(apothem_in, tangent_length, nn)| 
+				(|(ll_in, ll_out)| 
+				(|(pi_low, pi_high)| 
+				(|(pi_approx, rr)| (
+					pi_approx, 
+					(nn, ll_in, ll_out, rr)
+				))((
+					(pi_low + pi_high) / 2.0, 
+					r)
+				))((
+					(nn as f64) * ll_in / (2.0 * r), 
+					(nn as f64) * ll_out / (2.0 * r))
+				))((
+					((hp_in + (r - (apothem_in as f64)).powi(2)) as f64).sqrt(), 
+					(2.0 * r * h_out) / ((tangent_length as f64) + r))
+				))((
+					(r.powi(2) - (hp_in as f64)).sqrt(), 
+					(r.powi(2) + (h_out as f64).powi(2)).sqrt(), 
+					n * 2)
+				))((
+					(l_in / 2.0).powi(2), 
+					l_out / 2.0)
+				));
+		println!("pi: pi_zuchongzhi: {:?}", pi_zuchongzhi.take(5).collect::<Vec<_>>());
+		//> pi: pi_zuchongzhi: [3.160609425201861, 3.1461442776893698, 3.1427182090891512, 3.1418732752679395, 3.1416627611326438]
 	}
 }
