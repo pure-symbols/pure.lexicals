@@ -154,4 +154,48 @@ fn main ()
 		println!("pi: pi_zuchongzhi: {:?}", pi_zuchongzhi.take(5).collect::<Vec<_>>());
 		//> pi: pi_zuchongzhi: [3.160609425201861, 3.1461442776893698, 3.1427182090891512, 3.1418732752679395, 3.1416627611326438]
 	}
+	
+	{
+		let x = iter::iterador::iterate(2, |a| a + 1);
+		println!("x: {:?}", x.skip(3).take(2).collect::<Vec<_>>());
+		//> x: [5, 6]
+		let x = iter::iterador::iterate(2, |a| a + 1);
+		println!("x: {:?}", x.skip(3).filter(|a| a % 2 != 0).take(2).collect::<Vec<_>>());
+		//> x: [5, 7]
+		let x = iter::iterador::iterate(2, |a| a + 1);
+		if let Some((head, tail)) = iter::iterador::pair(&x) 
+		{
+			println!("x: head: {}", head);
+			//> x: head: 2
+			println!(
+				"x: tail: {:?}", 
+				tail.clone()
+					.skip(3)
+					.filter(|a| a % 2 != 0)
+					.take(2)
+					.collect::<Vec<_>>());
+			//> x: tail: [7, 9]
+			println!(
+				"x: tail: {:?}", 
+				tail.clone()
+					.filter(|a| a % 2 != 0)
+					.take(2)
+					.collect::<Vec<_>>());
+			//> x: tail: [3, 5]
+		}
+	}
+	
+	{
+		// let prime = iter::iterador::unfold(
+		//     iter::iterador::iterate(2, |a| a + 1), 
+		//     |naturals| (
+		//     if let Some((head, tail)) = iter::iterador::pair(&naturals) {
+		//         (
+		//             head, 
+		//             iter::iterador::by_iter(tail.filter(|x| *x < &head * &head || x % &head != 0)))
+		//     } else {
+		//         (-1, naturals)
+		//     })
+		// );
+	}
 }
