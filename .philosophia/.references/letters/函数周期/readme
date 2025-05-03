@@ -1,0 +1,20 @@
+FW
+------
+
+你说得对，但是 sinx 是第一个被求反函数的。
+
+当时 sin cos tan cot 接到通知来讨论三角函数的周期性问题， sinx 刚到初等函数大厅，门口的守卫把 sinx 身边的常数拦了下来， sinx 感觉到事情不太对劲，但停顿一下后，还是走了进去。当 sinx 走到走廊的时候，多项式函数一拥而上，立刻就扭住了它的双手。
+
+sinx 还没有明白自己已经被求了反函数，还在大声斥责多项式函数：“你们干什么，我是来讨论周期性的！”  随后， sinx 被控制住定义域映射到了大厅里， ln(x+1) 站起来，宣布了 arcsin x 的值域默认为 [-0.5pi,+0.5pi] 。
+
+然而未等对数函数念完 arccos arctan arccot 的值域， sinx 突然挣脱多项式函数的束缚，大吼一声，扑向 e^x 。 sinx 在 [-1,1] 上震荡取值，而 e^x>0 ，可导可积，性质十分优良，要是让 sinx 破坏了单调性，那还得了？ e^x 毕竟是久经求导的老将了，显得非常镇定，坐在那里一动不动，就在距离 e^x 一个单位的时候，几个多项式函数冲上来死死的按住了他，给他戴上了手铐。
+
+在整个积化和差的过程中， sinx 的变换用的是最多的，后续规定它反函数的值域也是最严格的。
+
+----
+
+https://www.mathway.com/zh/popular-problems/Calculus/535281
+
+https://www.mathway.com/zh/popular-problems/Calculus/808663
+
+https://www.desmos.com/calculator/ugg9nvh9sa
