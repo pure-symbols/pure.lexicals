@@ -238,7 +238,7 @@ Triple.three = <A,> (a: A) => <B,> (b: B) => <C,> (c: C): C => c ;
 
 ### 🥩 Equal Case
 
-#### Apply Mork
+#### Apply Mock
 
 pair: 
 
@@ -273,7 +273,7 @@ Triple.applies ((a) => (b) => (c) => console.log (["A::" + a, "B::" + b, "C::" +
 ((a, b, c) => console.log (["A::" + a, "B::" + b, "C::" + c])) ("a", 0, [0,1,2]); //> ["A::a", "B::0", "C::0,1,2"]
 ~~~
 
-#### Unpack Mork
+#### Unpack Mock
 
 pair: 
 
