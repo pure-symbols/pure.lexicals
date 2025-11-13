@@ -348,7 +348,7 @@ Pipeyard (5)
 // console.log out: "!?x12"
 ~~~
 
-The *Continuation Passing Style* Programming is just indicate a way to go for a value just like that `Pipeyard` use case. But, the `Pipeyard` is just a mork for the *CPS* cause it is not a value gives to a function actually.  
+The *Continuation Passing Style* Programming is just indicate a way to go for a value just like that `Pipeyard` use case. But, the `Pipeyard` is just a mock for the *CPS* cause it is not a value gives to a function actually.  
 \________  
 一般而言，续程（ *Continuations* ）风格的编程就是像这样在一个表达式或者值后面直接指定它的去处。上面的实现只是对这一风格的模拟，因为毕竟如果没有最后的 `(console.log)` 的话，也没太多方便的办法来看到在 `Pipeyard` 这个盒子里的值究竟变成啥了。
 
