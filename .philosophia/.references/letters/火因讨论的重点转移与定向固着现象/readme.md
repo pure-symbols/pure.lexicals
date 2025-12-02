@@ -14,6 +14,5 @@
 
 
 ――――
-相关新闻： https://abc.net.au/chinese/2025-12-01/behind-hks-skyline-thousands-of-old-towers-fire-risks/106087540
-
-具荒诞性的讨论案例：相信各位读者都知道了，而且这边的评论区也许也可以复现，所以略。（但我希望不要复现的）。
+- 相关新闻： https://abc.net.au/chinese/2025-12-01/behind-hks-skyline-thousands-of-old-towers-fire-risks/106087540
+- 具荒诞性的讨论案例：相信各位读者都知道了，而且这边的评论区也许也可以复现，所以略。（但我希望不要复现的）。
