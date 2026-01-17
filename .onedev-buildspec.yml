@@ -1,25 +1,34 @@
-version: 19
+version: 43
 jobs:
 - name: pusher all-branch commit
   steps:
-  - !PushRepository
-    name: force to gh pure-symbols/pure.closures (lexicals)
+  - type: PushRepository
+    name: (not force) to gh pure-symbols/pure.lexicals
     remoteUrl: https://github.com/pure-symbols/pure.lexicals.git
     userName: yhm-amber
     passwordSecret: github.yhm-amber
-    withLfs: true
-    force: true
+    force: false
     condition: ALWAYS
-  - !PushRepository
-    name: force to cb pure-symbols/pure.closures (lexicals)
+    optional: false
+  - type: PushRepository
+    name: (force) to cb pure-symbols/pure.lexicals
     remoteUrl: https://codeberg.org/pure-symbols/pure.lexicals.git
     userName: yhm
     passwordSecret: codeberg.yhm
-    withLfs: true
     force: true
     condition: ALWAYS
+    optional: false
+  - type: PushRepository
+    name: (force) to disrootfj pure.symbols/pure.lexicals
+    remoteUrl: https://git.disroot.org/pure.symbols/pure.lexicals.git
+    userName: ypayhm
+    passwordSecret: disroot.ypayhm
+    force: true
+    condition: ALWAYS
+    optional: false
   triggers:
-  - !BranchUpdateTrigger
+  - type: BranchUpdateTrigger
+    userMatch: anyone
     projects: pure.symbols/pure.lexicals
   retryCondition: never
   maxRetries: 4
@@ -27,24 +36,32 @@ jobs:
   timeout: 3600
 - name: puller all-branch cron.03:20:10
   steps:
-  - !PullRepository
-    name: force from gh pure-symbols/pure.closures (lexicals)
+  - type: PullRepository
+    name: (force) from gh pure-symbols/pure.lexicals
     remoteUrl: https://github.com/pure-symbols/pure.lexicals.git
-    syncToChildProject: false
     refs: refs/heads/* refs/tags/*
     withLfs: true
     force: true
     condition: ALWAYS
-  - !PullRepository
-    name: force from cb pure-symbols/pure.closures (lexicals)
+    optional: false
+  - type: PullRepository
+    name: (not force) from cb pure-symbols/pure.lexicals
     remoteUrl: https://codeberg.org/pure-symbols/pure.lexicals.git
-    syncToChildProject: false
     refs: refs/heads/* refs/tags/*
     withLfs: true
-    force: true
+    force: false
     condition: ALWAYS
+    optional: false
+  - type: PullRepository
+    name: (not force) from disrootfj pure.symbols/pure.lexicals
+    remoteUrl: https://git.disroot.org/pure.symbols/pure.lexicals.git
+    refs: refs/heads/* refs/tags/*
+    withLfs: true
+    force: false
+    condition: ALWAYS
+    optional: false
   triggers:
-  - !ScheduleTrigger
+  - type: ScheduleTrigger
     cronExpression: 10 20 3 * * ?
     projects: pure.symbols/pure.lexicals
   retryCondition: never
