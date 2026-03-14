@@ -2,6 +2,7 @@
 [lang.book/.site]: https://rhai.rs/book/ "The Rhai Book"
 [lang.site/rs]: https://rhai.rs/ "A small, fast, easy-to-use scripting language and evaluation engine that integrates tightly with Rust. Builds for most common targets including no-std and WASM. // 一款小巧、快速、易用的脚本语言和评估引擎，与 Rust 紧密集成。可构建用于包括 no-std 和 WASM 在内的大多数常见目标平台。"
 [lang.src/gh]: https://github.com/rhaiscript/rhai.git "Embedded scripting for Rust // Rust 的嵌入式脚本"
+[lang-play.src/gh]: https://github.com/rhaiscript/playground.git "A Rhai scripting playground that runs Rhai scripts using WebAssembly in a web browser. // 一个 Rhai 脚本开发平台，可以在 Web 浏览器中使用 WebAssembly 运行 Rhai 脚本。"
 [lang-cli.cargo/crates.io]: https://crates.io/crates/rhai "(: cargo install -- rhai)"
 [lang-lsp.src/gh]: https://github.com/rhaiscript/lsp.git "Language server for Rhai"
 [egne-ml.src/gh]: https://github.com/rhaiscript/rhai-ml.git "Machine learning for Rhai. (~ gh:cmccomb/rhai-ml.git)"
