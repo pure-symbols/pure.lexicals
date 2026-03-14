@@ -1,0 +1,5 @@
+[play/.site]: https://rhai.rs/playground/ "Online Playground"
+[book/.site]: https://rhai.rs/book/ "The Rhai Book"
+[site/rs]: https://rhai.rs/ "A small, fast, easy-to-use scripting language and evaluation engine that integrates tightly with Rust. Builds for most common targets including no-std and WASM. // 一款小巧、快速、易用的脚本语言和评估引擎，与 Rust 紧密集成。可构建用于包括 no-std 和 WASM 在内的大多数常见目标平台。"
+[src/gh]: https://github.com/rhaiscript/rhai.git "Embedded scripting for Rust // Rust 的嵌入式脚本"
+[cli.cargo/crates.io]: https://crates.io/crates/rhai "(: cargo install -- rhai)"
