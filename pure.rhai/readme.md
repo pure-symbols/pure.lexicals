@@ -12,6 +12,9 @@
 [pkgdoc-cli.src/gh]: https://github.com/rhaiscript/rhai-doc.git "rhai-doc - Generates HTML Documentation from Rhai Script Files // rhai-doc - 从 Rhai 脚本文件的 Markdown 文档注释 (位置类似 R/Rust 那样) 生成 HTML 文档"
 [pkgdoc-cli.cargo/crates]: https://crates.io/crates/rhai-doc "(: cargo install -- rhai-doc)"
 
+[ideplg-vsc.src/gh]: https://github.com/rhaiscript/vscode-rhai.git "Rhai language support for Visual Studio Code. // 在 Visual Studio Code 对 Rhai 语言支持。 (~ generated from gh:oovm/RustTemplate.git)"
+[ideplg-vsc.vsix/ovsx]: https://open-vsx.org/extension/rhaiscript/vscode-rhai "Syntax highlighting for Rhai scripts (src: gh:rhaiscript/vscode-rhai.git)"
+
 [nifbind-lib.src/gh]: https://github.com/rhaiscript/rhai_rustler.git "rhai_rustler exposes a subset of the Rhai API to Elixir: // rhai_rustler 向 Elixir 公开 Rhai API 的子集： /// Engine, Scope, AST."
 [nifbind-lib.mix/hex]: https://hex.pm/packages/rhai_rustler "(: Mix.install([{:rhai_rustler}]))"
 
