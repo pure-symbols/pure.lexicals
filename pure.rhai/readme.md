@@ -9,6 +9,10 @@
 [lang-cli.cargo/crates.io]: https://crates.io/crates/rhai "(: cargo install -- rhai)"
 [lang-lsp.src/gh]: https://github.com/rhaiscript/lsp.git "Language server for Rhai"
 
-[egne-ml.src/gh]: https://github.com/rhaiscript/rhai-ml.git "Machine learning for Rhai. (~ gh:cmccomb/rhai-ml.git)"
+[nifbind-lib.src/gh]: https://github.com/rhaiscript/rhai_rustler.git "rhai_rustler exposes a subset of the Rhai API to Elixir: // rhai_rustler 向 Elixir 公开 Rhai API 的子集： /// Engine, Scope, AST."
+[nifbind-lib.mix/hex]: https://hex.pm/packages/rhai_rustler "(: Mix.install([{:rhai_rustler}]))"
+
+[egne-ml-lib.src/gh]: https://github.com/rhaiscript/rhai-ml.git "Machine learning for Rhai. (~ gh:cmccomb/rhai-ml.git)"
 [egne-ml-lib.cargo/crates.io]: https://crates.io/crates/rhai-ml "(: cargo add -- rhai-ml)"
+
 
