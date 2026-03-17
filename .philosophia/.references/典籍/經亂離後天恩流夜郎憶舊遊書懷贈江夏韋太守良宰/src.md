@@ -1,0 +1,1 @@
+[經亂離後天恩流夜郎憶舊遊書懷贈江夏韋太守良宰/wikisource.org]: https://zh.wikisource.org/zh/%E7%B6%93%E4%BA%82%E9%9B%A2%E5%BE%8C%E5%A4%A9%E6%81%A9%E6%B5%81%E5%A4%9C%E9%83%8E%E6%86%B6%E8%88%8A%E9%81%8A%E6%9B%B8%E6%87%B7%E8%B4%88%E6%B1%9F%E5%A4%8F%E9%9F%8B%E5%A4%AA%E5%AE%88%E8%89%AF%E5%AE%B0 "經亂離後天恩流夜郎憶舊遊書懷贈江夏韋太守良宰 | 维基文库"
