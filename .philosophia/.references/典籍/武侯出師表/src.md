@@ -1,2 +1,2 @@
-[出師表/wikisource.org]: https://zh.wikisource.org/wiki/%E5%87%BA%E5%B8%AB%E8%A1%A8 "出師表 | 维基文库"
+[出師表/wikisource.org]: https://zh.wikisource.org/wiki/%E5%89%8D%E5%87%BA%E5%B8%AB%E8%A1%A8 "出師表 | 维基文库"
 [親賢臣，遠小人，此先漢所以興隆也；親小人，遠賢臣，此後漢所以傾頹也。/ctext.org]: https://ctext.org/text.pl?node=603498&searchu=%E8%A6%AA%E8%B3%A2%E8%87%A3%EF%BC%8C%E9%81%A0%E5%B0%8F%E4%BA%BA%EF%BC%8C%E6%AD%A4%E5%85%88%E6%BC%A2%E6%89%80%E4%BB%A5%E8%88%88%E9%9A%86%E4%B9%9F%EF%BC%9B%E8%A6%AA%E5%B0%8F%E4%BA%BA%EF%BC%8C%E9%81%A0%E8%B3%A2%E8%87%A3%EF%BC%8C%E6%AD%A4%E5%BE%8C%E6%BC%A2%E6%89%80%E4%BB%A5%E5%82%BE%E9%A0%B9%E4%B9%9F%E3%80%82&searchmode=showall&if=gb#result "三國志 > 蜀書五 > 諸葛亮傳 | 中國哲學書電子化計劃"
