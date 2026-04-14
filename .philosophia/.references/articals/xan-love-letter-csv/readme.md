@@ -1,9 +1,10 @@
 
-# A love letter to the CSV format | 致 CSV 格式的情书
+
+# [A love letter to the CSV format | 致 CSV 格式的情书](https://github.com/medialab/xan/blob/master/docs/LOVE_LETTER.md "A love letter to the CSV format -- Or why people pretending CSV is dead are wrong")
 
 *Or why people pretending CSV is dead are wrong*
 
-*或者，假装 CSV 已死的人为何是错的*
+*或曰、假装 CSV 已死的人为何是错的*
 
 Every month or so, a new blog article declaring the near demise of CSV in favor of some "obviously superior" format ([parquet](https://parquet.apache.org/), newline-delimited JSON, [MessagePack](https://msgpack.org/) records etc.) find its ways to the reader's eyes. Sadly those articles often offer a very narrow and biased comparison and often fail to understand what makes CSV a seemingly unkillable staple of data serialization.
 
