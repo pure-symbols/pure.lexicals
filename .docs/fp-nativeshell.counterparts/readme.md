@@ -22,10 +22,10 @@ fielder=",$IFS" Tuple -- a b < <(echo AAA, Bb)
 ~~~
 
 语法見释
-- [args](../../.notes/sh3rrs/.ref-sh/Args "Args on SHell")
-- [file](../../.notes/sh3rrs/.ref-sh/Files "Files on SHell")
+- [Args](../../.notes/sh3rrs/.ref-sh/Args "Args on SHell")
+- [Files](../../.notes/sh3rrs/.ref-sh/Files "Files on SHell")
 
-此 `read -r` 之能也，其取一行、以 `"$IFS"` 为分割之定，将值分作各域 (Fields) 而按序各与 `--` 后之余参绑名作定。
+此 `read --` 之能也。其取一行、以 `"$IFS"` 为分割之定，将值分作各域 (Fields) 而按序各与 `--` 后之余参绑名作定。
 
 故，亦可如是用：
 
@@ -57,4 +57,10 @@ ls -1 -- xiu-0.13.0-*
 
 按域 (Field) 分理，此元组 (Tuple) 之所德者一也。
 
+若所分者、与 `read --` 后之名者、数目不一，则末之多值做一域、末若不足则不予。例：
+
+~~~ sh
+read a b c d < <(echo AA BB CC) ; echo "$a - $b - $d - $c"   #> AA - BB -  - CC
+read a b < <(echo AA BB CC) ; echo "$a - $b"                 #> AA - BB CC
+~~~
 
