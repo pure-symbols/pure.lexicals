@@ -55,9 +55,6 @@ random-file --stdout > ~/random.text
 >(some-command that-can-generate-contents into-stdout.) #: 用于无名 File 内容之予
 ~~~
 
-须注意，此 `<()` `>()` 乃是一语义整体！不能看作单独的 `<` `>` 与括号 `()` 的灵活组合：
-- 
-
 例假如有：
 - 命令 `gen novel --file <file-path>` 可随机生成小说文本至于指定文件；命令 `gen novel --stdout` 则向其 stdout 写予小说内容
 - 命令 `ai givefile --file <file-path>` 可予 AI 内容以文件；而命令 `ai givefile --stdin` 可通过 stdin 予 AI 内容
@@ -111,11 +108,31 @@ gen vsix --id haberdashPI.terminal-polyglot:v0.6.0 --save-file >(vscode plginsta
 
 简言之：无名之名，以内容指。借符 `<()` 以取 `>()` 以予其内，乃如临名。
 
+**须注意：此 `<()` `>()` 乃是一语义整体！不能看作单独的 `<` `>` 与括号 `()` 的灵活组合！！**
 
+即在前述命令存在的前提下，可：
 
+~~~ sh
+: 取
+look-file --stdin < <(gen novel --stdout)
+#: 将相当于另一接口: `look-file <(gen novel --stdout)` 之预期效果
 
+: 予
+random-file --stdout > >(ai givefile --stdin)
+#: 将相当于另一接口: `random-file >(ai givefile --stdin)` 之预期效果
 
+::::
 
+: 取
+ai givefile --stdin < <(gen novel --stdout)
+#: 将相当于另一接口: `ai givefile --file <(gen novel --stdout)` 之预期效果
+
+: 予
+gen novel --stdout > >(ai givefile --stdin)
+#: 将相当于另一接口: `gen novel --file >(ai givefile --stdin)` 之预期效果
+~~~
+
+更多有关 stdin/stdout 之详细者，可見于: [Pipes](../Pipes)
 
 
 
