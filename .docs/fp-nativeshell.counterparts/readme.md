@@ -60,7 +60,7 @@ ls -1 -- xiu-0.13.0-*
 若所分者、与 `read --` 后之名者、数目不一，则末之多值做一域、末若不足则不予。例：
 
 ~~~ sh
-read a b c d < <(echo AA BB CC) && echo "$a - $b - $d - $c"   #> AA - BB -  - CC
-read a b < <(echo AA BB CC) && echo "$a - $b"                 #> AA - BB CC
+(read a b c d < <(echo AA BB CC) && echo "$a - $b - $d - $c")  #> AA - BB -  - CC
+(read a b < <(echo AA BB CC) && echo "$a - $b")                #> AA - BB CC
 ~~~
 
