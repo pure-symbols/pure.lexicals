@@ -110,7 +110,7 @@ gen vsix --id haberdashPI.terminal-polyglot:v0.6.0 --save-file >(vscode plginsta
 
 **须注意：此 `<()` `>()` 乃是一语义整体！不能看作单独的 `<` `>` 与括号 `()` 的灵活组合！！**
 
-即在前述命令存在的前提下，可：
+在前述命令存在的前提下，有：
 
 ~~~ sh
 : 取
