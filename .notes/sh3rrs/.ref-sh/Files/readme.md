@@ -85,24 +85,24 @@ gen novel --file >(ai givefile --stdin)
 ~~~ sh
 : 取
 docker load --input <(gen oci --id ghcr.io/orhun/kmon/kmon:latest)
-#: 将等效于: `docker load --input --from-file orhun.kmon-latest.tar` 若你已存得文件
+#: 将等效于: `docker load --input ~/orhun.kmon-latest.tar` 若你已存得文件
 #: 从中可見: 用符 <() 于原有名之位、并填能向 stdout 生成所愿内容之命令即可
 
 : 予
 gen oci --id ghcr.io/orhun/kmon/kmon:latest --save-file >(docker load)
-#: 将等效于: `gen oci --id ghcr.io/orhun/kmon/kmon:latest --save-file orhun.kmon-latest.tar` 存得文件后再去导入
+#: 将等效于: `gen oci --id ghcr.io/orhun/kmon/kmon:latest --save-file ~/orhun.kmon-latest.tar` 存得文件后再去导入
 #: 从中亦見: 用符 >() 于原有名之位、并填能从 stdin 取得所给内容之命令即可
 
 ::::
 
 : 取
 vscode plginstall --from-file <(gen vsix --id haberdashPI.terminal-polyglot:v0.6.0)
-#: 将等效于: `vscode plginstall --from-file haberdashPI.terminal-polyglot-v0.6.0.vsix` 若你已存得文件
+#: 将等效于: `vscode plginstall --from-file ~/haberdashPI.terminal-polyglot-v0.6.0.vsix` 若你已存得文件
 #: 从中可見: 用符 <() 于原有名之位、并填能向 stdout 生成所愿内容之命令即可
 
 : 予
 gen vsix --id haberdashPI.terminal-polyglot:v0.6.0 --save-file >(vscode plginstall)
-#: 将等效于: `gen vsix --id haberdashPI.terminal-polyglot:v0.6.0 --save-file haberdashPI.terminal-polyglot-v0.6.0.vsix` 存得文件后再去安装
+#: 将等效于: `gen vsix --id haberdashPI.terminal-polyglot:v0.6.0 --save-file ~/haberdashPI.terminal-polyglot-v0.6.0.vsix` 存得文件后再去安装
 #: 从中亦見: 用符 >() 于原有名之位、并填能从 stdin 取得所给内容之命令即可
 ~~~
 
