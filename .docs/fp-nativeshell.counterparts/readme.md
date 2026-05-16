@@ -9,14 +9,14 @@
 关系
 
 ~~~ sh
-Tuple () { IFS="${fielder:-$IFS}" read -r "${@:-x}" && :; }
+Tuple () { IFS="${FIELDER:-${IFS}}" read -r "${@:-x}" && :; }
 ~~~
 
 示例
 
 ~~~ sh
 Tuple -- a b < <(echo AAA Bb)
-fielder=",$IFS" Tuple -- a b < <(echo AAA, Bb)
+FIELDER=",$IFS" Tuple -- a b < <(echo AAA, Bb)
 
 #: 皆可使 a 定值 AAA 又使 b 定值 Bb
 ~~~
@@ -94,7 +94,7 @@ echo	亥 戌 酉 申 未 午 巳 辰 卯 寅 丑 子 | while read -d ' ' -- e; d
 上例第三，其 `-d` 之值非空值、乃一零宽字符 `​` 若用之，则可关得：
 
 ~~~ sh
-trim () ( IFS="${TRIMMER:-${IFS}}" Tuple -d "${ender:=​}" -- s < <(echo "$@" "${ender}") && echo "$s" && : )
+trim () ( IFS="${TRIMMER:-${IFS}}" Tuple -d "${ENDER:=​}" -- s < <(echo "$@" "${ENDER}") && echo "$s" && : )
 ~~~
 
 見例：
