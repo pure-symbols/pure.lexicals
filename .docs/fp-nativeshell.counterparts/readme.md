@@ -100,7 +100,7 @@ trim () ( IFS="${TRIMMER:-${IFS}}" Tuple -d "${ender:=​}" -- s < <(echo "$@" "
 見例：
 
 ~~~ sh
-: 原样
+: 先样示
 echo  $'  \n  U W U \n  x \n\n '    $'  x\n  U W U \n   \n\n '
 #|	  
 #|	  U W U 
@@ -112,7 +112,7 @@ echo  $'  \n  U W U \n  x \n\n '    $'  x\n  U W U \n   \n\n '
 #|	
 #|	 
 
-: 后样
+: 后样示
 trim  $'  \n  U W U \n  x \n\n '    $'  x\n  U W U \n   \n\n '
 #|	U W U 
 #|	  x 
