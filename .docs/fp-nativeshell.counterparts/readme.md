@@ -4,15 +4,15 @@
 
 [语法释見此](../../.notes/sh3rrs/.ref-sh "Means on SHell")
 
-## Tuple
+## Tuple from `read`
 
-Define
+关系
 
 ~~~ sh
 Tuple () { IFS="${fielder:-$IFS}" read -r "${@:-x}" ; }
 ~~~
 
-Using
+示例
 
 ~~~ sh
 Tuple -- a b < <(echo AAA Bb)
@@ -62,5 +62,13 @@ ls -1 -- xiu-0.13.0-*
 ~~~ sh
 (read a b c d < <(echo AA BB CC) && echo "$a - $b - $d - $c")  #> AA - BB -  - CC
 (read a b < <(echo AA BB CC) && echo "$a - $b")                #> AA - BB CC
+~~~
+
+有，名参 `IFS` 可定一条目 (Entry) 之域 (Field) 分。又，匿参之选 (Option) 者 `read` 之 `-d` 可定所入数据中各条目 (Entry) 之分。
+
+可見于例：
+
+~~~ sh
+echo	亥 戌 酉 申 未 午 巳 辰 卯 寅 丑 子 | while read -d' ' e; do echo "$e"; done #: 可得其安序而单字为行。
 ~~~
 
