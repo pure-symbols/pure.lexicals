@@ -64,6 +64,8 @@ ls -1 -- xiu-0.13.0-*
 (read a b < <(echo AA BB CC) && echo "$a - $b")                #> AA - BB CC
 ~~~
 
+### Trim by default IFS
+
 有，名参 `IFS` 可定一条目 (Entry) 之域 (Field) 分。又，匿参之选 (Option) 者 `read` 之 `-d` 可定所入数据中各条目 (Entry) 之分。
 
 可見于例：
