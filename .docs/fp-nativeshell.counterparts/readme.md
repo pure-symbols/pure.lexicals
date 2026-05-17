@@ -25,7 +25,7 @@ FIELDER=",$IFS" Tuple -- a b < <(echo AAA, Bb)
 - [Args](../../.notes/sh3rrs/.ref-sh/Args "Args on SHell")
 - [Files](../../.notes/sh3rrs/.ref-sh/Files "Files on SHell")
 
-### Split of Field
+### ... Split of Field
 
 此 `read --` 之能也。其取一行、以 `"$IFS"` 为分割之定，将值分作各域 (Fields) 而按序各与 `--` 后之余参绑名作定。
 
@@ -66,7 +66,7 @@ ls -1 -- xiu-0.13.0-*
 (read a b < <(echo AA BB CC) && echo "$a - $b")                #> AA - BB CC
 ~~~
 
-### Delim of Entry
+### ... Delim of Entry
 
 有，名参 `IFS` 可定一条目 (Entry) 之域 (Field) 分。又，匿参之选 (Option) 者 `read` 之 `-d` 可定所入数据中各条目 (Entry) 之分。
 
