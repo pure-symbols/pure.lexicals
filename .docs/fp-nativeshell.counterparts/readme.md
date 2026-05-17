@@ -25,13 +25,15 @@ FIELDER=",$IFS" Tuple -- a b < <(echo AAA, Bb)
 - [Args](../../.notes/sh3rrs/.ref-sh/Args "Args on SHell")
 - [Files](../../.notes/sh3rrs/.ref-sh/Files "Files on SHell")
 
+### Split of Field
+
 此 `read --` 之能也。其取一行、以 `"$IFS"` 为分割之定，将值分作各域 (Fields) 而按序各与 `--` 后之余参绑名作定。
 
 故，亦可如是用：
 
 ~~~ sh
 : 已有
-md5sum.exe xiu-0.13.0-* | xargs -i -- echo echo {} | sh
+md5sum xiu-0.13.0-* | xargs -i -- echo echo {} | sh
 #|	4cf1b683bd1ff1d721440dfe2e305b25 xiu-0.13.0-aarch64-unknown-linux-gnu
 #|	e54b20c8252ed476a55da9736944239c xiu-0.13.0-x86_64-apple-darwin
 #|	569d094f3ad2ff9e32ea6ddf92cc99b2 xiu-0.13.0-x86_64-pc-windows-msvc.exe
@@ -39,7 +41,7 @@ md5sum.exe xiu-0.13.0-* | xargs -i -- echo echo {} | sh
 #|	8ffaca951893cde8eb1da138fda65264 xiu-0.13.0-x86_64-unknown-linux-musl
 
 : 则
-md5sum.exe xiu-0.13.0-* | xargs -i -- echo echo {} | sh | while read -r -- a b; do echo $a - $b && mv "$b" "$b - md5_$a" && :; done
+md5sum xiu-0.13.0-* | xargs -i -- echo echo {} | sh | while read -r -- a b; do echo $a - $b && mv "$b" "$b - md5_$a" && :; done
 #|	4cf1b683bd1ff1d721440dfe2e305b25 - xiu-0.13.0-aarch64-unknown-linux-gnu
 #|	e54b20c8252ed476a55da9736944239c - xiu-0.13.0-x86_64-apple-darwin
 #|	569d094f3ad2ff9e32ea6ddf92cc99b2 - xiu-0.13.0-x86_64-pc-windows-msvc.exe
@@ -64,7 +66,7 @@ ls -1 -- xiu-0.13.0-*
 (read a b < <(echo AA BB CC) && echo "$a - $b")                #> AA - BB CC
 ~~~
 
-### Trim by default IFS
+### Delim of Entry
 
 有，名参 `IFS` 可定一条目 (Entry) 之域 (Field) 分。又，匿参之选 (Option) 者 `read` 之 `-d` 可定所入数据中各条目 (Entry) 之分。
 
