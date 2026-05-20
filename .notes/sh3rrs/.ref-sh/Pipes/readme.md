@@ -65,3 +65,98 @@
 - `<func-name> () { ... func body ... ; }` 将能使其中量名干扰本【进程】之【环境】：故可用于副作用之定义。
 
 更多之详、可見乎: [Commands](../Commands)
+
+### 叉
+
+行者有三窍，窍乃固有穴。
+
+- 一曰 `stdin` 以行间入物、记作 `0`
+- 一曰 `stdout` 以行间出物、记作 `1`
+- 一曰 `stderr` 以行间示详、记作 `2`
+
+此三者外，亦可启新穴为用。
+
+穴连起止、似窍开如洞口、实路通如经络。起止必皆写明为【显】：
+- 若有入无出、则不能成窍而敕令无成尔；
+- 若无入有出、则其令虽成却无甚物可出。
+
+示：
+
+~~~ sh
+: 简
+(echo a >&6) 6>&1 #> a
+(echo a >&3) 3>&1 #> a
+(echo a >&1023) 1023>&1 #> a
+(echo a 1>&1023) 1023>&1 #> a
+(echo a 1>& 1023) 1023>& 1 #> a
+#: 三者效同。
+#: 其给予符 > 原当标出从何而予、然若从常出 &1 而予者，可略其 1 而独写一 > 符即可。
+
+#: 释窍开曰 6 者之令文:
+#: -	其 >& 6 乃显定此洞之如何入：例中定其入之源为 echo 所建行者
+#: -	其 6> 乃显定此洞之如何入：例中定其出之標为圆括所建行者之 &1 常出
+
+: 用
+echo a | (tee >(cat >&3) | awk '{print "inside",$0}') 3>&1 | awk '{print "outside",$0}' #> outside a #> outside inside a
+echo a | (tee >(cat >&3) | awk '{print "inside",$0}' >&1) 3>&1 | awk '{print "outside",$0}' #> outside a #> outside inside a
+#: 此二者同。
+
+#: 释:
+#: -	此例中，以 tee 使入物分一叉、分出者至于窍 &3 而得免 inside 之加衔；
+#: -	建 awk 以使 tee 原线出物加衔 inside 并作常出、后又将分叉至 &3 者亦并回常出；
+#: -	故有二常出者，又皆得 awk 再加衔 outside ，故见经 &3 之 outside a 、与经 awk inside 之 outside inside a 。
+
+#: 详、知者可过: 
+#: 1.	建一 echo 以出物作例
+#: 2.	建子行者：
+#: 	-	先 tee 分支原出物使以新窍 &3 出 (其窍立源)
+#: 	-	有 tee 出物 awk 加衔 inside 再使以 &1 出即出物 (二者同于此)
+#: 	-	子行者新窍 &3 当得其处此使以 &1 出 (其窍立用) (新窍立源必立用)
+#: 3. 再建一 awk 使前者出物再加衔以 outside 以见其效
+
+: 又用
+echo a | (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>&1 | awk '{print "outside",$0}' #> outside a #> outside inside a
+#: 此，同于上二者。但独加衔 inside 之原叉乃使出窍 &4 、又在圆括外指其 &4 之用乃又使出回 &1 窍。
+
+: 示用
+echo a | (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>&2 | awk '{print "outside",$0}' #2> inside a #> outside a
+#: 此，概同于上二者。但独加衔 outside 之前、使已加 inside 者用作示出而非出物，故其未予 awk outside 二不得此加衔矣。
+
+: 另用
+echo a | ( (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>&5 | awk '{print "outside",$0}') 5>&1 #> inside a #> outside a
+echo a | ( (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>&666 | awk '{print "outside",$0}') 666>&1 #> inside a #> outside a
+echo a | ( (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>&4 | awk '{print "outside",$0}') 4>&1 #> inside a #> outside a
+echo a | ( (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 | awk '{print "outside",$0}') 4>&1 #> inside a #> outside a
+#: 若要使上者皆出于常而非示，可如此。上诸者同，皆将衔 inside 并予 &4 之这一分叉、在 outside 前使不予 &1 即可。
+#: 可予 &5 可 &6 可任意亦可原样于 &4 ，非 &1 即可不入管道。亦可 &2 ，然此线多用于行间示事、故可以不擅占之为上也。
+
+: 用弃
+echo a | ( (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>/dev/null | awk '{print "outside",$0}') 4>&1 #> outside a
+echo a | (tee >(cat >&3) | awk '{print "inside",$0}' >&4) 3>&1 4>/dev/null | awk '{print "outside",$0}' #> outside a
+#: 此例弃衔 inside 者、故仅剩 outside a 出之
+#: 而因有弃故窍 &4 本若无入，无入索出则亦无可出也。
+
+: 用多
+echo a | (tee >(cat >&3) >(cat >&4) >(cat >&5) | awk '{print "inside",$0}') 3>&1 4>&2 5>/dev/null | awk '{print "outside",$0}' #2> a #> outside a #> outside inside a
+#: 此例不再释之
+#: 其理显而易见 请君但可一辨
+~~~
+
+式：
+
+~~~ sh
+: 简式以 &3 或 &4
+(命令夫能出物 >&3) 3>&1 #> 命令所行之出物
+(命令夫能出物 >&4) 4>&1 #> 命令所行之出物
+
+: 用叉以 &3
+命令夫能出物 | (tee >(cat >&3) | 命令夫当用物) 3>&1 | 另命令夫当用物
+
+: 用叉以多
+命令夫能出物 | ( ( (tee >(cat >&3) >(cat >&4) >(cat >&5) | 命令夫当用物) 3>&1 | 另一命令夫当用物) 4>&1 | 另二命令夫当用物) 5>&1 | 另三命令夫当用物
+命令夫能出物 | (tee >(cat >&6) | 另三命令夫当用物) 6>&1 | (tee >(cat >&6) | 另二命令夫当用物) 6>&1 | (tee >(cat >&6) | 另一命令夫当用物) 6>&1 | 命令夫当用物
+#: 若此用物之另命令皆用尽物而不再有出，则此二式可概一致。曰：予之又一窍号亦算用、但确保此窍号后又得用尔。
+~~~
+
+
+
