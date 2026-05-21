@@ -50,6 +50,14 @@
 - `gen novel --stdout > >(ai givefile --stdin)` 者：将以 `gen novel --stdout` 之所行为主、 `ai givefile --stdin` 为辅；
 - `gen novel --stdout | ai givefile --stdin` 者：将以此间 SHell 之此处作管线而得之所行为主、余者皆辅。
 
+另：
+
+~~~ sh
+<command-a> |& <command-b> |& ...
+~~~
+
+此符 `|&` 使前之行者之 stdout 与 stderr 皆入后之行者之 stdin ，而符 `|` 则只令前之行者之 stdout 入后之行者之 stdin 。
+
 ### 程
 
 【程序】之所启于命令调遣者，【进程】也。
