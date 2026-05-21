@@ -66,7 +66,9 @@
 
 更多之详、可見乎: [Commands](../Commands)
 
-### 叉 <sub>(一高阶管道富用)</sub>
+### 管更多用 <sub>(Advantages)</sub>
+
+#### 分叉富出
 
 行者有三窍，窍乃固有穴。
 
@@ -157,6 +159,129 @@ echo a | (tee >(cat >&3) >(cat >&4) >(cat >&5) | awk '{print "inside",$0}') 3>&1
 命令夫能出物 | (tee >(cat >&6) | 另三命令夫当用物) 6>&1 | (tee >(cat >&6) | 另二命令夫当用物) 6>&1 | (tee >(cat >&6) | 另一命令夫当用物) 6>&1 | 命令夫当用物
 #: 若此用物之另命令皆用尽物而不再有出，则此二式可概一致。曰：予之又一窍号亦算用、但确保此窍号后又得用尔。
 ~~~
+
+#### 合汇诸入
+
+示以简：
+
+~~~ sh
+: 汇入一
+(
+	awk '{print $0,"willcatch-A"}' <&666 ; 
+	: ) 666< <(echo input-A)
+#> input-A willcatch-A
+
+: 汇入二
+(
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&22 ; 
+	: ) 666< <(echo input-B) 22< <(echo input-A)
+#> input-B willcatch-B
+#> input-A willcatch-A
+
+: 汇入多
+(
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&22 ; 
+	awk '{print $0,"willcatch-333"}' <&333 ; 
+	: ) 22< <(echo input-A) 333< <(echo input-333) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-A willcatch-A
+#> input-333 willcatch-333
+
+: 汇入用零
+(
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&22 ; 
+	awk '{print $0,"willcatch-0"}' <&0 ; 
+	: ) 22< <(echo input-A) 0< <(echo input-0) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-A willcatch-A
+#> input-0 willcatch-0
+
+: 汇入默认即用零
+(
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&22 ; 
+	awk '{print $0,"willcatch-000"}' <&0 ; 
+	: ) 22< <(echo input-A) < <(echo input-000) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-A willcatch-A
+#> input-000 willcatch-000
+(
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&22 ; 
+	awk '{print $0,"willcatch-000"}' ; 
+	: ) 22< <(echo input-A) 0< <(echo input-000) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-A willcatch-A
+#> input-000 willcatch-000
+(
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&22 ; 
+	awk '{print $0,"willcatch-000"}' ; 
+	: ) 22< <(echo input-A) < <(echo input-000) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-A willcatch-A
+#> input-000 willcatch-000
+~~~
+
+見理：
+- 使 `<&号` 可定其入、使 `号< 源` 可定此入之来（来者不可缺）。
+- 若未显定其入号、则号即以零为默认即如 `<&0` 写于此。
+- 而 `<&0` 既为默认即意为其可省略、略之如写 `<&0` 于此。
+
+因故更有用：
+
+~~~ sh
+: 用
+echo input-A | (
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&0 ; 
+	: ) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-A willcatch-A
+
+: 用同
+echo input-A | (
+	awk '{print $0,"willcatch-B"}' <&666 ; 
+	awk '{print $0,"willcatch-A"}' <&0 ; 
+	: ) 666< <(echo input-B) 0<&0
+#> input-B willcatch-B
+#> input-A willcatch-A
+
+: 并用
+echo input-A | (
+	awk '{print $0,"willcatch-B"}' <&666 & 
+	awk '{print $0,"willcatch-A"}' <&0 & 
+	wait && 
+	: ) 666< <(echo input-B) 0<&0
+#> input-B willcatch-B
+#> input-A willcatch-A
+
+: 再并用
+echo input-E | (
+	awk '{print $0,"willcatch-B"}' <&666 & 
+	(sleep 1 && awk '{print $0,"willcatch-E"}') <&0 & 
+	awk '{print $0,"willcatch-Y"}' <&999 & 
+	wait && 
+	: ) 999< <(echo input-Y) 0<&0 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-Y willcatch-Y
+#> input-E willcatch-E
+
+: 另再并用无管
+(
+	(sleep 0 ; awk '{print $0,"willcatch-B"}') <&666 & 
+	(sleep 2 ; awk '{print $0,"willcatch-E"}') <&0 & 
+	(sleep 1 ; awk '{print $0,"willcatch-Y"}') <&999 & 
+	wait && 
+	: ) 999< <(echo input-Y) 0< <(echo input-E) 666< <(echo input-B)
+#> input-B willcatch-B
+#> input-Y willcatch-Y
+#> input-E willcatch-E
+~~~
+
 
 
 
