@@ -70,6 +70,18 @@
 - 其 `|&` 旦寻于其前之行者之 stdout 、无出，因已交于别处；
 - 其 `|&` 旦寻于其前之行者之 stderr 、无出，因得其交者非前行者自身之 stderr 。
 
+亦有例：
+
+~~~ sh
+echo a | (tee >(cat >&2) |& awk '{print "inside",$0}') 2>&1 | awk '{print "outside",$0}' #> outside a #> outside inside a
+#: 此 inside 前之 |& 未得 tee 之 >&2 所予
+
+echo a | ((tee >(cat >&2)) |& awk '{print "inside",$0}') 2>&1 | awk '{print "outside",$0}' #> outside inside a #> outside inside a
+#: 此 inside 前之 |& 却能得 tee 之 >&2 所予：因其前得于圆括符内故可以为乃模拟 stderr 有出之一整体、则其后 |& 可得之。
+~~~
+
+特符 `|&` 虽能合前者之 stdout 与 stderr ，然亦仅此二者、更多另立之号则无复加。其符非是「万般皆汇」之意尔！
+
 ### 程
 
 【程序】之所启于命令调遣者，【进程】也。
