@@ -2,7 +2,7 @@
 
 原生 SHell 上的 FP 风格
 
-[语法我释見此](../../.notes/sh3rrs/.ref-sh "Means on SHell")、[亦可以此为学](https://github.com/reubeno/brush/blob/main/docs/reference/compatibility.md "Brush bash 各 Features 兼容性报告")。
+[语法我释見此](../../.notes/sh3rrs/.ref-sh "Means on SHell")、[亦可由此概学](https://github.com/reubeno/brush/blob/main/docs/reference/compatibility.md "Brush bash 各 Features 兼容性报告")。
 
 ## Tuple from `read`
 
