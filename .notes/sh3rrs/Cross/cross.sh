@@ -26,12 +26,24 @@ Cross ()
 	{ 
 		x_Retry () 
 		{ 
-			while ! ("${@:-:}" && echo :: succeed after "$((retried))" times tryed) ; 
+			while ! { 
+				{
+					"${@:-:}" ;
+					rtn=$? ;
+				} ;
+				
+				x_Return $rtn && 
+				(1>&"${FILE_DESCRIPTOR:-%${FD:-1}}" echo :: succeed after "$((retried))" times tryed) && 
+				
+				:; } ; 
 			do 
-				echo :: already tryed "$((++retried))" times && 
+				(1>&"${FILE_DESCRIPTOR:-%${FD:-1}}" echo :: already tryed "$((++retried))" times) && 
 				{ x_Bool "$((retried > ${MAX_TRY:-6}))" && break ; } && 
 				:; 
 			done && 
+			
+			x_Return $rtn && 
+			
 			:;
 		} && x_retry () ( x_Retry "$@" && : ) && export -f -- x_Retry x_retry ;
 	} && 
