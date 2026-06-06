@@ -2,16 +2,38 @@
 
 Cross ()
 {
-	{ x_return () { return "$1" ; } && export -f -- x_return ; } && 
-	{ x_bool () { ! x_return "$1" ; } && export -f -- x_bool ; } && 
+	{ x_Return () { return "$1" ; } && export -f -- x_Return ; } && 
+	{ x_Bool () { ! x_Return "$1" ; } && export -f -- x_Bool ; } && 
 	{ 
-		x_if () 
+		x_If () 
 		{ 
-			x_bool "${COND:-0}" && 
+			x_Bool "${COND:-0}" && 
 			{ "$@" ; return $? ; } || 
 			{ eval "$(cat -)" ; return $? ; } ;
 		} && 
-		export -f -- x_if ;
+		export -f -- x_If ;
+	} && 
+	
+	: && 
+	
+	x_return () ( x_Return "$@" && : ) && 
+	x_bool () ( x_Bool "$@" && : ) && 
+	x_if () ( x_If "$@" && : ) && 
+	export -f -- x_return x_bool x_if && 
+	
+	: && 
+	
+	{ 
+		x_Retry () 
+		{ 
+			while ! ("${@:-:}" && echo :: succeed after "$((retried))" times tryed) ; 
+			do 
+				echo :: already tryed "$((++retried))" times && 
+				{ x_Bool "$((retried > ${MAX_TRY:-6}))" && break ; } && 
+				:; 
+			done && 
+			:;
+		} && x_retry () ( x_Retry "$@" && : ) && export -f -- x_Retry x_retry ;
 	} && 
 	
 	: && 
