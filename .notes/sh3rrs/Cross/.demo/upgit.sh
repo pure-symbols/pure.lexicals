@@ -12,6 +12,8 @@ x_if () { x_bool "${COND:-0}" && { "$@" ; return $? ; } || { eval "$(cat -)" ; r
 #: upgit upgiter_rty
 #: upgit upgiter
 #: upgit
+#: upgit 'MAX_TRY=1024 upgiter_rty'
+#: MAX_TRY=1024 upgit upgiter_rty
 upgit () 
 ( 
 	upgiter () ( cd "$1" && git remote update && : ) && export -f -- upgiter
