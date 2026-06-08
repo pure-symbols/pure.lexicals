@@ -33,11 +33,11 @@ Cross ()
 				} ;
 				
 				x_Return $rtn && 
-				(1>&"${FILE_DESCRIPTOR:-%${FD:-1}}" echo :: succeed after "$((retried))" times tryed) && 
+				(1>&"${FILE_DESCRIPTOR:-${FD:-1}}" echo :: succeed after "$((retried))" times tryed) && 
 				
 				:; } ; 
 			do 
-				(1>&"${FILE_DESCRIPTOR:-%${FD:-1}}" echo :: already tryed "$((++retried))" times) && 
+				(1>&"${FILE_DESCRIPTOR:-${FD:-1}}" echo :: already tryed "$((++retried))" times) && 
 				{ x_Bool "$((retried > ${MAX_TRY:-6}))" && break ; } && 
 				:; 
 			done && 
