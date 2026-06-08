@@ -1,4 +1,4 @@
-#! /bin/env sh
+#! /bin/env bash
 
 x_return () { return "$1" ; } && export -f -- x_return
 x_bool () { ! x_return "$1" ; } && export -f -- x_bool
@@ -32,4 +32,14 @@ main ()
 
 
 #: FN='MAX_TRY=1024 upgit_rty' sh upgit.sh
+#: sh upgit.sh 'MAX_TRY=1024 upgit_rty'
+#: MAX_TRY=1024 sh upgit.sh upgit_rty
+#: sh upgit.sh upgit_rty
+#: sh upgit.sh upgit
+#: sh upgit.sh
 main "$@"
+
+
+
+
+
