@@ -31,12 +31,12 @@ main ()
 	: )
 
 
-#: FN='MAX_TRY=1024 upgit_rty' sh upgit.sh
-#: sh upgit.sh 'MAX_TRY=1024 upgit_rty'
-#: MAX_TRY=1024 sh upgit.sh upgit_rty
-#: sh upgit.sh upgit_rty
-#: sh upgit.sh upgit
-#: sh upgit.sh
+#: FN='MAX_TRY=1024 upgit_rty' bash upgit.sh
+#: bash upgit.sh 'MAX_TRY=1024 upgit_rty'
+#: MAX_TRY=1024 bash upgit.sh upgit_rty
+#: bash upgit.sh upgit_rty
+#: bash upgit.sh upgit
+#: bash upgit.sh
 main "$@"
 
 
