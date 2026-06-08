@@ -4,29 +4,25 @@ x_return () { return "$1" ; } && export -f -- x_return
 x_bool () { ! x_return "$1" ; } && export -f -- x_bool
 x_if () { x_bool "${COND:-0}" && { "$@" ; return $? ; } || { eval "$(cat -)" ; return $? ; } ; } && export -f -- x_if
 # COND=1 x_if cd x < <(echo cd y)
+# COND="$((2 > 1))" x_if cd x < <(echo cd y)
+# COND="$((2 < 1))" x_if cd x < <(echo cd y)
 
 
 
-#: FN='MAX_TRY=1024 upgiter_rty' upgit
-#: FN=upgiter_rty upgit
-#: upgit upgiter_rty
-#: upgit upgiter
-#: upgit
-#: upgit 'MAX_TRY=1024 upgiter_rty'
-#: MAX_TRY=1024 upgit upgiter_rty
-upgit () 
+#: FN='MAX_TRY=1024 upgit_rty' main
+main () 
 ( 
-	upgiter () ( cd "$1" && git remote update && : ) && export -f -- upgiter
+	upgit () ( cd "$1" && git remote update && : ) && export -f -- upgit
 	#: cd then update
-	upgiter_rty () 
+	upgit_rty () 
 	( 
 		cd "$1" && 
-		while ! (git remote update && echo :SUCC: "$((i))" in: "$1"); 
-		do echo :FAIL: "$((++i))" in: "$1" && { x_bool "$((i > ${MAX_TRY:-6}))" && break ; } ; done && 
-		: ) && export -f -- upgiter_rty
+		while ! (git remote update && echo :SUCC: after "$((i))" times try in: "$1"); 
+		do echo :FAIL: already "$((++i))" times in: "$1" && { ! x_bool "$((i < ${MAX_TRY:-6}))" && break ; } ; done && 
+		: ) && export -f -- upgit_rty
 	#: same, cd then update, just add retry ability and status echo feature.
 	
-	fn="${1:-${FN:-upgiter}}" && 
+	fn="${1:-${FN:-upgit}}" && 
 	
 	#: Just for bare repo
 	find -- . -name '*.git' -type d | 
@@ -35,5 +31,5 @@ upgit ()
 	: )
 
 
-#: FN='MAX_TRY=1024 upgiter_rty' sh upgit.sh
-upgit "$@"
+#: FN='MAX_TRY=1024 upgit_rty' sh upgit.sh
+main "$@"
