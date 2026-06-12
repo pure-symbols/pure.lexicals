@@ -1,3 +1,6 @@
+
+
+# ── demo ────────────────────────────────────────
 cell = 
 ( () -> begin 
 	
@@ -7,6 +10,9 @@ cell =
 
 ( a = a, c = c ) end )()
 
+# ── effect ──────────────────────────────────────
 cell.a #> 1
 cell.c(1) #> 3
 cell.b #!> ERROR: type NamedTuple has no field b
+
+
