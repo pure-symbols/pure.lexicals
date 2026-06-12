@@ -1,7 +1,7 @@
 
 # ── deps ────────────────────────────────────────
 ns_dic = lambda cls = 'dict_as_ns': lambda dic: type (cls, (), dic) ()
-yard = lambda *x,**nx: ns_dic('ns_yard')(dict(*x,**nx))
+yard = lambda *anony_args,**named_args: ns_dic('ns_yard')(dict(*anony_args,**named_args))
 
 
 # ── normal ────────
@@ -21,7 +21,7 @@ cell = (
 # ── effect ──────────────────────────────────────
 print(cell.a) #> 1
 print(cell.fnc()) #> 3
-print(cell.b) #!> 'dict_as_ns' object has no attribute 'b'
+print(cell.b) #!> 'ns_yard' object has no attribute 'b'
 
 
 
@@ -42,4 +42,4 @@ lambda _rtn = -1:
 # ── effect ──────────────────────────────────────
 print(cell.a) #> 1
 print(cell.fnc()) #> 3
-print(cell.b) #!> 'dict_as_ns' object has no attribute 'b'
+print(cell.b) #!> 'ns_yard' object has no attribute 'b'
