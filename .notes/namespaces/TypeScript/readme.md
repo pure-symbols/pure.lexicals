@@ -1,22 +1,22 @@
 
-[🕹 Play](https://www.typescriptlang.org/play/?#code/FAehAJABSTwEwUwGYEsB28rS9nu-+mFQEMBbeAZwAdiBjDATWICdZgBvYASHgA8qA9swAu4brQGoKogJ4tY4ALxiuAHgAqS8O3ABtANbwZALnDTmaAOYBdU8VQzwAXwA0APhUAKeLQAWAylMdAyNTcytbcG9UADdTdQBKJQ97RycE7njklS4AeQAjACsfYQA6eFRhC0pvPwCKBNLmeFgAV3puLk9OroqYihc9RFRBxGskxQ9PHVLZ8D6BodRIxGj+pPTwFx72J3BiCnB1TqSAbm5uPkERFQkpUVpiABsnrW4Ned5hCthDgCUfEJYKoANKDTyzUosSwUOwOCYpBxuQYgz7fVC-cCGGQCRBHDzcTwCIrxQbY0wghJBPQABXAaHAIMiAOErWYqHUMio8A0uhp1jcp2cuiZ2U6clYqnYfPpqEZzPgrPZnO5vP5bicbiJRQSIRk1nA5y4wD252AoAg0Dg8FIAkwBAdjvwwDu0nmsQA+og8coONxEABGUxral6sJVCKmABirVQtGEyEkzgROU6nlQplQrVI+XgzCp4CzObz2QD4AA1IWthcuIgAEzBvqh8lmCOoGzR2PxxNyzaTVNcLq8TPZ3P5kfF5jZPqlQOeXjgABU4DrSW2xtNFsw829JXtToPDpdkgoAie8FKTwElk84CYrFKEtgay9iEa9c8AGYkgkhWAPAA7Oa5pgNuCC2vuh5QXgx73O6MQerwC6+pwXC8AADI2sTNqErYWO2kSpMmYqDp0Zbrv6WFxNoegtuEBFwmkKadGmsJ4VYGSDhOY7ZBQl4VJYwi+NWxq1g2URNjRYbsQx+wOMR-YsYOnhsfRliDBmhajnmnFcKYNLMAIpDIBQPJFmOHj9gZRkmRezSnk8MTwGss4qUklZygAtPBpQYWuJqGiBlowEgiB7tBEU4Oa95sFwj7yFK4D1qYLJshyXI8sIGW4vBiG8LOdYeJqL5Ie+daeAA5MQFUuN+3ClEJFSeFO-aumeF5Xje+a-tw-7gJ+0XyPVT4lbwZWVdVtWcQ1vhNVEzDcTp2Rteel7Xs1P5Gn1A3ADF9WPC8o0uBV9YVQkE01XVcWNagzXLSe7VrV1CQ9Vw23mitHXrXe8jxawo3vhNxDA2d4BJH1AAs5pAA "🎮")
+[🕹 Play](https://www.typescriptlang.org/play/?#code/FAehAJABSTwEwUwGYEsB28rS9nu-+mFQEMBbeAZwAdiBjDAUVoAsB7S4Ab2AEh4APKqwBOAF3C9arVBXH0ANvPABeCTwA8AFRXhO4ANoBreAE8AXOFnC0AcwC6F4qhPgAvgBoAfGoAUJ4sKwFnpGphZWtg7gPvCoAG4WmgCUKt5OLq5JvImpajwA8gBGAFbwtKIAdLGi1pR+AbBJFcLwsACu9Lw8Pl3dsXEU7gaIqEOIdinK3j56FXPg-YPDqFGIMfEUKZng7r2cruDEFOCaXSkA3Ly8AkJialIycsSKOrxaC-yisbDHAEplIlg6gA0kMfHMKgEbBRHM5JmlnJ4hsCPl9UD9wMYTKxECdvLwfKwSokhliLMCksEDAAFcBocDAqL-URtYSoTQmKjwLT6al2TznNz6Rm5LoKeTqTi8umoBlM+Astkcrk8vmeVyeQklJKhEx2cCXHjAA6XYCgCDQODwUisTAEe0O-DAB6yBbxAD6iFxqi4vEQAEYLOsEroDGTLDVIhYAGJtVDlZDSNzwvJdHyoCyoNqkQrwYSU8BZnN53L+8AAakLOyuPEQACYg-0qbrwpHUPYY3GE0ntlNUzxuvxM9nc-nh8XhLl+hUAz5+OAAFTgOspXZGk3mzALL1lcSO-f753SCiseTwCryVg2HzgJhsSgVcXBz2IJr1nwAZhSSUFYG8AHYzTNMAtwQG07QPSCnRdcR+ndfh5x9bgeH4AAGRt4mbcMInbKJ0mTUUBy6Ms1z9DCQxCbC2w7Q5nAIvsujTGEI2sdssgHcdR1yCgL1iGxRGYasjVrBtoibUMWxYqNaIyFNGIHHxmJwmwhgzQsRzzdieAsalhFYUhkAobki1Hbw+10-TDPPFoT3kOJ4GDGdFJSStZQAWjdOIKjQ1djQNYCLRgJBEF3CCoPCyAzTvdgKF4R94EUSVwHrCxmVZdlOW5URMpxTz4P4Gc628DVnwQt86x8AByYhKvcL84oE2IfEnPsXVPc9L2vfMf14P9wA-KKWBiuKnzgsrCqqmq6vYipGtQG9ms4zTcjas8LyvZrv0NPqBuAaKOB4R9nnkUr+HcSr60qpJJtq+rDrm5qVuPdr1q6pIep4HazVWjqNtvIaH1Gj1xrWariHBq7wBSPqABYzSAA "🎮")
 
 
-## NS Yard
+## Echoes NS
 
 基于字典的命名空间场
 
 ### 定义
 
 ~~~ tsx
-namespace Yard
+namespace Echoes
 {
 	export 
-	const yard = 
+	const cell = 
 	<T = { [key: string]: any },> 
-	(echoes: { [key: string]: (env: T) => any })
+	(yard: { [key: string]: (env: T) => any })
 	: T => 
-		Object.entries(echoes).reduce
+		Object.entries(yard).reduce
 		(
 			(envs, [fn, f]) => ({ ... envs, [fn]: f(envs) }) ,
 			{} as T
@@ -26,7 +26,7 @@ namespace Yard
 	const call = 
 	<T extends Record<K, (...args: any) => any>, K extends keyof T> 
 	(obj: T, key: K): { [P in K]: ReturnType<T[P]>; }[K] => 
-		yard<{[P in K]: ReturnType<T[P]>}>(obj)[key] ;
+		cell<{[P in K]: ReturnType<T[P]>}>(obj)[key] ;
 	
 } ;
 ~~~
@@ -49,7 +49,7 @@ const env_ff =
 	
 } ;
 // ── effect ──────────────────────────────────────
-console.log( Yard.yard(env_ff).f2(3) ); //> 7
+console.log( Echoes.cell(env_ff).f2(3) ); //> 7
 ~~~
 
 异步
@@ -75,27 +75,27 @@ const env_xx =
 
 // ── effect ──────────────────────────────────────
 
-Yard
-	.yard<{ f2: ReturnType<typeof env_xx.f2> }>(env_xx).f2('a',3)
+Echoes
+	.cell<{ f2: ReturnType<typeof env_xx.f2> }>(env_xx).f2('a',3)
 	.then(r => console.log(r));
 	//> 3
 
-Yard
-	.yard(env_xx).f2('a',3)
+Echoes
+	.cell(env_xx).f2('a',3)
 	.then( (r: number) => console.log(r) );
 	//> 3
 
-Yard
+Echoes
 	.call(env_xx,'f2')('a',3)
 	.then(r => console.log(r));
 	//> 3
 
-console.log( Yard.yard(env_xx).f('aaaa') ) //> 4
+console.log( Echoes.cell(env_xx).f('aaaa') ) //> 4
 ~~~
 
 ### 原理
 
-函数 `yard` 接受一个第一层属性在形式上都合乎某种规定的结构体，然后将这第一层属性转换为另一种形式，并在此过程中完成它们之间依赖关系的建立。这是一个宽依赖的转换，因此使用（万能的聚合函数）折叠 (Fold) —— 在 TypeScript 里它叫 `reduce` 。
+函数 `Echoes.cell` 接受一个第一层属性在形式上都合乎某种规定的结构体，然后将这第一层属性转换为另一种形式，并在此过程中完成它们之间依赖关系的建立。这是一个宽依赖的转换，因此使用（万能的聚合函数）折叠 (Fold) —— 在 TypeScript 里它叫 `reduce` 。
 
 依赖的建立机制，依靠语言的闭包 (closure) 机制：
 - 每个属性都会被传入一个 env 、而这个 env 又包含了完成了转换的所有（它之前的）属性。
