@@ -6,8 +6,8 @@
 ### 定义
 
 ~~~ python
-ns_dic = lambda dic: type ('dict_as_ns', (), dic) ()
-yard = lambda *args,**kwargs: ns_dic(dict(*args,**kwargs))
+ns_dic = lambda cls = 'dict_as_ns': lambda dic: type (cls, (), dic) ()
+yard = lambda *x,**nx: ns_dic('ns_yard')(dict(*x,**nx))
 ~~~
 
 ### 使用
