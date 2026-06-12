@@ -1,13 +1,13 @@
 
 // ── define ──────────────────────────────────────
-namespace Yard
+namespace Echoes
 {
 	export 
-	const yard = 
+	const cell = 
 	<T = { [key: string]: any },> 
-	(echoes: { [key: string]: (env: T) => any })
+	(yard: { [key: string]: (env: T) => any })
 	: T => 
-		Object.entries(echoes).reduce
+		Object.entries(yard).reduce
 		(
 			(envs, [fn, f]) => ({ ... envs, [fn]: f(envs) }) ,
 			{} as T
@@ -17,7 +17,7 @@ namespace Yard
 	const call = 
 	<T extends Record<K, (...args: any) => any>, K extends keyof T> 
 	(obj: T, key: K): { [P in K]: ReturnType<T[P]>; }[K] => 
-		yard<{[P in K]: ReturnType<T[P]>}>(obj)[key] ;
+		cell<{[P in K]: ReturnType<T[P]>}>(obj)[key] ;
 	
 } ;
 
@@ -35,7 +35,7 @@ const env_ff =
 	
 } ;
 // ── effect ──────────────────────────────────────
-console.log( Yard.yard(env_ff).f2(3) ); //> 7
+console.log( Echoes.cell(env_ff).f2(3) ); //> 7
 
 
 
@@ -59,20 +59,20 @@ const env_xx =
 
 // ── effect ──────────────────────────────────────
 
-Yard
-	.yard<{ f2: ReturnType<typeof env_xx.f2> }>(env_xx).f2('a',3)
+Echoes
+	.cell<{ f2: ReturnType<typeof env_xx.f2> }>(env_xx).f2('a',3)
 	.then(r => console.log(r));
 	//> 3
 
-Yard
-	.yard(env_xx).f2('a',3)
+Echoes
+	.cell(env_xx).f2('a',3)
 	.then( (r: number) => console.log(r) );
 	//> 3
 
-Yard
+Echoes
 	.call(env_xx,'f2')('a',3)
 	.then(r => console.log(r));
 	//> 3
 
-console.log( Yard.yard(env_xx).f('aaaa') ) //> 4
+console.log( Echoes.cell(env_xx).f('aaaa') ) //> 4
 
