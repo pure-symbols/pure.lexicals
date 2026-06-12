@@ -1,6 +1,6 @@
 
 # ── deps ────────────────────────────────────────
-ns_dic = lambda dic: type ('dict_as_ns', (), dic) ()
+ns_dic = lambda dic, cls = 'dict_as_ns': type (cls, (), dic) ()
 yard = lambda *args,**nmargs: ns_dic(dict(*args,**nmargs))
 
 
