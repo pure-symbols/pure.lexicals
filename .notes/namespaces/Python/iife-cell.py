@@ -1,8 +1,7 @@
 
 # ── deps ────────────────────────────────────────
-ns_dic = lambda dic, cls = 'dict_as_ns': type (cls, (), dic) ()
-yard = lambda *args,**nmargs: ns_dic(dict(*args,**nmargs))
-
+ns_dic = lambda cls = 'dict_as_ns': lambda dic: type (cls, (), dic) ()
+yard = lambda *x,**nx: ns_dic('ns_yard')(dict(*x,**nx))
 
 
 # ── normal ────────
