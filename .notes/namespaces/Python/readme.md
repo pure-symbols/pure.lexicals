@@ -7,7 +7,7 @@
 
 ~~~ python
 ns_dic = lambda cls = 'dict_as_ns': lambda dic: type (cls, (), dic) ()
-yard = lambda *x,**nx: ns_dic('ns_yard')(dict(*x,**nx))
+yard = lambda *args,**kwargs: ns_dic('ns_yard')(dict(*args,**kwargs))
 ~~~
 
 ### 使用
