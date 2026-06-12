@@ -1,7 +1,9 @@
 
 # ── define ──────────────────────────────────────
-ns_dic = lambda dic: type ('dict_as_ns', (), dic) ()
-yard = lambda dic: ns_dic(dict(dic))
+ns_dic = lambda cls = 'dict_as_ns': lambda dic: type (cls, (), dic) ()
+yard = lambda *x,**nx: ns_dic('ns_yard')(dict(*x,**nx))
+# ── or simply ───────────────────────────────────
+yard = lambda *x,**nx: (lambda cls: lambda dic: type (cls, (), dic) ())('ns_yard')(dict(*x,**nx))
 
 # ── demo ────────────────────────────────────────
 yrd = yard(
