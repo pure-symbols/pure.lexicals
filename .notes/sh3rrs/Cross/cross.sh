@@ -52,6 +52,8 @@ Cross ()
 } && 
 
 cross () ( Cross "$@" && : ) && 
+# export -f -- Cross cross
+
 
 : \
 cross "$@"
