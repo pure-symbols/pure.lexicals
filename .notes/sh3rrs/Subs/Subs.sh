@@ -1,3 +1,4 @@
+
 subs () 
 (
 	lang () ( _lang_tool "$@" && : ) && 
@@ -6,6 +7,7 @@ subs ()
 	: :: && 
 	Subs "$@" && 
 	: ) && 
+
 Subs () 
 {
 	_set_tool () 
