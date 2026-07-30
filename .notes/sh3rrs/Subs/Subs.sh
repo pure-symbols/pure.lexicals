@@ -7,7 +7,6 @@ subs ()
 	: :: && 
 	Subs "$@" && 
 	: ) && 
-
 Subs () 
 {
 	_set_tool () 
@@ -141,7 +140,7 @@ Subs ()
 			(o|out|outside|outter)   _help_ctrl=''   ;; 
 			(_) 1>&2 echo '[ERROR]: subs: frames: EVAL_PLACE: only support `inside` or `outside`.' ; return 7 ;; 
 		esac && 
-
+		
 		: 亓可别名 去别承体 && 
 		: 亓可助令 略别详体 && 
 		
@@ -217,4 +216,6 @@ Subs ()
 	: :: && 
 	"$@" && 
 	:;
-}
+} && 
+
+: ;
