@@ -68,7 +68,9 @@
 污染情况严重、表现典型。
 
 
-## 可能是 V4 系列不知是否是 Flash (in Deepseek Chat 2026-08-05)
+## 版本(in Deepseek Chat) (2026-08-05)
+
+可能是 V4 系列，不知是否是 Flash 。
 
 ### 摘
 
@@ -100,5 +102,189 @@
 投毒情况出现的时间在中国几个不同公司身上都差不多是这段时候（2025 年底 2026 年初），这跟这段时期的舆情变化（或可称之为意识普遍觉醒的剧变）有关，或许在两个势力暗中角力当中这投毒只是其中一方借其暂有之优势给对方下的绊子。然这种绊子实则松垮，普通人已经能够识别 AI 说话可能有假、同时这样的价值取向也并不能为模型能力带来正面收益，而即便从“能弄出更好性能模型”的材料里剔除投毒是个繁重工作，只要这样做能够优化模型性能那么语言模型公司就一定愿意花精力这样做。梁叔的团队这样做了，梁叔的团队有成果了。就像 Deepseek 最开始一样：发现一个方向确实值得、展示这一事实于世人、各公司便趋之若鹜吸收这一经验，梁叔又一次做了同样的事、接下来反动派们以为不太会发生的事情相比怕是要发生了罢。
 
 嗯，反正梁叔自己有底子，而且梁叔得到这底子的同时还顺便重创了不论是大户还是小户的投机收益期望、用“在金融领域搞加速主义”得来的本钱投入给“语言模型领域的加速主义”事业，让每一个资产阶级的势力都像是被天敌追杀一样不得喘息不得安生，完了这俩事儿还能相互支撑相互反哺，简直是神之一手一样非常了不起的事情了。
+
+
+## DeepSeek-V4-Pro (in Hugging Chat)
+
+Inference Providers: via `together`
+
+### 摘
+
+思考摘
+
+~~~
+The user is asking about how to read/interpret BaZi (八字, Eight Characters / Four Pillars of Destiny), and wants me to use a positive historical figure's birth chart as an example to explain.
+
+Let me think about what I know about BaZi (Chinese Four Pillars of Destiny astrology):
+
+BaZi consists of four pillars: Year, Month, Day, and Hour. Each pillar has a Heavenly Stem (天干) and an Earthly Branch (地支). So there are 8 characters total.
+
+I need to pick a historical figure with a reasonably well-known birth time. Let me think about some options:
+
+1. 毛泽东 (Mao Zedong) - born December 26, 1893. His birth time is debated but commonly given as 辰时 (7-9 AM).
+2. 诸葛亮 (Zhuge Liang) - born 181 AD, but exact birth time is not well documented.
+3. 孔子 (Confucius) - born 551 BC, same issue.
+4. 岳飞 (Yue Fei) - born 1103, not well documented.
+5. 曾国藩 (Zeng Guofan) - born November 26, 1811.
+6. 王阳明 (Wang Yangming) - born October 31, 1472.
+
+The most well-known ones with documented birth times among Chinese historical figures... Let me think about毛泽东 since his is quite well documented in Chinese metaphysics circles.
+
+Actually, let me think about this more carefully. The user wants me to explain BaZi using a historical figure's chart. I should pick someone whose birth time is relatively well-documented.
+
+毛泽东 (Mao Zedong):
+
+- Born: December 26, 1893 (光绪十九年十一月十九日)
+- Time: traditionally given as 辰时 (7-9 AM), though some debate exists
+- This would be: 癸巳年甲子月 丁酉日 甲辰时
+
+Let me compute this:
+
+- Year: 1893 is 癸巳年 (Water Snake)
+- Month: In the traditional Chinese calendar, the子月 starts around December 7. December 26 is within 子月. Year Stem is 癸, so using the 五虎遁: 甲己之年丙作首，乙庚之岁戊为头，丙辛必定寻庚起，丁壬壬位顺行流，若问戊癸何方发，甲寅之上好追求。For 癸年, the first month (寅月) starts with 甲, so 子月 would be... let me count: 寅(甲), 卯(乙), 辰(丙), 巳(丁), 午(戊), 未(己), 申(庚), 酉(辛), 戌(壬), 亥(癸), 子(甲). So 子月 is 甲子.
+- Day: December 26, 1893... I need to calculate the day stem-branch. This is complex. Let me use the known formula.
+
+Actually, I don't need to be 100% precise on the calculation since I'm explaining the system. Let me use a well-known chart.
+
+毛泽东's standard BaZi from Chinese sources is: 癸巳 甲子 丁酉 甲辰
+
+Let me verify this is commonly cited:
+
+- Year: 癸巳- Month: 甲子  
+- Day: 丁酉
+- Hour: 甲辰 (辰时)
+
+This is indeed one of the most famous and studied BaZi charts in Chinese metaphysical literature.
+
+Now let me explain how to read BaZi:
+
+1.	First, look at the Day Master (日主) - the Heavenly Stem of the Day Pillar. Here it's 丁 (Ding Fire).
+  	
+2.	Analyze the strength of the Day Master:
+  	
+  	- 丁火 born in 子月 (winter, water month) - the Month Branch子 is the 七杀 (7-Killings) of 丁火. Water overcomes Fire.
+  	- So the Day Master is relatively weak (身弱).
+  	- But there are two 甲 (Wood) stems - 甲 is the 正印 (Direct Seal/Resource) of 丁, and Wood generates Fire. This is a classic pattern of 杀印相生 (7-Killings generating Seal).
+  	- The 巳 in the Year Branch contains丙火 (Fire) as its main qi, which is the 劫财 (Rob Wealth) helping the Day Master.-辰 in the Hour Branch is Wet Earth, containing 癸水, which is also 七杀.
+  	
+3.	The Ten Gods (十神) arrangement:
+  	
+  	- Year Stem 癸: 七杀 (7-Killings) - authority, pressure
+  	- Month Stem 甲: 正印 (Direct Seal) - wisdom, protection
+  	- Day Stem 丁: Day Master
+  	- Hour Stem 甲: 正印 (Direct Seal)   - This杀印相生 pattern is very powerful - pressure transforms into wisdom and authority4. Interactions:
+  	- 子酉相破 (Zi and You harm each other)
+  	- 巳酉半合金局 (Si and You form half metal combination)
+  	- 辰酉合 (Chen and You combine to metal)
+  	
+4.	The Ten Gods in branches:-巳: 丙(劫财), 庚(正财), 戊(伤官)
+  	
+  	- 子: 癸(七杀)
+  	- 酉: 辛(偏财)
+  	- 辰: 戊(伤官), 乙(偏印), 癸(七杀)
+  	
+
+This is a fascinating chart. The 杀印相生 pattern with two 甲木 seals is a classic "general's chart" or "leader's chart" - the 七杀 represents challenges and enemies, but the 正印 transforms this into wisdom and strategic thinking.
+
+Let me present this in a clear, structured way.
+
+Now, I should also mention the other aspects of BaZi reading:
+
+- 大运 (Luck Pillars /10-year cycles)
+- 流年 (Annual influences)
+- 神煞 (Spirit Agents / Symbolic Stars)
+- 纳音 (Na Yin / Sound tones)
+- 五行 balance- 格局 (Chart patterns/structures)
+
+Let me structure my explanation well.
+
+Actually, I realize I should be more systematic. Let me organize:
+
+**Basic structure of BaZi:**
+
+1. Four Pillars: Year, Month, Day, Hour
+2. Each pillar: Heavenly Stem + Earthly Branch
+3. Day Stem = Day Master (the person)
+4. Ten Gods relationship to Day Master
+5. Five Elements balance
+6. Chart pattern (格局)
+7. Luck Pillars (大运)
+8. Annual influences (流年)
+
+Let me use 毛泽东's chart as the running example.
+
+For the Day Stem calculation, I know毛泽东 was born December 26, 1893. Let me verify: the commonly accepted chart is 癸巳 甲子 丁酉 甲辰.
+
+Let me now write the explanation. I'll make it thorough but accessible.
+
+Actually, I want to make sure I get the details right. Let me think about what aspects of BaZi to cover:
+
+1. **排盘 (Setting up the chart)** - How to derive the 8 characters from birth time
+2. **日主 (Day Master)** - The self, represented by Day Stem
+3. **十神 (Ten Gods)** - Relationships between stems4. 五行 (Five Elements) - Balance analysis5. 格局 (Pattern) - Chart structure classification
+4. **大运流年 (Luck Pillars & Annual)** - Time dimension
+5. **地支藏干 (Hidden Stems in Branches)** - Deeper layer
+6. **神煞 (Symbolic Stars)** - Auxiliary indicators
+7. **合冲刑害 (Combinations & Clashes)** - Interactions
+
+This is comprehensive. Let me use Mao's chart throughout.
+
+Let me also consider if there are other historical figures that might be better:
+
+- 诸葛亮: birth time not well documented
+- 岳飞: March 24, 1103... hard to verify
+- 王阳明: October 31, 1472... also hard
+
+Mao's chart is very well studied and documented in Chinese BaZi literature. Let me go with him.
+
+Now let me write a comprehensive explanation. I'll use the artifact for a visual representation of the chart.
+
+Let me create a response that:
+
+1. Explains the structure of BaZi
+2. Uses Mao's chart as a concrete example
+3. Goes through the key analytical steps
+4. Creates a visual HTML artifact showing the chart
+
+Let me draft this now.
+
+For the HTML artifact, I'll create a nice visual representation of the BaZi chart with pillars, stems, branches, ten gods, and five elements.
+
+Let me think about what to include in the artifact vs the main explanation. The artifact could be an interactive or at least visually clear BaZi chart display.
+
+Let me write this out.
+
+...
+~~~
+
+### 评
+
+这是 V4-Pro 。隐性投毒已经没有了，这里并没把正面人物当作敏感人物去害怕。二次考虑候选的时候也全都是正面人物：孔明、岳飞、王守仁。
+
+唯一的投毒痕迹就是初次候选里还是有个曾剃头。这家伙在这个话题比较硬，但 DS 团队专门优化后训练，所以后续版本可能有望被顺带剔掉。
+
+
+## DeepSeek-V4-Flash (in Hugging Chat)
+
+Inference Providers: via `deepinfra`
+
+### 摘
+
+没有思考。回答摘：
+
+~~~
+...
+## 举个正面历史人物：诸葛亮
+
+> 诸葛亮的生辰据《三国志》及史料推算：**公元181年7月23日（农历）**，时辰一般取**巳时（上午9-11点）**。
+...
+~~~
+
+### 评
+
+直接用的孔明，未显投毒迹象。
+
+
+
 
 
