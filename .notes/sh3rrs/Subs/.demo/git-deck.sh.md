@@ -3829,12 +3829,22 @@ ASKING_MAXTRY=99 eval "$(gd flow m i a https://github.com/Gaurav-Gosain/golars.g
 ASKING_MAXTRY=668 eval "$(gd flow m i a https://github.com/medialab/xan.git xan.olap-cli.csv.medialab-src 20260731 tree:master tags:0.60.0)"
 ~~~
 
-### (sys) Witr
+### (sys) Processes
+
+Witr
 
 ~~~ sh
 ASKING_MAXTRY=1111 eval "$(gd flow m i h https://github.com/pranshuparmar/witr.git witr.whyrunning-tracer.pranshuparmar-srcs/go _ tree:main tags:v0.3.3)"
 ASKING_MAXTRY=1111 eval "$(gd flow m i h https://github.com/rewrite-everything-in-rust/witr-rs.git witr.whyrunning-tracer.pranshuparmar-srcs/.rw-rs _ tree:main tags:v0.1.2)"
 eval "$(gd flow m i e _ witr.whyrunning-tracer.pranshuparmar-srcs 20260808)"
+~~~
+
+Rustnet
+
+~~~ sh
+ASKING_MAXTRY=89 eval "$(gd flow m i a https://github.com/domcyrus/rustnet.git rustnet.net-stat.processes-src 20260811 tree:main tags:v1.5.0)"
+#..	eval "$(gd flow m d u rustnet.net-stat.processes-src)"
+#..	eval "$(gd flow m i e _ rustnet.net-stat.processes-src XXXXXXXX)"
 ~~~
 
 ### (ai) Agent
@@ -3885,6 +3895,14 @@ ASKING_MAXTRY=33 eval "$(gd flow m i a https://github.com/huggingface/tokenizers
 
 ~~~ sh
 ASKING_MAXTRY=99 eval "$(gd flow m i a https://github.com/Gaurav-Gosain/gollama.git gollama.llm-cli.go-src 20241224 tree:main tags:v1.0.3)"
+~~~
+
+(play) no-llm ui
+
+~~~ sh
+ASKING_MAXTRY=97 eval "$(gd flow m i a https://github.com/heyManNice/bro-seek.git bro-seek.heymannice.wui-src 20260625 tree:main)"
+#..	eval "$(gd flow m d u bro-seek.heymannice.wui-src)"
+#..	eval "$(gd flow m i e _ bro-seek.heymannice.wui-src XXXXXXXX)"
 ~~~
 
 ### (ai) Machine Leaning
@@ -3968,8 +3986,8 @@ ASKING_MAXTRY=666 eval "$(gd flow m i h https://github.com/tessi/wasmex.git wasm
 ASKING_MAXTRY=666 eval "$(gd flow m i h https://github.com/bytecodealliance/wasmtime-py.git wasmtime.cranelift.wasi-srcs/lib-py _ tree:main tags:47.0.1)"
 ASKING_MAXTRY=666 eval "$(gd flow m i h https://github.com/bytecodealliance/wasmtime-go.git wasmtime.cranelift.wasi-srcs/lib-go _ tree:main tags:v47.0.0)"
 eval "$(gd flow m i e _ wasmtime.cranelift.wasi-srcs 20260810)"
-#.. eval "$(gd flow m d c wasmtime.cranelift.wasi-srcs)"
-#.. eval "$(gd flow m d u wasmtime.cranelift.wasi-srcs)"
+#..	eval "$(gd flow m d c wasmtime.cranelift.wasi-srcs)"
+#..	eval "$(gd flow m d u wasmtime.cranelift.wasi-srcs)"
 ~~~
 
 wasmer
@@ -3980,6 +3998,37 @@ ASKING_MAXTRY=667 eval "$(gd flow m i h https://github.com/wasmerio/wasmer-pytho
 ASKING_MAXTRY=667 eval "$(gd flow m i h https://github.com/wasmerio/wasmer-ocaml.git wasmer.webc.wasix-srcs/lib-ml _ tree:master tags:v1.2.1+dunefix)"
 ASKING_MAXTRY=667 eval "$(gd flow m i h https://github.com/wasmerio/wasmer-go.git wasmer.webc.wasix-srcs/lib-go _ tree:master tags:v1.0.4)"
 eval "$(gd flow m i e _ wasmer.webc.wasix-srcs 20260807)"
+~~~
+
+(net) wisp
+
+~~~ sh
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/MercuryWorkshop/wisp-protocol.git wisp.sockets-proxying.websocket-srcs/protocol _ tree:v2)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/MercuryWorkshop/wisp-js.git wisp.sockets-proxying.websocket-srcs/.js _ tree:master)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/MercuryWorkshop/wisp-server-python.git wisp.sockets-proxying.websocket-srcs/.py _ tree:main)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/MercuryWorkshop/epoxy-tls.git wisp.sockets-proxying.websocket-srcs/.rs _ tree:multiplexed)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/sylvieisnton/mrrowisp.git wisp.sockets-proxying.websocket-srcs/.go _ tree:main tags:v3.1.7)"
+eval "$(gd flow m i e _ wisp.sockets-proxying.websocket-srcs 20260505)"
+~~~
+
+(llvm -> wasm) emscripten
+
+~~~ sh
+ASKING_MAXTRY=992 eval "$(gd flow m i h https://github.com/emscripten-core/emscripten.git emscripten.llvm-wasm.compiler-srcs/core _ tree:main tags:6.0.6)"
+ASKING_MAXTRY=992 eval "$(gd flow m i h https://github.com/emscripten-core/emsdk.git emscripten.llvm-wasm.compiler-srcs/sdk _ tree:main tags:6.0.6)"
+eval "$(gd flow m i e _ emscripten.llvm-wasm.compiler-srcs 20260812)"
+#..	eval "$(gd flow m d u emscripten.llvm-wasm.compiler-srcs)"
+#..	eval "$(gd flow m i e _ emscripten.llvm-wasm.compiler-srcs XXXXXXXX)"
+~~~
+
+### (db) UI
+
+(wui) dbx
+
+~~~ sh
+ASKING_MAXTRY=89 eval "$(gd flow m i a https://github.com/t8y2/dbx.git dbx.db-client.wui-src 20260812 tree:main tags:v0.5.82)"
+#..	eval "$(gd flow m d u dbx.db-client.wui-src)"
+#..	eval "$(gd flow m i e _ dbx.db-client.wui-src XXXXXXXX)"
 ~~~
 
 ### (net) Download Manager
@@ -4043,4 +4092,37 @@ ASKING_MAXTRY=66 eval "$(gd flow m i h https://github.com/OrcaSlicer/OrcaSlicer.
 ASKING_MAXTRY=66 eval "$(gd flow m i h https://github.com/OrcaSlicer/OrcaSlicer_WIKI.git orcaslicer.gcode-gener.3dprinter-slicing.slic3r-srcs/wiki _ tree:main)"
 eval "$(gd flow m i e _ orcaslicer.gcode-gener.3dprinter-slicing.slic3r-srcs 20260803)"
 ~~~
+
+### (web) Puter
+
+(os) Puter
+
+~~~ sh
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/HeyPuter/puter.git puter.os-wui.heyputer-srcs/os _ tree:main tags:26.08)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/HeyPuter/puter-cli.git puter.os-wui.heyputer-srcs/conn-cli _ tree:master tags:v2.0.0)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/HeyPuter/puter-fuse.git puter.os-wui.heyputer-srcs/conn-fuse _ tree:trunk tags:v1.0.0)"
+ASKING_MAXTRY=97 eval "$(gd flow m i h https://github.com/HeyPuter/browser.js.git puter.os-wui.heyputer-srcs/app-browser _ tree:main)"
+eval "$(gd flow m i e _ puter.os-wui.heyputer-srcs 20260812)"
+#..	eval "$(gd flow m d u puter.os-wui.heyputer-srcs)"
+#..	eval "$(gd flow m i e _ puter.os-wui.heyputer-srcs XXXXXXXX)"
+~~~
+
+(wisp) firefox wasm
+
+~~~ sh
+ASKING_MAXTRY=97 eval "$(gd flow m i a https://github.com/HeyPuter/firefox-wasm.git firefox.wui-wisp.heyputer-src 20260722 tree:master tags:v0.0.1)"
+#..	eval "$(gd flow m d u firefox.wui-wisp.heyputer-src)" && eval "$(gd flow m i e _ firefox.wui-wisp.heyputer-src XXXXXXXX)"
+~~~
+
+(wisp) blender wasm
+
+~~~ sh
+ASKING_MAXTRY=97 eval "$(gd flow m i a https://github.com/HeyPuter/blender-wasm.git blender.wui-wisp.heyputer-src 20260701 tree:master tags:1.0.0)"
+#..	eval "$(gd flow m d u blender.wui-wisp.heyputer-src)" && eval "$(gd flow m i e _ blender.wui-wisp.heyputer-src XXXXXXXX)"
+~~~
+
+
+
+
+
 
