@@ -3870,7 +3870,11 @@ ASKING_MAXTRY=898 eval "$(gd flow m i a https://github.com/spacedriveapp/spacebo
 (wui harness terminal-editor) Terax
 
 ~~~ sh
-ASKING_MAXTRY=1122 eval "$(gd flow m i a https://github.com/crynta/terax-ai.git terax.term.editor.ai-src 20260804 tree:main tags:v0.8.6)"
+ASKING_MAXTRY=1212 eval "$(gd flow m i h https://github.com/crynta/terax-ai.git terax.editor-term.ai.wui-srcs/soft _ tree:main tags:v0.8.6)"
+ASKING_MAXTRY=1212 eval "$(gd flow m i h https://github.com/crynta/Terax-website.git terax.editor-term.ai.wui-srcs/site _ tree:main)"
+eval "$(gd flow m i e _ terax.editor-term.ai.wui-srcs 20260814)"
+#..	eval "$(gd flow m d u terax.editor-term.ai.wui-srcs)"
+#..	eval "$(gd flow m i e _ terax.editor-term.ai.wui-srcs XXXXXXXX)"
 ~~~
 
 (wui harness plg-growing) Pi
@@ -3968,6 +3972,20 @@ ASKING_MAXTRY=11 eval "$(gd flow m i a https://github.com/n0-computer/pigeons.gi
 ASKING_MAXTRY=11 eval "$(gd flow m i a https://github.com/n0-computer/n0-mainline.git n0mainline.dht-iroh.n0computer-lib 20260803 tree:main tags:v0.6.0)"
 ~~~
 
+### (auth) Passwd
+
+gopass
+
+~~~ sh
+ASKING_MAXTRY=1007 eval "$(gd flow m i h 'https://github.com/gopasspw/gopassbridge.git' gopass.passwd-srcs/browser-ext 20260531 tags:v2.1.1 tree:master)"
+ASKING_MAXTRY=1007 eval "$(gd flow m i h 'https://github.com/gopasspw/gopass.git' gopass.passwd-srcs/cli 20260611 tags:v1.16.1 tree:master)"
+ASKING_MAXTRY=1007 eval "$(gd flow m i h 'https://github.com/gopasspw/git-credential-gopass.git' gopass.passwd-srcs/gitcred 20260622 tags:v1.16.1 tree:master)"
+ASKING_MAXTRY=1007 eval "$(gd flow m i h 'https://github.com/gopasspw/gopass-jsonapi.git' gopass.passwd-srcs/jsonapi 20260605 tags:v1.16.1 tree:master)"
+ASKING_MAXTRY=1007 eval "$(gd flow m i h 'https://github.com/gopasspw/gopasspw.github.io.git' gopass.passwd-srcs/site 20250706 tree:master)"
+eval "$(gd flow m i e _ gopass.passwd-srcs 20260622)"
+#..	eval "$(gd flow m d u gopass.passwd-srcs)"
+~~~
+
 ### (rtm) WASI
 
 wasi
@@ -4021,12 +4039,13 @@ eval "$(gd flow m i e _ emscripten.llvm-wasm.compiler-srcs 20260812)"
 #..	eval "$(gd flow m i e _ emscripten.llvm-wasm.compiler-srcs XXXXXXXX)"
 ~~~
 
-### (db) UI
+### (db) Conn UI
 
 (wui) dbx
 
 ~~~ sh
 ASKING_MAXTRY=89 eval "$(gd flow m i a https://github.com/t8y2/dbx.git dbx.db-client.wui-src 20260812 tree:main tags:v0.5.82)"
+#.	eval "$(gd flow m d u dbx.db-client.wui-src)" && gd bp wts x tags:v0.5.82 && gd bp wts i tags:v0.5.83 && eval "$(gd flow m i e _ dbx.db-client.wui-src 20260812)"
 #..	eval "$(gd flow m d u dbx.db-client.wui-src)"
 #..	eval "$(gd flow m i e _ dbx.db-client.wui-src XXXXXXXX)"
 ~~~
@@ -4121,8 +4140,29 @@ ASKING_MAXTRY=97 eval "$(gd flow m i a https://github.com/HeyPuter/blender-wasm.
 #..	eval "$(gd flow m d u blender.wui-wisp.heyputer-src)" && eval "$(gd flow m i e _ blender.wui-wisp.heyputer-src XXXXXXXX)"
 ~~~
 
+### (data) Books
 
+daozang
 
+~~~ sh
+ASKING_MAXTRY=986 eval "$(gd flow m i a https://github.com/yeyangchen2009/daozang.git daozang.texts-db.zh-src 20251107 tree:main)"
+#..	eval "$(gd flow m d u daozang.texts-db.zh-src)"
+#..	eval "$(gd flow m i e _ daozang.texts-db.zh-src XXXXXXXX)"
+~~~
+
+### (os) Kernel
+
+Asterinas
+
+~~~ sh
+ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/asterinas.git asterinas.os-kernel.linux.rs-srcs/os _ tree:main tags:v0.18.0)"
+ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/hyperenclave.git asterinas.os-kernel.linux.rs-srcs/env _ tree:master)"
+ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/book.git asterinas.os-kernel.linux.rs-srcs/docs _ tree:main)"
+ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/asterinas.github.io.git asterinas.os-kernel.linux.rs-srcs/site _ tree:main)"
+eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs 20260813)"
+#..	eval "$(gd flow m d u asterinas.os-kernel.linux.rs-srcs)"
+#..	eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs XXXXXXXX)"
+~~~
 
 
 
