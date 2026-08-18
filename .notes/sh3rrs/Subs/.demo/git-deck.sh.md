@@ -3883,6 +3883,13 @@ eval "$(gd flow m i e _ terax.editor-term.ai.wui-srcs 20260814)"
 ASKING_MAXTRY=868 eval "$(gd flow m i a https://github.com/earendil-works/pi.git pi.agent-harness.tui-src 20260807 tree:main tags:v0.84.1)"
 ~~~
 
+(wui harness ai-bot) Agora
+
+~~~ sh
+ASKING_MAXTRY=668 eval "$(gd flow m i a https://github.com/newo-ether/Agora.git agora.ai-agent.android-src 20260814 tree:master tags:v2.0.0 tags:v1.3.7)"
+#..	eval "$(gd flow m d u agora.ai-agent.android-src)"
+~~~
+
 (wui) HuggingChat
 
 ~~~ sh
@@ -3918,10 +3925,19 @@ ASKING_MAXTRY=33 eval "$(gd flow m i a https://github.com/huggingface/candle.git
 ASKING_MAXTRY=33 eval "$(gd flow m i a https://github.com/safetensors/safetensors.git safetensors.store-distribute.tensors.huggingface-lib 20260616 tree:main tags:v0.8.0)"
 ~~~
 
-### (mask) zerobox
+### (shell) Executor
+
+(virt) zerobox
 
 ~~~ sh
 ASKING_MAXTRY=9 eval "$(gd flow m i a https://github.com/afshinm/zerobox.git zerobox.sandboxcli-src 20260518 tree:main tags:v0.3.3)"
+~~~
+
+(remote) conch
+
+~~~ sh
+ASKING_MAXTRY=669 eval "$(gd flow m i a https://github.com/newo-ether/conch.git conch.shell-server.webapi-src 20260812 tree:main tags:v1.0.11)"
+#..	eval "$(gd flow m d u conch.shell-server.webapi-src)"
 ~~~
 
 ### (cal) Tyme
@@ -4104,6 +4120,37 @@ ASKING_MAXTRY=888 eval "$(gd flow m i h https://github.com/libretro/libretro-fce
 eval "$(gd flow m i e _ emulatorjs.libretro.gameplat-srcs 20260808)"
 ~~~
 
+### (pic) SVG
+
+SVG-Edit
+
+~~~ sh
+ASKING_MAXTRY=1004 eval "$(gd flow m i h 'https://github.com/SVG-Edit/svgedit.git' svgedit.svg.canvas-srcs/native _ tags:v.7.3.3 tree:master)"
+ASKING_MAXTRY=1004 eval "$(gd flow m i h 'https://github.com/SVG-Edit/svg-edit-react.git' svgedit.svg.canvas-srcs/.concept-react _ tree:master)"
+eval "$(gd flow m i e _ svgedit.svg.canvas-srcs 20260806)"
+#..	eval "$(gd flow m d u svgedit.svg.canvas-srcs)"
+~~~
+
+### (sense) Sol
+
+Trail-Sense
+
+~~~ sh
+ASKING_MAXTRY=1002 eval "$(gd flow m i h 'https://github.com/kylecorry31/Trail-Sense.git' trailsense.compass-earth.android-srcs/app _ tags:8.1.1 tree:main)"
+ASKING_MAXTRY=1002 eval "$(gd flow m i h 'https://github.com/kylecorry31/sol.git' trailsense.compass-earth.android-srcs/core _ tags:19.1.3 tree:main)"
+ASKING_MAXTRY=1002 eval "$(gd flow m i h 'https://github.com/kylecorry31/Trail-Sense-Earth-Model.git' trailsense.compass-earth.android-srcs/.model _ tags:dem-0.4.0 tree:main)"
+ASKING_MAXTRY=1002 eval "$(gd flow m i h 'https://github.com/kylecorry31/Trail-Sense-Sample-Plugin.git' trailsense.compass-earth.android-srcs/.plg _ tree:main)"
+eval "$(gd flow m i e _ trailsense.compass-earth.android-srcs 20260818)"
+#..	eval "$(gd flow m d u trailsense.compass-earth.android-srcs)"
+~~~
+
+Nullschool Earth
+
+~~~ sh
+ASKING_MAXTRY=144 eval "$(gd flow m i a https://github.com/cambecc/earth.git earth.weather.nullschool.wui-src 20161003 tree:master)"
+#..	eval "$(gd flow m d u earth.weather.nullschool.wui-src)"
+~~~
+
 ### (slicer) OrcaSlicer
 
 ~~~ sh
@@ -4160,8 +4207,10 @@ ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/hyperencla
 ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/book.git asterinas.os-kernel.linux.rs-srcs/docs _ tree:main)"
 ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/asterinas.github.io.git asterinas.os-kernel.linux.rs-srcs/site _ tree:main)"
 eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs 20260813)"
+#..	gd flow m @ asterinas.os-kernel.linux.rs-srcs
 #..	eval "$(gd flow m d u asterinas.os-kernel.linux.rs-srcs)"
-#..	eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs XXXXXXXX)"
+#..	gd flow m @ asterinas.os-kernel.linux.rs-srcs
+#..	eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs 20260814)"
 ~~~
 
 
