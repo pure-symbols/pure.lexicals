@@ -4120,7 +4120,14 @@ ASKING_MAXTRY=888 eval "$(gd flow m i h https://github.com/libretro/libretro-fce
 eval "$(gd flow m i e _ emulatorjs.libretro.gameplat-srcs 20260808)"
 ~~~
 
-### (pic) SVG
+### (math) SVG
+
+Graphite Editor
+
+~~~ sh
+ASKING_MAXTRY=1011 eval "$(gd flow m i a https://github.com/GraphiteEditor/Graphite.git graphite.editor-svg.rs.wui-src 20260818 tree:master)"
+#..	eval "$(gd flow m d u graphite.editor-svg.rs.wui-src)"
+~~~
 
 SVG-Edit
 
@@ -4142,6 +4149,15 @@ ASKING_MAXTRY=1002 eval "$(gd flow m i h 'https://github.com/kylecorry31/Trail-S
 ASKING_MAXTRY=1002 eval "$(gd flow m i h 'https://github.com/kylecorry31/Trail-Sense-Sample-Plugin.git' trailsense.compass-earth.android-srcs/.plg _ tree:main)"
 eval "$(gd flow m i e _ trailsense.compass-earth.android-srcs 20260818)"
 #..	eval "$(gd flow m d u trailsense.compass-earth.android-srcs)"
+~~~
+
+MBCompass
+
+~~~ sh
+ASKING_MAXTRY=1000 eval "$(gd flow m i h https://github.com/CompassMB/MBCompass.git compassmb.compass-earth.android-srcs/app _ tree:main tags:v1.1.17)"
+ASKING_MAXTRY=1000 eval "$(gd flow m i h https://github.com/CompassMB/compassmb.github.io.git compassmb.compass-earth.android-srcs/.website _ tree:main)"
+ASKING_MAXTRY=1000 eval "$(gd flow m i e _ compassmb.compass-earth.android-srcs 20260730)"
+#..	eval "$(gd flow m d u compassmb.compass-earth.android-srcs)"
 ~~~
 
 Nullschool Earth
