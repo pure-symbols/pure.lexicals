@@ -192,17 +192,17 @@ Subs ()
 		"$@" && 
 		: ) && 
 	
-	#. eval "$(_frame_kwargs as_bool SHOW_HINTS y)" && 
-	#. eval "$(_frame_kwargs as_bool IS_BARE '')" && 
 	_frame_kwargs () 
 	(
-		as_bool () 
+		#. eval "$(codes_bool SHOW_HINTS y)" && 
+		#. eval "$(codes_bool IS_BARE '')" && 
+		codes_bool () 
 		(
 			: 其音嵌之 其出用之 && 
 			local NAME_EMBEDDED="${1:-${NAME_EMBEDDED:-}}" && 
 			local BOOL_DEFAULT="${2:-${BOOL_DEFAULT:-}}" && 
 			echo '
-				case "$(echo "${'"$NAME_EMBEDDED"':-'"$BOOL_DEFAULT"'}" | tr '"'"'[:lower:]'"'"' '"'"'[:upper:]'"'"')" 
+				case "$(echo "${'"$NAME_EMBEDDED"':-'"$BOOL_DEFAULT"'}" | tr -- '"'"'[:lower:]'"'"' '"'"'[:upper:]'"'"')" 
 				in 
 					(Y|YES|T|TRUE|O|ON|OK) local __'"$NAME_EMBEDDED"'__=true ;; 
 					(N|NO|F|FALSE|X|OFF|NOT) local __'"$NAME_EMBEDDED"'__=false ;; 
@@ -210,6 +210,36 @@ Subs ()
 				esac && 
 				: ' && 
 			: ) && 
+		
+		#. choose_bool SKIP_BARE_UPWEAR no 'bare_play updator' '_cmnd_tools _run_identity' && 
+		#. $(choose_bool SKIP_BARE_UPWEAR no 'bare_play updator' '_cmnd_tools _run_identity') && 
+		choose_bool () 
+		(
+			: 其能分之 其用择之 && 
+			local BOOL_NAME_EMBEDDED="${1:-${BOOL_NAME_EMBEDDED:-}}" && 
+			local BOOL_DEFAULT="${2:-${BOOL_DEFAULT:-}}" && 
+			{ shift 2 ; :; } && 
+			local _echo_A="${1:-}" && shift && 
+			local _echo_B="${1:-}" && shift && 
+			if eval "
+			$(codes_bool "${BOOL_NAME_EMBEDDED}" "${BOOL_DEFAULT}")" '&&' '
+			$__'"$BOOL_NAME_EMBEDDED"'__' ;
+				then echo "${_echo_A}" ;
+				else echo "${_echo_B}" ;
+			fi && 
+			: ) && 
+		
+		#. if "$(as_bool SHOW_HINTS y)" ; then ...; else ...; fi && 
+		#. if "$(as_bool IS_BARE '')" ; then ...; else ...; fi && 
+		as_bool () 
+		(
+			: 嵌亓音 出亓内 用以得 && 
+			local NAME_EMBEDDED="${1:-${NAME_EMBEDDED:-}}" && 
+			local BOOL_DEFAULT="${2:-${BOOL_DEFAULT:-}}" && 
+			eval "$(codes_bool "${NAME_EMBEDDED}" "${BOOL_DEFAULT}")" && 
+			eval echo '$__'"${NAME_EMBEDDED}"'__' && 
+			: )
+		
 		: :: && 
 		"$@" && 
 		: ) && 
