@@ -3877,6 +3877,18 @@ eval "$(gd flow m i e _ terax.editor-term.ai.wui-srcs 20260814)"
 #..	eval "$(gd flow m i e _ terax.editor-term.ai.wui-srcs XXXXXXXX)"
 ~~~
 
+(skill man) skills (npx)
+
+~~~ sh
+ASKING_MAXTRY=1020 eval "$(gd flow m i a https://github.com/vercel-labs/skills.git skills.npx.vercel-src 20260819 tags:v1.5.23 tree:main)"
+~~~
+
+(lang skill) zerolang
+
+~~~ sh
+ASKING_MAXTRY=1030 eval "$(gd flow m i a https://github.com/vercel-labs/zerolang.git zero.agentic-lang.skills-src 20260628 tags:v0.3.4 tags:v0.1.3 tree:main)"
+~~~
+
 (wui harness plg-growing) Pi
 
 ~~~ sh
@@ -3940,6 +3952,14 @@ ASKING_MAXTRY=669 eval "$(gd flow m i a https://github.com/newo-ether/conch.git 
 #..	eval "$(gd flow m d u conch.shell-server.webapi-src)"
 ~~~
 
+### (tui) trmux
+
+(tmux-alt) rmux
+
+~~~ sh
+ASKING_MAXTRY=1010 eval "$(gd flow m i a https://github.com/Helvesec/rmux.git rmux.term-multiplexer.ratatui-src 20260808 tags:v0.10.0 tree:main)"
+~~~
+
 ### (cal) Tyme
 
 ~~~ sh
@@ -3956,6 +3976,14 @@ ASKING_MAXTRY=8 eval "$(gd flow m i h https://github.com/6tail/tyme4php.git tyme
 ASKING_MAXTRY=8 eval "$(gd flow m i h https://github.com/6tail/tyme4j.git tyme.6tail.date.multilang-libs/java _ tree:master tags:v1.5.1)"
 ASKING_MAXTRY=8 eval "$(gd flow m i h https://github.com/6tail/tyme4cpp.git tyme.6tail.date.multilang-libs/cpp _ tree:master tags:v1.2.0)"
 eval "$(gd flow m i e _ tyme.6tail.date.multilang-libs 20260615)"
+~~~
+
+### (dns) Engine
+
+oxidns
+
+~~~ sh
+ASKING_MAXTRY=106 eval "$(gd flow m i a https://github.com/SvenShi/oxidns.git oxidns.dns-engine.net-src 20260818 tags:v1.5.2 tree:main)"
 ~~~
 
 ### (net) Iroh
@@ -4213,9 +4241,9 @@ ASKING_MAXTRY=986 eval "$(gd flow m i a https://github.com/yeyangchen2009/daozan
 #..	eval "$(gd flow m i e _ daozang.texts-db.zh-src XXXXXXXX)"
 ~~~
 
-### (os) Kernel
+### (os) System
 
-Asterinas
+(Kernel) Asterinas
 
 ~~~ sh
 ASKING_MAXTRY=1776 eval "$(gd flow m i h https://github.com/asterinas/asterinas.git asterinas.os-kernel.linux.rs-srcs/os _ tree:main tags:v0.18.0)"
@@ -4228,6 +4256,19 @@ eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs 20260813)"
 #..	gd flow m @ asterinas.os-kernel.linux.rs-srcs
 #..	eval "$(gd flow m i e _ asterinas.os-kernel.linux.rs-srcs 20260814)"
 ~~~
+
+(android root) SukiSU-Ultra
+
+~~~ sh
+ASKING_MAXTRY=107 eval "$(gd flow m i h https://github.com/SukiSU-Ultra/SukiSU-Ultra.git sukisu.androot.ultra-srcs/repo _ tags:v4.1.3 tree:main)"
+ASKING_MAXTRY=107 eval "$(gd flow m i h https://github.com/SukiSU-Ultra/SukiSU-Ultra.git sukisu.androot.ultra-srcs/site _ tree:main)"
+eval "$(gd flow m i e _ sukisu.androot.ultra-srcs 20260815)"
+#..	eval "$(gd flow m d u sukisu.androot.ultra-srcs)"
+~~~
+
+
+
+
 
 
 
