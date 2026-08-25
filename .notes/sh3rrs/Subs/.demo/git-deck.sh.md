@@ -3952,6 +3952,13 @@ ASKING_MAXTRY=669 eval "$(gd flow m i a https://github.com/newo-ether/conch.git 
 #..	eval "$(gd flow m d u conch.shell-server.webapi-src)"
 ~~~
 
+(lang) brush
+
+~~~ sh
+ASKING_MAXTRY=108 eval "$(gd flow m i a https://github.com/reubeno/brush.git brush.bash.shell-src 20260825 tags:brush-parser-v0.4.0 tags:brush-shell-v0.4.0 tags:brush-v0.4.0 tags:brush-core-v0.5.0 tree:tuish2 tree:main)"
+#..	eval "$(gd flow m d u brush.bash.shell-src)"
+~~~
+
 ### (tui) trmux
 
 (tmux-alt) rmux
@@ -4030,6 +4037,15 @@ eval "$(gd flow m i e _ gopass.passwd-srcs 20260622)"
 #..	eval "$(gd flow m d u gopass.passwd-srcs)"
 ~~~
 
+### (util) Rust
+
+(bottlecheck) hotpath
+
+~~~ sh
+ASKING_MAXTRY=109 eval "$(gd flow m i a https://github.com/pawurb/hotpath-rs.git hotpath.rs-bottlenecks.profiler-src 20260825 tags:v0.24.0 tree:main)"
+#..	eval "$(gd flow m d u hotpath.rs-bottlenecks.profiler-src)"
+~~~
+
 ### (rtm) WASI
 
 wasi
@@ -4083,6 +4099,15 @@ eval "$(gd flow m i e _ emscripten.llvm-wasm.compiler-srcs 20260812)"
 #..	eval "$(gd flow m i e _ emscripten.llvm-wasm.compiler-srcs XXXXXXXX)"
 ~~~
 
+### (wui) PWA
+
+(app man) firefoxpwa
+
+~~~ sh
+ASKING_MAXTRY=107 eval "$(gd flow m i a https://github.com/filips123/PWAsForFirefox.git firefoxpwa.pwa-man.wui-src 20260816 tags:v2.19.0 tree:main)"
+#..	eval "$(gd flow m d u firefoxpwa.pwa-man.wui-src)"
+~~~
+
 ### (db) Conn UI
 
 (wui) dbx
@@ -4094,18 +4119,25 @@ ASKING_MAXTRY=89 eval "$(gd flow m i a https://github.com/t8y2/dbx.git dbx.db-cl
 #..	eval "$(gd flow m i e _ dbx.db-client.wui-src XXXXXXXX)"
 ~~~
 
-### (net) Download Manager
+### (net) File Trans Manager
 
-FluxDown
+(dm wui) FluxDown
 
 ~~~ sh
 ASKING_MAXTRY=999 eval "$(gd flow m i a https://github.com/zerx-lab/FluxDown.git fluxdown.dm.zerxlab-src 20260806 tree:main tags:v0.3.2)"
 ~~~
 
-Risuko
+(dm wui) Risuko
 
 ~~~ sh
 ASKING_MAXTRY=676 eval "$(gd flow m i a https://github.com/YueMiyuki/Risuko.git risuko.dm-src 20260724 tree:master tags:v0.6.0)"
+~~~
+
+(sy tui) lazyrsync
+
+~~~ sh
+ASKING_MAXTRY=116 eval "$(gd flow m i a https://github.com/westpoint-io/lazyrsync.git lazyrsync.rsync.tui-src 20260811 tags:v0.3.0 tree:main)"
+#..	eval "$(gd flow m d u lazyrsync.rsync.tui-src)"
 ~~~
 
 ### (net) Sniffer
