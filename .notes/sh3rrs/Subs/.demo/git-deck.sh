@@ -2064,5 +2064,5 @@ git_decks "$@" && :
 
 # git symbolic-ref HEAD #: 查 HEAD 指向、用 cat ./HEAD 也能看到相应信息
 # git symbolic-ref HEAD refs/heads/some-other-branch #: 变 HEAD 指向
-# git config --global -- alias.decks "!/usr/bin/env bash ~/.local/git-deck.sh"
+# git config --global -- alias.decks '!/usr/bin/env bash ~/.local/git-deck.sh'
 
