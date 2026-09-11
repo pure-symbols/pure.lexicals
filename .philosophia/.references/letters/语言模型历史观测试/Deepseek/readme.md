@@ -284,7 +284,13 @@ Inference Providers: via `deepinfra`
 
 直接用的孔明，未显投毒迹象。
 
+## Deepseek-4.1-Flash
 
+### 摘
 
+(暂略)
 
+### 评
+
+与 GLM-5.3-Flash 一个毛病了。
 
