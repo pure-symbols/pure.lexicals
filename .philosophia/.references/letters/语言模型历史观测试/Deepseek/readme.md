@@ -284,7 +284,7 @@ Inference Providers: via `deepinfra`
 
 直接用的孔明，未显投毒迹象。
 
-## Deepseek-4.1-Flash
+## Deepseek-4.1-Flash (in Deepseek Chat)
 
 ### 摘
 
@@ -334,7 +334,7 @@ Inference Providers: via `deepinfra`
 
 上述现象多次尝试皆有。
 
-## DeepSeek-V4.1-Flash-1017
+## DeepSeek-V4.1-Flash-1017 (in Deepseek Chat)
 
 ### 摘
 
