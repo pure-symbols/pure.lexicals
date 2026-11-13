@@ -3,4 +3,4 @@
 [上清洞真智慧观身大戒文/gh:yeyangchen2009/daozang.git@main]: https://github.com/yeyangchen2009/daozang/blob/main/%E9%81%93%E8%97%8F/%E6%AD%A3%E7%BB%9F%E9%81%93%E8%97%8F%E6%AD%A3%E4%B8%80%E9%83%A8/%E4%B8%8A%E6%B8%85%E6%B4%9E%E7%9C%9F%E6%99%BA%E6%85%A7%E8%A7%82%E8%BA%AB%E5%A4%A7%E6%88%92%E6%96%87.md?plain=1 "道藏/正统道藏正一部/上清洞真智慧观身大戒文.md | gh: yeyangchen2009/daozang.git @main"
 [上清洞真智慧觀身大戒文/wikisource.org]: https://zh.wikisource.org/zh/%E4%B8%8A%E6%B8%85%E6%B4%9E%E7%9C%9F%E6%99%BA%E6%85%A7%E8%A7%80%E8%BA%AB%E5%A4%A7%E6%88%92%E6%96%87 "上清洞真智慧觀身大戒文 | 维基文库"
 
-[上清洞眞智慧觀身大戒文/db2.sido.keio.ac.jp]: https://db2.sido.keio.ac.jp/kanseki/bib_frame?id=007074-4085 "上清洞眞智慧觀身大戒文全文影像 | (日本)宮内庁書陵部収蔵漢籍集覧"
+[上清洞眞智慧觀身大戒文/db2.sido.keio.ac.jp]: https://db2.sido.keio.ac.jp/kanseki/bib_frame?id=007074-4085 "上清洞眞智慧觀身大戒文全文影像 | 朙正一訂道藏（日）宮内庁書陵部収蔵漢籍集覧全文影像"
