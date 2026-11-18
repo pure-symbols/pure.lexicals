@@ -1082,7 +1082,7 @@ Let me now run the searches.
 > 
 > ----
 
-*<sup>（交付過程略）</sup>*
+*<sub>（交付過程略）</sub>*
 
 ## *<sup>（之後交付物再修對話亦略）</sup>*
 
