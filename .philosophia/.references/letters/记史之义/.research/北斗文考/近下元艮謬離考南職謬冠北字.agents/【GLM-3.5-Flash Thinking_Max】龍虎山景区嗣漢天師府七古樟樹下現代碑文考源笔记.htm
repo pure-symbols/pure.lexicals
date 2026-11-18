@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>龍虎山景区嗣漢天師府七古樟樹下現代碑文考源笔记——考「司命·司祿·祿存·延壽·益算·度厄·上生」如何用於北斗</title>
+<meta name="description" content="考「司命、司祿、祿存、延壽、益算、度厄、上生」七名如何用於北斗：南斗六司、北斗七元、纬书《洛书》与网络伪托本的逐层对勘。全文引证十五条，链接可溯。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f5f5f4; --card:#eceae6; --stripe:#ecece9; --headfill:#786e51;
+  --border:#cec6b1; --accent:#8b7226; --ink:#22221f; --muted:#7f7d75; --link:#4a6a8a;
+  --dark:#141311; --gold:#dbbf6d; --cream:#ecebea; --dim:#8d8a83;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Noto Serif SC','Songti SC','SimSun',serif;-webkit-font-smoothing:antialiased}
+[id]{scroll-margin-top:72px}
+
+/* ---------- 封面（深色，与 PDF 封面同款） ---------- */
+.cover{background:var(--dark);color:var(--cream);min-height:100vh;position:relative;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:110px 24px 130px}
+.cover::before,.cover::after{content:'';position:absolute;left:14%;right:14%;height:2px;background:var(--gold)}
+.cover::before{top:70px}
+.cover::after{bottom:70px}
+.cover .label{font-family:'Noto Sans SC',sans-serif;font-weight:300;font-size:13px;
+  letter-spacing:6px;color:var(--gold);margin-bottom:46px}
+.cover h1{margin:0 0 30px;max-width:620px;color:var(--cream);font-weight:400}
+.cover h1 .t1{display:block;font-size:22px;font-weight:700;letter-spacing:6px;line-height:1.5;margin-bottom:16px}
+.cover h1 .t2{display:block;font-size:35px;font-weight:900;letter-spacing:5px;line-height:1.4}
+.cover .seven{font-size:15.5px;font-weight:600;letter-spacing:1px;color:var(--gold);
+  line-height:1.7;margin-bottom:42px;white-space:nowrap}
+.cover .subtitle{font-family:'Noto Sans SC',sans-serif;font-weight:300;font-size:14px;
+  color:var(--dim);line-height:1.8;max-width:520px;margin-bottom:60px}
+.cover .authors{font-size:14px;letter-spacing:2px;margin-bottom:14px}
+.cover .inst{font-family:'Noto Sans SC',sans-serif;font-size:12.5px;color:var(--dim);
+  letter-spacing:2px;line-height:1.6}
+.cover .cfoot{position:absolute;bottom:42px;left:0;right:0;
+  font-family:'Noto Sans SC',sans-serif;font-size:11px;letter-spacing:3px;color:var(--dim)}
+
+/* ---------- 吸顶栏（对应 PDF 页眉） ---------- */
+.topbar{position:sticky;top:0;z-index:60;background:rgba(245,245,244,.95);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--accent)}
+.topbar .in{max-width:880px;margin:0 auto;display:flex;justify-content:space-between;
+  align-items:center;padding:9px 24px;gap:16px}
+.topbar .t{font-family:'Noto Sans SC',sans-serif;font-size:12px;color:var(--muted);letter-spacing:1px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar .nav{font-family:'Noto Sans SC',sans-serif;font-size:12px;color:var(--accent);
+  text-decoration:none;letter-spacing:2px;white-space:nowrap}
+.topbar .nav:hover{text-decoration:underline}
+
+/* ---------- 正文列 ---------- */
+.col{max-width:820px;margin:0 auto;padding:46px 28px 70px}
+
+/* ---------- 目录 ---------- */
+.toc{background:var(--card);border:1px solid var(--border);padding:26px 30px 20px;margin-bottom:14px}
+.toc .tt{margin:0 0 12px;font-size:22px;font-weight:700}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;align-items:baseline;gap:10px;text-decoration:none;color:var(--ink);
+  font-size:15px;padding:5px 0}
+.toc a:hover .tt2{color:var(--accent)}
+.toc .dots{flex:1;border-bottom:1px dotted var(--border);transform:translateY(-4px);min-width:24px}
+.toc li.l2 a{font-size:13.5px;color:var(--muted);padding:2px 0 2px 26px}
+
+/* ---------- 标题 ---------- */
+h1.sec{font-size:26px;font-weight:700;margin:62px 0 18px;line-height:1.45}
+h2.sec{font-size:19px;font-weight:700;color:var(--headfill);margin:38px 0 12px;line-height:1.55}
+h3.cit-h{font-size:16.5px;font-weight:700;margin:38px 0 8px;line-height:1.6}
+
+/* ---------- 正文段落 ---------- */
+p.body{font-size:15.5px;line-height:1.92;text-align:justify;text-indent:2em;margin:0 0 13px}
+p.note{font-size:12.5px;color:var(--muted);line-height:1.75;margin:6px 0 10px}
+p.tabcap{font-size:12px;color:var(--muted);text-align:center;margin:8px 0 14px}
+
+/* ---------- 引文块（浅底 + 金色左线，同 PDF） ---------- */
+.quote{background:var(--card);border-left:3px solid var(--accent);
+  padding:13px 18px 11px;margin:14px 0 16px}
+.quote .qt{font-size:14px;line-height:1.88;text-align:justify;margin:0}
+.quote .src{font-size:12px;color:var(--muted);margin:7px 0 0;line-height:1.7}
+
+/* ---------- 提要框（同 PDF callout） ---------- */
+.callout{background:var(--card);border:1.5px solid var(--accent);text-align:center;
+  padding:16px 18px 14px;margin:18px auto 24px;max-width:660px}
+.callout .stat{font-size:18px;font-weight:700;color:var(--accent);letter-spacing:1px;margin:0}
+.callout .lb{font-size:12.5px;color:var(--muted);margin:7px 0 0;line-height:1.7}
+
+/* ---------- 内联引证标 ---------- */
+.cite{color:var(--accent);text-decoration:none}
+.cite sup{font-size:.68em;line-height:0}
+.cite:hover{text-decoration:underline}
+.cite-demo{color:var(--accent);font-size:.85em}
+
+/* ---------- 表格（橄榄绿表头 + 条纹，同 PDF） ---------- */
+.tbl-wrap{overflow-x:auto;margin:16px 0 4px}
+table.tb{width:100%;border-collapse:collapse;font-size:13.5px}
+.tb th{background:var(--headfill);color:#fff;font-weight:700;padding:7px 8px;
+  border:0.5px solid var(--headfill);text-align:center;white-space:nowrap}
+.tb td{border:0.5px solid var(--border);padding:7px 8px;text-align:center;line-height:1.6}
+.tb tbody tr:nth-child(even){background:var(--stripe)}
+.tb td.lft{text-align:left}
+.tb td .src{display:block;font-size:10.5px;color:var(--muted);margin-top:2px}
+.tb.t1{min-width:560px}
+.tb.t2{min-width:640px}
+.tb.t2 td{padding:6px 4px}
+
+/* ---------- 附录甲 ---------- */
+.cit{margin-bottom:8px}
+.cit .qt{font-size:14px;line-height:1.88;text-align:justify;margin:6px 0}
+p.lnk{font-size:12.8px;margin:3px 0;line-height:1.8}
+.lnk,a.lnk{color:var(--link);word-break:break-all}
+a.lnk:hover{text-decoration:underline}
+
+/* ---------- 附录乙 ---------- */
+ul.dbs{list-style:none;margin:10px 0;padding:0}
+ul.dbs li{font-size:13px;line-height:1.9;padding:6px 2px;border-bottom:1px dotted var(--border)}
+
+/* ---------- 页尾（呼应封面） ---------- */
+.end{background:var(--dark);color:var(--cream);text-align:center;padding:58px 24px 66px;margin-top:76px}
+.end .rule{width:56%;height:2px;background:var(--gold);margin:0 auto 26px}
+.end p{margin:0 0 9px;font-size:13.5px;letter-spacing:2px}
+.end p.m{font-family:'Noto Sans SC',sans-serif;font-size:11.5px;color:var(--dim);letter-spacing:3px}
+
+@media (max-width:640px){
+  .cover h1 .t1{font-size:15px;letter-spacing:4px}
+  .cover h1 .t2{font-size:24px;letter-spacing:3px}
+  .cover .seven{font-size:12.5px;white-space:normal;max-width:340px;line-height:2}
+  .cover .subtitle{font-size:13px}
+  .col{padding:32px 18px 56px}
+  h1.sec{font-size:22px;margin-top:48px}
+  h2.sec{font-size:17px}
+}
+@media print{
+  .topbar{display:none}
+  .cover{min-height:auto;padding:140px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ 封面 ============ -->
+<section class="cover">
+  <div class="label">文獻考據筆記 · TEXTUAL RESEARCH NOTES</div>
+  <h1><span class="t1">龍虎山景区嗣漢天師府</span><span class="t2">七古樟樹下現代碑文考源笔记</span></h1>
+  <div class="seven">考「司命 · 司祿 · 祿存 · 延壽 · 益算 · 度厄 · 上生」如何用於北斗</div>
+  <div class="subtitle">南斗六司、北斗七元、緯書《洛書》與網絡偽託本的逐層對勘</div>
+  <div class="authors">附全文引證十五條 · 鏈接可溯</div>
+  <div class="institution">碑刻釋讀 × 道藏對勘 × 緯書辨偽</div>
+  <div class="cfoot">2026 年 11 月 · 供研究參考</div>
+</section>
+
+<!-- ============ 正文 ============ -->
+<main>
+<div class="topbar"><div class="in">
+  <span class="t">龍虎山景区嗣漢天師府七古樟樹下現代碑文考源笔记｜考「司命·司祿·祿存·延壽·益算·度厄·上生」如何用於北斗</span>
+  <a class="nav" href="#toc">目录 ↑</a>
+</div></div>
+
+<div class="col">
+
+<!-- 目录 -->
+<nav class="toc" id="toc">
+  <p class="tt">目　录</p>
+  <ol>
+<li><a href="#sec1"><span class="tt2">一、结论提要</span><span class="dots"></span></a></li>
+<li><a href="#sec2"><span class="tt2">二、碑刻对象与体例说明</span><span class="dots"></span></a></li>
+<li><a href="#sec3"><span class="tt2">三、七名逐项考源</span><span class="dots"></span></a></li>
+<li><a href="#sec4"><span class="tt2">四、南斗六司体系：六名的直接来源</span><span class="dots"></span></a></li>
+<li><a href="#sec5"><span class="tt2">五、北斗七元体系：祿存与七元星君的谱系</span><span class="dots"></span></a></li>
+<li><a href="#sec6"><span class="tt2">六、七名拼接序列的文献批判</span><span class="dots"></span></a></li>
+<li><a href="#sec7"><span class="tt2">七、「祿存」何以保留原字</span><span class="dots"></span></a></li>
+<li><a href="#sec8"><span class="tt2">八、碑文要素与古籍对照表</span><span class="dots"></span></a></li>
+<li><a href="#appA"><span class="tt2">附录甲、全文引证</span><span class="dots"></span></a></li>
+<li><a href="#appB"><span class="tt2">附录乙、文献与数据库链接</span><span class="dots"></span></a></li>
+<li><a href="#appC"><span class="tt2">附录丙、考据方法与检索声明</span><span class="dots"></span></a></li>
+</ol></nav>
+<h1 class="sec" id="sec1">一、结论提要</h1>
+<p class="body">龙虎山嗣汉天师府「北斗七星树」碑群，以七通星君碑分列北斗七星，每碑于星君名号之外另系一个职掌名，依次为司命、司祿、祿存、延壽、益算、度厄、上生。这七个名号并非同源：六个是南斗六司的职掌名，一个是北斗第三星的星名本名。以下五条结论，均有可点击核对的全文引证（编号<a class="cite" href="#z1"><sup>[证1]</sup></a>至<a class="cite" href="#z15"><sup>[证15]</sup></a>，见附录甲）。</p>
+<div class="callout"><p class="stat">司命 · 司祿 · <b>祿存</b> · 延壽 · 益算 · 度厄 · 上生</p><p class="lb">碑刻职掌七名序列 —— 第三位为北斗本名「祿存」，其余六位出自南斗六司</p></div>
+<p class="body"><b>结论一：七名中的六个（司命、司祿、延壽、益算、度厄、上生）是南斗六司的职掌名。</b>其定型文献为《太上说南斗六司延寿度人妙经》：经文明列「南斗第一天府司命上相鎮國真君」至「南斗第六天機上生監簿大理真君」六号<a class="cite" href="#z6"><sup>[证6]</sup></a>。更早的功能渊源则见于《元始无量度人上品妙经》「北斗落死，南斗上生」与「中有南上司命司錄，延壽益筭，度戹尊神」之文，其注家为南北朝至唐初人<a class="cite" href="#z11"><sup>[证11]</sup></a>。也就是说，这六个名号作为一组生命职司，在道经中从南朝至宋元一脉相承。</p>
+<p class="body"><b>结论二：「祿存」是北斗第三星的星名本名，不是职掌名，其文献史远早于其他六名。</b>隋代萧吉《五行大义》卷四引《黄帝斗图》已完整给出「一名貪狼……三名祿存……七名破軍」，并且同时给出与碑文完全一致的十二辰本命配属<a class="cite" href="#z4"><sup>[证4]</sup></a>；唐《开元占经》引《洛书》亦见此组星名<a class="cite" href="#z5"><sup>[证5]</sup></a>；其后纳入《太上玄灵北斗本命延生真经》七元真君名号——「北斗第三真人祿存真星君，寅戌生人屬之」<a class="cite" href="#z7"><sup>[证7]</sup></a>。「祿存」在北斗名号体系中的位置是第三位，这一点自隋以来从未变动。</p>
+<p class="body"><b>结论三：碑文的官职句式与魂神句式，直接出自《云笈七签》卷二十四。</b>碑上「天之太尉、天之上宰、天之司空、天之游擊、天之斗君、天之太常、天之上帝」的职官序列，与《北斗九星职位总主》引《黄老经》「陽明星，天之太尉，司政主非……天關星，天之上帝，主天地機運」逐位对应<a class="cite" href="#z9"><sup>[证9]</sup></a>；「某星之魂神／魄精／魄靈／魂大明」的句式，亦同出此节。碑文是这套北宋类书文本的直接下游。</p>
+<p class="body"><b>结论四：「出自纬书《洛书》」之说不能成立。</b>《开元占经》卷六十七所引《洛书》的真实文字，是北斗七名的另一套记载——「第一曰破军……第七曰贪狼」的倒序序列<a class="cite" href="#z5"><sup>[证5]</sup></a>，与「第一曰司命……第七曰上生」毫无关系。而《重修纬书集成》是日本学者安居香山、中村璋八于1971至1992年间编成的现代辑本汇编（明德出版社，六卷八册，卷六即《河图·洛书》）<a class="cite" href="#z14"><sup>[证14]</sup></a>，它本身不是古籍，其中亦未见此序列。所谓「纬书《洛书》第一曰司命」云云，是把南斗六司的职掌名嫁接到《洛书》星名上而成的伪托。</p>
+<p class="body"><b>结论五：「第一曰司命……第七曰上生」的完整拼接序列，未见古证，当为当代碑刻编制。</b>在本次检索范围内（道藏诸斗经、《云笈七签》、《开元占经》、《五行大义》、《史记》三家注、纬书辑本），均未检得此序列；网络流传的所谓《上清经》「北斗七司星君」（其第七位作「慈母星君」，与碑文「上生」不同）同样查无原典。最合理的复原是：编者取南斗六司六名，按原顺序铺排于北斗七星之上，第三位由北斗本名「祿存」占位，其余四名顺次后移一位（详见第六、七章）。</p>
+<h1 class="sec" id="sec2">二、碑刻对象与体例说明</h1>
+<p class="body">本次考据的对象，是龙虎山嗣汉天师府「北斗七星树」景观碑群。碑群以主碑（简介）领起，其下七通星君碑分列北斗七星，另有一通樟树碑记古樟。七碑每通具四层信息：天文星名与宫名（天枢至摇光）、魂神星君号（阳明星至天关星）、术数星名与天职官名（贪狼太星君至破军关星君，天之太尉至天之上帝）、以及本节的职掌名与本命生肖。主碑题名《太上玄灵北斗本命长生妙经》。就形制与文本组织看，此碑群当为当代新制之景观石刻；这一点并不减损其价值，却决定了考据的方向——它的文本不是出土古刻，而是一次当代汇编，故须逐项追溯其汇编所用的文献层。</p>
+<p class="body"><b>主碑题名考。</b>《太上玄灵北斗本命长生妙经》确为《正统道藏》洞神部本文类中的独立经文，撰人不详，提要系之「约出于北宋初」<a class="cite" href="#z8"><sup>[证8]</sup></a>。经文开篇即言：太上老君在永寿元年正月七日下降蜀都，「授與天師張道陵《北斗延生妙經》，未悉其章，復授長生妙訣」——它与《延生真经》共用同一叙事框架，是配套的姊妹篇。因此主碑题名并非误题，而是实引了这部真经；但碑群职掌七名的实际来源，仍是南斗六司体系（见下文）。</p>
+<p class="body"><b>「天衡」异文考。</b>碑刻第五星作「天衡」，通行天文志与纬书系统作「玉衡」<a class="cite" href="#z3"><sup>[证3]</sup></a>。而《北斗经》的一支通行斋醮诵本《太上玄灵北斗本命延生妙经》，恰作「北斗第五天衡宮丹元廉貞罡星君」<a class="cite" href="#z15"><sup>[证15]</sup></a>。故「天衡」自有传本依据，属诵本系统的异文，不宜径断为笔误；同理，碑文「天玑」与《云笈七签》所引《黄老经》作「天機」，亦为繁简异写字之常<a class="cite" href="#z9"><sup>[证9]</sup></a>。</p>
+<p class="body"><b>体例。</b>本篇行文用简体；古籍引文一概照录所据底本的文字（多为繁体，如「祿」「壽」「筭」「璣」），不作统一改字，异文随文注明。凡标注 <span class="cite-demo">[证N]</span> 之处，均可点击跳转至附录甲对应条目，每条引证附可访问的全文链接；引文与链接均经逐一核对，不采任何无法溯源的百科转述。</p>
+<h1 class="sec" id="sec3">三、七名逐项考源</h1>
+<p class="body">七个名号的文献年龄相差千年以上：司命、司祿可上溯先秦两汉，祿存可上溯隋代星图之学，延壽、益算、度厄、上生四名则定型于南朝至唐宋的南斗信仰。分述如下。</p>
+<h2 class="sec" id="sec3-1">（一）司命：七祀之首、文昌第四星、南斗第一司</h2>
+<p class="body">司命是七名中最古老的一个。《礼记·祭法》记周制王立七祀，其首即司命<a class="cite" href="#z1"><sup>[证1]</sup></a>；《楚辞·九歌》有《大司命》《少司命》之篇，主寿夭之神早已进入楚地祀典。入汉以后，司命成为职掌明确的星官——《史记·天官书》云：「斗魁戴匡六星曰文昌宮：一曰上將，二曰次將，三曰貴相，四曰司命，五曰司中，六曰司祿」<a class="cite" href="#z2"><sup>[证2]</sup></a>。在道教文献中，司命又人格化为左右二司命，《云笈七签》卷二十四引《次司命法》，谓左司命韩思、右司命张获邑，「皆是漢高帝之臣也」<a class="cite" href="#z9"><sup>[证9]</sup></a>。而碑文所取的位置，是南斗六司之首：「南斗第一天府司命上相鎮國真君」<a class="cite" href="#z6"><sup>[证6]</sup></a>。</p>
+<h2 class="sec" id="sec3-2">（二）司祿：文昌第六星、三台下台、南斗第二司</h2>
+<p class="body">司祿与司命同为文昌宫六星之一（第六星）<a class="cite" href="#z2"><sup>[证2]</sup></a>，又为三台之下台——《开元占经》引《春秋纬元命包》：「西近文昌二星曰上台为司命主壽，次二星中台为司中主宗室，东二星曰下台为司禄主兵」<a class="cite" href="#z5"><sup>[证5]</sup></a>。《太上玄灵北斗本命延生真经》所附三台名号，下台亦作「下台曲生司祿星君」<a class="cite" href="#z7"><sup>[证7]</sup></a>。在碑文的位置上，它是南斗第二司：「第二天相司錄上相鎮嶽真君」——故宫藏清康熙五十二年王道化楷书本正作「司錄」，祿、錄二字古通，此即异文之例<a class="cite" href="#z6"><sup>[证6]</sup></a>。</p>
+<h2 class="sec" id="sec3-3">（三）祿存：北斗第三星本名，七名中唯一「就地名职」的一个</h2>
+<p class="body">《五行大义》卷四《论七政》引《黄帝斗图》：「一名貪狼。子生人所屬。二名巨門。丑亥生人所屬。三名祿存。寅戌生人所屬。四名文曲。卯酉生人所屬。五名廉貞。辰申生人所屬。六名武曲。己未生人所屬。七名破軍。午生人所屬。」<a class="cite" href="#z4"><sup>[证4]</sup></a>。萧吉为隋开皇年间人，此书成于约公元六世纪末，是「貪巨祿文廉武破」组名与本命配属的最早完整见证；所引《黄帝斗图》更当早于此书。唐《开元占经》引《洛书》，其倒序七名中第五位正作「禄存」<a class="cite" href="#z5"><sup>[证5]</sup></a>；《太上北斗二十八章经》亦云「一名貪狼，二名巨門，三名祿存……」<a class="cite" href="#z12"><sup>[证12]</sup></a>。至《北斗经》，祿存正式进入七元真君名号——「北斗第三真人祿存真星君，寅戌生人屬之」，北斗咒亦作「大魁貪狼，巨門祿存」<a class="cite" href="#z7"><sup>[证7]</sup></a>。换言之，碑文第三碑的神主本来就是「祿存星君」，职掌栏的「祿存」是以星名自指，与另外六名的性质全然不同。</p>
+<h2 class="sec" id="sec3-4">（四）延壽：南斗第三司</h2>
+<p class="body">《南斗经》六司之第三为「第三天梁延壽保命真君」<a class="cite" href="#z6"><sup>[证6]</sup></a>。其观念先导见于《度人经》及唐初注疏：经文「中有南上司命司錄，延壽益筭，度戹尊神」，幽栖注谓「司命尊神主延壽益筭」<a class="cite" href="#z11"><sup>[证11]</sup></a>。碑文第四位之「延壽」，即南斗第三名后移一位而来。</p>
+<h2 class="sec" id="sec3-5">（五）益算：南斗第四司</h2>
+<p class="body">「算」为古寿命计量单位，益算即增其寿数。《南斗经》六司之第四为「第四天同益筭保生真君」<a class="cite" href="#z6"><sup>[证6]</sup></a>。旁证甚多：《云笈七签》卷二十四告请文「兆若立功建德，益筭延年，告請天之斗君第五玉皇君」<a class="cite" href="#z9"><sup>[证9]</sup></a>；《太上北斗二十八章经》礼念圣号作「延生保命度厄消災扶衰散禍益筭七官君」<a class="cite" href="#z12"><sup>[证12]</sup></a>。</p>
+<h2 class="sec" id="sec3-6">（六）度厄：南斗第五司</h2>
+<p class="body">《南斗经》六司之第五为「第五天樞度厄文昌鍊魂真君」<a class="cite" href="#z6"><sup>[证6]</sup></a>。「度厄」亦为北斗信仰的核心语汇——《北斗经》谓北辰「有迴死注生之功，有消災度厄之力」，并列「大聖北斗七元君能解三災厄……」二十四厄之文<a class="cite" href="#z7"><sup>[证7]</sup></a>。值得注意的是：在南斗系统中「度厄」恰配第五宫之「天樞」，而北斗本身亦名天枢，两个「天樞」在此错身而过，可见二斗名号体系的互相渗透。</p>
+<h2 class="sec" id="sec3-7">（七）上生：南斗第六司，源头在《度人经》</h2>
+<p class="body">「上生」的最早经典形态即《元始无量度人上品妙经》五斗句：「東斗主筭，西斗記名，北斗落死，南斗上生，中斗大魁，總監眾靈」<a class="cite" href="#z11"><sup>[证11]</sup></a>。《南斗经》六司之第六为「第六天機上生監簿大理真君」<a class="cite" href="#z6"><sup>[证6]</sup></a>。碑文第七位之「上生」，即南斗第六名。</p>
+<h1 class="sec" id="sec4">四、南斗六司体系：六名的直接来源</h1>
+<p class="body">南斗六司之名号与职掌，集中见于《太上说南斗六司延寿度人妙经》。故宫博物院藏清康熙五十二年（1713）王道化楷书本保存了完整经文，其著录页释文云：「中有斗宿六星，是則號南斗六司，與北斗七政分職」，「南斗位處離宮……主司陽宮，宰御火帝」，并许告请者「欲免息塚訟，削死注生，皆當上章投詞，設醮求請」<a class="cite" href="#z6"><sup>[证6]</sup></a>。六司名号全列如下：</p>
+<div class="quote"><p class="qt">南斗第一天府司命上相鎮國真君。南斗第二天相司錄上相鎮嶽真君。南斗第三天梁延壽保命真君。南斗第四天同益筭保生真君。南斗第五天樞度厄文昌鍊魂真君。南斗第六天機上生監簿大理真君。</p><p class="src">出处：《太上说南斗六司延寿度人妙经》（故宫藏清王道化楷书本释文）<a class="cite" href="#z6"><sup>[证6]</sup></a></p></div>
+<p class="body">这六号的职掌字眼——司命、司錄（祿）、延壽、益筭、度厄、上生——与碑文七名除去「祿存」之外的六名，逐字相合，顺序亦全同。南北二斗的生死分工，在此经中已表述为「削死注生」的行政语言；其观念源头即《度人经》五斗句与唐初诸注。严东注云：「南北二斗，主人生死……北斗除死籍，南斗上生名」<a class="cite" href="#z11"><sup>[证11]</sup></a>。至唐末五代，杜光庭删定《道门科范大全集》卷五十四《南北二斗同醮宝灯仪》，南北二斗同坛致祭，灯仪逐位礼北斗七元：「信禮高上紫微垣、北斗第一貪狼星君……璣宮大聖祿存真人真皇君」<a class="cite" href="#z13"><sup>[证13]</sup></a>——北斗的宫名（樞宮、璇宮、璣宮）与星君号在科仪中已固定连用。南斗六司与北斗七元并祀，正是碑文把六司职掌铺排到七星之上的礼仪背景。</p>
+<h1 class="sec" id="sec5">五、北斗七元体系：祿存与七元星君的谱系</h1>
+<p class="body">北斗七名的文献史，可分四层：纬书星名层、术数星名层、道教星君层、类书官职层。碑文的四类信息分属四层，拼合的痕迹清晰可辨。</p>
+<h2 class="sec" id="sec5-1">（一）纬书星名层：天枢至摇光</h2>
+<p class="body">七星名号最完整的早期记载见于汉代纬书《春秋运斗枢》。《史记》卷二十七司马贞《索隐》引之：「斗，第一天樞，第二旋，第三璣，第四權，第五衡，第六開陽，第七搖光。第一至第四為魁，第五至第七為標，合而為斗。」<a class="cite" href="#z3"><sup>[证3]</sup></a>。《五行大义》又引《合诚图》「斗第一星名樞……七名標光」，与《运斗枢》大同小异<a class="cite" href="#z4"><sup>[证4]</sup></a>。碑文首行天文星名即出此层。</p>
+<h2 class="sec" id="sec5-2">（二）术数星名层：贪狼至破军与本命配属</h2>
+<p class="body">「貪狼、巨門、祿存、文曲、廉貞、武曲、破軍」这组星名的最早完整见证，即《五行大义》卷四所引《黄帝斗图》<a class="cite" href="#z4"><sup>[证4]</sup></a>。同节并引《孔子元辰经》：「一名陽明星。二名陰精星。三名真人星。四名玄冥星。五名丹元星。六名北極星。七名天開星」——这正是碑文「魂神星君号」（阳明、阴精、真人、玄冥、丹元、北极、天关）的先声。本命生肖配属（子；丑亥；寅戌；卯酉；辰申；巳未；午）亦于此定型，其后《北斗经》全盘承之<a class="cite" href="#z7"><sup>[证7]</sup></a>。</p>
+<h2 class="sec" id="sec5-3">（三）道教星君层：七元真君与本命信仰</h2>
+<p class="body">《太上玄灵北斗本命延生真经》（《正统道藏》洞神部本文类，撰人不详，提要系之约出于北宋初）将四层名号整合为「陽明貪狼太星君」式的复合名号，并立二十四厄解谢之仪<a class="cite" href="#z7"><sup>[证7]</sup></a>。与之配套的《太上玄灵北斗本命长生妙经》（主碑所题）总括其旨：「北辰之宿列為七元。首引貪辰，尾明破曜，中立文曲……是以北斗司生、司殺，養物濟人之都會也」<a class="cite" href="#z8"><sup>[证8]</sup></a>。至此，碑文所见的七元谱系在北宋道经中已经自足完备；宋元以降附加于北斗的后起传说（如斗姆一类），本篇一律不采，仅在第六章充作「就连斗姆文献当中也没有此序列」的反证。</p>
+<h2 class="sec" id="sec5-4">（四）类书官职层：魂神句式与天之太尉</h2>
+<p class="body">《云笈七签》卷二十四《北斗九星职位总主》引《黄老经》曰：「北斗第一天樞星，則陽明星之魂神也……第七搖光星，則天關星之魂大明也」；随即给九星各配天职：「陽明星，天之太尉，司政主非」「陰精星，天之上宰，主祿位」「真人星，天之司空，主神仙」「玄冥星，天之游擊，主伐逆」「丹元星，天之斗君，主命錄籍」「北極星，天之太常，主升進」「天關星，天之上帝，主天地機運」<a class="cite" href="#z9"><sup>[证9]</sup></a>。碑文的魂神句式（魂神、魄精、魄靈、魂大明）与官职句式（天之太尉至上帝），皆与这段文字逐位对应，是碑文最直接的文献上游。</p>
+<h1 class="sec" id="sec6">六、七名拼接序列的文献批判</h1>
+<p class="body">把七个名号连成「第一曰司命，第二曰司祿，第三曰祿存……第七曰上生」的序列，并归之于纬书《洛书》，是流传于百科词条与网络文本的说法。以下按证据强度逐层检核。</p>
+<h2 class="sec" id="sec6-1">（一）《洛书》佚文的真实面貌</h2>
+<p class="body">《洛书》原书早佚，赖唐宋类书征引而存残文。检《开元占经》卷六十七，其所引《洛书》北斗佚文如下：</p>
+<div class="quote"><p class="qt">洛書曰北斗魁第一曰天樞第二璇星第三玑星第四权星第五玉衡第六开阳第七摇光第一至第四为魁第五至第七为杓合为斗杓阴布阳故称北斗开阳重宝故置辅易斗中曰北斗第一曰破军第二曰武曲第三曰廉〔贞〕第四曰文曲第五曰禄存第六曰巨门第七曰贪狼。（「廉」下「贞」字据文义出校，四库本原夺。）</p><p class="src">出处：《开元占经》卷六十七引《洛书》<a class="cite" href="#z5"><sup>[证5]</sup></a></p></div>
+<p class="body">《洛书》的记载有两层：前半与《运斗枢》同源（天枢至摇光），后半另记一组倒序七名——第一曰破军，第七曰贪狼。无论哪一层，都不见「司命」「司祿」「延壽」「益算」「度厄」「上生」任何一字。据此，《洛书》不仅不能证明碑文序列，反而是「祿存」一名唐代已入星占类书的旁证。</p>
+<h2 class="sec" id="sec6-2">（二）《重修纬书集成》是什么书，其中有没有这条佚文</h2>
+<p class="body">回答此前悬而未决的书目问题：《重修纬书集成》为日本学者安居香山（1921—）、中村璋八（1926—2015）合编，自1954年起辑佚，1959年前后完成油印稿本，1971年3月至1992年2月由东京明德出版社出齐，全六卷八册——卷一易，卷二书·中候，卷三诗·礼·乐，卷四春秋，卷五孝经·论语，卷六河图·洛书；1994年12月河北人民出版社出中译本《纬书集成》精装三册<a class="cite" href="#z14"><sup>[证14]</sup></a>。可见：其一，它是现代辑本汇编，不是汉代纬书，不能充当任何「成书于汉」的证据；其二，其《洛书》卷所辑佚文以《开元占经》等类书引文为主干，上引《洛书》倒序七名即是其核心内容，「第一曰司命……第七曰上生」并非其中之文。百科词条称「辑本见《重修纬书集成》」，实属无据。</p>
+<h2 class="sec" id="sec6-3">（三）就连斗姆文献当中，也没有这个序列</h2>
+<p class="body">网络文本还常把七名序列系于斗姆（紫光夫人）化生九子的传说，称《玉清无上灵宝自然北斗本生真经》记其「七子为司命、司祿、祿存、延壽、益算、度厄、上生七星」。斗姆神格源自印度（学界多溯源于摩利支天信仰），宋元间才被安置到北斗头上，本篇不与其谱系；但「就连斗姆文献当中也没有」这一点，恰是一条干净的反证——核对道藏原文，该经明言：</p>
+<div class="quote"><p class="qt">其二長子，是為天皇大帝，紫微大帝。其七幼子，是為貪狼、巨門、祿存、文曲、廉貞、武曲、破軍之星，或善或惡，化導群情。</p><p class="src">出处：《玉清无上灵宝自然北斗本生真经》（《正统道藏》洞真部本文类）<a class="cite" href="#z10"><sup>[证10]</sup></a></p></div>
+<p class="body">「司命……上生」六字无一见于原文，七幼子之名即术数星名层的「貪巨祿文廉武破」——连这部最晚出、最外围的北斗系文献，给的也仍是旧星名。百科与文库条目把七名职掌序列写进斗姆故事，属对原典的二次编造。这也再次说明：把七名序列坐实到某部古书的尝试，在可核对的文本层面全部落空。</p>
+<h2 class="sec" id="sec6-4">（四）网络伪托本「七司星君」的存在，反而证明序列晚出</h2>
+<p class="body">流传更广的一支网络文本自称引《上清经》：「北斗七星，第一天樞宮，為司命星君；第二天璇宮，為司祿星君；第三天璣宮，為祿存星君；第四天權宮，為延壽星君；第五玉衡宮，為益算星君；第六開陽宮，為度厄星君；第七搖光宮，為慈母星君，總稱七司星君。」此本在《正统道藏》上清经系中无原典可稽，且其第七位作「慈母星君」，与碑文「上生」不同。同一拼接框架而有两种第七位（慈母／上生），正是层积造作文本的典型症状：拼接者各取所需，故尾名不定。若真有汉纬古源，断不会出现此类变体分歧。</p>
+<h2 class="sec" id="sec6-5">（五）拼接过程的机械复原</h2>
+<p class="body">南斗六司与碑文七星的位次对照如下表。除第三位的插入外，其余六名保持南斗经原顺序，逐位后移一格：</p>
+<div class="tbl-wrap"><table class="tb t1"><thead><tr><th style="width:10%">位次</th><th style="width:34%">南斗六司（宫名）</th><th style="width:22%">碑刻七星</th><th style="width:34%">对应关系</th></tr></thead><tbody>
+<tr><td>1</td><td>司命（天府宫）</td><td><b>司命</b></td><td class="lft">一致</td></tr>
+<tr><td>2</td><td>司祿（天相宫）</td><td><b>司祿</b></td><td class="lft">一致（故宫本作「司錄」）</td></tr>
+<tr><td>3</td><td>延壽（天梁宫）</td><td><b>祿存</b></td><td class="lft">北斗第三星本名插入占位</td></tr>
+<tr><td>4</td><td>益算（天同宫）</td><td><b>延壽</b></td><td class="lft">南斗第三名后移一位</td></tr>
+<tr><td>5</td><td>度厄（天樞宫）</td><td><b>益算</b></td><td class="lft">南斗第四名后移一位</td></tr>
+<tr><td>6</td><td>上生（天機宫）</td><td><b>度厄</b></td><td class="lft">南斗第五名后移一位</td></tr>
+<tr><td>7</td><td>——</td><td><b>上生</b></td><td class="lft">南斗第六名后移一位</td></tr>
+</tbody></table></div>
+<p class="tabcap">表一　南斗六司与碑刻七星的位次对照（南斗六司名号据<a class="cite" href="#z6"><sup>[证6]</sup></a>）</p>
+<p class="body">这张表同时说明了问题的另一面：拼接序列没有古证，不是因为「古书失传了一部记载它的书」，而是因为它的构成要素分属南斗、北斗两个平行体系，只有当代编者才有动机把二者焊在一起。检索上的诚实声明见附录丙。</p>
+<h1 class="sec" id="sec7">七、「祿存」何以保留原字</h1>
+<p class="body">既然六名来自南斗、七位属于北斗，缺口落在哪一位，就只能是哪一位——答案藏在北斗自己的名号史里。分四层说明。</p>
+<p class="body"><b>其一，结构性缺口必有一位「就地名职」。</b>南斗六司只有六个职掌名，北斗有七位星君，六名铺排七位，必缺一名。若缺位的星君也须造一个新职掌名，则编者要凭空生造一个与「司命、司祿」同构的二字名——而在整个名号传统里，只有一位星君拥有现成的、本系统内部的替代名号，那就是北斗第三星「祿存」。缺口不在别处，恰在第三位，因为第三位是唯一不必造名的位置。</p>
+<p class="body"><b>其二，文献惯性锁死了位次。</b>自《黄帝斗图》以来一千四百余年，「貪狼、巨門、祿存、文曲、廉貞、武曲、破軍」作为固定词串，在星占（唐《开元占经》引《洛书》）、科仪（杜光庭灯仪）、道经（《北斗经》北斗咒「大魁貪狼，巨門祿存」）与堪舆九星诸传统中反复连用<a class="cite" href="#z4"><sup>[证4]</sup></a><a class="cite" href="#z5"><sup>[证5]</sup></a><a class="cite" href="#z7"><sup>[证7]</sup></a><a class="cite" href="#z13"><sup>[证13]</sup></a>。「祿存」若被抽出，整串名号即不成诵；反之，把它放在第三位，读碑的人立刻能在熟悉的词串中定位。拼接连「祿存」的位置都不能挪动，遑论改名。</p>
+<p class="body"><b>其三，语义顺滑是拼接成立的润滑剂。</b>「祿存」二字含「祿」，上承司祿、下启延壽——司命（定命）→司祿（注禄）→祿存（保其所有）→延壽（延其年）→益算（增其数）→度厄（解其厄）→上生（终得超升），恰好读作一个生人受福的完整叙事弧。若第三位造一个与「祿」无关的新名，这条弧就断了。这层语义巧合让一次技术性的占位，看起来像有意为之的义理安排。</p>
+<p class="body"><b>其四，碑刻语境的自我指涉。</b>北斗七星树每碑祭祀一位星君，第三碑的神主本是「真人祿存真星君」<a class="cite" href="#z7"><sup>[证7]</sup></a>。在「一星君一职掌」的展示框架下，其余六碑各领一司名，第三碑的职掌栏若不填「祿存」，便要空缺或造名；填「祿存」，即以本名自指，又与邻碑的「司祿」形成「祿」字呼应。于是「偏偏是祿存保留原字」并非随机，而是唯一同时满足名号史、位次结构与展示逻辑的选择。</p>
+<h1 class="sec" id="sec8">八、碑文要素与古籍对照表</h1>
+<p class="body">下表把七碑的六类信息逐列排开，右端标注每行名号的直接文献出处。可以看出：除「碑刻职掌七名」一行外，其余各行均可在隋唐宋文献中逐字落实；正是那一行，构成第六章考辨的对象。</p>
+<div class="tbl-wrap"><table class="tb t2"><thead><tr><th style="width:15%">要素</th>
+<th>一</th>
+<th>二</th>
+<th>三</th>
+<th>四</th>
+<th>五</th>
+<th>六</th>
+<th>七</th>
+</tr></thead><tbody>
+<tr><td class="lft">天文星名<span class="src">证3</span></td>
+<td>天樞</td>
+<td>天璇</td>
+<td>天璣</td>
+<td>天權</td>
+<td>玉衡</td>
+<td>開陽</td>
+<td>搖光</td>
+</tr>
+<tr><td class="lft">魂神星君号<span class="src">证9</span></td>
+<td>陽明</td>
+<td>陰精</td>
+<td>真人</td>
+<td>玄冥</td>
+<td>丹元</td>
+<td>北極</td>
+<td>天關</td>
+</tr>
+<tr><td class="lft">术数星名<span class="src">证4、证7</span></td>
+<td>貪狼</td>
+<td>巨門</td>
+<td>祿存</td>
+<td>文曲</td>
+<td>廉貞</td>
+<td>武曲</td>
+<td>破軍</td>
+</tr>
+<tr><td class="lft">天职官名<span class="src">证9</span></td>
+<td>天之太尉</td>
+<td>天之上宰</td>
+<td>天之司空</td>
+<td>天之游擊</td>
+<td>天之斗君</td>
+<td>天之太常</td>
+<td>天之上帝</td>
+</tr>
+<tr><td class="lft">碑刻职掌七名<span class="src">碑文</span></td>
+<td>司命</td>
+<td>司祿</td>
+<td>祿存</td>
+<td>延壽</td>
+<td>益算</td>
+<td>度厄</td>
+<td>上生</td>
+</tr>
+<tr><td class="lft">本命生肖<span class="src">证4、证7</span></td>
+<td>子</td>
+<td>丑亥</td>
+<td>寅戌</td>
+<td>卯酉</td>
+<td>辰申</td>
+<td>巳未</td>
+<td>午</td>
+</tr>
+</tbody></table></div>
+<p class="tabcap">表二　碑文六类要素与古籍对应（引证编号见附录甲）</p>
+<p class="note">注：术数星名与本命生肖行，碑文与《黄帝斗图》《北斗经》全同；官职行依《云笈七签》卷二十四《北斗九星职位总主》引《黄老经》；「碑刻职掌七名」行则为南斗六司与北斗本名之拼接，古无其文。</p>
+<h1 class="sec" id="appA">附录甲、全文引证</h1>
+<p class="body">以下十五条引证，均先列书名卷次与版本说明，次录原文（照录底本用字），末附全文链接。链接皆可在浏览器中打开核对；网络全文页如与纸本有异文，以本篇随文出校者为据。</p>
+<div class="cit"><h3 class="cit-h" id="z1">证1　《礼记·祭法》</h3>
+<p class="qt">王為羣姓立七祀，曰司命，曰中霤，曰國門，曰國行，曰泰厲，曰戶，曰竈。王自為立七祀。諸侯為國立五祀，曰司命，曰中霤，曰國門，曰國行，曰公厲。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://zh.wikisource.org/wiki/%E7%A6%AE%E8%A8%98/%E7%A5%AD%E6%B3%95" target="_blank" rel="noopener">维基文库《禮記·祭法》全文</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z2">证2　《史记·天官书》</h3>
+<p class="qt">斗魁戴匡六星曰文昌宮：一曰上將，二曰次將，三曰貴相，四曰司命，五曰司中，六曰司祿。</p>
+<p class="qt">斗為帝車，運於中央，臨制四鄉。分陰陽，建四時，均五行，移節度，定諸紀，皆繫於斗。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://zh.wikisource.org/wiki/%E5%8F%B2%E8%A8%98/%E5%8D%B7027" target="_blank" rel="noopener">维基文库《史記·卷二十七天官書》全文</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z3">证3　《史记》卷二十七 司马贞《索隐》引《春秋运斗枢》</h3>
+<p class="qt">斗，第一天樞，第二旋，第三璣，第四權，第五衡，第六開陽，第七搖光。第一至第四為魁，第五至第七為標，合而為斗。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://sou-yun.cn/AllusionsIndex.aspx?book=0&amp;page=5" target="_blank" rel="noopener">搜韵典故库所录《史记》卷二十七及三家注文字</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z4">证4　《五行大义》卷第四《论七政》（隋·萧吉撰）</h3>
+<p class="qt">黃帝斗圖云。一名貪狼。子生人所屬。二名巨門。丑亥生人所屬。三名祿存。寅戌生人所屬。四名文曲。卯酉生人所屬。五名廉貞。辰申生人所屬。六名武曲。己未生人所屬。七名破軍。午生人所屬。</p>
+<p class="qt">孔子元辰經云。一名陽明星。二名陰精星。三名真人星。四名玄冥星。五名丹元星。六名北極星。七名天開星。</p>
+<p class="qt">合誠圖云。斗第一星名樞。二名璇。三名璣。四名權。五名衡。六名開陽。七名標光。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://ctext.org/wiki.pl?if=gb&amp;chapter=494482" target="_blank" rel="noopener">中国哲学书电子化计划·维基《五行大義卷第四》</a></p>
+<p class="lnk">　　　　　<a class="lnk" href="https://www.zinbun.kyoto-u.ac.jp/~takeda/kyoudou/gogyou/gogyoutaigi/gogyo_gogyo_04_g.html" target="_blank" rel="noopener">京都大学人文研藏《五行大義》卷第四文本</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z5">证5　《开元占经》卷六十七（唐·瞿昙悉达编，四库全书本）</h3>
+<p class="qt">洛書曰北斗魁第一曰天樞第二璇星第三玑星第四权星第五玉衡第六开阳第七摇光第一至第四为魁第五至第七为杓合为斗杓阴布阳故称北斗开阳重宝故置辅易斗中曰北斗第一曰破军第二曰武曲第三曰廉〔贞〕第四曰文曲第五曰禄存第六曰巨门第七曰贪狼。（按：四库本「廉」下夺「贞」字，据文义出校。）</p>
+<p class="qt">又引《春秋纬元命包》：西近文昌二星曰上台为司命主寿，次二星中台为司中主宗室，东二星曰下台为司禄主兵。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://zh.wikisource.org/zh-hans/%E5%94%90%E9%96%8B%E5%85%83%E5%8D%A0%E7%B6%93_(%E5%9B%9B%E5%BA%AB%E5%85%A8%E6%9B%B8%E6%9C%AC)/%E5%8D%B7067" target="_blank" rel="noopener">维基文库《唐開元占經（四庫全書本）卷067》</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z6">证6　《太上说南斗六司延寿度人妙经》（故宫博物院藏清康熙五十二年王道化楷书本，据该院著录页释文）</h3>
+<p class="qt">南斗第一天府司命上相鎮國真君。南斗第二天相司錄上相鎮嶽真君。南斗第三天梁延壽保命真君。南斗第四天同益筭保生真君。南斗第五天樞度厄文昌鍊魂真君。南斗第六天機上生監簿大理真君。</p>
+<p class="qt">中有斗宿六星，是則號南斗六司，與北斗七政分職。……北斗位處坎宮……主司陰府，宰御水源……南斗位處離宮……主司陽官，宰御火帝……</p>
+<p class="qt">欲免息塚訟，削死注生，皆當上章投詞，設醮求請。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://digitalarchive.npm.gov.tw/Collection/Detail/1578?dep=P" target="_blank" rel="noopener">故宫博物院典藏资料检索·王道化楷书《太上說南斗六司延壽度人妙經》冊（含全文释文）</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z7">证7　《太上玄灵北斗本命延生真经》（《正统道藏》洞神部本文类；撰人不详，约出于北宋初）</h3>
+<p class="qt">北斗第一陽明貪狼太星君，子生人屬之；北斗第二陰精巨門元星君，丑亥生人屬之；北斗第三真人祿存真星君，寅戌生人屬之；北斗第四玄冥文曲紐星君，卯酉生人屬之；北斗第五丹元廉貞綱星君，辰申生人屬之；北斗第六北極武曲紀星君，巳未生人屬之；北斗第七天關破軍關星君，午生人屬之；北斗第八洞明外輔星君；北斗第九隱光內弼星君；上台虛精開德星君，中台六淳司空星君，下台曲生司祿星君。</p>
+<p class="qt">北辰垂象，而眾星拱之，為造化之樞機，作人神之主宰……有迴死注生之功，有消災度厄之力。</p>
+<p class="qt">北斗咒曰：北斗九辰，中天大神……大魁貪狼，巨門祿存。文曲廉貞，武曲破軍……</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://www.daorenjia.com/daozang11-547" target="_blank" rel="noopener">道人家·道藏全文《太上玄灵北斗本命延生真经》</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z8">证8　《太上玄灵北斗本命长生妙经》（《正统道藏》洞神部本文类；撰人不详，约出于北宋初）</h3>
+<p class="qt">太上老君在永壽元年正月七日下降蜀都，授與天師張道陵《北斗延生妙經》，未悉其章，復授長生妙訣。</p>
+<p class="qt">天一生水，生自北方。故紫微之垣高崇北辰，北辰之宿列為七元。首引貪辰，尾明破曜，中立文曲，以為天地之樞軸。是以北斗司生、司殺，養物濟人之都會也。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://www.dudianguji.com/news/1580.html" target="_blank" rel="noopener">读典籍《太上玄靈北斗本命長生妙經》（《正統道藏》底本）</a></p>
+<p class="lnk">　　　　　<a class="lnk" href="https://www.daorenjia.com/daozang11-548" target="_blank" rel="noopener">道人家·道藏全文（同经另一录本）</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z9">证9　《云笈七签》卷二十四《日月星辰部》（宋·张君房辑，《正统道藏》太玄部）</h3>
+<p class="qt">《北斗九星职位总主》引《黄老经》曰：北斗第一天樞星，則陽明星之魂神也。第二天璇星，則陰精星之魂神也。第三天機星，則真人星之魄精也。第四天權星，則玄冥星之魄精也。第五玉衡星，則丹元星之魄靈也。第六闓陽星，則北極星之魄靈也。第七搖光星，則天關星之魂大明也。</p>
+<p class="qt">陽明星，天之太尉，司政主非。……陰精星，天之上宰，主祿位。……真人星，天之司空，主神仙。……玄冥星，天之游擊，主伐逆。……丹元星，天之斗君，主命錄籍。……北極星，天之太常，主升進。……天關星，天之上帝，主天地機運。</p>
+<p class="qt">兆若立功建德，益筭延年，告請天之斗君第五玉皇君。</p>
+<p class="qt">《总说星》：陽明、陰精二星之間，星斗魂魄魁首也，名曰天樞魂神斗；次第二星名曰天璇魂神斗；次行第三星名曰天機魄精斗；次行第四星名曰天權魄精斗；次行第五星名曰玉衡魄靈斗；次行第六星名曰闓陽魄靈斗；次行第七星名曰搖光大明。</p>
+<p class="qt">《次司命法》：老君曰：左司命一人也。姓韓，名思，字元信，長樂人也。司錄、司伐等屬焉。……右司命姓張，名獲邑，字子良，廣陽人也。……天師曰：韓、張二司命，皆是漢高帝之臣也。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://zh.wikisource.org/zh-hans/%E9%9B%B2%E7%AC%88%E4%B8%83%E7%B1%A4/24" target="_blank" rel="noopener">维基文库《雲笈七籤/24》</a></p>
+<p class="lnk">　　　　　<a class="lnk" href="https://www.kanripo.org/text/KR5d0055/024" target="_blank" rel="noopener">Kanripo 漢籍リポジトリ KR5d0055 雲笈七籤·024</a></p>
+<p class="lnk">　　　　　<a class="lnk" href="http://www.ctcwri.org/CTCW-CMTS/CMT04%E5%A4%AA%E7%8E%84%E9%83%A8/CMT04ALL/CH04048%E9%9B%B2%E7%AC%88%E4%B8%83%E7%B1%A4/CH04048%E9%9B%B2%E7%AC%88%E4%B8%83%E7%B1%A4ALL/CH04048-024%E5%8D%B7%E4%BA%8C%E5%8D%81%E5%9B%9B%E7%9B%AE%E6%9C%88%E6%98%9F%E8%BE%B0%E9%83%A8.htm" target="_blank" rel="noopener">正统道藏电子文字资料库·雲笈七籤卷二十四</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z10">证10　《玉清无上灵宝自然北斗本生真经》（《正统道藏》洞真部本文类；撰人不详，约出于宋元。此系斗姆一系文献，本篇不以其为北斗名号正源，仅录此条充「就连斗姆文献当中也没有此序列」之反证）</h3>
+<p class="qt">其二長子，是為天皇大帝，紫微大帝。其七幼子，是為貪狼、巨門、祿存、文曲、廉貞、武曲、破軍之星，或善或惡，化導群情。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://www.daoist.org/BookSearch(test)/list010/a2-043.pdf" target="_blank" rel="noopener">道藏扫描原件（daoist.org·洞真部 a2-043）</a></p>
+<p class="lnk">　　　　　<a class="lnk" href="https://m.iwenyan.com/dao/yqwslbzrbdbszj" target="_blank" rel="noopener">文言文网·道藏全文（含经名提要）</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z11">证11　《元始无量度人上品妙经四注》卷二（齐·严东，唐·薛幽栖、李少微、成玄英注，宋·陈景元集）</h3>
+<p class="qt">經文：東斗主筭，西斗記名，北斗落死，南斗上生，中斗大魁，總監眾靈。</p>
+<p class="qt">經文：中有南上司命司錄，延壽益筭，度戹尊神。</p>
+<p class="qt">严东注：南北二斗，主人生死。……北斗除死籍，南斗上生名。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://zh.wikisource.org/zh/%E5%85%83%E5%A7%8B%E7%84%A1%E9%87%8F%E5%BA%A6%E4%BA%BA%E4%B8%8A%E5%93%81%E5%A6%99%E7%B6%93%E5%9B%9B%E8%A8%BB/2" target="_blank" rel="noopener">维基文库《元始無量度人上品妙經四註/2》</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z12">证12　《太上北斗二十八章经》（托汉明帝终南山问对）</h3>
+<p class="qt">帝曰：七星何名？元君曰：一名貪狼，二名巨門，三名祿存，四名文曲，五名廉貞，六名武曲，七名破軍也。</p>
+<p class="qt">禮念七真聖號：……延生保命度厄消災扶衰散禍益筭七官君。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://ctext.org/wiki.pl?if=gb&amp;chapter=514136" target="_blank" rel="noopener">中国哲学书电子化计划·维基《太上北斗二十八章經》</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z13">证13　《道门科范大全集》卷五十四《南北二斗同醮宝灯仪》（唐末五代·杜光庭删定）</h3>
+<p class="qt">信禮高上紫微垣、北斗第一貪狼星君。……眾等至心皈命璣宮大聖祿存真人真皇君，斗中神仙，諸靈官。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://ctext.org/wiki.pl?if=gb&amp;chapter=86113&amp;remap=gb" target="_blank" rel="noopener">中国哲学书电子化计划·维基《道門科範大全集》卷五十四</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z14">证14　《重修纬书集成》书目著录（CiNii 日本国立情报学研究所书志ID：BN01077582）</h3>
+<p class="qt">安居香山、中村璋八编，东京明德出版社，1971年3月至1992年2月出齐，全六卷八册（卷一易，卷二书·中候，卷三诗·礼·乐，卷四春秋，卷五孝经·论语，卷六河图·洛书）；卷六《河图·洛书》初版于1978年3月。中译本《纬书集成》，河北人民出版社1994年12月，精装三册。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://ci.nii.ac.jp/ncid/BN01077582" target="_blank" rel="noopener">CiNii 書誌詳細表示「重修緯書集成」</a></p>
+</div>
+<div class="cit"><h3 class="cit-h" id="z15">证15　《太上玄灵北斗本命延生妙经》通行斋醮诵本（传本异文之例）</h3>
+<p class="qt">北斗第一天樞宮陽明貪狼太星君子生人屬之……北斗第三天璣宮真人祿存貞星君寅戌生人屬之……北斗第五天衡宮丹元廉貞罡星君辰申生人屬之……北斗第七瑤光宮天關破軍關星君午生人屬之。</p>
+<p class="lnk">全文链接：<a class="lnk" href="https://daoism.family/beidou-scripture" target="_blank" rel="noopener">Daoism Family·《太上玄靈北斗本命延生妙經》全文（诵本）</a></p>
+</div>
+<h1 class="sec" id="appB">附录乙、文献与数据库链接</h1>
+<p class="body">本篇检索所依赖的全文库如下，均为可公开访问的文本载体。古籍引文的核对一律以这些全文页为准。</p>
+<ul class="dbs">
+<li>· 维基文库（古籍全文）　<a class="lnk" href="https://zh.wikisource.org/" target="_blank" rel="noopener">https://zh.wikisource.org/</a></li>
+<li>· 中国哲学书电子化计划 ctext（含维基协作本，本篇引《五行大义》《太上北斗二十八章经》《道门科范大全集》）　<a class="lnk" href="https://ctext.org/" target="_blank" rel="noopener">https://ctext.org/</a></li>
+<li>· Kanripo 漢籍リポジトリ（道藏等汉籍结构化文本）　<a class="lnk" href="https://www.kanripo.org/" target="_blank" rel="noopener">https://www.kanripo.org/</a></li>
+<li>· 正统道藏电子文字资料库（太玄部《云笈七签》等）　<a class="lnk" href="http://www.ctcwri.org/" target="_blank" rel="noopener">http://www.ctcwri.org/</a></li>
+<li>· 道人家、读典籍、文言文网（正统道藏全文转录，含经名提要）　<a class="lnk" href="https://www.daorenjia.com/" target="_blank" rel="noopener">https://www.daorenjia.com/</a>　<a class="lnk" href="https://www.dudianguji.com/" target="_blank" rel="noopener">https://www.dudianguji.com/</a>　<a class="lnk" href="https://m.iwenyan.com/" target="_blank" rel="noopener">https://m.iwenyan.com/</a></li>
+<li>· daoist.org 道藏扫描原件（洞真部《玉清无上灵宝自然北斗本生真经》等）　<a class="lnk" href="https://www.daoist.org/" target="_blank" rel="noopener">https://www.daoist.org/</a></li>
+<li>· 故宫博物院典藏资料检索（清王道化楷书《太上說南斗六司延壽度人妙經》冊释文）　<a class="lnk" href="https://digitalarchive.npm.gov.tw/" target="_blank" rel="noopener">https://digitalarchive.npm.gov.tw/</a></li>
+<li>· CiNii 日本国立情报学研究所书志数据库（《重修纬书集成》书目）　<a class="lnk" href="https://ci.nii.ac.jp/" target="_blank" rel="noopener">https://ci.nii.ac.jp/</a></li>
+<li>· 京都大学人文研·《五行大义》文本库（中村不折旧藏本系统）　<a class="lnk" href="https://www.zinbun.kyoto-u.ac.jp/~takeda/kyoudou/gogyou/" target="_blank" rel="noopener">https://www.zinbun.kyoto-u.ac.jp/~takeda/kyoudou/gogyou/</a></li>
+<li>· 搜韵·典故库（《史记》三家注文字检索）　<a class="lnk" href="https://sou-yun.cn/" target="_blank" rel="noopener">https://sou-yun.cn/</a></li>
+</ul>
+<h1 class="sec" id="appC">附录丙、考据方法与检索声明</h1>
+<p class="body"><b>核证方法。</b>本篇每条引文均经三步核对：先以书名＋卷次＋关键句在全文库中定位；再取页面原文照录；最后反查链接可访问性。凡涉及「有无古证」的判断，检索式采用罕见字符串（如「第一曰司命」「第三曰祿存」「延壽益筭」等）以缩小噪声；同一关键引文（《南斗经》六司、《北斗经》七元、《云笈》官职、《五行大义》斗图、《开元占经》引《洛书》、《本生真经》七子）均取两个以上独立文本源互校。百科与文库条目仅作为被考辨的对象记录其说法，不作任何事实依据。</p>
+<p class="body"><b>关于《南斗经》版本。</b>本篇所引《太上说南斗六司延寿度人妙经》文字，以故宫博物院藏清康熙五十二年王道化楷书本著录页释文为准<a class="cite" href="#z6"><sup>[证6]</sup></a>；该经《正统道藏》本亦有通行录本，两者在「司祿／司錄」等用字上互有异文，随文已注。</p>
+<p class="body"><b>检索局限的诚实声明。</b>「未检得古证」是基于上述检索范围与检索式的有限结论，不等于绝对不存在——道藏一千四百余种文本尚无逐字全文检索的公开完备工具，域外汉籍与民间抄本更在视野之外。因此本篇的结论作两层表述：确定的层面是——百科所引《洛书》佚文与《本生真经》文字均与原典不符，此类具体对勘可以定谳；存疑的层面是——完整七名序列或有未见之传本，倘有新证，欢迎据以修订本文。</p>
+<p class="body"><b>遗补事项。</b>《搜神记》「南斗注生，北斗注死」一段，因维基文库相应卷页暂缺文本，本篇未引；此观念的经证已由《度人经》四注「南北二斗，主人生死」承担<a class="cite" href="#z11"><sup>[证11]</sup></a>。《北斗经》诸讳字（北斗咒末九字）因涉及扩展区汉字，照录有排版风险，引文以省略号处理，全文见<a class="cite" href="#z7"><sup>[证7]</sup></a>链接。</p>
+</div>
+</main>
+
+<footer class="end">
+  <div class="rule"></div>
+  <p>七古樟樹下現代碑文考源笔记 · 文獻考據筆記</p>
+  <p class="m">全文引证十五条 · 链接可溯 —— 2026 年 11 月 · 供研究參考</p>
+</footer>
+
+</body>
+</html>
