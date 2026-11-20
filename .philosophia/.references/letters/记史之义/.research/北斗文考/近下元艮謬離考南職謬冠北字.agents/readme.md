@@ -1,6 +1,6 @@
 
 
-[Qwen-3.7-Max](https://chat.qwen.ai "chat.qwen.ai")
+[Qwen-3.7-Plus](https://chat.qwen.ai "chat.qwen.ai")
 ===
 
 *（思考与搜索略）*
