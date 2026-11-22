@@ -1,0 +1,2 @@
+[無上祕要卷三/wikisource.org]: https://zh.wikisource.org/wiki/%E7%84%A1%E4%B8%8A%E7%A7%98%E8%A6%81/%E5%8D%B7%E4%B8%89 "〔唐〕不著撰人無上祕要 底本正一道藏太平部 參校敦煌寫本 P.2861, DX169a+169a, DX2632a, S.80, P.2632, S.5382, P.2371, P.3327, P.3141, P.3773, 及佚籍叢殘珍字二O所收羅振玉校錄敦煌唐寫本 - 無上秘要 卷三 | 维基文库"
+[北周宇文邕編無上祕要卷三/db2.sido.keio.ac.jp]: https://db2.sido.keio.ac.jp/kanseki/bib_frame?id=007074-2938&page=10 "(~. https://db2.sido.keio.ac.jp/iipsrv/kanseki/007074/007074-2938/tif/007074-2938-00{10..20}.tif/full/full/0/default.jpg) 〔朙〕正一道藏收〔北周〕宇文邕編無上祕要 卷三 | （日）宮内庁書陵部収蔵漢籍集覧"
