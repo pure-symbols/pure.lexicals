@@ -1,0 +1,2 @@
+[唐杜光庭廣成集張道衡塑造北斗七星真君醮詞/wikisource.org]: https://zh.wikisource.org/zh/%E5%BB%A3%E6%88%90%E9%9B%86/%E5%8D%B7%E5%8D%81%E4%BA%94#%E5%BC%B5%E9%81%93%E8%A1%A1%E5%A1%91%E9%80%A0%E5%8C%97%E6%96%97%E4%B8%83%E6%98%9F%E7%9C%9F%E5%90%9B%E9%86%AE%E8%A9%9E "〔唐〕杜光庭撰 廣成集 卷十五 - 張道衡塑造北斗七星真君醮詞 | 维基文库"
+[唐杜光庭廣成集張道衡塑造北斗七星真君醮詞/db2.sido.keio.ac.jp]: https://db2.sido.keio.ac.jp/kanseki/bib_frame?id=007074-1156&page=7 "(~. https://db2.sido.keio.ac.jp/iipsrv/kanseki/007074/007074-1156/tif/007074-1156-0007.tif/full/full/0/default.jpg) 〔唐〕杜光庭撰 廣成集 卷十五 - 張道衡塑造北斗七星真君醮詞 | 宮内庁書陵部収蔵漢籍集覧"
